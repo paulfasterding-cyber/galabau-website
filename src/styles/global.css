@@ -1,0 +1,109 @@
+/* ===== VARIABLEN ===== */
+:root {
+  --blue:#6EEC9D; --blue-strong:#16a566; --blue-deep:#0e8f57;
+  --ink:#0c0d10; --ink-soft:#3d3d3d; --gray:#565a66; --gray-2:#737373;
+  --bg:#f5f5f5; --bg-soft:#f5f5f5;
+  --green:#2f9e44; --green-dark:#14532d;
+  --line:rgba(61,61,61,0.12);
+  --radius:20px; --pill:999px;
+  --shadow-card:0 1px 20px rgba(0,0,0,0.05);
+  --shadow-blue:0 5px 14px rgba(29,120,62,0.18);
+  --container:1180px;
+  --f-head:"Plus Jakarta Sans","Inter",sans-serif;
+  --f-body:"Inter",sans-serif;
+  --mask-x:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+  --mask-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+
+/* ===== RESET ===== */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+[hidden] { display:none !important; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--f-body); color:var(--ink); background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+img,svg { display:block; }
+.container { width:100%; max-width:var(--container); margin-inline:auto; padding-inline:22px; }
+a,button,.btn { touch-action:manipulation; }
+.ic { width:1.2em; height:1.2em; flex:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+.logo { width:auto; display:block; }
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:.95rem;letter-spacing:-.01em;border-radius:var(--pill);padding:13px 26px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.btn--lg{padding:15px 30px;font-size:1rem}
+.btn--block{width:100%}
+.btn--primary{background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);color:#06351e;box-shadow:var(--shadow-blue)}
+.btn--primary:hover{background:linear-gradient(180deg,#8ff5b8 0%,#64e6a0 100%);transform:translateY(-2px);box-shadow:0 14px 30px rgba(29,120,62,.45)}
+.btn--primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn--light{background:#fff;color:var(--ink);border-color:transparent;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.btn--light:hover{background:#f1fcf5;border-color:transparent;color:var(--blue-strong);transform:translateY(-2px)}
+.btn--ghost{background:#fff;color:var(--ink);border-color:#e3e3e6}
+.btn--ghost:hover{background:#f4f6ff;color:var(--blue-strong);border-color:#bdeecd}
+
+/* ===== DARK HEADER MODIFIER ===== */
+.head--dark{background:#0b0f1a;color:#fff}
+.head--dark .head__pill{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.72);box-shadow:none}
+.head--dark h1{color:#fff}
+.head--dark p{color:rgba(255,255,255,.55)}
+/* KPIs inside dark header (case-studies) */
+.head--dark .kpi{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.09)}
+.head--dark .kpi strong{color:#6EEC9D}
+.head--dark .kpi span{color:rgba(255,255,255,.38)}
+
+/* ===== DARK SECTION (für CTA am Ende) ===== */
+.section--dark{background:#0b0f1a;padding:80px 0}
+.section--dark h2{color:#fff}
+.section--dark p{color:rgba(255,255,255,.55)}
+.section--dark .bcta__card,.section--dark .ccta__card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.btn__arrow{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--blue-strong)}
+.btn__arrow svg{width:14px;height:14px}
+
+/* ===== NAV ===== */
+.navwrap{position:sticky;top:0;z-index:100;padding:14px 16px 0}
+.nav2{max-width:920px;margin-inline:auto;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;background:rgba(28,30,36,.72);border:1px solid rgba(255,255,255,.08);border-radius:var(--pill);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.nav2 .logo{height:26px;filter:brightness(0) invert(1)}
+.brand{display:inline-flex;align-items:center}
+.nav2 a.home{margin-right:auto;display:inline-flex;align-items:center}
+.nav2__links{display:none;list-style:none;gap:16px;margin-inline:auto}
+.nav2__links a{color:rgba(255,255,255,.82);font-weight:500;font-size:.88rem;transition:color .18s ease}
+.nav2__links a:hover{color:#fff}
+.nav2__cta{margin-left:auto}
+.nav2__back{margin-left:auto;color:rgba(255,255,255,.85);font-weight:500;font-size:.92rem}
+.nav2__burger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;margin-left:auto;z-index:10}
+.nav2__burger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.85);border-radius:2px;transition:transform .2s,opacity .2s}
+/* Mobile-Menü offen */
+.nav2.is-open{border-radius:18px 18px 0 0}
+.nav2.is-open .nav2__burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav2.is-open .nav2__burger span:nth-child(2){opacity:0}
+.nav2.is-open .nav2__burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav2__mobile-menu{display:none;flex-direction:column;gap:4px;background:rgba(28,30,36,.95);border:1px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 18px 18px;padding:10px 12px 14px;max-width:780px;margin:0 auto;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav2.is-open~.nav2__mobile-menu{display:flex}
+.nav2__mobile-menu a{color:rgba(255,255,255,.75);font-weight:500;font-size:.95rem;padding:10px 14px;border-radius:10px;transition:background .15s,color .15s}
+.nav2__mobile-menu a:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav2__mobile-menu .btn--primary{margin-top:6px;justify-content:center}
+@media(min-width:920px){.nav2__links{display:flex}.nav2__cta{margin-left:0}.nav2__back{display:none}.nav2__burger{display:none}.nav2__mobile-menu{display:none!important}}
+
+/* ===== HEAD SECTION ===== */
+.head{text-align:center;padding:56px 0 8px}
+.head__pill{display:inline-flex;align-items:center;gap:9px;font-size:.88rem;font-weight:500;color:var(--ink-soft);background:#fff;border:1px solid rgba(0,0,0,.07);padding:8px 17px 8px 13px;border-radius:var(--pill);box-shadow:0 6px 18px rgba(0,0,0,.06);margin-bottom:22px}
+.head__pill .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex:none}
+.head h1{font-family:var(--f-head);font-size:clamp(2.1rem,5.5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.07;max-width:18ch;margin-inline:auto}
+.head p{margin:18px auto 0;max-width:54ch;color:var(--gray);font-size:1.1rem}
+
+/* ===== DARK HEADER – ORBIT BACKGROUND (Sub-Seiten) ===== */
+.head--dark{position:relative;overflow:hidden}
+.head--dark .container{position:relative;z-index:1}
+.hd-bg{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:72px 72px}
+.hd-orb{position:absolute;inset:0}
+@media(max-width:860px){.hd-bg{opacity:.7}}
+
+/* ===== NAV TOP – dunkle Seiten: navwrap transparent, Hero hinter Nav gezogen ===== */
+body:has(.head--dark) .navwrap,
+body:has(.art-dark-hd) .navwrap { top:0; }
+/* Hero 64px nach oben ziehen damit sein dunkler Hintergrund durch den transparenten Navwrap scheint */
+body:has(.head--dark) .head--dark { margin-top:-80px; padding-top:136px; }
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-visible{opacity:1;transform:none}
+html:not(.js) .reveal{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}

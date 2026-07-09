@@ -1,0 +1,292 @@
+---
+---
+
+<!-- Overlay-Backdrop -->
+<div id="cb-overlay" aria-hidden="true"></div>
+
+<!-- Cookie-Modal -->
+<div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cb-title">
+  <div class="cb-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="14" fill="#2bcf78" fill-opacity="0.15"/>
+      <path d="M8 14.5C8 11.186 10.686 8.5 14 8.5C14 9.328 14.672 10 15.5 10C16.328 10 17 9.328 17 8.5C19.485 9.62 21 12.128 21 14.5C21 17.814 18.314 20.5 15 20.5C11.686 20.5 8 17.814 8 14.5Z" fill="#2bcf78"/>
+      <circle cx="12" cy="13" r="1" fill="#0a1a0f"/>
+      <circle cx="15" cy="16" r="1" fill="#0a1a0f"/>
+      <circle cx="18" cy="13" r="1" fill="#0a1a0f"/>
+    </svg>
+  </div>
+
+  <div class="cb-content">
+    <h2 id="cb-title" class="cb-title">Wir verwenden Cookies</h2>
+    <p class="cb-text">
+      Diese Website nutzt <strong>Google Analytics</strong> und <strong>Google Ads</strong>, um zu verstehen,
+      wie Besucher unsere Seite nutzen und um Werbemessung zu ermöglichen.
+      Ihre Daten werden erst nach Ihrer Einwilligung an Google (USA) übertragen.
+    </p>
+    <p class="cb-subtext">
+      Sie können Ihre Einwilligung jederzeit in der
+      <a href="/datenschutz" class="cb-link">Datenschutzerklärung</a> widerrufen.
+      Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO, § 25 TTDSG.
+    </p>
+  </div>
+
+  <div class="cb-services">
+    <div class="cb-service">
+      <div class="cb-service-icon">GA</div>
+      <div>
+        <strong>Google Analytics 4</strong>
+        <span>Seitenaufrufe, Verhalten, Traffic-Quellen</span>
+      </div>
+    </div>
+    <div class="cb-service">
+      <div class="cb-service-icon cb-service-icon--ads">Ads</div>
+      <div>
+        <strong>Google Ads</strong>
+        <span>Conversion-Tracking, Remarketing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cb-actions">
+    <button id="cookie-accept" class="cb-btn-accept">
+      Alle akzeptieren
+    </button>
+    <button id="cookie-decline" class="cb-btn-decline">
+      Nur notwendige
+    </button>
+  </div>
+
+  <p class="cb-note">
+    Notwendige Cookies (Session, Sicherheit) sind immer aktiv und benötigen keine Einwilligung.
+  </p>
+</div>
+
+<script is:inline>
+  (function () {
+    var overlay = document.getElementById('cb-overlay');
+    var banner  = document.getElementById('cookie-banner');
+    var consent = typeof localStorage !== 'undefined' ? localStorage.getItem('fa_consent') : null;
+
+    if (!consent) {
+      overlay.style.display = 'block';
+      banner.style.display  = 'flex';
+    }
+
+    function grantConsent() {
+      localStorage.setItem('fa_consent', 'granted');
+      overlay.style.display = 'none';
+      banner.style.display  = 'none';
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'ad_storage':        'granted',
+          'ad_user_data':      'granted',
+          'ad_personalization':'granted',
+          'analytics_storage': 'granted'
+        });
+      }
+    }
+
+    function denyConsent() {
+      localStorage.setItem('fa_consent', 'denied');
+      overlay.style.display = 'none';
+      banner.style.display  = 'none';
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', grantConsent);
+    document.getElementById('cookie-decline').addEventListener('click', denyConsent);
+  })();
+</script>
+
+<style>
+  #cb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+  }
+
+  #cookie-banner {
+    display: none;
+    flex-direction: column;
+    gap: 1.125rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(480px, calc(100vw - 2rem));
+    background: #0f1f14;
+    border: 1px solid rgba(43, 207, 120, 0.2);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    z-index: 9999;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .cb-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(43, 207, 120, 0.1);
+    border-radius: 50%;
+    border: 1px solid rgba(43, 207, 120, 0.2);
+  }
+
+  .cb-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .cb-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cb-text strong {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .cb-subtext {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.5;
+    margin: 0;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cb-link {
+    color: #2bcf78;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cb-services {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .cb-service {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .cb-service strong {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    margin-bottom: 1px;
+  }
+
+  .cb-service span {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.78rem;
+  }
+
+  .cb-service-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(43, 207, 120, 0.12);
+    border: 1px solid rgba(43, 207, 120, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #2bcf78;
+    letter-spacing: 0.02em;
+  }
+
+  .cb-service-icon--ads {
+    background: rgba(66, 133, 244, 0.12);
+    border-color: rgba(66, 133, 244, 0.2);
+    color: #4285f4;
+  }
+
+  .cb-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .cb-btn-accept {
+    width: 100%;
+    background: #2bcf78;
+    color: #0a1a0f;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 0.8rem 1.25rem;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    letter-spacing: -0.01em;
+  }
+
+  .cb-btn-accept:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .cb-btn-accept:active {
+    transform: translateY(0);
+  }
+
+  .cb-btn-decline {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .cb-btn-decline:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .cb-note {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.28);
+    line-height: 1.5;
+    margin: 0;
+    text-align: center;
+  }
+
+  @media (max-width: 520px) {
+    #cookie-banner {
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: none;
+      width: 100%;
+      border-radius: 1.25rem 1.25rem 0 0;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  }
+</style>

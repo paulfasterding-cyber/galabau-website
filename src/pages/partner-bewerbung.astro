@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Partner-Bewerbung – Fastra One"
+  description="In 2 Minuten als Fastra-Partner bewerben. Gute Vertriebler willkommen."
+  canonical="https://fastraone.de/partner-bewerbung.html"
+  navVariant="minimal"
+  navBackHref="partner.html"
+  navBackLabel="Partnerseite"
+  footerVariant="full"
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a4ff0'/%3E%3Ctext x='50%25' y='53%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='800' fill='white'%3EF%3C/text%3E%3C/svg%3E" />
+  </Fragment>
+
+  <style is:global>
+.container{max-width:760px}
+.nav2{max-width:760px}
+.head{padding:56px 0 36px;text-align:center}
+.head h1{font-size:clamp(2rem,5.5vw,3rem);line-height:1.08;max-width:none;color:var(--ink)}
+.head p{margin:14px auto 0;max-width:52ch;font-size:1.08rem;color:var(--gray)}
+
+.panel{max-width:620px;margin:28px auto 72px}
+.pcard{background:linear-gradient(145deg,rgba(18,24,50,.9),rgba(11,15,26,.9));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:clamp(24px,4vw,40px);box-shadow:0 8px 40px rgba(0,0,0,.45)}
+
+.pcard h2{font-family:var(--f-head);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff}
+.pcard>p{margin-top:10px;color:rgba(255,255,255,.52)}
+.perks{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:13px}
+.perks li{position:relative;padding-left:30px;color:rgba(255,255,255,.7)}
+.perks li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;-webkit-mask:var(--mask-check) center/contain no-repeat;mask:var(--mask-check) center/contain no-repeat;background:#6EEC9D}
+
+.progress{height:7px;background:rgba(255,255,255,.07);border-radius:var(--pill);overflow:hidden;margin-bottom:6px}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,#56e592,#2bcf78);border-radius:var(--pill);transition:width .35s cubic-bezier(.16,1,.3,1)}
+.progress__txt{font-size:.8rem;color:rgba(255,255,255,.32);font-weight:600;margin-bottom:22px}
+.fstep{animation:fade .35s ease}
+.fstep[hidden]{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fstep h3{font-family:var(--f-head);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.fstep .hint{margin-top:6px;color:rgba(255,255,255,.45);font-size:.95rem}
+.opts{display:grid;grid-template-columns:1fr;gap:11px;margin-top:22px}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);border-radius:14px;padding:16px 18px;font-family:var(--f-body);font-size:1rem;font-weight:600;color:rgba(255,255,255,.78);cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:rgba(110,236,157,.4);background:rgba(110,236,157,.06)}
+.opt.is-sel{border-color:#6EEC9D;background:rgba(110,236,157,.08);box-shadow:0 0 0 3px rgba(110,236,157,.1)}
+.opt__tick{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.2);flex:none;display:grid;place-items:center;transition:all .15s}
+.opt.is-sel .opt__tick{background:#6EEC9D;border-color:#6EEC9D}
+.opt.is-sel .opt__tick::after{content:"";width:9px;height:9px;border-radius:50%;background:#0b0f1a}
+@media(min-width:520px){.opts--2{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
+.field label{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.55)}
+.field input,.field textarea{width:100%;font-family:var(--f-body);font-size:1rem;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 15px;transition:border-color .15s,box-shadow .15s}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.28)}
+.field input:focus,.field textarea:focus{outline:none;border-color:#6EEC9D;box-shadow:0 0 0 3px rgba(110,236,157,.14)}
+.field textarea{resize:vertical;min-height:96px}
+.fnav{display:flex;gap:12px;margin-top:24px}
+.fnav .btn{flex:1}
+.consent{display:flex;align-items:flex-start;gap:10px;margin-top:4px;font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.5}
+.consent input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:#6EEC9D}
+.consent a{color:#6EEC9D;text-decoration:underline}
+.done{text-align:center;padding:18px 0}
+.done__ic{width:66px;height:66px;border-radius:50%;background:#6EEC9D;display:grid;place-items:center;margin:0 auto 18px}
+.done__ic svg{width:32px;height:32px;stroke:#0b0f1a;stroke-width:3;fill:none}
+.done h3{font-family:var(--f-head);font-size:1.6rem;font-weight:800;color:#fff}
+.done p{margin-top:10px;color:rgba(255,255,255,.52)}
+
+html:not(.js) .fstep[hidden]{display:block!important}
+  </style>
+
+  <main>
+    <section class="head">
+      <div class="container">
+        <h1>Partner werden bei Fastra One.</h1>
+        <p>Du kennst GaLaBau-Betriebe und bringst Aufträge ran – wir machen die Leistung. Bis zu 30&nbsp;% Provision. In 2&nbsp;Minuten bewerben.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="panel">
+        <div class="pcard">
+          <div id="funnelBody">
+            <div class="progress"><div class="progress__bar" id="pbar"></div></div>
+            <div class="progress__txt" id="ptxt">Schritt 1 von 5</div>
+
+            <form id="funnel" novalidate>
+              <!-- Honeypot -->
+              <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+                <input type="text" name="website" id="hp_website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <!-- Step 1: Rolle -->
+              <div class="fstep" data-step="1">
+                <h3>Wie bist du beruflich tätig?</h3>
+                <p class="hint">Damit wir direkt auf den Punkt kommen können.</p>
+                <div class="opts opts--2">
+                  <button type="button" class="opt" data-name="rolle" data-value="Vertriebler / Berater">
+                    <span class="opt__tick"></span>Vertriebler / Berater
+                  </button>
+                  <button type="button" class="opt" data-name="rolle" data-value="Handwerker / Betrieb">
+                    <span class="opt__tick"></span>Handwerker / Betrieb
+                  </button>
+                  <button type="button" class="opt" data-name="rolle" data-value="Architekt / Planer">
+                    <span class="opt__tick"></span>Architekt / Planer
+                  </button>
+                  <button type="button" class="opt" data-name="rolle" data-value="Privatperson / Sonstiges">
+                    <span class="opt__tick"></span>Privatperson / Sonstiges
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Erfahrung -->
+              <div class="fstep" data-step="2" hidden>
+                <h3>Hast du Erfahrung in Vertrieb oder Marketing?</h3>
+                <p class="hint">Ehrlich antworten – es gibt keine falsche Antwort.</p>
+                <div class="opts">
+                  <button type="button" class="opt" data-name="erfahrung" data-value="Ja, viel Erfahrung">
+                    <span class="opt__tick"></span>Ja, viel Erfahrung
+                  </button>
+                  <button type="button" class="opt" data-name="erfahrung" data-value="Etwas Erfahrung">
+                    <span class="opt__tick"></span>Etwas Erfahrung
+                  </button>
+                  <button type="button" class="opt" data-name="erfahrung" data-value="Kaum Erfahrung">
+                    <span class="opt__tick"></span>Kaum Erfahrung
+                  </button>
+                  <button type="button" class="opt" data-name="erfahrung" data-value="Keine – aber motiviert">
+                    <span class="opt__tick"></span>Keine – aber motiviert
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Netzwerk -->
+              <div class="fstep" data-step="3" hidden>
+                <h3>Wie viele GaLaBau-Betriebe kennst du ungefähr?</h3>
+                <p class="hint">Grob geschätzt reicht.</p>
+                <div class="opts opts--2">
+                  <button type="button" class="opt" data-name="netzwerk" data-value="1–2 Betriebe">
+                    <span class="opt__tick"></span>1–2 Betriebe
+                  </button>
+                  <button type="button" class="opt" data-name="netzwerk" data-value="3–10 Betriebe">
+                    <span class="opt__tick"></span>3–10 Betriebe
+                  </button>
+                  <button type="button" class="opt" data-name="netzwerk" data-value="Mehr als 10 Betriebe">
+                    <span class="opt__tick"></span>Mehr als 10 Betriebe
+                  </button>
+                  <button type="button" class="opt" data-name="netzwerk" data-value="Großes Netzwerk / Verband">
+                    <span class="opt__tick"></span>Großes Netzwerk
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 4: Motivation -->
+              <div class="fstep" data-step="4" hidden>
+                <h3>Was ist dein Hauptziel als Partner?</h3>
+                <div class="opts">
+                  <button type="button" class="opt" data-name="ziel_partner" data-value="Passives Nebeneinkommen aufbauen">
+                    <span class="opt__tick"></span>Passives Nebeneinkommen aufbauen
+                  </button>
+                  <button type="button" class="opt" data-name="ziel_partner" data-value="Win-Win: ich helfe Betrieben, die ich kenne">
+                    <span class="opt__tick"></span>Win-Win: ich helfe Betrieben, die ich kenne
+                  </button>
+                  <button type="button" class="opt" data-name="ziel_partner" data-value="Partnervertrieb als ernsthaftes Standbein">
+                    <span class="opt__tick"></span>Partnervertrieb als ernsthaftes Standbein
+                  </button>
+                  <button type="button" class="opt" data-name="ziel_partner" data-value="Erstmal schauen, was draus wird">
+                    <span class="opt__tick"></span>Erstmal schauen, was draus wird
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 5: Kontakt -->
+              <div class="fstep" data-step="5" hidden>
+                <h3>Wie können wir dich erreichen?</h3>
+                <p class="hint">Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+                <div style="margin-top:20px">
+                  <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+                  <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+                  <div class="field"><label for="telefon">Telefon <span style="font-weight:400;color:var(--gray-2)">(optional)</span></label><input id="telefon" name="telefon" type="tel" autocomplete="tel" /></div>
+                  <div class="field"><label for="nachricht">Hast du noch eine Frage? <span style="font-weight:400;color:var(--gray-2)">(optional)</span></label><textarea id="nachricht" name="nachricht" placeholder="z. B. Fragen zur Provision oder zum Ablauf."></textarea></div>
+                  <label class="consent"><input type="checkbox" id="consent" required /><span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden (<a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
+                </div>
+              </div>
+
+              <div class="fnav" id="fnav">
+                <button type="button" class="btn btn--ghost" id="backBtn" hidden>Zurück</button>
+                <button type="button" class="btn btn--primary" id="nextBtn" disabled>Weiter</button>
+                <button type="submit" class="btn btn--primary" id="sendBtn" hidden>Bewerbung absenden</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="done" id="funnelDone" hidden>
+            <div class="done__ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3>Bewerbung eingegangen!</h3>
+            <p>Paul meldet sich innerhalb von 24 Stunden bei dir. Schau kurz ins Postfach.</p>
+            <a href="partner.html" class="btn btn--primary btn--lg" style="margin-top:18px">Zurück zur Partner-Seite</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+    (function(){
+      "use strict";
+      var FORM_ENDPOINT = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:3000/api/leads"
+        : "https://admin.fastraone.de/api/leads";
+
+      var form = document.getElementById("funnel");
+      var steps = Array.prototype.slice.call(form.querySelectorAll(".fstep"));
+      var total = steps.length;
+      var cur = 0;
+      var answers = {};
+      var bar = document.getElementById("pbar");
+      var ptxt = document.getElementById("ptxt");
+      var backBtn = document.getElementById("backBtn");
+      var nextBtn = document.getElementById("nextBtn");
+      var sendBtn = document.getElementById("sendBtn");
+
+      function isChoice(step){ return !!step.querySelector(".opt"); }
+      function stepValid(i){
+        var step = steps[i];
+        if (isChoice(step)){
+          var name = step.querySelector(".opt").getAttribute("data-name");
+          return !!answers[name];
+        }
+        if (step.getAttribute("data-step") === "5"){
+          var okv = ["name","email"].every(function(id){ var el=document.getElementById(id); return el && el.value.trim(); });
+          return okv && document.getElementById("email").checkValidity() && document.getElementById("consent").checked;
+        }
+        return true;
+      }
+      function render(){
+        steps.forEach(function(s,i){ s.hidden = i !== cur; });
+        bar.style.width = Math.round((cur/(total-1))*100) + "%";
+        ptxt.textContent = "Schritt " + (cur+1) + " von " + total;
+        backBtn.hidden = cur === 0;
+        var last = cur === total-1;
+        nextBtn.hidden = last;
+        sendBtn.hidden = !last;
+        refreshNext();
+      }
+      function refreshNext(){
+        var ok = stepValid(cur);
+        nextBtn.disabled = !ok;
+        sendBtn.disabled = !ok;
+      }
+      form.querySelectorAll(".opt").forEach(function(opt){
+        opt.addEventListener("click", function(){
+          var name = opt.getAttribute("data-name");
+          opt.parentNode.querySelectorAll(".opt").forEach(function(s){ s.classList.remove("is-sel"); });
+          opt.classList.add("is-sel");
+          answers[name] = opt.getAttribute("data-value");
+          refreshNext();
+        });
+      });
+      form.querySelectorAll("input, textarea").forEach(function(el){
+        el.addEventListener("input", refreshNext);
+        el.addEventListener("change", refreshNext);
+      });
+      nextBtn.addEventListener("click", function(){ if (stepValid(cur) && cur < total-1){ cur++; render(); } });
+      backBtn.addEventListener("click", function(){ if (cur > 0){ cur--; render(); } });
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        if (document.getElementById("hp_website") && document.getElementById("hp_website").value) return;
+        if (!stepValid(cur)) return;
+
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var telefon = document.getElementById("telefon").value.trim();
+        var nachrichtRaw = document.getElementById("nachricht").value.trim();
+
+        var zusammenfassung = [
+          "Rolle: " + (answers.rolle || "–"),
+          "Erfahrung: " + (answers.erfahrung || "–"),
+          "Netzwerk: " + (answers.netzwerk || "–"),
+          "Ziel: " + (answers.ziel_partner || "–"),
+        ].join(" | ");
+        if (nachrichtRaw) zusammenfassung += " | Nachricht: " + nachrichtRaw;
+
+        sendBtn.disabled = true; sendBtn.textContent = "Wird gesendet …";
+
+        function showDone(){
+          document.getElementById("funnelBody").hidden = true;
+          document.getElementById("funnelDone").hidden = false;
+        }
+
+        var payload = {
+          name: name,
+          email: email,
+          telefon: telefon || undefined,
+          betrieb: answers.rolle || undefined,
+          nachricht: zusammenfassung,
+          quelle: "partner-bewerbung",
+          seite: window.location.pathname,
+        };
+
+        fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+          .then(showDone)
+          .catch(function(){ showDone(); });
+      });
+      render();
+    })();
+    </script>
+  </Fragment>
+</BaseLayout>

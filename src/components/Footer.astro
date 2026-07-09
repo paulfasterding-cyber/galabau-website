@@ -1,0 +1,64 @@
+---
+interface Props {
+  variant?: 'full' | 'simple' | 'minimal';
+}
+const { variant = 'full' } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="logo" src="assets/logo.png" alt="Fastra One Webdesign-Agentur Hannover" />
+      <p>Webdesign, Google Ads &amp; SEO für Garten- und Landschaftsbau. Aus Hannover, für ganz DACH.</p>
+      <address style="font-style:normal;font-size:.82rem;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
+        Fastra One · Am Flachsgraben 9 · 30657 Hannover<br>
+        <a href="tel:+491633781657" style="color:rgba(255,255,255,.35)">+49 163 3781657</a>
+      </address>
+    </div>
+    <nav class="footer__col" aria-label="Seiten">
+      <h3>Seiten</h3>
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html">Ratgeber</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <nav class="footer__col" aria-label="Rechtliches">
+      <h3>Rechtliches</h3>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+      <a href="/admin/dashboard" style="opacity:.35;font-size:.8rem">Intern</a>
+    </nav>
+  </div>
+  <div class="footer__wordmark" aria-hidden="true">
+    <span>Fastra One</span>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 Fastra One</span>
+    <nav class="footer__bottom-links" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+    </nav>
+    <span>Hannover · Deutschland</span>
+  </div>
+</footer>
+
+<style is:global>
+.footer{background:#0b0f1a;border-top:none;padding:64px 0 0;color:rgba(255,255,255,.6)}
+.footer__inner{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:52px}
+.footer__brand .logo{height:42px;filter:brightness(0) invert(1)}
+.footer__brand p{margin-top:14px;color:rgba(255,255,255,.36);max-width:36ch;font-size:.92rem;line-height:1.6}
+.footer__col{display:flex;flex-direction:column;gap:0}
+.footer__col h3{font-size:.74rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.09em;margin-bottom:16px}
+.footer__col a{color:rgba(255,255,255,.46);font-size:.92rem;margin-bottom:10px;transition:color .18s}
+.footer__col a:hover{color:#6EEC9D}
+.footer__wordmark{text-align:center;padding:0;line-height:1;overflow:hidden;background:#0b0f1a;max-height:180px}
+.footer__wordmark span{font-family:var(--f-head);font-size:clamp(5rem,16vw,15rem);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:#171f30;display:block;user-select:none;white-space:nowrap;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%);mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%)}
+.footer__bottom{margin-top:0;padding:22px 0;border-top:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.25);font-size:.82rem;display:flex;flex-wrap:wrap;gap:12px 0;justify-content:space-between;align-items:center}
+.footer__bottom-links{display:flex;gap:20px}
+.footer__bottom-links a{color:rgba(255,255,255,.25);transition:color .18s}
+.footer__bottom-links a:hover{color:rgba(255,255,255,.6)}
+@media(min-width:760px){.footer__inner{grid-template-columns:2fr 1fr 1fr;gap:60px}}
+</style>

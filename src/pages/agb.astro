@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="AGB – Fastra One"
+  description="Allgemeine Geschäftsbedingungen von Fastra One – Paul Niklas Fasterding, Hannover."
+  navVariant="back"
+  footerVariant="full"
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex" />
+  </Fragment>
+
+  <style is:global>
+.legal-hero { background:#0b0f1a; padding:clamp(60px,10vw,100px) 0 0; text-align:center; }
+.legal-hero h1 { font-family:var(--f-head); font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-.03em; color:#fff; }
+.legal-hero p { color:rgba(255,255,255,.45); font-size:.9rem; margin-top:10px; }
+
+.legal-body { max-width:760px; margin-inline:auto; padding:clamp(40px,6vw,72px) 22px clamp(60px,8vw,100px); }
+.legal-body h2 { font-family:var(--f-head); font-size:1.15rem; font-weight:700; margin:32px 0 8px; color:#0c0d10; }
+.legal-body p, .legal-body li { margin-bottom:8px; color:#3d3d3d; line-height:1.72; }
+.legal-body ul { padding-left:22px; }
+.legal-body a { color:#16a566; }
+.legal-note { background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px; padding:16px 18px; margin:28px 0; font-size:.9rem; color:#565a66; }
+  </style>
+
+  <section class="legal-hero">
+    <div class="container">
+      <h1>Allgemeine Geschäftsbedingungen</h1>
+      <p>Stand: Juni 2026 · Fastra One – Paul Niklas Fasterding</p>
+    </div>
+  </section>
+
+  <div aria-hidden="true" style="line-height:0;background:#0b0f1a">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="width:100%;height:70px;display:block">
+      <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#f0f2f7"/>
+    </svg>
+  </div>
+
+  <main class="legal-body">
+
+    <h2>§ 1 Geltungsbereich</h2>
+    <p>Diese AGB gelten für alle Verträge zwischen Fastra One (nachfolgend „Auftragnehmer") und dem Auftraggeber über Webdesign-, Marketing- und Automatisierungsleistungen.</p>
+
+    <h2>§ 2 Angebot &amp; Vertragsschluss</h2>
+    <p>Angebote sind 14 Tage gültig. Der Vertrag kommt mit schriftlicher Bestätigung bzw. Annahme des Angebots zustande.</p>
+
+    <h2>§ 3 Preise &amp; Zahlung</h2>
+    <ul>
+      <li>Zahlung in zwei Raten: 50 % Anzahlung vor Projektstart, 50 % bei Übergabe.</li>
+      <li>Zahlungsfrist: 7 Kalendertage nach Rechnungsstellung.</li>
+      <li>Als Kleinunternehmer gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen.</li>
+      <li>Ab der 2. Mahnung wird eine Mahngebühr von 5 € berechnet.</li>
+      <li>Aufrechnung ist ausgeschlossen, soweit gesetzlich zulässig.</li>
+    </ul>
+
+    <h2>§ 4 Mitwirkung &amp; Revisionen</h2>
+    <ul>
+      <li>Feedback wird gesammelt in einer Nachricht eingereicht.</li>
+      <li>2 Revisionsrunden sind inklusive. Weitere Runden werden mit 75 €/Stunde berechnet.</li>
+    </ul>
+
+    <h2>§ 5 Termine</h2>
+    <p>Bei Nichterscheinen zu einem vereinbarten Termin ohne rechtzeitige Absage wird eine Ausfallpauschale von 25 % berechnet.</p>
+
+    <h2>§ 6 Eigentumsvorbehalt</h2>
+    <p>Alle gelieferten Werke und Nutzungsrechte verbleiben bis zur vollständigen Bezahlung beim Auftragnehmer.</p>
+
+    <h2>§ 7 Haftung</h2>
+    <p>Nach Übergabe wird keine Haftung für Drittkosten (z. B. Werbebudgets, Tool-Gebühren) oder den wirtschaftlichen Erfolg übernommen.</p>
+
+    <h2>§ 8 Schlussbestimmungen</h2>
+    <p>Es gilt deutsches Recht. Sollten einzelne Bestimmungen unwirksam sein, bleibt der übrige Vertrag wirksam.</p>
+
+    <div class="legal-note">
+      Hinweis: Diese AGB fassen die in den Firmenunterlagen hinterlegten Kernregelungen zusammen und ersetzen keine individuelle Rechtsberatung. Vor dem Live-Gang final prüfen lassen.
+    </div>
+
+  </main>
+</BaseLayout>

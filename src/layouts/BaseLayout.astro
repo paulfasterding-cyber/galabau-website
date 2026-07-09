@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  navVariant?: 'full' | 'back' | 'minimal' | 'none';
+  navBackHref?: string;
+  navBackLabel?: string;
+  footerVariant?: 'full' | 'simple' | 'minimal' | 'none';
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://fastraone.de/assets/garden.jpg',
+  ogType = 'website',
+  navVariant = 'back',
+  navBackHref,
+  navBackLabel,
+  footerVariant = 'simple',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <script is:inline>document.documentElement.className = "js";</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Fastra One" />
+  <meta name="theme-color" content="#2bcf78" />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <link rel="icon" href="assets/favicon-c.png?v=4" />
+
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="Fastra One" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  {canonical && <meta property="og:url" content={canonical} />}
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImage} />
+
+  <link href="./fonts/fonts.css" rel="stylesheet" />
+
+  <!-- Google Consent Mode v2 — Standard: ABGELEHNT (§ 25 TTDSG / DSGVO-konform) -->
+  <!-- Muss VOR dem gtag.js-Script stehen -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    // Gespeicherte Einwilligung direkt anwenden (kein Flackern)
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('fa_consent') === 'granted') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHF77H0TJS" is:inline></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PHF77H0TJS');
+  </script>
+
+  <slot name="head" />
+</head>
+<body>
+  {navVariant !== 'none' && <Nav variant={navVariant} backHref={navBackHref} backLabel={navBackLabel} />}
+  <slot />
+  {footerVariant !== 'none' && <Footer variant={footerVariant} />}
+  <CookieBanner />
+  <slot name="scripts" />
+</body>
+</html>

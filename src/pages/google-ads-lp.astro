@@ -1,0 +1,955 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="5 garantierte Kundenanfragen in 30 Tagen | Fastra One für GaLaBau"
+  description="Wir schalten Google Ads für Garten- & Landschaftsbauer und garantieren 5 qualifizierte Anfragen in 30 Tagen — oder du zahlst nichts."
+  navVariant="none"
+  footerVariant="none"
+>
+
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <!-- ════ URGENCY BAR ══════════════════════════════════════════════════ -->
+  <div class="lp-topbar">
+    <span class="lp-topbar__dot" aria-hidden="true"></span>
+    <strong>Nur noch 3 freie Plätze im Juli</strong>
+    <span class="lp-topbar__sep">·</span>
+    <span>Kampagne startet innerhalb von 7 Tagen</span>
+    <button class="lp-topbar__cta" onclick="openModal()">Jetzt sichern →</button>
+  </div>
+
+  <!-- ════ HERO ════════════════════════════════════════════════════════ -->
+  <section class="lp-hero">
+    <div class="lp-hero__grid-bg" aria-hidden="true"></div>
+    <div class="lp-hero__glow" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="lp-hero__center">
+
+        <div class="lp-pill">
+          <span class="lp-pill-dot" aria-hidden="true"></span>
+          Google Ads für GaLaBau-Betriebe
+        </div>
+
+        <h1 class="lp-h1">
+          Du machst Gärten.<br>
+          <span class="lp-accent-grad">Wir machen Kunden.</span>
+        </h1>
+
+        <p class="lp-sub">
+          Während du arbeitest, füllt sich dein Auftragsbuch.
+          Wir garantieren dir <strong>5 qualifizierte Anfragen in 30 Tagen</strong> —
+          oder du zahlst keinen Cent.
+        </p>
+
+        <!-- Offer strip -->
+        <div class="lp-offer-strip">
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val">499 €</span>
+            <span class="lp-offer-item__label">/ Monat</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val lp-offer-item__val--green">5 Leads</span>
+            <span class="lp-offer-item__label">garantiert</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val">7 Tage</span>
+            <span class="lp-offer-item__label">bis live</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val lp-offer-item__val--green">18×</span>
+            <span class="lp-offer-item__label">Ø Return</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="lp-cta-row">
+          <button class="btn lp-btn-primary" onclick="openModal()">
+            Jetzt Platz sichern
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="tel:+491633781657" class="btn lp-btn-ghost">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Direkt anrufen
+          </a>
+        </div>
+
+        <div class="lp-guarantee-line">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          Geld-zurück-Garantie · Keine Mindestlaufzeit · DSGVO-konform
+        </div>
+
+      </div>
+    </div>
+
+    <div class="lp-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#f5f5f5"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════ BETWEEN: ROI + STEPS (kompakt) ══════════════════════════════ -->
+  <section class="lp-mid reveal">
+    <div class="container">
+
+      <!-- ROI-Streifen -->
+      <div class="lp-roi-strip">
+        <div class="lp-roi-num">
+          <span class="lp-roi-num__val">Ø 4.500 €</span>
+          <span class="lp-roi-num__label">Ø Auftragswert GaLaBau</span>
+        </div>
+        <div class="lp-roi-arrow" aria-hidden="true">→</div>
+        <div class="lp-roi-num lp-roi-num--accent">
+          <span class="lp-roi-num__val">× 5 Leads</span>
+          <span class="lp-roi-num__label">garantiert pro Monat</span>
+        </div>
+        <div class="lp-roi-arrow" aria-hidden="true">→</div>
+        <div class="lp-roi-num">
+          <span class="lp-roi-num__val">18×</span>
+          <span class="lp-roi-num__label">Return auf 499 € Investment</span>
+        </div>
+      </div>
+
+      <!-- Steps horizontal -->
+      <div class="lp-steps-row">
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">01</span>
+          <strong>Kurzes Erstgespräch</strong>
+          <span>15 Min · dein Gebiet, deine Leistungen</span>
+        </div>
+        <div class="lp-step-sm__conn" aria-hidden="true"></div>
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">02</span>
+          <strong>Kampagne live in 7 Tagen</strong>
+          <span>Anzeigen, Seite, Tracking — wir machen alles</span>
+        </div>
+        <div class="lp-step-sm__conn" aria-hidden="true"></div>
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">03</span>
+          <strong>Anfragen kommen rein</strong>
+          <span>Direkt aufs Handy, qualifiziert, sofort nutzbar</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ TESTIMONIAL ═════════════════════════════════════════════════ -->
+  <section class="lp-testi-section">
+    <div class="lp-testi__mesh" aria-hidden="true"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="lp-testi-card reveal">
+        <div class="lp-testi-card__glow" aria-hidden="true"></div>
+        <div class="lp-testi__stars" aria-label="5 von 5 Sternen">★★★★★</div>
+        <blockquote class="lp-testi__quote">
+          "Ich war skeptisch — ich hatte vorher schon schlechte Erfahrungen mit Agenturen.
+          Aber im ersten Monat kamen <strong>6 Anfragen rein</strong>, drei davon wurden echte Aufträge.
+          Das war mehr als ich in zwei Monaten Mundpropaganda bekommen hab."
+        </blockquote>
+        <div class="lp-testi__author">
+          <div class="lp-testi__avatar">MS</div>
+          <div>
+            <strong>Markus Schulze</strong>
+            <span>GaLaBau Schulze · Hannover · 4 Mitarbeiter</span>
+          </div>
+        </div>
+        <div class="lp-testi__cta-row">
+          <button class="lp-price-new__cta" style="max-width:360px" onclick="openModal()">
+            Auch so starten
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Final CTA strip -->
+      <div class="lp-final-cta reveal">
+        <div class="lp-final-cta__text">
+          <strong>Bereit, loszulegen?</strong>
+          <span>499 €/Monat · 5 Leads garantiert · Keine Mindestlaufzeit</span>
+        </div>
+        <button class="lp-final-cta__btn" onclick="openModal()">
+          Jetzt Platz sichern
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ FOOTER ══════════════════════════════════════════════════════ -->
+  <footer class="lp-footer">
+    <p>
+      © 2026 Fastra One · Paul Niklas Fasterding · Am Flachsgraben 9, 30657 Hannover ·
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a> ·
+      <a href="agb.html">AGB</a>
+    </p>
+  </footer>
+
+  <!-- ════ MODAL ════════════════════════════════════════════════════════ -->
+  <div class="lp-modal-bg" id="modal-bg" aria-hidden="true" onclick="closeModal(event)">
+    <div class="lp-modal" role="dialog" aria-modal="true" aria-label="Anfrage stellen">
+      <button class="lp-modal__close" onclick="closeModal()" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="lp-modal__inner">
+        <div class="lp-modal__head">
+          <div class="lp-modal__title">Platz sichern</div>
+          <div class="lp-modal__sub">2 Minuten — dann melden wir uns persönlich.</div>
+        </div>
+
+        <div class="lp-progress" id="progress-bar" role="progressbar" aria-label="Fortschritt">
+          <div class="lp-progress__seg lp-progress__seg--active" id="seg-0"></div>
+          <div class="lp-progress__seg" id="seg-1"></div>
+          <div class="lp-progress__seg" id="seg-2"></div>
+        </div>
+        <p class="lp-form-sub" id="form-sub">Schritt 1 von 3 — Dein Betrieb</p>
+
+        <!-- STEP 1 -->
+        <div class="lp-step-content lp-step-content--active" id="step-1">
+          <p class="lp-q">Wie groß ist dein Betrieb?</p>
+          <div class="lp-choices">
+            <button class="lp-choice" data-group="mitarbeiter" data-val="Ich alleine">Ich alleine</button>
+            <button class="lp-choice" data-group="mitarbeiter" data-val="2–5 Mitarbeiter">2–5 Mitarbeiter</button>
+            <button class="lp-choice" data-group="mitarbeiter" data-val="6–10 Mitarbeiter">6–10 Mitarbeiter</button>
+            <button class="lp-choice" data-group="mitarbeiter" data-val="10+ Mitarbeiter">10+ Mitarbeiter</button>
+          </div>
+          <p class="lp-q">Wie viele neue Aufträge könntest du monatlich annehmen?</p>
+          <div class="lp-choices">
+            <button class="lp-choice" data-group="kapazitaet" data-val="1–2 Aufträge">1–2 Aufträge</button>
+            <button class="lp-choice" data-group="kapazitaet" data-val="3–5 Aufträge">3–5 Aufträge</button>
+            <button class="lp-choice" data-group="kapazitaet" data-val="5–10 Aufträge">5–10 Aufträge</button>
+            <button class="lp-choice" data-group="kapazitaet" data-val="10+ Aufträge">10+ Aufträge</button>
+          </div>
+          <button class="btn lp-btn-modal-next" onclick="goToStep(2)">
+            Weiter <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="lp-step-content" id="step-2">
+          <p class="lp-q">In welcher Region bist du tätig?</p>
+          <input type="text" class="lp-input" id="field-region" placeholder="z.B. Hannover, Hamburg, München …" autocomplete="off">
+          <p class="lp-q">Welche Leistungen bietest du an? <span class="lp-q-hint">(Mehrfachauswahl)</span></p>
+          <div class="lp-choices lp-choices--3">
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Gartengestaltung">Gartengestaltung</button>
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Pflasterarbeiten">Pflasterarbeiten</button>
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Rasenpflege">Rasenpflege</button>
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Baumpflege">Baumpflege</button>
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Bewässerung">Bewässerung</button>
+            <button class="lp-choice" data-group="leistungen" data-multi data-val="Alles / Mehr">Alles / Mehr</button>
+          </div>
+          <button class="btn lp-btn-modal-next" onclick="goToStep(3)">
+            Weiter <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="lp-step-content" id="step-3">
+          <p class="lp-q">Wie können wir dich erreichen?</p>
+          <input type="text"  class="lp-input" id="field-name"  placeholder="Dein Name" autocomplete="name">
+          <input type="tel"   class="lp-input" id="field-phone" placeholder="Handynummer" autocomplete="tel">
+          <input type="email" class="lp-input" id="field-email" placeholder="E-Mail (optional)" autocomplete="email">
+          <label class="lp-privacy">
+            <input type="checkbox" id="privacy-check">
+            <span>Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></span>
+          </label>
+          <button class="btn lp-btn-modal-next" onclick="submitForm()">
+            Kostenlos anfragen <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="lp-success" id="success-state" aria-live="polite">
+          <span class="lp-success__icon" aria-hidden="true">✅</span>
+          <h3>Super — wir melden uns in 24 Stunden!</h3>
+          <p>Deine Anfrage ist angekommen. Wir schauen uns dein Einzugsgebiet an und melden uns persönlich — per Anruf oder WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+    var state = { mitarbeiter:'', kapazitaet:'', region:'', leistungen:[], name:'', phone:'', email:'' };
+    var currentStep = 1;
+
+    function openModal() {
+      document.getElementById('modal-bg').classList.add('lp-modal-bg--open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('modal-bg') && !e.target.closest('.lp-modal__close')) return;
+      document.getElementById('modal-bg').classList.remove('lp-modal-bg--open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal({target:document.getElementById('modal-bg')}); });
+
+    document.querySelectorAll('.lp-choice').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var group = btn.dataset.group;
+        var val   = btn.dataset.val;
+        var multi = btn.hasAttribute('data-multi');
+        if (multi) {
+          btn.classList.toggle('lp-choice--selected');
+          var idx = state.leistungen.indexOf(val);
+          if (idx > -1) state.leistungen.splice(idx, 1);
+          else state.leistungen.push(val);
+        } else {
+          document.querySelectorAll('[data-group="'+group+'"]').forEach(function(b){ b.classList.remove('lp-choice--selected'); });
+          btn.classList.add('lp-choice--selected');
+          state[group] = val;
+        }
+      });
+    });
+
+    function goToStep(next) {
+      if (next === 2) {
+        if (!state.mitarbeiter) { alert('Bitte Betriebsgröße auswählen.'); return; }
+        if (!state.kapazitaet)  { alert('Bitte Kapazität auswählen.'); return; }
+      }
+      if (next === 3) {
+        state.region = document.getElementById('field-region').value.trim();
+        if (!state.region) { alert('Bitte Region eingeben.'); return; }
+        if (!state.leistungen.length) { alert('Bitte mindestens eine Leistung auswählen.'); return; }
+      }
+      document.getElementById('step-'+currentStep).classList.remove('lp-step-content--active');
+      var oldSeg = document.getElementById('seg-'+(currentStep-1));
+      oldSeg.classList.remove('lp-progress__seg--active');
+      oldSeg.classList.add('lp-progress__seg--done');
+      document.getElementById('seg-'+(next-1)).classList.add('lp-progress__seg--active');
+      currentStep = next;
+      document.getElementById('step-'+currentStep).classList.add('lp-step-content--active');
+      var labels = ['Schritt 1 von 3 — Dein Betrieb','Schritt 2 von 3 — Region & Leistungen','Schritt 3 von 3 — Kontakt'];
+      document.getElementById('form-sub').textContent = labels[currentStep-1];
+    }
+
+    function submitForm() {
+      state.name  = document.getElementById('field-name').value.trim();
+      state.phone = document.getElementById('field-phone').value.trim();
+      state.email = document.getElementById('field-email').value.trim();
+      if (!state.name)  { alert('Bitte Name eingeben.'); return; }
+      if (!state.phone) { alert('Bitte Handynummer eingeben.'); return; }
+      if (!document.getElementById('privacy-check').checked) { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
+
+      var WEBHOOK_URL = 'DEIN_MAKE_WEBHOOK_URL_HIER';
+      if (WEBHOOK_URL !== 'DEIN_MAKE_WEBHOOK_URL_HIER') {
+        fetch(WEBHOOK_URL, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ mitarbeiter:state.mitarbeiter, kapazitaet:state.kapazitaet, region:state.region, leistungen:state.leistungen.join(', '), name:state.name, phone:state.phone, email:state.email, timestamp:new Date().toISOString(), source:'Google Ads LP – GaLaBau' })
+        }).catch(function(){});
+      }
+
+      document.getElementById('progress-bar').style.display = 'none';
+      document.getElementById('form-sub').style.display = 'none';
+      document.getElementById('step-'+currentStep).classList.remove('lp-step-content--active');
+      document.getElementById('success-state').style.display = 'block';
+    }
+
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); ro.unobserve(e.target); } });
+    }, { threshold:0.07 });
+    document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+    </script>
+  </Fragment>
+
+</BaseLayout>
+
+<style is:global>
+/* ═══════════════════════════════════════════════════════════════════
+   URGENCY BAR
+═══════════════════════════════════════════════════════════════════ */
+.lp-topbar {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px;
+  background:linear-gradient(90deg,#f97316,#ef4444); color:#fff;
+  font-size:.82rem; font-weight:600; padding:10px 20px; text-align:center;
+  position:relative; z-index:10;
+}
+.lp-topbar__dot {
+  width:7px; height:7px; border-radius:50%; background:#fff; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+.lp-topbar__sep { opacity:.5; }
+.lp-topbar__cta {
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.3);
+  color:#fff; font-size:.78rem; font-weight:700; padding:4px 14px; border-radius:999px;
+  cursor:pointer; font-family:inherit; transition:background .15s;
+}
+.lp-topbar__cta:hover { background:rgba(255,255,255,.28); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO — dark
+═══════════════════════════════════════════════════════════════════ */
+.lp-hero {
+  position:relative; overflow:hidden;
+  padding:18px 0 0;
+  background:
+    linear-gradient(rgba(5,12,20,0.78) 0%, rgba(7,17,26,0.88) 100%),
+    url('https://images.unsplash.com/photo-1605117882932-f9e32b03fea9?auto=format&fit=crop&w=1600&q=80') center 40% / cover no-repeat;
+}
+
+/* Grid mesh over photo */
+.lp-hero__grid-bg {
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+/* Radial green glow */
+.lp-hero__glow {
+  position:absolute; top:-160px; left:50%; transform:translateX(-50%);
+  width:900px; height:700px; z-index:1; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(110,236,157,.14) 0%, rgba(110,236,157,.04) 40%, transparent 70%);
+}
+
+.lp-hero .container { position:relative; z-index:2; }
+
+/* Centered hero */
+.lp-hero__center {
+  max-width:720px; margin:0 auto; text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+/* Pill */
+.lp-pill {
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:.84rem; font-weight:600; color:rgba(255,255,255,.82);
+  background:rgba(110,236,157,.1); border:1px solid rgba(110,236,157,.22);
+  padding:7px 16px 7px 12px; border-radius:999px; margin-bottom:14px;
+}
+.lp-pill-dot {
+  width:8px; height:8px; border-radius:50%; background:#3dd87a; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+@keyframes lpPulse {
+  0%{box-shadow:0 0 0 0 rgba(61,216,122,.55)}
+  70%{box-shadow:0 0 0 8px rgba(61,216,122,0)}
+  100%{box-shadow:0 0 0 0 rgba(61,216,122,0)}
+}
+
+/* H1 */
+.lp-h1 {
+  font-family:var(--f-head); font-weight:800; letter-spacing:-0.035em;
+  font-size:clamp(2.2rem,5vw,3.6rem); line-height:1.06; color:#fff; margin-bottom:16px;
+}
+.lp-accent-grad {
+  background:linear-gradient(90deg,#5df09e 0%,#22c55e 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.lp-sub {
+  color:rgba(255,255,255,.58); font-size:clamp(.95rem,1.6vw,1.05rem);
+  line-height:1.7; max-width:50ch; margin-bottom:24px;
+}
+.lp-sub strong { color:rgba(255,255,255,.88); }
+
+/* Offer strip (in hero, centered) */
+.lp-offer-strip {
+  display:flex; align-items:stretch; width:100%; max-width:560px;
+  background:rgba(255,255,255,.055); border:1px solid rgba(110,236,157,.22);
+  border-radius:18px; overflow:hidden; margin-bottom:28px;
+}
+.lp-offer-item {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:3px; padding:14px 6px;
+}
+.lp-offer-item__val {
+  font-family:var(--f-head); font-size:clamp(1.1rem,2vw,1.4rem);
+  font-weight:800; letter-spacing:-0.04em; color:#fff; line-height:1;
+}
+.lp-offer-item__val--green { color:#4ade80; }
+.lp-offer-item__label { font-size:.68rem; color:rgba(255,255,255,.44); font-weight:500; text-align:center; }
+.lp-offer-divider { width:1px; background:rgba(255,255,255,.08); flex:none; }
+
+/* Guarantee line */
+.lp-guarantee-line {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.8rem; color:rgba(255,255,255,.42); font-weight:600; margin-top:4px;
+}
+.lp-guarantee-line svg {
+  width:14px; height:14px; stroke:#4ade80; stroke-width:2; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; flex:none;
+}
+
+/* CTA row */
+.lp-cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px; justify-content:center; }
+
+/* Buttons */
+.lp-btn-primary {
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; font-weight:700; border:none; box-shadow:0 8px 24px rgba(84,221,146,.35);
+}
+.lp-btn-primary:hover {
+  background:linear-gradient(180deg,#8ff5b8 0%,#64e6a0 100%);
+  transform:translateY(-2px); box-shadow:0 14px 32px rgba(84,221,146,.45);
+}
+.lp-btn-ghost {
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.88); font-weight:600;
+}
+.lp-btn-ghost:hover {
+  background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.25); color:#fff;
+}
+.lp-btn-dark {
+  background:#07111a; border:1.5px solid rgba(110,236,157,.35);
+  color:#4ade80; font-weight:700;
+}
+.lp-btn-dark:hover {
+  background:rgba(110,236,157,.08); border-color:rgba(110,236,157,.6); color:#6EEC9D;
+  transform:translateY(-2px);
+}
+
+/* Trust row — not used in new centered hero, kept for safety */
+.lp-trust {
+  display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:center;
+}
+.lp-trust span {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.82rem; font-weight:600; color:rgba(255,255,255,.42);
+}
+.lp-trust svg {
+  width:13px; height:13px; stroke:#6EEC9D; stroke-width:2;
+  fill:none; stroke-linecap:round; stroke-linejoin:round; flex:none;
+}
+
+/* ── RIGHT: Dashboard ──────────────────────────────────────────── */
+.lp-hero__right {
+  display:flex; flex-direction:column; align-items:center; gap:14px; padding-bottom:20px;
+}
+
+.lp-dash {
+  width:100%; max-width:400px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+  border-radius:20px; overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+.lp-dash__bar {
+  display:flex; align-items:center; gap:8px; padding:11px 16px;
+  background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.07);
+}
+.lp-dash__dots { display:flex; gap:6px; }
+.lp-dash__dots span { width:10px; height:10px; border-radius:50%; }
+.lp-dash__url { margin:0 auto; font-size:.74rem; color:rgba(255,255,255,.3); }
+
+.lp-dash__body { padding:18px; }
+.lp-dash__head {
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;
+}
+.lp-dash__title { font-weight:700; font-size:.88rem; color:rgba(255,255,255,.9); }
+.lp-dash__live {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:.7rem; font-weight:700; color:#4ade80;
+  background:rgba(74,222,128,.1); border:1px solid rgba(74,222,128,.2);
+  padding:3px 10px; border-radius:999px;
+}
+.lp-live-dot {
+  width:6px; height:6px; border-radius:50%; background:#4ade80; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+
+.lp-card {
+  display:flex; align-items:center; gap:11px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  border-radius:14px; padding:11px 13px; margin-bottom:8px;
+}
+.lp-card--new {
+  border-color:rgba(74,222,128,.25); background:rgba(74,222,128,.06);
+}
+.lp-av {
+  width:34px; height:34px; border-radius:50%;
+  background:var(--c); display:grid; place-items:center;
+  color:#fff; font-size:.74rem; font-weight:700; flex:none;
+}
+.lp-tx { flex:1; min-width:0; }
+.lp-tx strong { display:block; font-size:.84rem; color:rgba(255,255,255,.9); }
+.lp-tx span   { font-size:.72rem; color:rgba(255,255,255,.4); }
+.lp-time { font-size:.66rem; font-weight:600; color:rgba(255,255,255,.35); flex:none; }
+.lp-time--now { color:#4ade80; }
+
+.lp-dash__kpis {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px;
+}
+.lp-kpi {
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07);
+  border-radius:12px; padding:10px 8px; text-align:center;
+}
+.lp-kpi b {
+  display:block; font-family:var(--f-head); font-size:.95rem;
+  font-weight:800; color:#4ade80; letter-spacing:-0.03em;
+}
+.lp-kpi span { font-size:.6rem; color:rgba(255,255,255,.35); }
+
+.lp-roi-tag {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; padding:10px 16px; font-size:.8rem; color:rgba(255,255,255,.6);
+  text-align:center; max-width:340px;
+}
+.lp-roi-tag strong { color:rgba(255,255,255,.88); }
+
+/* Wave */
+.lp-wave { position:relative; margin-top:32px; line-height:0; z-index:3; }
+.lp-wave svg { display:block; width:100%; height:80px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MID SECTION — ROI + Steps kompakt
+═══════════════════════════════════════════════════════════════════ */
+.lp-mid { background:#f5f5f5; padding:44px 0 32px; }
+
+.lp-eyebrow {
+  display:block; font-size:.7rem; font-weight:800; color:var(--blue-strong);
+  text-transform:uppercase; letter-spacing:.14em; margin-bottom:10px;
+}
+
+/* ROI strip */
+.lp-roi-strip {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+  gap:0; margin-bottom:44px;
+  background:#fff; border:1px solid var(--line); border-radius:20px;
+  padding:24px 32px; box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+@media (max-width:620px) { .lp-roi-strip { flex-direction:column; gap:16px; text-align:center; } }
+.lp-roi-num { flex:1; text-align:center; min-width:140px; }
+.lp-roi-num__val {
+  display:block; font-family:var(--f-head); font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-weight:900; letter-spacing:-0.05em; color:var(--ink); margin-bottom:4px;
+}
+.lp-roi-num--accent .lp-roi-num__val { color:var(--blue-strong); }
+.lp-roi-num__label { font-size:.74rem; color:var(--gray-2); line-height:1.3; }
+.lp-roi-arrow {
+  font-size:1.4rem; color:rgba(22,165,102,.35); padding:0 12px; flex:none;
+}
+@media (max-width:620px) { .lp-roi-arrow { transform:rotate(90deg); } }
+
+/* Steps horizontal */
+.lp-steps-row {
+  display:flex; align-items:flex-start; gap:0; position:relative;
+}
+@media (max-width:620px) { .lp-steps-row { flex-direction:column; gap:16px; } }
+.lp-step-sm {
+  flex:1; text-align:center; padding:0 16px; display:flex; flex-direction:column; align-items:center; gap:7px;
+}
+.lp-step-sm__n {
+  width:36px; height:36px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(135deg,#6EEC9D,#22c55e); color:#06351e;
+  font-size:.78rem; font-weight:900; flex:none;
+}
+.lp-step-sm strong { font-size:.9rem; color:var(--ink); font-weight:700; }
+.lp-step-sm span { font-size:.78rem; color:var(--gray-2); line-height:1.4; }
+.lp-step-sm__conn {
+  flex:none; align-self:center; margin-top:-24px;
+  width:32px; height:1px; background:rgba(22,165,102,.3);
+  position:relative;
+}
+.lp-step-sm__conn::after {
+  content:""; position:absolute; right:-4px; top:-3px;
+  border:4px solid transparent; border-left-color:rgba(22,165,102,.35);
+}
+@media (max-width:620px) { .lp-step-sm__conn { display:none; } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   OFFER SECTION (dark, centered card)
+═══════════════════════════════════════════════════════════════════ */
+.lp-offer-section {
+  background:#07111a; position:relative; overflow:hidden; padding:72px 0 80px;
+}
+.lp-offer-section::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* Centered price card */
+.lp-price-new {
+  position:relative; overflow:hidden;
+  max-width:500px; margin:0 auto; text-align:center;
+  background:rgba(255,255,255,.04); border:1.5px solid rgba(110,236,157,.25);
+  border-radius:28px; padding:36px 32px;
+  box-shadow:0 32px 72px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.lp-price-new__glow {
+  position:absolute; top:-140px; left:50%; transform:translateX(-50%);
+  width:500px; height:400px; pointer-events:none;
+  background:radial-gradient(ellipse,rgba(110,236,157,.14) 0%,transparent 65%);
+}
+.lp-price-new > * { position:relative; z-index:1; }
+
+.lp-price-new__badge {
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(110,236,157,.15),rgba(110,236,157,.06));
+  border:1px solid rgba(110,236,157,.3);
+  color:#4ade80; font-size:.72rem; font-weight:800; letter-spacing:.06em;
+  text-transform:uppercase; padding:6px 16px; border-radius:999px; margin-bottom:24px;
+}
+
+/* Price display */
+.lp-price-new__you { margin-bottom:20px; }
+.lp-price-new__you-label {
+  display:block; font-size:.7rem; font-weight:800; color:rgba(255,255,255,.4);
+  text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;
+}
+.lp-price-new__amount {
+  font-family:var(--f-head); font-size:clamp(3.5rem,8vw,5rem);
+  font-weight:900; letter-spacing:-0.08em; color:#fff; line-height:1;
+}
+.lp-price-new__cur { font-size:1.8rem; font-weight:700; vertical-align:super; opacity:.6; }
+.lp-price-new__period { font-size:.74rem; color:rgba(255,255,255,.35); display:block; margin-top:6px; }
+
+/* Inclusions */
+.lp-price-new__inclusions {
+  display:grid; grid-template-columns:1fr 1fr; gap:8px;
+  text-align:left; margin:20px 0;
+}
+@media (max-width:440px) { .lp-price-new__inclusions { grid-template-columns:1fr; } }
+.lp-incl {
+  display:flex; align-items:center; gap:9px;
+  font-size:.8rem; color:rgba(255,255,255,.6); line-height:1.4;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
+  border-radius:10px; padding:9px 12px;
+}
+.lp-incl__ic {
+  width:16px; height:16px; border-radius:50%; flex:none;
+  background:rgba(110,236,157,.12); position:relative; display:grid; place-items:center;
+}
+.lp-incl__ic::after {
+  content:""; position:absolute; width:9px; height:9px;
+  -webkit-mask:var(--mask-check) center/contain no-repeat;
+  mask:var(--mask-check) center/contain no-repeat;
+  background-color:#4ade80;
+}
+
+/* Guarantee row */
+.lp-price-new__guarantee {
+  display:flex; align-items:center; justify-content:center; gap:9px;
+  background:rgba(110,236,157,.07); border:1px solid rgba(110,236,157,.18);
+  border-radius:12px; padding:11px 16px; margin-bottom:20px;
+  font-size:.8rem; font-weight:600; color:rgba(255,255,255,.7); line-height:1.4;
+}
+.lp-price-new__guarantee svg {
+  width:16px; height:16px; stroke:#4ade80; stroke-width:2; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; flex:none;
+}
+
+/* CTA */
+.lp-price-new__cta {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:15px; border-radius:999px; border:none; cursor:pointer;
+  font-family:var(--f-head); font-size:1rem; font-weight:800;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; box-shadow:0 8px 28px rgba(84,221,146,.4);
+  transition:transform .18s,box-shadow .18s; margin-bottom:14px;
+}
+.lp-price-new__cta:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(84,221,146,.5); }
+.lp-price-new__cta svg { width:17px; height:17px; stroke:#06351e; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+.lp-price-new__hint {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  font-size:.74rem; color:rgba(255,255,255,.38); font-weight:600;
+}
+.lp-dot-orange {
+  width:7px; height:7px; border-radius:50%; background:#f97316; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TESTIMONIAL
+═══════════════════════════════════════════════════════════════════ */
+.lp-testi-section {
+  position:relative; overflow:hidden; padding:40px 0 36px;
+  background:
+    linear-gradient(rgba(5,12,20,0.84) 0%, rgba(7,17,26,0.92) 100%),
+    url('https://images.unsplash.com/photo-1734079692160-fcbe4be6ab96?auto=format&fit=crop&w=1400&q=80') center 60% / cover no-repeat;
+}
+.lp-testi__mesh {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.lp-testi-card {
+  position:relative; overflow:hidden;
+  max-width:640px; margin:0 auto; text-align:center;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
+  border-radius:28px; padding:40px 36px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+@media (max-width:480px) { .lp-testi-card { padding:28px 20px; } }
+.lp-testi-card__glow {
+  position:absolute; top:-120px; left:50%; transform:translateX(-50%);
+  width:500px; height:380px; pointer-events:none;
+  background:radial-gradient(ellipse,rgba(110,236,157,.10) 0%,transparent 65%);
+}
+.lp-testi-card > *:not(.lp-testi-card__glow) { position:relative; z-index:1; }
+.lp-testi__stars {
+  font-size:1.3rem; color:#facc15; letter-spacing:3px;
+  margin-bottom:20px; display:block;
+}
+.lp-testi__quote {
+  font-size:clamp(1rem,2vw,1.15rem); color:rgba(255,255,255,.78);
+  line-height:1.75; font-style:normal; margin-bottom:28px; font-weight:500;
+}
+.lp-testi__quote strong { color:#fff; }
+.lp-testi__author {
+  display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:28px;
+}
+.lp-testi__avatar {
+  width:44px; height:44px; border-radius:50%; flex:none;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  display:grid; place-items:center; color:#fff; font-size:.82rem; font-weight:800;
+}
+.lp-testi__author strong { display:block; font-size:.92rem; color:#fff; margin-bottom:3px; }
+.lp-testi__author span { font-size:.76rem; color:rgba(255,255,255,.42); }
+.lp-testi__cta-row { display:flex; justify-content:center; }
+
+.lp-final-cta {
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  max-width:640px; margin:20px auto 0;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:20px; padding:22px 28px;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.lp-final-cta__text { display:flex; flex-direction:column; gap:4px; }
+.lp-final-cta__text strong { font-size:1rem; font-weight:800; color:#fff; }
+.lp-final-cta__text span { font-size:.78rem; color:rgba(255,255,255,.45); }
+.lp-final-cta__btn {
+  display:inline-flex; align-items:center; gap:9px;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; font-weight:800; font-size:.9rem; font-family:inherit;
+  padding:12px 22px; border-radius:999px; border:none; cursor:pointer;
+  box-shadow:0 6px 20px rgba(84,221,146,.35); white-space:nowrap;
+  transition:transform .17s, box-shadow .17s;
+}
+.lp-final-cta__btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(84,221,146,.45); }
+.lp-final-cta__btn svg { width:16px; height:16px; stroke:#06351e; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════════ */
+.lp-footer {
+  background:#07111a; border-top:1px solid rgba(255,255,255,.07);
+  padding:28px 22px; text-align:center;
+}
+.lp-footer p { font-size:.74rem; color:rgba(255,255,255,.3); line-height:2; }
+.lp-footer a { color:rgba(255,255,255,.4); text-decoration:underline; text-underline-offset:3px; transition:color .15s; }
+.lp-footer a:hover { color:rgba(255,255,255,.7); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════════════ */
+.lp-modal-bg {
+  position:fixed; inset:0; z-index:999;
+  background:rgba(4,10,14,0.72); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center; padding:16px;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.lp-modal-bg--open { opacity:1; pointer-events:all; }
+
+.lp-modal {
+  position:relative; background:#fff; border-radius:26px;
+  width:100%; max-width:520px; max-height:90dvh; overflow-y:auto;
+  box-shadow:0 40px 100px rgba(0,0,0,.4);
+  transform:translateY(20px) scale(0.97);
+  transition:transform .28s cubic-bezier(.34,1.56,.64,1);
+}
+.lp-modal-bg--open .lp-modal { transform:none; }
+
+.lp-modal__close {
+  position:absolute; top:16px; right:16px; z-index:10;
+  width:34px; height:34px; border-radius:50%; border:none; cursor:pointer;
+  background:#f3f4f6; color:var(--gray); display:grid; place-items:center;
+  transition:background .15s;
+}
+.lp-modal__close:hover { background:#e5e7eb; color:var(--ink); }
+.lp-modal__close svg { width:16px; height:16px; }
+
+.lp-modal__inner { padding:36px 32px 32px; }
+@media (max-width:480px) { .lp-modal__inner { padding:28px 18px 24px; } }
+
+.lp-modal__head { margin-bottom:20px; }
+.lp-modal__title { font-family:var(--f-head); font-size:1.35rem; font-weight:800; letter-spacing:-0.03em; color:var(--ink); margin-bottom:4px; }
+.lp-modal__sub { font-size:.84rem; color:var(--gray); }
+
+/* Form */
+.lp-form-sub { font-size:.8rem; color:var(--gray-2); margin-bottom:16px; font-weight:600; text-align:center; }
+.lp-progress { display:flex; gap:6px; margin-bottom:22px; }
+.lp-progress__seg { flex:1; height:4px; border-radius:4px; background:rgba(0,0,0,.08); transition:background .3s; }
+.lp-progress__seg--active { background:var(--blue-strong); }
+.lp-progress__seg--done   { background:#22c55e; }
+.lp-step-content { display:none; animation:lpIn .24s ease; }
+.lp-step-content--active { display:block; }
+@keyframes lpIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.lp-q {
+  font-size:.95rem; font-weight:700; color:var(--ink);
+  letter-spacing:-0.015em; margin-bottom:11px; margin-top:20px; line-height:1.4;
+}
+.lp-q:first-child { margin-top:0; }
+.lp-q-hint { font-weight:500; color:var(--gray-2); font-size:.8rem; }
+.lp-choices { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-bottom:20px; }
+.lp-choices--3 { grid-template-columns:repeat(3,1fr); }
+@media (max-width:400px) { .lp-choices, .lp-choices--3 { grid-template-columns:1fr 1fr; } }
+.lp-choice {
+  background:#f8f9fa; border:1.5px solid var(--line); border-radius:11px;
+  padding:12px 8px; color:var(--ink-soft); font-size:.84rem;
+  font-weight:600; cursor:pointer; font-family:inherit;
+  transition:all .13s; text-align:center; line-height:1.3;
+}
+.lp-choice:hover { border-color:rgba(22,165,102,.4); background:#f0faf3; color:var(--ink); }
+.lp-choice--selected { border-color:var(--blue-strong); background:#e8f7ec; color:var(--blue-strong); }
+.lp-input {
+  display:block; width:100%; background:#f8f9fa; border:1.5px solid var(--line);
+  border-radius:13px; padding:13px 16px; color:var(--ink); font-size:.95rem;
+  font-family:inherit; outline:none; transition:border-color .17s; margin-bottom:10px;
+}
+.lp-input::placeholder { color:var(--gray-2); }
+.lp-input:focus { border-color:rgba(22,165,102,.5); background:#fff; }
+.lp-privacy {
+  display:flex; align-items:flex-start; gap:10px;
+  margin-bottom:18px; margin-top:8px; cursor:pointer;
+}
+.lp-privacy input[type="checkbox"] {
+  width:16px; height:16px; flex-shrink:0; margin-top:3px; accent-color:var(--blue-strong);
+}
+.lp-privacy span { font-size:.77rem; color:var(--gray-2); line-height:1.6; }
+.lp-privacy a { color:var(--blue-strong); text-decoration:underline; text-underline-offset:2px; }
+
+.lp-btn-modal-next {
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:15px; border-radius:999px; border:none; cursor:pointer;
+  font-family:inherit; font-size:1rem; font-weight:700;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; box-shadow:0 6px 20px rgba(84,221,146,.35);
+  transition:transform .17s, box-shadow .17s;
+}
+.lp-btn-modal-next:hover {
+  transform:translateY(-2px); box-shadow:0 12px 28px rgba(84,221,146,.45);
+}
+
+.lp-success { display:none; text-align:center; padding:20px 0 10px; animation:lpIn .4s ease; }
+.lp-success__icon { font-size:3rem; display:block; margin-bottom:18px; }
+.lp-success h3 {
+  font-family:var(--f-head); font-size:1.3rem; font-weight:800;
+  letter-spacing:-0.03em; margin-bottom:10px; color:var(--ink);
+}
+.lp-success p { color:var(--gray); font-size:.88rem; line-height:1.7; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   REVEAL ANIMATION
+═══════════════════════════════════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.is-visible { opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce) { .reveal { opacity:1 !important; transform:none !important; } }
+</style>
