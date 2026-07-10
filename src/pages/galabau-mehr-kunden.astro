@@ -341,13 +341,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!state.phone) { alert('Bitte Handynummer eingeben.'); return; }
       if (!document.getElementById('privacy-check').checked) { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
 
-      var WEBHOOK_URL = 'DEIN_MAKE_WEBHOOK_URL_HIER';
-      if (WEBHOOK_URL !== 'DEIN_MAKE_WEBHOOK_URL_HIER') {
-        fetch(WEBHOOK_URL, {
-          method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ mitarbeiter:state.mitarbeiter, kapazitaet:state.kapazitaet, region:state.region, leistungen:state.leistungen.join(', '), name:state.name, phone:state.phone, email:state.email, timestamp:new Date().toISOString(), source:'Google Ads LP – GaLaBau' })
-        }).catch(function(){});
-      }
+      fetch('https://fastraone-admin.vercel.app/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: state.name,
+          email: state.email,
+          telefon: state.phone,
+          betrieb: state.mitarbeiter ? state.mitarbeiter + ' Mitarbeiter' : '',
+          ziel: state.leistungen.join(', '),
+          nachricht: [
+            state.kapazitaet ? 'Kapazität: ' + state.kapazitaet : '',
+            state.region ? 'Region: ' + state.region : ''
+          ].filter(Boolean).join(' | '),
+          seite: 'galabau-mehr-kunden',
+          quelle: 'Google Ads LP – GaLaBau',
+        })
+      }).catch(function(){});
 
       document.getElementById('progress-bar').style.display = 'none';
       document.getElementById('form-sub').style.display = 'none';
