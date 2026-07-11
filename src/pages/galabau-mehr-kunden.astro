@@ -341,12 +341,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!state.phone) { alert('Bitte Handynummer eingeben.'); return; }
       if (!document.getElementById('privacy-check').checked) { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
 
+      var submitBtn = document.querySelector('#step-3 .lp-btn-modal-next');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet…';
+
       fetch('https://fastraone-admin.vercel.app/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: state.name,
-          email: state.email,
+          email: state.email || undefined,
           telefon: state.phone,
           betrieb: state.mitarbeiter ? state.mitarbeiter + ' Mitarbeiter' : '',
           ziel: state.leistungen.join(', '),
@@ -357,12 +361,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           seite: 'galabau-mehr-kunden',
           quelle: 'Google Ads LP – GaLaBau',
         })
-      }).catch(function(){});
-
-      document.getElementById('progress-bar').style.display = 'none';
-      document.getElementById('form-sub').style.display = 'none';
-      document.getElementById('step-'+currentStep).classList.remove('lp-step-content--active');
-      document.getElementById('success-state').style.display = 'block';
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Status ' + res.status);
+        document.getElementById('progress-bar').style.display = 'none';
+        document.getElementById('form-sub').style.display = 'none';
+        document.getElementById('step-3').classList.remove('lp-step-content--active');
+        document.getElementById('success-state').style.display = 'block';
+      })
+      .catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Kostenlos anfragen <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        alert('Etwas ist schiefgelaufen. Bitte ruf uns kurz an: +49 163 3781657');
+      });
     }
 
     var ro = new IntersectionObserver(function(entries) {
