@@ -5,15 +5,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="Partner-Bewerbung – Fastra One"
   description="In 2 Minuten als Fastra-Partner bewerben. Gute Vertriebler willkommen."
-  canonical="https://fastraone.de/partner-bewerbung.html"
+  canonical="https://fastraone.de/partner-bewerbung"
   navVariant="minimal"
-  navBackHref="partner.html"
+  navBackHref="/partner"
   navBackLabel="Partnerseite"
   footerVariant="full"
 >
   <Fragment slot="head">
     <meta name="robots" content="noindex" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a4ff0'/%3E%3Ctext x='50%25' y='53%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='800' fill='white'%3EF%3C/text%3E%3C/svg%3E" />
   </Fragment>
 
   <style is:global>
@@ -177,7 +176,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
                   <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
                   <div class="field"><label for="telefon">Telefon <span style="font-weight:400;color:var(--gray-2)">(optional)</span></label><input id="telefon" name="telefon" type="tel" autocomplete="tel" /></div>
                   <div class="field"><label for="nachricht">Hast du noch eine Frage? <span style="font-weight:400;color:var(--gray-2)">(optional)</span></label><textarea id="nachricht" name="nachricht" placeholder="z. B. Fragen zur Provision oder zum Ablauf."></textarea></div>
-                  <label class="consent"><input type="checkbox" id="consent" required /><span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden (<a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
+                  <label class="consent"><input type="checkbox" id="consent" required /><span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden (<a href="/datenschutz" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
                 </div>
               </div>
 
@@ -193,7 +192,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
             <div class="done__ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
             <h3>Bewerbung eingegangen!</h3>
             <p>Paul meldet sich innerhalb von 24 Stunden bei dir. Schau kurz ins Postfach.</p>
-            <a href="partner.html" class="btn btn--primary btn--lg" style="margin-top:18px">Zurück zur Partner-Seite</a>
+            <a href="/partner" class="btn btn--primary btn--lg" style="margin-top:18px">Zurück zur Partner-Seite</a>
           </div>
         </div>
       </div>
@@ -207,6 +206,18 @@ html:not(.js) .fstep[hidden]{display:block!important}
       var FORM_ENDPOINT = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
         ? "http://localhost:3000/api/leads"
         : "https://fastraone-admin.vercel.app/api/leads";
+
+      /* UTM + Tracking aus URL lesen */
+      var _urlp = new URLSearchParams(window.location.search);
+      var _utm = {
+        utm_source:   _urlp.get("utm_source")   || undefined,
+        utm_medium:   _urlp.get("utm_medium")   || undefined,
+        utm_campaign: _urlp.get("utm_campaign") || undefined,
+        utm_term:     _urlp.get("utm_term")     || undefined,
+        utm_content:  _urlp.get("utm_content")  || undefined,
+        referrer:     document.referrer         || undefined,
+        geraet:       window.innerWidth < 768 ? "mobil" : "desktop",
+      };
 
       var form = document.getElementById("funnel");
       var steps = Array.prototype.slice.call(form.querySelectorAll(".fstep"));
@@ -288,23 +299,29 @@ html:not(.js) .fstep[hidden]{display:block!important}
           document.getElementById("funnelDone").hidden = false;
         }
 
-        var payload = {
+        var payload = Object.assign({
           name: name,
           email: email,
           telefon: telefon || undefined,
           betrieb: answers.rolle || undefined,
           nachricht: zusammenfassung,
-          quelle: "partner-bewerbung",
           seite: window.location.pathname,
-        };
+        }, _utm);
 
         fetch(FORM_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         })
-          .then(showDone)
-          .catch(function(){ showDone(); });
+          .then(function(res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            showDone();
+          })
+          .catch(function() {
+            sendBtn.disabled = false;
+            sendBtn.textContent = "Bewerbung absenden";
+            alert("Da ist etwas schiefgelaufen. Bitte schreib direkt an paul.web@outlook.de.");
+          });
       });
       render();
     })();

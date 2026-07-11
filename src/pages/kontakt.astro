@@ -5,13 +5,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="Kostenloses Erstgespräch für GaLaBau-Betriebe buchen | Fastra One Hannover"
   description="Jetzt kostenloses Erstgespräch mit Fastra One buchen. Webdesign-Agentur aus Hannover für Garten- und Landschaftsbau. 15 Minuten, kein Verkaufsdruck."
-  canonical="https://fastraone.de/kontakt.html"
+  canonical="https://fastraone.de/kontakt"
   navVariant="minimal"
   footerVariant="full"
 >
   <Fragment slot="head">
     <meta name="robots" content="index, follow" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a4ff0'/%3E%3Ctext x='50%25' y='53%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' font-weight='800' fill='white'%3EF%3C/text%3E%3C/svg%3E" />
     <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,7 +25,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         {
           "@type": "ContactPage",
           "name": "Kostenloses Erstgespräch bei Fastra One Hannover",
-          "url": "https://fastraone.de/kontakt.html",
+          "url": "https://fastraone.de/kontakt",
           "description": "Termin für kostenloses Erstgespräch mit Fastra One buchen. Webdesign-Agentur aus Hannover für Garten- und Landschaftsbau.",
           "mainEntity": {
             "@type": "LocalBusiness",
@@ -149,7 +148,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
             <li>Kein Verkaufsdruck, du entscheidest in Ruhe</li>
           </ul>
           <div id="calGate" class="cal-gate">
-            <p>Für die Online-Terminbuchung binden wir Calendly ein. Beim Laden wird eine Verbindung zu Calendly (Calendly LLC, USA) hergestellt und es können Cookies gesetzt werden. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+            <p>Für die Online-Terminbuchung binden wir Calendly ein. Beim Laden wird eine Verbindung zu Calendly (Calendly LLC, USA) hergestellt und es können Cookies gesetzt werden. Details in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
             <button type="button" class="btn btn--primary btn--lg btn--block" id="calLoad">Kalender laden &amp; Termin wählen</button>
             <a id="calExternal" href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="cal-alt">… oder Kalender in neuem Tab öffnen</a>
           </div>
@@ -215,7 +214,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
                   <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
                   <div class="field"><label for="telefon">Telefon</label><input id="telefon" name="telefon" type="tel" autocomplete="tel" required /></div>
                   <div class="field"><label for="nachricht">Noch was mitgeben? <span style="font-weight:400;color:var(--gray-2)">(optional)</span></label><textarea id="nachricht" name="nachricht" placeholder="Erzähl uns kurz, worum es geht."></textarea></div>
-                  <label class="consent"><input type="checkbox" id="consent" required /><span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden (<a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
+                  <label class="consent"><input type="checkbox" id="consent" required /><span>Ich bin mit der Verarbeitung meiner Daten zur Bearbeitung der Anfrage einverstanden (<a href="/datenschutz" target="_blank" rel="noopener">Datenschutz</a>).</span></label>
                 </div>
               </div>
 
@@ -251,11 +250,17 @@ html:not(.js) .fstep[hidden]{display:block!important}
         ? "http://localhost:3000/api/leads"
         : "https://fastraone-admin.vercel.app/api/leads";
 
-      /* UTM-Parameter aus URL lesen */
+      /* UTM + Tracking aus URL lesen */
       var _urlp = new URLSearchParams(window.location.search);
-      var _utmSource = _urlp.get("utm_source") || "";
-      var _utmCampaign = _urlp.get("utm_campaign") || "";
-      var _quelle = _utmSource === "google" ? "Google Ads" : "Website";
+      var _utm = {
+        utm_source:   _urlp.get("utm_source")   || undefined,
+        utm_medium:   _urlp.get("utm_medium")   || undefined,
+        utm_campaign: _urlp.get("utm_campaign") || undefined,
+        utm_term:     _urlp.get("utm_term")     || undefined,
+        utm_content:  _urlp.get("utm_content")  || undefined,
+        referrer:     document.referrer         || undefined,
+        geraet:       window.innerWidth < 768 ? "mobil" : "desktop",
+      };
 
       var tabs = document.querySelectorAll(".choice__btn");
       function selectTab(id){
@@ -365,9 +370,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
         sendBtn.disabled = true; sendBtn.textContent = "Wird gesendet …";
         function showDone(){ document.getElementById("funnelBody").hidden = true; document.getElementById("funnelDone").hidden = false; }
         if (FORM_ENDPOINT.indexOf("http") !== 0){ console.warn("FORM_ENDPOINT fehlt – Daten:", answers); showDone(); return; }
-        var payload = Object.assign({}, answers, {
-          quelle: _quelle,
-          utm_campaign: _utmCampaign || null,
+        var payload = Object.assign({}, answers, _utm, {
           seite: window.location.pathname,
         });
         fetch(FORM_ENDPOINT, {
@@ -375,7 +378,10 @@ html:not(.js) .fstep[hidden]{display:block!important}
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         })
-          .then(showDone)
+          .then(function(res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            showDone();
+          })
           .catch(function(){ sendBtn.disabled=false; sendBtn.textContent="Anfrage senden"; alert("Da ist etwas schiefgelaufen. Bitte ruf uns an oder schreib an paul.web@outlook.de."); });
       });
       render();

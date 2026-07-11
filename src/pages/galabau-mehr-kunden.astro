@@ -289,6 +289,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     var state = { mitarbeiter:'', kapazitaet:'', region:'', leistungen:[], name:'', phone:'', email:'' };
     var currentStep = 1;
 
+    /* UTM + Tracking aus URL lesen */
+    var _urlp = new URLSearchParams(window.location.search);
+    var _utm = {
+      utm_source:   _urlp.get('utm_source')   || undefined,
+      utm_medium:   _urlp.get('utm_medium')   || undefined,
+      utm_campaign: _urlp.get('utm_campaign') || undefined,
+      utm_term:     _urlp.get('utm_term')     || undefined,
+      utm_content:  _urlp.get('utm_content')  || undefined,
+      referrer:     document.referrer         || undefined,
+      geraet:       window.innerWidth < 768 ? 'mobil' : 'desktop',
+    };
+
     function openModal() {
       document.getElementById('modal-bg').classList.add('lp-modal-bg--open');
       document.body.style.overflow = 'hidden';
@@ -354,22 +366,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       fetch('https://fastraone-admin.vercel.app/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: state.name,
-          email: state.email || undefined,
-          telefon: state.phone,
-          betrieb: state.mitarbeiter ? state.mitarbeiter + ' Mitarbeiter' : '',
-          ziel: state.leistungen.join(', '),
+        body: JSON.stringify(Object.assign({
+          name:     state.name,
+          email:    state.email || undefined,
+          telefon:  state.phone,
+          betrieb:  state.mitarbeiter ? state.mitarbeiter + ' Mitarbeiter' : undefined,
+          ziel:     state.leistungen.join(', '),
           nachricht: [
             state.kapazitaet ? 'Kapazität: ' + state.kapazitaet : '',
-            state.region ? 'Region: ' + state.region : ''
-          ].filter(Boolean).join(' | '),
+            state.region     ? 'Region: '    + state.region     : ''
+          ].filter(Boolean).join(' | ') || undefined,
           seite: 'galabau-mehr-kunden',
-          quelle: 'Google Ads LP – GaLaBau',
-        })
+        }, _utm))
       })
       .then(function(res) {
-        if (!res.ok) throw new Error('Status ' + res.status);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         document.getElementById('progress-bar').style.display = 'none';
         document.getElementById('form-sub').style.display = 'none';
         document.getElementById('step-3').classList.remove('lp-step-content--active');
