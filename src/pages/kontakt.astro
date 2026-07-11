@@ -249,7 +249,7 @@ html:not(.js) .fstep[hidden]{display:block!important}
       "use strict";
       var FORM_ENDPOINT = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
         ? "http://localhost:3000/api/leads"
-        : "https://admin.fastraone.de/api/leads";
+        : "https://fastraone-admin.vercel.app/api/leads";
 
       /* UTM-Parameter aus URL lesen */
       var _urlp = new URLSearchParams(window.location.search);
