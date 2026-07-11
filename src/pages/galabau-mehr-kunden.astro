@@ -188,9 +188,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <footer class="lp-footer">
     <p>
       © 2026 Fastra One · Paul Niklas Fasterding · Am Flachsgraben 9, 30657 Hannover ·
-      <a href="impressum.html">Impressum</a> ·
-      <a href="datenschutz.html">Datenschutz</a> ·
-      <a href="agb.html">AGB</a>
+      <a href="/impressum">Impressum</a> ·
+      <a href="/datenschutz">Datenschutz</a> ·
+      <a href="/agb">AGB</a>
     </p>
   </footer>
 
@@ -261,7 +261,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <input type="email" class="lp-input" id="field-email" placeholder="E-Mail (optional)" autocomplete="email">
           <label class="lp-privacy">
             <input type="checkbox" id="privacy-check">
-            <span>Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a></span>
+            <span>Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. <a href="/datenschutz" target="_blank" rel="noopener">Datenschutz</a></span>
           </label>
           <button class="btn lp-btn-modal-next" onclick="submitForm()">
             Kostenlos anfragen <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -270,7 +270,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <!-- SUCCESS -->
         <div class="lp-success" id="success-state" aria-live="polite">
-          <span class="lp-success__icon" aria-hidden="true">✅</span>
+          <span class="lp-success__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+              <circle cx="24" cy="24" r="24" fill="#16a566" opacity="0.12"/>
+              <circle cx="24" cy="24" r="18" fill="#16a566" opacity="0.2"/>
+              <polyline points="15,25 21,31 33,18" stroke="#16a566" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
           <h3>Super — wir melden uns in 24 Stunden!</h3>
           <p>Deine Anfrage ist angekommen. Wir schauen uns dein Einzugsgebiet an und melden uns persönlich — per Anruf oder WhatsApp.</p>
         </div>
@@ -960,7 +966,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 
 .lp-success { display:none; text-align:center; padding:20px 0 10px; animation:lpIn .4s ease; }
-.lp-success__icon { font-size:3rem; display:block; margin-bottom:18px; }
+.lp-success__icon { display:block; margin-bottom:18px; line-height:1; }
 .lp-success h3 {
   font-family:var(--f-head); font-size:1.3rem; font-weight:800;
   letter-spacing:-0.03em; margin-bottom:10px; color:var(--ink);
