@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Onboarding – Einkaufspark Klein-Buchholz"
+  description="Fragebogen für den Website-Relaunch des Einkaufspark Klein-Buchholz."
+  canonical="https://fastraone.de/onboarding-emmelmann"
+  navVariant="minimal"
+  navBackHref="/"
+  navBackLabel="Fastra One"
+  footerVariant="simple"
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex" />
+  </Fragment>
+
+  <style is:global>
+.container{max-width:760px}
+.nav2{max-width:760px}
+.head{padding:56px 0 28px;text-align:center}
+.head h1{font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.1;max-width:none;color:var(--ink)}
+.head p{margin:14px auto 0;max-width:56ch;font-size:1.05rem;color:var(--gray)}
+
+.panel{max-width:640px;margin:0 auto 72px}
+.pcard{position:relative;background:linear-gradient(145deg,rgba(18,24,50,.9),rgba(11,15,26,.9));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:clamp(24px,4vw,40px);box-shadow:0 8px 40px rgba(0,0,0,.45);overflow:hidden}
+.pcard::before{
+  content:"";position:absolute;top:-120px;right:-120px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(110,236,157,.16),transparent 70%);pointer-events:none;
+}
+
+.progress{height:7px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden;margin-bottom:6px;position:relative}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,#56e592,#2bcf78);border-radius:999px;transition:width .35s cubic-bezier(.16,1,.3,1)}
+.progress__txt{font-size:.8rem;color:rgba(255,255,255,.35);font-weight:600;margin-bottom:22px}
+
+.stepnum{
+  width:34px;height:34px;border-radius:50%;flex:none;
+  background:rgba(110,236,157,.12);border:1.5px solid rgba(110,236,157,.4);
+  color:#6EEC9D;font-weight:800;font-size:.95rem;display:flex;align-items:center;justify-content:center;
+}
+.stephead{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.fstep{animation:fade .35s ease;position:relative}
+.fstep[hidden]{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fstep h3{font-family:var(--f-head);font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.fstep .hint{margin-top:6px;margin-bottom:20px;color:rgba(255,255,255,.45);font-size:.92rem}
+
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
+.field label{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.78)}
+.field label .opt{font-weight:400;color:rgba(255,255,255,.35)}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field select,
+.field textarea{
+  width:100%;font-family:var(--f-body);font-size:1rem;color:#fff;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;padding:13px 15px;transition:border-color .15s,box-shadow .15s;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.28)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:#6EEC9D;box-shadow:0 0 0 3px rgba(110,236,157,.16);
+}
+.field textarea{resize:vertical;min-height:88px}
+
+.filefield{border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;padding:16px;background:rgba(255,255,255,.03);margin-bottom:15px}
+.filefield label{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.78);display:block;margin-bottom:8px}
+.filefield input[type="file"]{width:100%;color:rgba(255,255,255,.75);font-size:.92rem}
+.filefield input[type="file"]::file-selector-button{
+  background:#6EEC9D;color:#0b0f1a;border:none;border-radius:999px;
+  padding:8px 16px;font-weight:700;font-size:.85rem;margin-right:12px;cursor:pointer;
+}
+.filefield input[type="file"]:focus-visible{outline:2px solid #6EEC9D;outline-offset:3px}
+
+.consent{display:flex;align-items:flex-start;gap:10px;margin-top:6px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.5}
+.consent input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:#6EEC9D}
+.consent a{color:#6EEC9D;text-decoration:underline}
+
+.formstatus{margin-top:14px;font-size:.88rem;color:#ff9d8a}
+.formstatus[hidden]{display:none}
+
+.fnav{display:flex;gap:12px;margin-top:24px}
+.fnav .btn{flex:1}
+
+.done{text-align:center;padding:18px 0}
+.done__ic{width:66px;height:66px;border-radius:50%;background:#6EEC9D;display:grid;place-items:center;margin:0 auto 18px}
+.done__ic svg{width:32px;height:32px;stroke:#0b0f1a;stroke-width:3;fill:none}
+.done h3{font-family:var(--f-head);font-size:1.5rem;font-weight:800;color:#fff}
+.done p{margin-top:10px;color:rgba(255,255,255,.52)}
+
+html:not(.js) .fstep[hidden]{display:block!important}
+  </style>
+
+  <main>
+    <section class="head">
+      <div class="container">
+        <h1>Onboarding Einkaufspark Klein-Buchholz</h1>
+        <p>Damit die neue Website wirklich zu Ihnen passt und wir nichts vergessen. Dauert ca. 6&nbsp;Minuten — Sie können auch nur einen Teil ausfüllen und später erneut reinschauen.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="panel">
+        <div class="pcard" id="formBody">
+          <div class="progress"><div class="progress__bar" id="pbar"></div></div>
+          <div class="progress__txt" id="ptxt">Schritt 1 von 7</div>
+
+          <form id="onboardingForm" novalidate>
+            <!-- Honeypot -->
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+              <input type="text" name="website" id="hp_website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <!-- Step 1: Unternehmen -->
+            <div class="fstep" data-step="1">
+              <div class="stephead"><span class="stepnum">1</span><h3>Ihr Unternehmen</h3></div>
+              <p class="hint">Für die rechtliche Einordnung (Barrierefreiheitsgesetz) und damit wir wissen, wo wir ansetzen.</p>
+              <div class="field">
+                <label for="mitarbeiterzahl">Mitarbeiterzahl der GmbH &amp; Co. KG <span class="opt">(ungefähr reicht)</span></label>
+                <input type="text" id="mitarbeiterzahl" name="mitarbeiterzahl" placeholder="z. B. 6" />
+              </div>
+              <div class="field">
+                <label for="website_betreuer">Wer betreut/verwaltet die aktuelle Website (einkaufspark.info) heute?</label>
+                <textarea id="website_betreuer" name="website_betreuer" placeholder="z. B. Agentur XY, ein Mitarbeiter, Sie selbst über Jimdo …"></textarea>
+              </div>
+            </div>
+
+            <!-- Step 2: Kontakt -->
+            <div class="fstep" data-step="2" hidden>
+              <div class="stephead"><span class="stepnum">2</span><h3>Ihr Kontakt</h3></div>
+              <p class="hint">Damit wir wissen, wer geantwortet hat.</p>
+              <div class="field">
+                <label for="ansprechpartner">Fester Ansprechpartner</label>
+                <input type="text" id="ansprechpartner" name="ansprechpartner" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="telefon">Telefon <span class="opt">(optional)</span></label>
+                <input type="tel" id="telefon" name="telefon" autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label for="kontaktweg">Bevorzugter Kontaktweg</label>
+                <select id="kontaktweg" name="kontaktweg">
+                  <option value="">Bitte wählen</option>
+                  <option value="E-Mail">E-Mail</option>
+                  <option value="Telefon">Telefon</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Step 3: Look & Feel -->
+            <div class="fstep" data-step="3" hidden>
+              <div class="stephead"><span class="stepnum">3</span><h3>Look &amp; Feel</h3></div>
+              <p class="hint">Wir haben die Kontaktseite schon einmal überarbeitet (runder, wärmer) — Ihr Feedback dazu fließt direkt ein.</p>
+              <div class="field">
+                <label for="wunschfarben">Wunschfarben</label>
+                <input type="text" id="wunschfarben" name="wunschfarben" placeholder="z. B. Grün bleibt Hauptfarbe, dazu warme Sandtöne" />
+              </div>
+              <div class="field">
+                <label for="no_gos">No-Gos <span class="opt">(was auf keinen Fall)</span></label>
+                <textarea id="no_gos" name="no_gos"></textarea>
+              </div>
+              <div class="field">
+                <label for="erster_eindruck">Wichtigster erster Eindruck der aktuellen Entwurfs-Version</label>
+                <textarea id="erster_eindruck" name="erster_eindruck" placeholder="Was gefällt, was fehlt noch?"></textarea>
+              </div>
+              <div class="field">
+                <label for="referenz_websites">Referenz-Websites, die Ihnen gefallen <span class="opt">(optional)</span></label>
+                <textarea id="referenz_websites" name="referenz_websites"></textarea>
+              </div>
+            </div>
+
+            <!-- Step 4: Inhalte & Struktur -->
+            <div class="fstep" data-step="4" hidden>
+              <div class="stephead"><span class="stepnum">4</span><h3>Inhalte &amp; Struktur</h3></div>
+              <p class="hint">Damit von Anfang an die richtigen Seiten und Inhalte geplant werden.</p>
+              <div class="field">
+                <label for="gewuenschte_unterseiten">Gewünschte Unterseiten <span class="opt">(z. B. Shops, Vermietung, Events, Anfahrt)</span></label>
+                <textarea id="gewuenschte_unterseiten" name="gewuenschte_unterseiten"></textarea>
+              </div>
+              <div class="field">
+                <label for="center_oeffnungszeiten">Öffnungszeiten des gesamten Centers</label>
+                <input type="text" id="center_oeffnungszeiten" name="center_oeffnungszeiten" placeholder="z. B. Mo–Sa 9–19 Uhr" />
+              </div>
+              <div class="field">
+                <label for="mieterliste">Mieterliste mit Öffnungszeiten</label>
+                <textarea id="mieterliste" name="mieterliste" placeholder="Geschäft — kurze Beschreibung — Öffnungszeiten"></textarea>
+              </div>
+              <div class="field">
+                <label for="vermietung_infos">Freie Flächen zu vermieten? <span class="opt">(sollen die auf der Website beworben werden?)</span></label>
+                <textarea id="vermietung_infos" name="vermietung_infos"></textarea>
+              </div>
+              <div class="field">
+                <label for="social_media">Social-Media-Kanäle <span class="opt">(Links, falls vorhanden)</span></label>
+                <input type="text" id="social_media" name="social_media" />
+              </div>
+              <div class="field">
+                <label for="google_business">Google-Unternehmensprofil vorhanden? <span class="opt">(Google Maps Eintrag)</span></label>
+                <input type="text" id="google_business" name="google_business" />
+              </div>
+            </div>
+
+            <!-- Step 5: Bilder & Logo -->
+            <div class="fstep" data-step="5" hidden>
+              <div class="stephead"><span class="stepnum">5</span><h3>Bilder &amp; Logo</h3></div>
+              <p class="hint">Für die finale Seite brauchen wir echte Fotos statt der Konzept-Illustration.</p>
+              <div class="filefield">
+                <label for="logo_file">Logo <span class="opt">(PNG, SVG oder JPG)</span></label>
+                <input type="file" id="logo_file" name="logo_file" accept="image/*,.svg" />
+              </div>
+              <div class="filefield">
+                <label for="foto_files">Fotos vom Gebäude / Gelände <span class="opt">(mehrere möglich)</span></label>
+                <input type="file" id="foto_files" name="foto_files" accept="image/*" multiple />
+              </div>
+            </div>
+
+            <!-- Step 6: Rechtliches & Zugang -->
+            <div class="fstep" data-step="6" hidden>
+              <div class="stephead"><span class="stepnum">6</span><h3>Rechtliches &amp; Zugang</h3></div>
+              <div class="field">
+                <label for="impressumsdaten">Impressumsdaten <span class="opt">(vollständiger Name, Adresse, Steuernummer, Verantwortlicher)</span></label>
+                <textarea id="impressumsdaten" name="impressumsdaten"></textarea>
+              </div>
+              <div class="field">
+                <label for="domain_zugang">Wo ist einkaufspark.info registriert / wer hat Zugang?</label>
+                <input type="text" id="domain_zugang" name="domain_zugang" />
+              </div>
+              <div class="filefield">
+                <label for="datei_files">Weitere Dateien <span class="opt">(z. B. Mieterliste als Datei, optional)</span></label>
+                <input type="file" id="datei_files" name="datei_files" multiple />
+              </div>
+            </div>
+
+            <!-- Step 7: Ablauf -->
+            <div class="fstep" data-step="7" hidden>
+              <div class="stephead"><span class="stepnum">7</span><h3>Ablauf</h3></div>
+              <div class="field">
+                <label for="wunschtermin">Gibt es einen Wunschtermin für den Go-Live? <span class="opt">(optional)</span></label>
+                <input type="text" id="wunschtermin" name="wunschtermin" />
+              </div>
+              <div class="field">
+                <label for="freigabe_prozess">Muss intern noch jemand zustimmen, bevor die Seite live geht?</label>
+                <input type="text" id="freigabe_prozess" name="freigabe_prozess" />
+              </div>
+
+              <label class="consent">
+                <input type="checkbox" id="consent" required />
+                <span>Ich bin mit der Verarbeitung meiner Angaben zur Umsetzung des Website-Projekts einverstanden (<a href="/datenschutz" target="_blank" rel="noopener">Datenschutz</a>).</span>
+              </label>
+
+              <div role="alert" class="formstatus" id="formStatus" hidden></div>
+            </div>
+
+            <div class="fnav" id="fnav">
+              <button type="button" class="btn btn--ghost" id="backBtn" hidden>Zurück</button>
+              <button type="button" class="btn btn--primary" id="nextBtn">Weiter</button>
+              <button type="submit" class="btn btn--primary" id="sendBtn" hidden>Angaben senden</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="pcard done" id="formDone" hidden>
+          <div class="done__ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Danke, ist angekommen!</h3>
+          <p>Paul meldet sich bei offenen Fragen. Sie können diese Seite jederzeit erneut ausfüllen, falls sich etwas ändert.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+    (function(){
+      "use strict";
+      var IS_LOCAL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+      var API_ENDPOINT = IS_LOCAL ? "http://localhost:3000/api/onboarding" : "https://fastraone-admin.vercel.app/api/onboarding";
+
+      var SUPABASE_URL = "https://djcvqnswbkipjwpmlisj.supabase.co";
+      var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqY3ZxbnN3YmtpcGp3cG1saXNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwNzY0MjUsImV4cCI6MjA5ODY1MjQyNX0.bVamLlutvRoHaTUgX3JeWUNTKgtxzpdvVyoFolao9F4";
+      var UPLOAD_BUCKET = "onboarding-uploads";
+      var KUNDE_SLUG = "emmelmann";
+
+      var form = document.getElementById("onboardingForm");
+      var steps = Array.prototype.slice.call(form.querySelectorAll(".fstep"));
+      var total = steps.length;
+      var cur = 0;
+      var bar = document.getElementById("pbar");
+      var ptxt = document.getElementById("ptxt");
+      var backBtn = document.getElementById("backBtn");
+      var nextBtn = document.getElementById("nextBtn");
+      var sendBtn = document.getElementById("sendBtn");
+      var statusEl = document.getElementById("formStatus");
+
+      function showStatus(msg){ statusEl.textContent = msg; statusEl.hidden = false; }
+      function clearStatus(){ statusEl.hidden = true; statusEl.textContent = ""; }
+
+      function stepValid(i){
+        var required = steps[i].querySelectorAll("[required]");
+        for (var k = 0; k < required.length; k++){
+          if (!required[k].checkValidity()) return false;
+        }
+        return true;
+      }
+      function render(){
+        steps.forEach(function(s,i){ s.hidden = i !== cur; });
+        bar.style.width = Math.round((cur/(total-1))*100) + "%";
+        ptxt.textContent = "Schritt " + (cur+1) + " von " + total;
+        backBtn.hidden = cur === 0;
+        var last = cur === total-1;
+        nextBtn.hidden = last;
+        sendBtn.hidden = !last;
+        clearStatus();
+      }
+      nextBtn.addEventListener("click", function(){
+        if (!stepValid(cur)){
+          var invalid = steps[cur].querySelector("[required]:invalid");
+          if (invalid) invalid.reportValidity();
+          return;
+        }
+        if (cur < total-1){ cur++; render(); }
+      });
+      backBtn.addEventListener("click", function(){ if (cur > 0){ cur--; render(); } });
+
+      function uploadFile(file, prefix){
+        var safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+        var path = KUNDE_SLUG + "/" + prefix + "-" + Date.now() + "-" + safeName;
+        return fetch(SUPABASE_URL + "/storage/v1/object/" + UPLOAD_BUCKET + "/" + path, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+            "Content-Type": file.type || "application/octet-stream",
+          },
+          body: file,
+        }).then(function(res){
+          if (!res.ok) throw new Error("Upload fehlgeschlagen: " + file.name);
+          return SUPABASE_URL + "/storage/v1/object/public/" + UPLOAD_BUCKET + "/" + path;
+        });
+      }
+      function uploadAll(fileList, prefix){
+        var files = Array.prototype.slice.call(fileList || []);
+        return Promise.all(files.map(function(f){ return uploadFile(f, prefix); }));
+      }
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        clearStatus();
+        if (document.getElementById("hp_website").value) return;
+        if (!stepValid(cur)) return;
+        if (!document.getElementById("consent").checked){
+          showStatus("Bitte erst der Datenverarbeitung zustimmen.");
+          return;
+        }
+
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Wird gesendet …";
+
+        var logoFiles = document.getElementById("logo_file").files;
+        var fotoFiles = document.getElementById("foto_files").files;
+        var dateiFiles = document.getElementById("datei_files").files;
+
+        Promise.all([
+          uploadAll(logoFiles, "logo"),
+          uploadAll(fotoFiles, "foto"),
+          uploadAll(dateiFiles, "datei"),
+        ]).then(function(results){
+          function v(id){ return document.getElementById(id).value.trim() || undefined; }
+          var payload = {
+            kunde_slug: KUNDE_SLUG,
+            mitarbeiterzahl: v("mitarbeiterzahl"),
+            website_betreuer: v("website_betreuer"),
+            ansprechpartner: v("ansprechpartner"),
+            kontaktweg: document.getElementById("kontaktweg").value || undefined,
+            email: v("email"),
+            telefon: v("telefon"),
+            wunschfarben: v("wunschfarben"),
+            no_gos: v("no_gos"),
+            erster_eindruck: v("erster_eindruck"),
+            referenz_websites: v("referenz_websites"),
+            gewuenschte_unterseiten: v("gewuenschte_unterseiten"),
+            center_oeffnungszeiten: v("center_oeffnungszeiten"),
+            mieterliste: v("mieterliste"),
+            vermietung_infos: v("vermietung_infos"),
+            social_media: v("social_media"),
+            google_business: v("google_business"),
+            impressumsdaten: v("impressumsdaten"),
+            domain_zugang: v("domain_zugang"),
+            wunschtermin: v("wunschtermin"),
+            freigabe_prozess: v("freigabe_prozess"),
+            logo_urls: results[0],
+            foto_urls: results[1],
+            datei_urls: results[2],
+          };
+          return fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        }).then(function(res){
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          document.getElementById("formBody").hidden = true;
+          document.getElementById("formDone").hidden = false;
+        }).catch(function(err){
+          console.error(err);
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Angaben senden";
+          showStatus("Da ist etwas schiefgelaufen. Bitte schreiben Sie direkt an paul.web@outlook.de, damit nichts verloren geht.");
+        });
+      });
+
+      render();
+    })();
+    </script>
+  </Fragment>
+</BaseLayout>
