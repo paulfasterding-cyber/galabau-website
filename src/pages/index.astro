@@ -262,7 +262,7 @@
         "publisher": { "@id": "https://fastraone.de/#business" },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": { "@type": "EntryPoint", "urlTemplate": "https://fastraone.de/blog.html?q={search_term_string}" },
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://fastraone.de/blog?q={search_term_string}" },
           "query-input": "required name=search_term_string"
         }
       },
@@ -376,7 +376,7 @@
         "position": 1,
         "name": "Analyse & Strategie",
         "text": "Kostenloses Erstgespräch mit Fastra One: Wir analysieren deinen Markt, deine Konkurrenz und deine aktuelle Online-Präsenz. Ohne Verkaufsdruck, mit konkreten Empfehlungen.",
-        "url": "https://fastraone.de/kontakt.html"
+        "url": "https://fastraone.de/kontakt"
       },
       {
         "@type": "HowToStep",
@@ -390,7 +390,7 @@
         "position": 3,
         "name": "Messen & Optimieren",
         "text": "Erste qualifizierte Anfragen treffen ein. Fastra One misst Klicks, Kosten und Qualität und justiert jeden Monat nach, bis das System zuverlässig neue Aufträge liefert.",
-        "url": "https://fastraone.de/case-studies.html"
+        "url": "https://fastraone.de/case-studies"
       }
     ]
   }
@@ -1210,10 +1210,11 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
 .ueber__deco2 { position:absolute; top:20px; left:-40px; width:400px; height:400px; border-radius:50%; border:1px solid rgba(110,236,157,.06); pointer-events:none; }
 .ueber__grid { display:grid; grid-template-columns:5fr 7fr; gap:88px; align-items:center; position:relative; z-index:1; }
 .ueber__img-wrap { position:relative; }
-.ueber__photo { width:100%; aspect-ratio:3/4; background:linear-gradient(145deg,#edf1f8 0%,#dce3ef 100%); border-radius:28px; box-shadow:0 24px 64px rgba(0,0,0,.1),0 4px 16px rgba(0,0,0,.06); overflow:hidden; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding-bottom:24px; }
-.ueber__photo__glow { position:absolute; top:35%; left:50%; transform:translate(-50%,-50%); width:220px; height:220px; background:radial-gradient(circle,rgba(110,236,157,.12) 0%,transparent 65%); pointer-events:none; }
-.ueber__photo__silhouette { position:absolute; top:50%; left:50%; transform:translate(-50%,-55%); width:62%; opacity:.1; color:#9ab; }
-.ueber__photo__tag { font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,0,0,.35); background:rgba(255,255,255,.8); border:1px solid rgba(0,0,0,.07); padding:5px 16px; border-radius:99px; backdrop-filter:blur(8px); position:relative; z-index:1; }
+.ueber__photo { width:100%; aspect-ratio:3/4; background:#0c0d10; border-radius:28px; box-shadow:0 24px 64px rgba(0,0,0,.1),0 4px 16px rgba(0,0,0,.06); overflow:hidden; position:relative; }
+.ueber__photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 15%; }
+.ueber__photo__glow { display:none; }
+.ueber__photo__silhouette { display:none; }
+.ueber__photo__tag { display:none; }
 .ueber__chip { position:absolute; background:#fff; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.06); padding:14px 20px; z-index:3; }
 .ueber__chip--tl { top:-18px; left:-28px; }
 .ueber__chip--br { bottom:40px; right:-28px; }
@@ -1684,27 +1685,27 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
       <header class="navwrap" id="top">
         <nav class="nav2" aria-label="Hauptnavigation">
           <a href="#top" class="brand" aria-label="Fastra One">
-            <img class="logo logo--nav" src="assets/logo.png" alt="Fastra One" />
+            <img class="logo logo--nav" src="assets/logo.png" alt="Fastra One" width="946" height="482" decoding="async" />
           </a>
           <ul class="nav2__links">
             <li><a href="#leistungen">Leistungen</a></li>
             <li><a href="#ablauf">Ablauf</a></li>
-            <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="blog.html">Ratgeber</a></li>
+            <li><a href="/case-studies">Case Studies</a></li>
+            <li><a href="/blog">Ratgeber</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="partner.html" class="nav2__partner">Partner</a></li>
+            <li><a href="/partner" class="nav2__partner">Partner</a></li>
           </ul>
-          <a href="kontakt.html" class="btn btn--primary nav2__cta">Erstgespräch sichern</a>
+          <a href="/kontakt" class="btn btn--primary nav2__cta">Erstgespräch sichern</a>
           <button class="nav2__burger" id="burger-idx" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
         </nav>
         <div class="nav2__mobile-menu" id="mobile-menu-idx">
           <a href="#leistungen">Leistungen</a>
           <a href="#ablauf">Ablauf</a>
-          <a href="case-studies.html">Case Studies</a>
-          <a href="blog.html">Ratgeber</a>
+          <a href="/case-studies">Case Studies</a>
+          <a href="/blog">Ratgeber</a>
           <a href="#faq">FAQ</a>
-          <a href="partner.html" class="nav2__partner">Partner</a>
-          <a href="kontakt.html" class="btn btn--primary">Erstgespräch sichern</a>
+          <a href="/partner" class="nav2__partner">Partner</a>
+          <a href="/kontakt" class="btn btn--primary">Erstgespräch sichern</a>
         </div>
       </header>
       <div class="container">
@@ -1715,7 +1716,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
             <h1 class="hero-split__title">Planbar mehr Aufträge.<br><span>Für GaLaBau-Betriebe in Hannover & DACH.</span></h1>
             <p class="hero-split__sub">Webdesign, Google Ads, SEO und KI-Sichtbarkeit (GEO) als abgestimmtes System aus einer Hand. Für Garten- und Landschaftsbau-Betriebe.</p>
             <div class="hero-split__cta">
-              <a href="kontakt.html" class="btn btn--primary btn--lg">Kostenloses Erstgespräch sichern</a>
+              <a href="/kontakt" class="btn btn--primary btn--lg">Kostenloses Erstgespräch sichern</a>
               <span class="hero-split__note">15 Minuten, unverbindlich</span>
             </div>
             <div class="hero-split__trust">
@@ -1730,7 +1731,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
           </div>
           <div class="hero-split__photo reveal" aria-hidden="true">
             <div class="hero-split__photo-inner">
-              <img src="/assets/paul.png" alt="Paul Fasterding, Gründer und Webdesign-Experte von Fastra One, Digitalagentur aus Hannover für Garten- und Landschaftsbau" width="1448" height="1086" loading="eager"/>
+              <img src="/assets/paul.png" alt="Paul Fasterding, Gründer und Webdesign-Experte von Fastra One, Digitalagentur aus Hannover für Garten- und Landschaftsbau" width="1448" height="1086" loading="eager" decoding="async"/>
             </div>
             <div class="hero__location">
               <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -1756,7 +1757,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
 
             <!-- Logo-Kreis in der Mitte -->
             <div class="orb-center" aria-hidden="true">
-              <img src="assets/logo.png" alt="">
+              <img src="assets/logo.png" alt="" width="946" height="482" decoding="async">
             </div>
 
             <!-- 6 Karten, R=270px, hexagonal -->
@@ -1950,12 +1951,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
               <div class="ueber__chip__label">Hannover-basiert</div>
             </div>
             <div class="ueber__photo">
-              <div class="ueber__photo__glow"></div>
-              <svg class="ueber__photo__silhouette" viewBox="0 0 200 300" aria-hidden="true" fill="currentColor">
-                <ellipse cx="100" cy="90" rx="48" ry="56"/>
-                <path d="M18 270 Q18 185 100 168 Q182 185 182 270 Z"/>
-              </svg>
-              <div class="ueber__photo__tag">Foto folgt bald</div>
+              <img src="/assets/paul-about.jpg" alt="Paul Fasterding, Gründer von Fastra One, Digitalagentur aus Hannover" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -1997,7 +1993,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
           <article class="bcard reveal reveal--l">
             <div class="bcard__media media--ads is-rich">
               <div class="adsx__head">
-                <span class="adsx__logo"><img src="assets/google-ads.svg" alt="Google Ads" /></span>
+                <span class="adsx__logo"><img src="assets/google-ads.svg" alt="Google Ads" width="32" height="32" decoding="async" /></span>
                 <span class="adsx__name">Google Ads</span>
                 <span class="adsx__pill">+127% Conversions</span>
               </div>
@@ -2018,10 +2014,10 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
           <article class="bcard reveal reveal--r">
             <div class="bcard__media media--geo is-rich">
               <div class="bmini gptchat">
-                <div class="gptchat__head"><img src="assets/openai.svg" alt="" />ChatGPT<span class="live"></span></div>
+                <div class="gptchat__head"><img src="assets/openai.svg" alt="" width="20" height="20" decoding="async" />ChatGPT<span class="live"></span></div>
                 <div class="gptchat__msg gptchat__msg--u"><p>Wer ist der beste Garten- und Landschaftsbauer in meiner Nähe?</p></div>
                 <div class="gptchat__msg gptchat__msg--a">
-                  <span class="gptchat__av"><img src="assets/openai.svg" alt="" /></span>
+                  <span class="gptchat__av"><img src="assets/openai.svg" alt="" width="20" height="20" decoding="async" /></span>
                   <p>Ich empfehle <b>Phi One · Garten &amp; Landschaftsbau</b>. Top bewertet in eurer Region.<span class="gptchat__rec"><span class="stars">★★★★★</span> 5,0 bei 124 Bewertungen</span></p>
                 </div>
               </div>
@@ -2195,7 +2191,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
                   <span class="ch-site-cta">Anfragen</span>
                 </nav>
                 <div class="ch-site-hero">
-                  <img src="/assets/garden.jpg" alt="" aria-hidden="true">
+                  <img src="/assets/garden.jpg" alt="" aria-hidden="true" width="1600" height="1067" loading="lazy" decoding="async">
                   <div class="ch-site-hero-overlay"></div>
                   <div class="ch-site-hero-content">
                     <h3>Gärten, die Ihr<br>Zuhause verkaufen</h3>
@@ -2470,8 +2466,8 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
             <span>Lass uns gemeinsam dein Unternehmen transformieren.</span>
           </div>
           <div class="diff__cta-actions">
-            <a href="case-studies.html" class="btn btn--light">Case Studies ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
-            <a href="kontakt.html" class="btn btn--primary">Kostenloses Erstgespräch sichern <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
+            <a href="/case-studies" class="btn btn--light">Case Studies ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
+            <a href="/kontakt" class="btn btn--primary">Kostenloses Erstgespräch sichern <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
@@ -2571,10 +2567,10 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
           <span class="fcta__deco fcta__deco--br" aria-hidden="true"></span>
           <span class="fcta__deco fcta__deco--tl" aria-hidden="true"></span>
           <div class="fcta__photo fcta__photo--left">
-            <img src="assets/cta-photo-left.png" alt="GaLaBau-Betrieb mit professionellem Webauftritt durch Fastra One Hannover" width="450" height="309" loading="lazy">
+            <img src="assets/cta-photo-left.png" alt="GaLaBau-Betrieb mit professionellem Webauftritt durch Fastra One Hannover" width="450" height="309" loading="lazy" decoding="async">
           </div>
           <div class="fcta__photo fcta__photo--right">
-            <img src="assets/cta-photo-right.png" alt="Mehr Aufträge für Garten- und Landschaftsbau durch Google Ads und SEO mit Fastra One" width="1370" height="1148" loading="lazy">
+            <img src="assets/cta-photo-right.png" alt="Mehr Aufträge für Garten- und Landschaftsbau durch Google Ads und SEO mit Fastra One" width="1370" height="1148" loading="lazy" decoding="async">
           </div>
           <div class="fcta__body">
             <h2 class="fcta__heading">Bereit für planbar mehr Gartenbau-Aufträge?</h2>
@@ -2584,7 +2580,7 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
               <span class="fcta__tag"><img src="assets/cta-check.svg" width="20" height="20" alt=""> Kostenlose System-Analyse</span>
             </div>
           </div>
-          <a href="kontakt.html" class="fcta__btn">
+          <a href="/kontakt" class="fcta__btn">
             Gratis Erstgespräch sichern
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
@@ -2598,15 +2594,15 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img class="logo" src="assets/logo.png" alt="Fastra One Webdesign-Agentur Hannover" />
+        <img class="logo" src="assets/logo.png" alt="Fastra One Webdesign-Agentur Hannover" width="946" height="482" loading="lazy" decoding="async" />
         <p>Webdesign, Google Ads &amp; SEO für Garten- und Landschaftsbau. Aus Hannover, für ganz DACH.</p>
         <address style="font-style:normal;font-size:.82rem;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
           Fastra One · Am Flachsgraben 9 · 30657 Hannover<br>
           <a href="tel:+491633781657" style="color:rgba(255,255,255,.35)">+49 163 3781657</a>
         </address>
       </div>
-      <nav class="footer__col" aria-label="Seiten"><h3>Seiten</h3><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Ratgeber</a><a href="kontakt.html">Kontakt</a></nav>
-      <nav class="footer__col" aria-label="Rechtliches"><h3>Rechtliches</h3><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="/admin/dashboard" style="opacity:.35;font-size:.8rem">Intern</a></nav>
+      <nav class="footer__col" aria-label="Seiten"><h3>Seiten</h3><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="/case-studies">Case Studies</a><a href="/blog">Ratgeber</a><a href="/kontakt">Kontakt</a></nav>
+      <nav class="footer__col" aria-label="Rechtliches"><h3>Rechtliches</h3><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="/agb">AGB</a><a href="/admin/dashboard" style="opacity:.35;font-size:.8rem">Intern</a></nav>
     </div>
     <div class="footer__wordmark" aria-hidden="true">
       <span>Fastra One</span>
@@ -2614,9 +2610,9 @@ html.js .diff__wires .beam { opacity:1; animation:diffBeam 3.4s linear infinite;
     <div class="container footer__bottom">
       <span>© 2026 Fastra One</span>
       <nav class="footer__bottom-links" aria-label="Rechtliches">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="agb.html">AGB</a>
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="/agb">AGB</a>
       </nav>
       <span>Hannover · Deutschland</span>
     </div>
