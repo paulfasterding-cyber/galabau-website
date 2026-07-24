@@ -8,697 +8,870 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   navVariant="none"
   footerVariant="none"
 >
+
   <Fragment slot="head">
     <meta name="robots" content="noindex, nofollow" />
   </Fragment>
 
-<style>
-/* ── Tokens & Reset (nutzt global.css) ────────────────────── */
-.lp-announce {
-  background: var(--ink); color: rgba(255,255,255,.75);
-  text-align: center; padding: 10px 20px;
-  font-size: 13px; font-weight: 500; letter-spacing: .01em;
-}
-.lp-announce strong { color: var(--blue); }
-.lp-announce .lp-ac { color: var(--blue); border-bottom: 1px solid rgba(110,236,157,.35); cursor: pointer; font-weight: 600; }
-
-/* Minimal Nav */
-.lp-nav {
-  position: sticky; top: 0; z-index: 90;
-  background: rgba(11,15,26,.92);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  padding: 0 22px; height: 60px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.lp-nav img { height: 24px; filter: brightness(0) invert(1); display: block; }
-.lp-nav__r { display: flex; align-items: center; gap: 14px; }
-.lp-nav__tel { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); text-decoration: none; transition: color .15s; }
-.lp-nav__tel:hover { color: var(--blue); }
-.lp-nav__cta { padding: 9px 20px; background: var(--blue); color: #06351e; font-size: 13.5px; font-weight: 700; border-radius: 999px; border: none; cursor: pointer; font-family: inherit; transition: background .15s, transform .15s; }
-.lp-nav__cta:hover { background: #8ff5b8; transform: translateY(-1px); }
-@media(max-width:560px){.lp-nav__tel{display:none;}.lp-nav__cta{font-size:12.5px;padding:8px 14px;}}
-
-/* Hero */
-.lp-hero { background: #0b0f1a; position: relative; overflow: hidden; padding: 80px 0 88px; }
-.lp-hero .hd-bg { opacity: .55; }
-.lp-hero-glow {
-  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-  width: 700px; height: 380px;
-  background: radial-gradient(ellipse, rgba(110,236,157,.16) 0%, transparent 70%);
-  pointer-events: none;
-}
-.lp-hero__in { position: relative; z-index: 1; text-align: center; }
-.lp-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 7px 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 999px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.8); margin-bottom: 28px;
-}
-.lp-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2s ease-in-out infinite; }
-@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
-.lp-hero h1 {
-  font-family: var(--f-head); font-size: clamp(36px,6.5vw,70px); font-weight: 800;
-  line-height: 1.06; letter-spacing: -.033em; color: #fff;
-  margin-bottom: 22px; max-width: 900px; margin-inline: auto;
-}
-.lp-hero h1 .acc { color: var(--blue); }
-.lp-hero__sub { font-size: clamp(16px,2.2vw,19px); color: rgba(255,255,255,.52); line-height: 1.65; max-width: 550px; margin: 0 auto 36px; }
-.lp-checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-bottom: 40px; }
-.lp-check { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,.48); }
-.lp-check svg { color: var(--blue); flex-shrink: 0; }
-.lp-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.lp-scarcity { font-size: 12.5px; color: rgba(255,255,255,.3); }
-.lp-scarcity strong { color: var(--blue); }
-.lp-stats {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px; overflow: hidden; margin-top: 64px;
-  max-width: 540px; margin-left: auto; margin-right: auto;
-}
-.lp-stat { background: rgba(255,255,255,.04); padding: 22px 20px; text-align: center; }
-.lp-stat-v { font-family: var(--f-head); font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -.035em; }
-.lp-stat-v .u { font-size: 17px; color: var(--blue); }
-.lp-stat-l { font-size: 12px; color: rgba(255,255,255,.38); font-weight: 500; margin-top: 3px; }
-
-/* Trust Bar */
-.lp-trust { background: #fff; padding: 28px 0; border-bottom: 1px solid var(--line); }
-.lp-trust-l { text-align: center; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); margin-bottom: 18px; }
-.lp-trust-r { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
-.lp-badge {
-  display: flex; align-items: center; gap: 7px; padding: 7px 15px;
-  background: #f9fafb; border: 1px solid rgba(61,61,61,.1); border-radius: 999px;
-  font-size: 13px; font-weight: 600; color: var(--ink-soft); white-space: nowrap;
-  transition: border-color .2s, box-shadow .2s;
-}
-.lp-badge:hover { border-color: rgba(22,165,102,.3); box-shadow: 0 2px 8px rgba(22,165,102,.1); }
-.lp-badge svg { color: var(--blue-strong); flex-shrink: 0; }
-
-/* Sections */
-.lp-s { padding: 84px 0; }
-.lp-s--g { background: var(--bg); }
-.lp-s--d { background: #0b0f1a; padding: 72px 0; }
-.lp-lbl { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-strong); margin-bottom: 12px; }
-.lp-h2 { font-family: var(--f-head); font-size: clamp(27px,4.5vw,46px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
-.lp-h2--w { color: #fff; }
-.lp-sub { font-size: 17px; color: var(--gray); line-height: 1.65; max-width: 540px; margin-bottom: 52px; }
-.lp-sub--w { color: rgba(255,255,255,.52); }
-@media(max-width:768px){ .lp-s { padding: 60px 0; } .lp-s--d { padding: 56px 0; } }
-
-/* Problem cards */
-.lp-pg { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-@media(max-width:900px){.lp-pg{grid-template-columns:repeat(2,1fr)}} @media(max-width:580px){.lp-pg{grid-template-columns:1fr}}
-.lp-pc {
-  background: #fff; border: 1px solid rgba(61,61,61,.09); border-radius: 18px; padding: 26px 22px;
-  transition: box-shadow .25s, border-color .25s, transform .25s;
-}
-.lp-pc:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); border-color: rgba(61,61,61,.16); transform: translateY(-3px); }
-.lp-pc-ico { width: 36px; height: 36px; border-radius: 10px; background: #fff0f0; display: flex; align-items: center; justify-content: center; color: #dc2626; margin-bottom: 14px; }
-.lp-pc h3 { font-family: var(--f-head); font-size: 15.5px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
-.lp-pc p { font-size: 14px; color: var(--gray); line-height: 1.65; }
-
-/* Offer Stack */
-.lp-sn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--blue-strong); background: rgba(22,165,102,.1); padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
-}
-.lp-sg { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 36px; }
-@media(max-width:900px){.lp-sg{grid-template-columns:repeat(2,1fr)}} @media(max-width:560px){.lp-sg{grid-template-columns:1fr}}
-.lp-sc {
-  background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px;
-  transition: box-shadow .25s, border-color .25s, transform .25s;
-}
-.lp-sc:hover { box-shadow: 0 4px 18px rgba(22,165,102,.12); border-color: rgba(22,165,102,.28); transform: translateY(-3px); }
-.lp-sc-ico { width: 34px; height: 34px; border-radius: 10px; background: rgba(22,165,102,.1); display: flex; align-items: center; justify-content: center; color: var(--blue-strong); margin-bottom: 12px; }
-.lp-sc h3 { font-family: var(--f-head); font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
-.lp-sc p { font-size: 13px; color: var(--gray); line-height: 1.55; }
-.lp-gbox {
-  background: linear-gradient(135deg,#f0fdf4,#e8faf1); border: 1.5px solid rgba(22,165,102,.28);
-  border-radius: 18px; padding: 28px 32px; display: flex; align-items: flex-start; gap: 20px;
-}
-@media(max-width:600px){.lp-gbox{flex-direction:column;padding:22px 18px;}}
-.lp-gbox-ico { width: 48px; height: 48px; border-radius: 14px; background: var(--blue-strong); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
-.lp-gbox h3 { font-family: var(--f-head); font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
-.lp-gbox p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
-
-/* Offer CTA box (new: Angebot sichern) */
-.lp-offer-box {
-  background: #0b0f1a; border-radius: 24px; padding: 40px; text-align: center;
-  margin-top: 40px; position: relative; overflow: hidden;
-}
-.lp-offer-box::before {
-  content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-  width: 500px; height: 250px;
-  background: radial-gradient(ellipse, rgba(110,236,157,.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-.lp-offer-box__in { position: relative; z-index: 1; }
-.lp-offer-box h3 { font-family: var(--f-head); font-size: clamp(20px,3vw,28px); font-weight: 800; color: #fff; letter-spacing: -.025em; margin-bottom: 10px; }
-.lp-offer-box h3 span { color: var(--blue); }
-.lp-offer-box p { font-size: 15.5px; color: rgba(255,255,255,.52); line-height: 1.6; max-width: 480px; margin: 0 auto 28px; }
-.lp-offer-spots { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(110,236,157,.1); border: 1px solid rgba(110,236,157,.25); border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 24px; }
-.lp-offer-spots-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 1.5s ease-in-out infinite; }
-
-/* Proof */
-.lp-proof-g { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-@media(max-width:900px){.lp-proof-g{grid-template-columns:repeat(2,1fr)}} @media(max-width:580px){.lp-proof-g{grid-template-columns:1fr}}
-.lp-proof-c { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px 20px; position: relative; transition: box-shadow .25s, transform .25s; }
-.lp-proof-c:hover { box-shadow: 0 4px 18px rgba(0,0,0,.06); transform: translateY(-2px); }
-.lp-proof-tag { position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 600; color: var(--gray-2); background: var(--bg); padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); }
-.lp-proof-s { color: #f59e0b; font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
-.lp-proof-b { font-size: 14.5px; color: var(--gray); font-style: italic; line-height: 1.65; margin-bottom: 18px; min-height: 80px; background: repeating-linear-gradient(transparent,transparent 23px,rgba(61,61,61,.06) 23px,rgba(61,61,61,.06) 24px); border-radius: 4px; padding: 6px 0; }
-.lp-proof-a { display: flex; align-items: center; gap: 12px; }
-.lp-proof-av { width: 40px; height: 40px; border-radius: 50%; background: rgba(22,165,102,.12); display: flex; align-items: center; justify-content: center; font-family: var(--f-head); font-size: 15px; font-weight: 700; color: var(--blue-strong); flex-shrink: 0; }
-.lp-proof-n { font-size: 13.5px; font-weight: 700; color: var(--ink); }
-.lp-proof-l { font-size: 12.5px; color: var(--gray-2); }
-
-/* Process */
-.lp-proc { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 52px; }
-@media(max-width:768px){.lp-proc{grid-template-columns:1fr}}
-.lp-ps { padding: 0 32px 40px; position: relative; }
-.lp-ps+.lp-ps::before { content:''; position:absolute; left:0; top:36px; height:calc(100% - 36px); width:1px; background:var(--line); }
-@media(max-width:768px){.lp-ps{padding:28px 0 0;border-bottom:1px solid var(--line);} .lp-ps:last-child{border-bottom:none;} .lp-ps+.lp-ps::before{display:none;}}
-.lp-pnum { width:40px; height:40px; border-radius:12px; background:var(--ink); color:#fff; font-family:var(--f-head); font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
-.lp-pday { font-size:11.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--blue-strong); margin-bottom:8px; }
-.lp-ps h3 { font-family:var(--f-head); font-size:18px; font-weight:700; color:var(--ink); margin-bottom:10px; }
-.lp-ps p { font-size:14.5px; color:var(--gray); line-height:1.65; }
-
-/* FAQ */
-.lp-flist { margin-top:44px; max-width:720px; margin-left:auto; margin-right:auto; }
-.lp-fi { background:var(--bg); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:8px; transition:box-shadow .2s; }
-.lp-fi:hover { box-shadow: 0 2px 12px rgba(0,0,0,.05); }
-.lp-fq { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; text-align:left; font-family:inherit; font-size:15.5px; font-weight:600; color:var(--ink); background:none; border:none; cursor:pointer; }
-.lp-fq svg { flex-shrink:0; color:var(--gray); transition:transform .25s, color .25s; }
-.lp-fi.open .lp-fq svg { transform:rotate(45deg); color:var(--blue-strong); }
-.lp-fa { max-height:0; overflow:hidden; transition:max-height .32s ease; }
-.lp-fai { padding:0 22px 20px; font-size:14.5px; color:var(--gray); line-height:1.7; }
-
-/* Final CTA */
-.lp-fcta { background: #0b0f1a; position: relative; overflow: hidden; padding: 96px 0; }
-.lp-fcta-glow { position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:600px; height:300px; background:radial-gradient(ellipse,rgba(110,236,157,.18) 0%,transparent 70%); pointer-events:none; }
-.lp-fcta__in { position:relative; z-index:1; text-align:center; }
-.lp-fcta h2 { font-family:var(--f-head); font-size:clamp(26px,4.5vw,50px); font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1.09; margin-bottom:14px; }
-.lp-fcta h2 span { color:var(--blue); }
-.lp-fcta p { font-size:17px; color:rgba(255,255,255,.48); max-width:460px; margin:0 auto 36px; line-height:1.65; }
-.lp-fcta-sc { margin-top:16px; font-size:12.5px; color:rgba(255,255,255,.3); }
-.lp-fcta-sc strong { color:var(--blue); }
-@media(max-width:768px){.lp-fcta{padding:68px 0;}}
-
-/* Footer */
-.lp-foot { padding:26px 22px; border-top:1px solid var(--line); background:#fff; }
-.lp-foot__in { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px 28px; font-size:13px; color:var(--gray-2); }
-.lp-foot a { color:var(--gray-2); border-bottom:1px solid var(--line); }
-.lp-foot a:hover { color:var(--ink); }
-
-/* ── QUIZ MODAL ───────────────────────────────────────── */
-.qov { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:16px; }
-.qov.open { display:flex; }
-.qbd { position:absolute; inset:0; background:rgba(11,15,26,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
-.qcard {
-  position:relative; background:#fff; border-radius:24px;
-  width:100%; max-width:520px; max-height:92vh; overflow-y:auto;
-  padding:36px 36px 40px; box-shadow:0 32px 80px rgba(0,0,0,.38);
-}
-@media(max-width:540px){.qcard{padding:28px 20px 32px; border-radius:18px;}}
-.qclose { position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:8px; background:var(--bg); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--gray); transition:background .15s,color .15s; }
-.qclose:hover{background:var(--line);color:var(--ink);}
-.qpw { margin-bottom:28px; }
-.qpl { font-size:12px; font-weight:600; color:var(--gray-2); margin-bottom:8px; }
-.qpb { height:4px; background:var(--line); border-radius:999px; overflow:hidden; }
-.qpf { height:100%; background:linear-gradient(90deg,var(--blue-strong),var(--blue)); border-radius:999px; transition:width .3s ease; }
-.qstep { display:none; }
-.qstep.act { display:block; animation:qin .22s ease; }
-@keyframes qin { from{opacity:0;transform:translateX(14px)} to{opacity:1;transform:none} }
-.qq { font-family:var(--f-head); font-size:20px; font-weight:800; color:var(--ink); line-height:1.28; letter-spacing:-.02em; margin-bottom:6px; }
-.qhint { font-size:13.5px; color:var(--gray-2); margin-bottom:22px; line-height:1.5; }
-.qch { display:flex; flex-direction:column; gap:10px; }
-.qc {
-  display:flex; align-items:center; gap:13px; padding:15px 17px;
-  border:2px solid var(--line); border-radius:12px;
-  font-size:15px; font-weight:500; color:var(--ink-soft); text-align:left;
-  background:none; cursor:pointer; font-family:inherit;
-  transition:border-color .15s, background .15s, color .15s, transform .12s;
-}
-.qc:hover{border-color:rgba(22,165,102,.32);background:rgba(22,165,102,.04);transform:translateX(2px);}
-.qc.sel{border-color:var(--blue-strong);background:rgba(22,165,102,.07);color:var(--ink);font-weight:600;}
-.qd { width:20px; height:20px; border-radius:50%; border:2px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:border-color .15s,background .15s; }
-.qc.sel .qd{border-color:var(--blue-strong);background:var(--blue-strong);}
-.qc.sel .qd::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff;}
-.qnav { display:flex; justify-content:space-between; align-items:center; margin-top:24px; }
-.qback { display:flex; align-items:center; gap:5px; font-size:14px; font-weight:500; color:var(--gray-2); background:none; border:none; cursor:pointer; padding:8px 0; font-family:inherit; transition:color .15s; }
-.qback:hover{color:var(--ink);}
-.qnxt { display:inline-flex; align-items:center; gap:7px; padding:12px 24px; background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%); color:#06351e; font-size:15px; font-weight:700; border-radius:999px; border:none; cursor:pointer; font-family:inherit; opacity:.4; pointer-events:none; transition:opacity .15s,transform .15s,box-shadow .15s; }
-.qnxt.rdy{opacity:1;pointer-events:auto;}
-.qnxt.rdy:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(29,120,62,.28);}
-/* Quiz Intro (step 0) */
-.qintro { text-align:center; padding:8px 0 4px; }
-.qintro-icon { width:64px; height:64px; border-radius:20px; background:rgba(22,165,102,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; color:var(--blue-strong); }
-.qintro h3 { font-family:var(--f-head); font-size:22px; font-weight:800; color:var(--ink); letter-spacing:-.025em; margin-bottom:12px; }
-.qintro-spots { display:inline-flex; align-items:center; gap:7px; padding:7px 14px; background:rgba(22,165,102,.08); border:1px solid rgba(22,165,102,.22); border-radius:999px; font-size:13px; font-weight:700; color:var(--blue-strong); margin-bottom:20px; }
-.qintro-spots-dot { width:6px; height:6px; border-radius:50%; background:var(--blue-strong); animation:blink 1.5s infinite; }
-.qintro p { font-size:15px; color:var(--gray); line-height:1.65; margin-bottom:28px; max-width:380px; margin-left:auto; margin-right:auto; }
-/* Form */
-.qfg { margin-bottom:14px; }
-.qfg label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
-.qfg input{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;color:var(--ink);background:#fff;font-family:inherit;outline:none;transition:border-color .15s;}
-.qfg input:focus{border-color:var(--blue-strong);}
-.qfg input::placeholder{color:var(--gray-2);}
-.qpriv{display:flex;align-items:flex-start;gap:10px;margin:18px 0;}
-.qpriv input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--blue-strong);flex-shrink:0;}
-.qpriv label{font-size:13px;color:var(--gray-2);line-height:1.5;}
-.qpriv a{color:var(--blue-strong);border-bottom:1px solid rgba(22,165,102,.3);}
-.qsub{width:100%;padding:16px;background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);color:#06351e;font-size:16px;font-weight:700;border-radius:14px;border:none;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s;box-shadow:var(--shadow-blue);}
-.qsub:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(29,120,62,.38);}
-.qsub:active{transform:none;}
-.qsub:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
-/* Success */
-.qsucc{display:none;text-align:center;padding:16px 0;}
-.qsucc.show{display:block;animation:qin .3s ease;}
-.qsucc-icon{width:64px;height:64px;border-radius:20px;background:rgba(22,165,102,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--blue-strong);}
-.qsucc h3{font-family:var(--f-head);font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:10px;}
-.qsucc p{font-size:15px;color:var(--gray);line-height:1.65;}
-</style>
-
-<!-- ANNOUNCE ──────────────────────────────────────────────── -->
-<div class="lp-announce">
-  <strong>Nur noch 3 Plätze</strong> in diesem Monat &middot;
-  System live in <strong>14 Tagen</strong> &middot;
-  <span class="lp-ac" onclick="openQuiz()">Platz jetzt sichern &rarr;</span>
-</div>
-
-<!-- NAV ───────────────────────────────────────────────────── -->
-<nav class="lp-nav">
-  <a href="/"><img src="/assets/logo.png" alt="Fastra One" /></a>
-  <div class="lp-nav__r">
-    <a href="tel:+491633781657" class="lp-nav__tel">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.08h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.81-1.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      +49 163 3781657
-    </a>
-    <button class="lp-nav__cta" onclick="openQuiz()">Platz sichern</button>
+  <!-- ════ URGENCY BAR ══════════════════════════════════════════════════ -->
+  <div class="lp-topbar">
+    <span class="lp-topbar__dot" aria-hidden="true"></span>
+    <strong>Nur noch 3 freie Plätze in deiner Region</strong>
+    <span class="lp-topbar__sep">·</span>
+    <span>System live in 14 Tagen</span>
+    <button class="lp-topbar__cta" onclick="openModal()">Platz sichern →</button>
   </div>
-</nav>
 
-<!-- HERO ──────────────────────────────────────────────────── -->
-<section class="lp-hero">
-  <div class="hd-bg"></div>
-  <div class="lp-hero-glow"></div>
-  <div class="container">
-    <div class="lp-hero__in">
-      <div class="lp-pill"><span class="lp-pill-dot"></span>Speziell für GaLaBau-Betriebe in Deutschland</div>
+  <!-- ════ HERO ════════════════════════════════════════════════════════ -->
+  <section class="lp-hero">
+    <div class="lp-hero__grid-bg" aria-hidden="true"></div>
+    <div class="lp-hero__glow" aria-hidden="true"></div>
 
-      <h1>Mehr GaLaBau-Aufträge.<br><span class="acc">Planbar. In 14 Tagen.</span></h1>
+    <div class="container">
+      <div class="lp-hero__center">
 
-      <p class="lp-hero__sub">
-        Während du Projekte abwickelst, gewinnt dein Wettbewerber online
-        die Kunden, die eigentlich deine sein könnten.
-        Das vollständige System dagegen läuft in zwei Wochen.
-      </p>
-
-      <div class="lp-checks">
-        <span class="lp-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Website + Google Ads + Funnel</span>
-        <span class="lp-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Nur 1 Betrieb pro Region</span>
-        <span class="lp-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Kein Agentur-Risiko</span>
-      </div>
-
-      <div class="lp-cta-wrap">
-        <button class="btn btn--primary btn--lg" onclick="openQuiz()">
-          Platz jetzt sichern &rarr;
-        </button>
-        <span class="lp-scarcity"><strong>Noch 3 Plätze frei</strong> &middot; Kostenlos &amp; unverbindlich</span>
-      </div>
-
-      <div class="lp-stats reveal">
-        <div class="lp-stat"><div class="lp-stat-v">14<span class="u"> Tage</span></div><div class="lp-stat-l">bis live</div></div>
-        <div class="lp-stat"><div class="lp-stat-v">100<span class="u">%</span></div><div class="lp-stat-l">GaLaBau-Fokus</div></div>
-        <div class="lp-stat"><div class="lp-stat-v">1<span class="u">×</span></div><div class="lp-stat-l">pro Region</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST BAR ─────────────────────────────────────────────── -->
-<div class="lp-trust">
-  <div class="container">
-    <p class="lp-trust-l">Auf diesen Systemen gebaut</p>
-    <div class="lp-trust-r">
-      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google Ads zertifiziert</div>
-      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DSGVO-konform</div>
-      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Conversion Tracking</div>
-      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Exklusiv pro Region</div>
-      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Mobile-First</div>
-    </div>
-  </div>
-</div>
-
-<!-- PROBLEM ───────────────────────────────────────────────── -->
-<section class="lp-s lp-s--g">
-  <div class="container">
-    <p class="lp-lbl reveal">Erkennst du dich hier wieder?</p>
-    <h2 class="lp-h2 reveal">Was wirklich hinter dem<br>leeren Auftragsbuch steckt.</h2>
-    <p class="lp-sub reveal">Die meisten GaLaBau-Betriebe kämpfen mit denselben Problemen — aber niemand spricht offen darüber.</p>
-
-    <div class="lp-pg">
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Sonntagabend, Kalender halb leer</h3><p>Du weißt nicht, was nächsten Monat kommt. Das Auftragsbuch hängt vom Zufall ab — das schläft sich schlecht.</p></div>
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Weiterempfehlungen als einziger Vertrieb</h3><p>Solange Stammkunden aktiv sind, läuft es gut. Aber das ist kein Geschäftsmodell — das ist Glück. Und Glück skaliert nicht.</p></div>
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Dein Wettbewerber gewinnt online</h3><p>Er macht schlechtere Arbeit. Aber er wirkt professioneller, steht bei Google oben — und bekommt die Aufträge, die dir fehlen.</p></div>
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Geld für Werbung verbrannt</h3><p>Du hast schon was versucht. Ergebnis: Schmerzhaft wenig für das investierte Geld. Keine Strategie, keine Ergebnisse.</p></div>
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div><h3>Die Website verkauft nicht</h3><p>Besucher kommen, gehen wieder. Keine Anfragen. Deine Website ist ein digitaler Flyer — kein Vertrieb.</p></div>
-      <div class="lp-pc reveal"><div class="lp-pc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3>Unqualifizierte Anfragen</h3><p>Wenn Anfragen kommen, passen Budget oder Erwartung oft nicht. Deine Zeit wird vergeudet.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- OFFER STACK ───────────────────────────────────────────── -->
-<section class="lp-s">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:52px;">
-      <div class="lp-sn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Das GaLaBau-Vertriebssystem</div>
-      <h2 class="lp-h2 reveal">Alles, was du brauchst.<br>In zwei Wochen eingerichtet.</h2>
-      <p class="lp-sub reveal" style="margin:0 auto;">Du kaufst keine Website. Du kaufst einen vollständigen digitalen Vertriebsprozess — der rund um die Uhr neue Aufträge generiert.</p>
-    </div>
-
-    <div class="lp-sg">
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div><h3>Premium GaLaBau-Website</h3><p>Schnell, mobil-optimiert, nur für deine Branche gebaut. Kein Baukastenprodukt.</p></div>
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Google Ads Kampagne</h3><p>Keyword-Recherche, Anzeigen, Gebotsstrategie, Conversion Tracking — komplett eingerichtet.</p></div>
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Conversion-Landingpage</h3><p>Eine Seite, die ausschließlich auf Terminbuchung optimiert ist — kein Branding, ein Werkzeug.</p></div>
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></div><h3>Qualifizierungs-Funnel</h3><p>Interessenten qualifizieren sich selbst — du sprichst nur noch mit echten Kaufinteressenten.</p></div>
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3>Verkaufsstarke Texte</h3><p>Copywriting auf Conversion-Niveau — für GaLaBau-Kunden formuliert, nicht für Marketingmanager.</p></div>
-      <div class="lp-sc reveal"><div class="lp-sc-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>WhatsApp + DSGVO + Tracking</h3><p>WhatsApp-Integration, Datenschutz-Setup, Conversion Tracking — alles rechtssicher eingerichtet.</p></div>
-    </div>
-
-    <div class="lp-gbox reveal">
-      <div class="lp-gbox-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div>
-        <h3>Kein Ergebnis, kein Problem.</h3>
-        <p>Wenn das System läuft und wir keine qualifizierten Anfragen liefern, optimieren wir weiter — ohne Aufpreis. Du zahlst für Ergebnisse, nicht für Arbeitsstunden. Das ist kein Werbeversprechen — das ist unser Geschäftsmodell.</p>
-      </div>
-    </div>
-
-    <!-- Angebot-Box -->
-    <div class="lp-offer-box reveal">
-      <div class="lp-offer-box__in">
-        <div class="lp-offer-spots"><span class="lp-offer-spots-dot"></span>Noch 3 von 5 Plätzen frei</div>
-        <h3>Dein Betrieb. <span>Vollgebucht.</span> In 14 Tagen.</h3>
-        <p>Prüf jetzt in 2 Minuten, ob dein Betrieb für eines der letzten Plätze qualifiziert ist — und was das konkret für dich bedeutet.</p>
-        <button class="btn btn--primary btn--lg" onclick="openQuiz()" style="margin:0 auto;">
-          Eignung jetzt prüfen &rarr;
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOCIAL PROOF ──────────────────────────────────────────── -->
-<section class="lp-s lp-s--g">
-  <div class="container">
-    <p class="lp-lbl reveal" style="text-align:center;">Was GaLaBau-Betriebe sagen</p>
-    <h2 class="lp-h2 reveal" style="text-align:center;">Ergebnisse, die für sich sprechen.</h2>
-    <p class="lp-sub reveal" style="margin:0 auto 44px;text-align:center;">Wir sind in der Startphase — die ersten Bewertungen folgen. Deine könnte die erste sein.</p>
-    <div class="lp-proof-g">
-      <div class="lp-proof-c reveal"><div class="lp-proof-tag">Folgt bald</div><div class="lp-proof-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="lp-proof-b">&nbsp;</div><div class="lp-proof-a"><div class="lp-proof-av">G</div><div><div class="lp-proof-n">GaLaBau-Betrieb</div><div class="lp-proof-l">Norddeutschland</div></div></div></div>
-      <div class="lp-proof-c reveal"><div class="lp-proof-tag">Folgt bald</div><div class="lp-proof-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="lp-proof-b">&nbsp;</div><div class="lp-proof-a"><div class="lp-proof-av">G</div><div><div class="lp-proof-n">GaLaBau-Betrieb</div><div class="lp-proof-l">Westdeutschland</div></div></div></div>
-      <div class="lp-proof-c reveal"><div class="lp-proof-tag">Folgt bald</div><div class="lp-proof-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="lp-proof-b">&nbsp;</div><div class="lp-proof-a"><div class="lp-proof-av">G</div><div><div class="lp-proof-n">GaLaBau-Betrieb</div><div class="lp-proof-l">Süddeutschland</div></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROZESS ───────────────────────────────────────────────── -->
-<section class="lp-s">
-  <div class="container">
-    <p class="lp-lbl reveal">So einfach geht es</p>
-    <h2 class="lp-h2 reveal">In 3 Schritten zu<br>planbaren Anfragen.</h2>
-    <div class="lp-proc">
-      <div class="lp-ps reveal"><div class="lp-pnum">1</div><div class="lp-pday">Tag 1 – 2</div><h3>Eignung prüfen &amp; Strategie</h3><p>Wir prüfen deinen Betrieb, deine Region, deine Wettbewerber. Du bekommst eine ehrliche Einschätzung — kostenlos, unverbindlich, ohne Druck.</p></div>
-      <div class="lp-ps reveal"><div class="lp-pnum">2</div><div class="lp-pday">Tag 3 – 13</div><h3>Vollständiger Aufbau</h3><p>Website, Landingpage, Google Ads, Funnel, Texte, Tracking — alles wird eingerichtet und getestet. Du kümmerst dich um dein Handwerk.</p></div>
-      <div class="lp-ps reveal"><div class="lp-pnum">3</div><div class="lp-pday">Ab Tag 14</div><h3>Erste Anfragen</h3><p>Dein System ist live. Qualifizierte Interessenten finden dich. Du nimmst die Gespräche entgegen und wählst die besten Aufträge aus.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ ────────────────────────────────────────────────────── -->
-<section class="lp-s lp-s--g">
-  <div class="container">
-    <p class="lp-lbl reveal" style="text-align:center;">FAQ</p>
-    <h2 class="lp-h2 reveal" style="text-align:center;">Deine Fragen, ehrlich beantwortet.</h2>
-    <div class="lp-flist">
-      <div class="lp-fi"><button class="lp-fq" onclick="tgl(this)">Was kostet das GaLaBau-Vertriebssystem?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-fa"><div class="lp-fai">Das Erstgespräch ist kostenlos und unverbindlich. Nach unserem Call bekommst du ein klares, vollständiges Angebot — ohne versteckte Kosten. Erst wenn du zustimmst, starten wir.</div></div></div>
-      <div class="lp-fi"><button class="lp-fq" onclick="tgl(this)">Was, wenn ich trotzdem keine Anfragen bekomme?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-fa"><div class="lp-fai">Dann optimieren wir weiter — ohne Aufpreis. Wir stehen für das Ergebnis gerade. Ein System, das nicht funktioniert, wird so lange angepasst, bis es funktioniert.</div></div></div>
-      <div class="lp-fi"><button class="lp-fq" onclick="tgl(this)">Wann kommen die ersten Anfragen?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-fa"><div class="lp-fai">In 14 Tagen ist das System live. Erste Anfragen kommen typischerweise in den ersten 2–4 Wochen, abhängig von Region und Budget. Google Ads hat eine kurze Lernphase von 1–2 Wochen.</div></div></div>
-      <div class="lp-fi"><button class="lp-fq" onclick="tgl(this)">Muss ich selbst viel vorbereiten?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-fa"><div class="lp-fai">Kaum. Wir brauchen: Infos zu deinem Betrieb, Fotos (falls vorhanden) und Zugang zu deinem Google-Konto. Texte, Setup, Technik, DSGVO — erledigen wir vollständig.</div></div></div>
-      <div class="lp-fi"><button class="lp-fq" onclick="tgl(this)">Gibt es Vertragsbindungen?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-fa"><div class="lp-fai">Nein. Wir glauben an Ergebnisse, nicht an Verträge, die dich festhalten. Wenn du nicht zufrieden bist, hast du keinen Grund zu bleiben. Aber du wirst einen Grund haben.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA ─────────────────────────────────────────────── -->
-<section class="lp-fcta">
-  <div class="lp-fcta-glow"></div>
-  <div class="container">
-    <div class="lp-fcta__in">
-      <h2>Dein Auftragsbuch<br><span>wartet nicht.</span></h2>
-      <p>Prüf in 2 Minuten, ob dein Betrieb qualifiziert ist — und was das konkret für dich bedeutet. Kostenlos und unverbindlich.</p>
-      <button class="btn btn--primary btn--lg" onclick="openQuiz()">
-        Eignung jetzt prüfen &rarr;
-      </button>
-      <p class="lp-fcta-sc"><strong>Noch 3 Plätze frei</strong> &middot; Antwort in 24 h &middot; Kein Spam</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER ────────────────────────────────────────────────── -->
-<footer class="lp-foot">
-  <div class="lp-foot__in">
-    <span>&copy; 2026 Fastra One &middot; Paul Niklas Fasterding &middot; Am Flachsgraben 9, 30657 Hannover</span>
-    <a href="/datenschutz">Datenschutz</a>
-    <a href="/impressum">Impressum</a>
-    <a href="tel:+491633781657">+49 163 3781657</a>
-  </div>
-</footer>
-
-<!-- ══ QUIZ MODAL ═════════════════════════════════════════ -->
-<div class="qov" id="quizOverlay">
-  <div class="qbd" onclick="closeQuiz()"></div>
-  <div class="qcard" role="dialog" aria-modal="true" aria-label="Platz sichern">
-    <button class="qclose" onclick="closeQuiz()" aria-label="Schließen">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-
-    <div class="qpw" id="qPW">
-      <div class="qpl" id="qPL">Schritt 1 von 8</div>
-      <div class="qpb"><div class="qpf" id="qPF" style="width:12.5%"></div></div>
-    </div>
-
-    <!-- Step 0: Intro / Qualifizierung -->
-    <div class="qstep act" id="qs0">
-      <div class="qintro">
-        <div class="qintro-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="lp-pill">
+          <span class="lp-pill-dot" aria-hidden="true"></span>
+          Speziell für GaLaBau-Betriebe in Deutschland
         </div>
-        <div class="qintro-spots"><span class="qintro-spots-dot"></span>Noch 3 von 5 Plätzen verfügbar</div>
-        <h3>Prüfe ob du qualifiziert bist.</h3>
-        <p>Wir nehmen nicht jeden an. Beantworte 8 ehrliche Fragen — wir sagen dir danach klar, ob und wie wir dir helfen können.</p>
-        <button class="btn btn--primary" onclick="startQuiz()" style="width:100%;justify-content:center;">
-          Jetzt starten &rarr;
+
+        <h1 class="lp-h1">
+          Du machst Gärten.<br>
+          <span class="lp-accent-grad">Wir machen Kunden.</span>
+        </h1>
+
+        <p class="lp-sub">
+          Während du arbeitest, füllt sich dein Auftragsbuch.
+          Website, Google Ads und Qualifizierungs-Funnel —
+          <strong>komplett eingerichtet in 14 Tagen.</strong>
+        </p>
+
+        <!-- Offer strip -->
+        <div class="lp-offer-strip">
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val">14</span>
+            <span class="lp-offer-item__label">Tage bis live</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val lp-offer-item__val--green">1×</span>
+            <span class="lp-offer-item__label">pro Region</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val">100%</span>
+            <span class="lp-offer-item__label">GaLaBau-Fokus</span>
+          </div>
+          <div class="lp-offer-divider" aria-hidden="true"></div>
+          <div class="lp-offer-item">
+            <span class="lp-offer-item__val lp-offer-item__val--green">3</span>
+            <span class="lp-offer-item__label">Plätze frei</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="lp-cta-row">
+          <button class="btn lp-btn-primary" onclick="openModal()">
+            Platz jetzt sichern
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="tel:+491633781657" class="btn lp-btn-ghost">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Direkt anrufen
+          </a>
+        </div>
+
+        <div class="lp-guarantee-line">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          Kostenlos &amp; unverbindlich · DSGVO-konform · Antwort in 24 h
+        </div>
+
+      </div>
+    </div>
+
+    <div class="lp-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#f5f5f5"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════ MID: ROI + STEPS ═════════════════════════════════════════════ -->
+  <section class="lp-mid reveal">
+    <div class="container">
+
+      <!-- ROI-Streifen -->
+      <div class="lp-roi-strip">
+        <div class="lp-roi-num">
+          <span class="lp-roi-num__val">Website</span>
+          <span class="lp-roi-num__label">Premium GaLaBau-Design</span>
+        </div>
+        <div class="lp-roi-arrow" aria-hidden="true">+</div>
+        <div class="lp-roi-num lp-roi-num--accent">
+          <span class="lp-roi-num__val">Google Ads</span>
+          <span class="lp-roi-num__label">Qualifizierte Anfragen</span>
+        </div>
+        <div class="lp-roi-arrow" aria-hidden="true">+</div>
+        <div class="lp-roi-num">
+          <span class="lp-roi-num__val">Funnel</span>
+          <span class="lp-roi-num__label">Nur echte Kaufinteressenten</span>
+        </div>
+      </div>
+
+      <!-- Steps horizontal -->
+      <div class="lp-steps-row">
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">01</span>
+          <strong>Eignung prüfen</strong>
+          <span>2 Min · 8 Fragen · kostenlos</span>
+        </div>
+        <div class="lp-step-sm__conn" aria-hidden="true"></div>
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">02</span>
+          <strong>System aufbauen</strong>
+          <span>Wir machen alles — du arbeitest weiter</span>
+        </div>
+        <div class="lp-step-sm__conn" aria-hidden="true"></div>
+        <div class="lp-step-sm">
+          <span class="lp-step-sm__n">03</span>
+          <strong>Anfragen kommen rein</strong>
+          <span>Ab Tag 14, direkt aufs Handy</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ DARK SECTION: OFFER + FINAL CTA ═════════════════════════════ -->
+  <section class="lp-testi-section">
+    <div class="lp-testi__mesh" aria-hidden="true"></div>
+    <div class="container" style="position:relative;z-index:1">
+
+      <!-- Offer card -->
+      <div class="lp-testi-card reveal">
+        <div class="lp-testi-card__glow" aria-hidden="true"></div>
+        <div class="lp-testi__stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#4ade80" width="20" height="20"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4" fill="none" stroke="#06351e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <blockquote class="lp-testi__quote">
+          "Die meisten GaLaBau-Betriebe verlieren Kunden nicht, weil ihre Arbeit schlecht ist.
+          Sie verlieren sie, weil sie online nicht sichtbar sind —
+          <strong>während der Wettbewerber direkt in Google Ads oben steht.</strong>"
+        </blockquote>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);margin-bottom:28px;line-height:1.65;">
+          Das ändert sich, wenn dein Betrieb ein vollständiges Vertriebssystem hat: eine Website die verkauft,
+          Anzeigen die qualifizierte Interessenten bringen, und ein Funnel der schlechte Anfragen rausfiltert.
+          Einmal aufgesetzt. Läuft dann für dich.
+        </p>
+        <div class="lp-testi__cta-row">
+          <button class="lp-price-new__cta" style="max-width:400px" onclick="openModal()">
+            Platz sichern — Eignung prüfen
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Final CTA strip -->
+      <div class="lp-final-cta reveal">
+        <div class="lp-final-cta__text">
+          <strong>Bereit, loszulegen?</strong>
+          <span>Kostenlos · Nur noch 3 Plätze · Antwort in 24 h</span>
+        </div>
+        <button class="lp-final-cta__btn" onclick="openModal()">
+          Jetzt Platz sichern
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <p style="font-size:12.5px;color:var(--gray-2);margin-top:12px;">Kostenlos &middot; Dauert 2 Minuten &middot; Kein Spam</p>
       </div>
-    </div>
 
-    <!-- Q1 Betriebsgröße -->
-    <div class="qstep" id="qs1">
-      <p class="qq">Wie groß ist dein Betrieb aktuell?</p>
-      <p class="qhint">Damit wir das Gespräch optimal auf dich zuschneiden können.</p>
-      <div class="qch" id="qc1">
-        <button class="qc" data-val="Solo (nur ich)" onclick="pick(this,1)"><span class="qd"></span>Nur ich selbst (Solo)</button>
-        <button class="qc" data-val="2–5 Mitarbeiter" onclick="pick(this,1)"><span class="qd"></span>2–5 Mitarbeiter</button>
-        <button class="qc" data-val="6–15 Mitarbeiter" onclick="pick(this,1)"><span class="qd"></span>6–15 Mitarbeiter</button>
-        <button class="qc" data-val="Mehr als 15 Mitarbeiter" onclick="pick(this,1)"><span class="qd"></span>Mehr als 15 Mitarbeiter</button>
+    </div>
+  </section>
+
+  <!-- ════ FOOTER ══════════════════════════════════════════════════════ -->
+  <footer class="lp-footer">
+    <p>
+      © 2026 Fastra One · Paul Niklas Fasterding · Am Flachsgraben 9, 30657 Hannover ·
+      <a href="/impressum">Impressum</a> ·
+      <a href="/datenschutz">Datenschutz</a>
+    </p>
+  </footer>
+
+  <!-- ════ MODAL (8-Step Quiz) ══════════════════════════════════════════ -->
+  <div class="lp-modal-bg" id="modal-bg" aria-hidden="true" onclick="closeModal(event)">
+    <div class="lp-modal" role="dialog" aria-modal="true" aria-label="Eignung prüfen">
+      <button class="lp-modal__close" onclick="closeModal()" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="lp-modal__inner">
+
+        <!-- Progress (hidden on intro) -->
+        <div id="qz-prog-wrap" style="display:none">
+          <div class="lp-progress" role="progressbar" aria-label="Fortschritt">
+            <div class="lp-progress__fill" id="qz-fill" style="width:12.5%"></div>
+          </div>
+          <p class="lp-form-sub" id="qz-label">Schritt 1 von 8</p>
+        </div>
+
+        <!-- STEP 0: Intro / Qualifizierung -->
+        <div class="lp-step-content lp-step-content--active" id="qz-0">
+          <div class="lp-modal__head" style="text-align:center;padding-bottom:4px;">
+            <div style="width:52px;height:52px;border-radius:16px;background:rgba(22,165,102,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a566" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="lp-modal__title">Prüfe ob du qualifiziert bist.</div>
+            <div class="lp-modal__sub">Wir nehmen nicht jeden an. 8 ehrliche Fragen — dann sagen wir dir klar, ob wir dir helfen können.</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;background:rgba(22,165,102,.07);border:1px solid rgba(22,165,102,.18);border-radius:10px;font-size:.8rem;font-weight:700;color:#16a566;margin:18px 0 24px;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#16a566;animation:lpPulse 1.5s infinite;flex:none;"></span>
+            Noch 3 von 5 Plätzen verfügbar
+          </div>
+          <button class="btn lp-btn-modal-next" onclick="qzStart()">
+            Jetzt starten
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p style="text-align:center;font-size:.75rem;color:var(--gray-2);margin-top:12px;">Dauert 2 Minuten · Kostenlos · Kein Spam</p>
+        </div>
+
+        <!-- STEP 1: Betriebsgröße -->
+        <div class="lp-step-content" id="qz-1">
+          <p class="lp-q">Wie groß ist dein Betrieb aktuell?</p>
+          <div class="lp-choices">
+            <button class="lp-choice" data-qz="betrieb" data-val="Solo (nur ich)">Solo (nur ich)</button>
+            <button class="lp-choice" data-qz="betrieb" data-val="2–5 Mitarbeiter">2–5 Mitarbeiter</button>
+            <button class="lp-choice" data-qz="betrieb" data-val="6–15 Mitarbeiter">6–15 Mitarbeiter</button>
+            <button class="lp-choice" data-qz="betrieb" data-val="Mehr als 15">Mehr als 15</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(0)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-1" onclick="qzGo(2)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Region -->
+        <div class="lp-step-content" id="qz-2">
+          <p class="lp-q">Aus welcher Region kommst du?</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 14px;">Wir prüfen, ob deine Region noch verfügbar ist.</p>
+          <div class="lp-choices" style="grid-template-columns:1fr 1fr;">
+            <button class="lp-choice" data-qz="region" data-val="Norddeutschland">Norddeutschland<br><small style="font-weight:500;color:var(--gray-2)">HH, HB, SH, MV, NI</small></button>
+            <button class="lp-choice" data-qz="region" data-val="Westdeutschland">Westdeutschland<br><small style="font-weight:500;color:var(--gray-2)">NRW, RP, SL</small></button>
+            <button class="lp-choice" data-qz="region" data-val="Mitteldeutschland">Mitteldeutschland<br><small style="font-weight:500;color:var(--gray-2)">HE, TH, ST, BB, BE</small></button>
+            <button class="lp-choice" data-qz="region" data-val="Süddeutschland">Süddeutschland<br><small style="font-weight:500;color:var(--gray-2)">BY, BW, SN</small></button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(1)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-2" onclick="qzGo(3)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Anfragen -->
+        <div class="lp-step-content" id="qz-3">
+          <p class="lp-q">Wie viele Kundenanfragen bekommst du pro Monat?</p>
+          <div class="lp-choices" style="grid-template-columns:1fr;">
+            <button class="lp-choice" data-qz="anfragen" data-val="Kaum welche (0–3)">Kaum welche (0–3)</button>
+            <button class="lp-choice" data-qz="anfragen" data-val="Ein paar (4–10)">Ein paar (4–10)</button>
+            <button class="lp-choice" data-qz="anfragen" data-val="Genug, aber oft unqualifiziert">Genug, aber oft unqualifiziert</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(2)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-3" onclick="qzGo(4)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Website -->
+        <div class="lp-step-content" id="qz-4">
+          <p class="lp-q">Hast du bereits eine professionelle Website?</p>
+          <div class="lp-choices" style="grid-template-columns:1fr;">
+            <button class="lp-choice" data-qz="website" data-val="Noch keine Website">Noch keine</button>
+            <button class="lp-choice" data-qz="website" data-val="Ja, veraltet oder ohne Ergebnis">Ja, aber veraltet oder ohne Ergebnis</button>
+            <button class="lp-choice" data-qz="website" data-val="Ja, moderne Website">Ja, moderne Website</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(3)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-4" onclick="qzGo(5)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Google Ads -->
+        <div class="lp-step-content" id="qz-5">
+          <p class="lp-q">Hast du schon mal Google Ads ausprobiert?</p>
+          <div class="lp-choices" style="grid-template-columns:1fr;">
+            <button class="lp-choice" data-qz="ads_exp" data-val="Noch nie">Noch nie ausprobiert</button>
+            <button class="lp-choice" data-qz="ads_exp" data-val="Ja, ohne Erfolg">Ja, aber ohne richtiges Ergebnis</button>
+            <button class="lp-choice" data-qz="ads_exp" data-val="Ja, mit Erfolg">Ja, mit etwas Erfolg</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(4)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-5" onclick="qzGo(6)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Starttermin -->
+        <div class="lp-step-content" id="qz-6">
+          <p class="lp-q">Wann möchtest du starten?</p>
+          <div class="lp-choices" style="grid-template-columns:1fr;">
+            <button class="lp-choice" data-qz="start" data-val="Sofort / dringend">So schnell wie möglich</button>
+            <button class="lp-choice" data-qz="start" data-val="In den nächsten 3 Monaten">In den nächsten 3 Monaten</button>
+            <button class="lp-choice" data-qz="start" data-val="Erst mal informieren">Ich möchte mich erst informieren</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(5)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-6" onclick="qzGo(7)" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 7: Budget (optional) -->
+        <div class="lp-step-content" id="qz-7">
+          <p class="lp-q">Welches monatliche Budget planst du für Marketing?</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 14px;">Optional — hilft uns zur Vorbereitung.</p>
+          <div class="lp-choices" style="grid-template-columns:1fr;">
+            <button class="lp-choice" data-qz="budget" data-val="">Das ist noch offen</button>
+            <button class="lp-choice" data-qz="budget" data-val="Bis 500 €/Monat">Bis 500 €/Monat</button>
+            <button class="lp-choice" data-qz="budget" data-val="500–1.500 €/Monat">500–1.500 €/Monat</button>
+            <button class="lp-choice" data-qz="budget" data-val="Über 1.500 €/Monat">Über 1.500 €/Monat</button>
+          </div>
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(6)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt lp-qnxt--always" id="qz-nxt-7" onclick="qzGo(8)">Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 8: Kontakt -->
+        <div class="lp-step-content" id="qz-8">
+          <p class="lp-q">Fast geschafft — wohin sollen wir uns melden?</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 18px;">Wir melden uns persönlich in 24 h — nicht automatisch.</p>
+          <input type="text"  class="lp-input" id="qz-vn"   placeholder="Vorname *" autocomplete="given-name">
+          <input type="text"  class="lp-input" id="qz-nn"   placeholder="Nachname *" autocomplete="family-name">
+          <input type="tel"   class="lp-input" id="qz-tel"  placeholder="Telefon * (+49 …)" autocomplete="tel">
+          <input type="email" class="lp-input" id="qz-mail" placeholder="E-Mail (optional)" autocomplete="email">
+          <label class="lp-privacy">
+            <input type="checkbox" id="qz-priv">
+            <span>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.</span>
+          </label>
+          <div class="lp-qnav" style="margin-top:4px;">
+            <button class="lp-qback" onclick="qzGo(7)">← Zurück</button>
+            <button class="btn lp-btn-modal-next" id="qz-sub" onclick="qzSubmit()" style="flex:1;">
+              Platz jetzt sichern →
+            </button>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="lp-success" id="qz-succ" aria-live="polite">
+          <span class="lp-success__icon" aria-hidden="true">✅</span>
+          <h3>Platz gesichert!</h3>
+          <p>Wir melden uns innerhalb von <strong>24 Stunden</strong> persönlich bei dir — nicht per Autoresponder. Schau in dein Postfach.</p>
+        </div>
       </div>
-      <div class="qnav"><span></span><button class="qnxt" id="qn1" onclick="nx(1)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q2 Region -->
-    <div class="qstep" id="qs2">
-      <p class="qq">Aus welcher Region kommst du?</p>
-      <p class="qhint">Wir prüfen, ob deine Region noch verfügbar ist.</p>
-      <div class="qch" id="qc2">
-        <button class="qc" data-val="Norddeutschland" onclick="pick(this,2)"><span class="qd"></span>Norddeutschland (HH, HB, SH, MV, NI)</button>
-        <button class="qc" data-val="Westdeutschland" onclick="pick(this,2)"><span class="qd"></span>Westdeutschland (NRW, RP, SL)</button>
-        <button class="qc" data-val="Mitteldeutschland" onclick="pick(this,2)"><span class="qd"></span>Mitteldeutschland (HE, TH, ST, BB, BE)</button>
-        <button class="qc" data-val="Süddeutschland" onclick="pick(this,2)"><span class="qd"></span>Süddeutschland (BY, BW, SN)</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt" id="qn2" onclick="nx(2)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q3 Anfragen -->
-    <div class="qstep" id="qs3">
-      <p class="qq">Wie viele Kundenanfragen bekommst du pro Monat?</p>
-      <p class="qhint">Ungefähr — kein genaues Ergebnis nötig.</p>
-      <div class="qch" id="qc3">
-        <button class="qc" data-val="Kaum welche (0–3)" onclick="pick(this,3)"><span class="qd"></span>Kaum welche (0–3)</button>
-        <button class="qc" data-val="Ein paar (4–10)" onclick="pick(this,3)"><span class="qd"></span>Ein paar (4–10)</button>
-        <button class="qc" data-val="Genug, aber oft unqualifiziert" onclick="pick(this,3)"><span class="qd"></span>Genug, aber oft unqualifiziert</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt" id="qn3" onclick="nx(3)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q4 Website -->
-    <div class="qstep" id="qs4">
-      <p class="qq">Hast du bereits eine professionelle Website?</p>
-      <p class="qhint">Wir analysieren, was sinnvoll ist — ehrlich, ohne Verpflichtung.</p>
-      <div class="qch" id="qc4">
-        <button class="qc" data-val="Noch keine Website" onclick="pick(this,4)"><span class="qd"></span>Noch keine</button>
-        <button class="qc" data-val="Ja, veraltet oder ohne Ergebnis" onclick="pick(this,4)"><span class="qd"></span>Ja, aber veraltet oder ohne Ergebnis</button>
-        <button class="qc" data-val="Ja, moderne Website" onclick="pick(this,4)"><span class="qd"></span>Ja, moderne Website</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(4)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt" id="qn4" onclick="nx(4)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q5 Google Ads -->
-    <div class="qstep" id="qs5">
-      <p class="qq">Hast du bereits Google Ads ausprobiert?</p>
-      <p class="qhint">Hilft uns, die richtige Strategie für dich zu wählen.</p>
-      <div class="qch" id="qc5">
-        <button class="qc" data-val="Noch nie Google Ads genutzt" onclick="pick(this,5)"><span class="qd"></span>Noch nie ausprobiert</button>
-        <button class="qc" data-val="Google Ads genutzt, ohne Erfolg" onclick="pick(this,5)"><span class="qd"></span>Ja, aber ohne richtiges Ergebnis</button>
-        <button class="qc" data-val="Google Ads mit etwas Erfolg" onclick="pick(this,5)"><span class="qd"></span>Ja, mit etwas Erfolg</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt" id="qn5" onclick="nx(5)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q6 Starttermin -->
-    <div class="qstep" id="qs6">
-      <p class="qq">Wann möchtest du starten?</p>
-      <p class="qhint">Kein Druck — wir richten uns nach dir.</p>
-      <div class="qch" id="qc6">
-        <button class="qc" data-val="Sofort / dringend" onclick="pick(this,6)"><span class="qd"></span>So schnell wie möglich</button>
-        <button class="qc" data-val="In den nächsten 3 Monaten" onclick="pick(this,6)"><span class="qd"></span>In den nächsten 3 Monaten</button>
-        <button class="qc" data-val="Erst mal informieren" onclick="pick(this,6)"><span class="qd"></span>Ich möchte mich erst informieren</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt" id="qn6" onclick="nx(6)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q7 Budget (optional) -->
-    <div class="qstep" id="qs7">
-      <p class="qq">Welches monatliche Budget planst du für Marketing?</p>
-      <p class="qhint">Optional — hilft uns zur Vorbereitung.</p>
-      <div class="qch" id="qc7">
-        <button class="qc" data-val="" onclick="pick(this,7)"><span class="qd"></span>Das ist noch offen</button>
-        <button class="qc" data-val="Bis 500 €/Monat" onclick="pick(this,7)"><span class="qd"></span>Bis 500 €/Monat</button>
-        <button class="qc" data-val="500–1.500 €/Monat" onclick="pick(this,7)"><span class="qd"></span>500–1.500 €/Monat</button>
-        <button class="qc" data-val="Über 1.500 €/Monat" onclick="pick(this,7)"><span class="qd"></span>Über 1.500 €/Monat</button>
-      </div>
-      <div class="qnav"><button class="qback" onclick="pv(7)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnxt rdy" id="qn7" onclick="nx(7)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
-    </div>
-
-    <!-- Q8 Kontakt -->
-    <div class="qstep" id="qs8">
-      <p class="qq">Fast geschafft. Wohin sollen wir uns melden?</p>
-      <p class="qhint">Wir melden uns persönlich innerhalb von 24 Stunden — nicht automatisch.</p>
-      <div class="qfg"><label for="fvn">Vorname *</label><input id="fvn" type="text" placeholder="Max" autocomplete="given-name" /></div>
-      <div class="qfg"><label for="fnn">Nachname *</label><input id="fnn" type="text" placeholder="Mustermann" autocomplete="family-name" /></div>
-      <div class="qfg"><label for="ftel">Telefon *</label><input id="ftel" type="tel" placeholder="+49 163 000 0000" autocomplete="tel" /></div>
-      <div class="qfg"><label for="fmail">E-Mail *</label><input id="fmail" type="email" placeholder="max@mustermann.de" autocomplete="email" /></div>
-      <div class="qpriv"><input type="checkbox" id="fpriv" /><label for="fpriv">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu.</label></div>
-      <div class="qnav" style="margin-top:8px;">
-        <button class="qback" onclick="pv(8)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button>
-        <button class="qsub" id="qSub" onclick="send()">Platz jetzt sichern &rarr;</button>
-      </div>
-    </div>
-
-    <!-- Erfolg -->
-    <div class="qsucc" id="qSucc">
-      <div class="qsucc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <h3>Platz gesichert!</h3>
-      <p>Wir melden uns innerhalb von <strong>24 Stunden</strong> persönlich bei dir — nicht per Autoresponder. Schau in dein Postfach.</p>
     </div>
   </div>
-</div>
 
-<script>
-  var _sp=new URLSearchParams(window.location.search);
-  var _utm={utm_source:_sp.get('utm_source')||undefined,utm_medium:_sp.get('utm_medium')||undefined,utm_campaign:_sp.get('utm_campaign')||undefined,utm_term:_sp.get('utm_term')||undefined,utm_content:_sp.get('utm_content')||undefined,referrer:document.referrer||undefined,geraet:window.innerWidth<768?'mobil':'desktop'};
-  var TOTAL=8,_cur=0;
-  var _d={betrieb:'',region:'',anfragen:'',website_exists:'',ads_exp:'',zeitpunkt_wunsch:'',budget:''};
+  <Fragment slot="scripts">
+    <script is:inline>
+    /* UTM + Tracking */
+    var _urlp = new URLSearchParams(window.location.search);
+    var _utm = {
+      utm_source:   _urlp.get('utm_source')   || undefined,
+      utm_medium:   _urlp.get('utm_medium')   || undefined,
+      utm_campaign: _urlp.get('utm_campaign') || undefined,
+      utm_term:     _urlp.get('utm_term')     || undefined,
+      utm_content:  _urlp.get('utm_content')  || undefined,
+      referrer:     document.referrer         || undefined,
+      geraet:       window.innerWidth < 768   ? 'mobil' : 'desktop'
+    };
 
-  function openQuiz(){document.getElementById('quizOverlay').classList.add('open');document.body.style.overflow='hidden';}
-  function closeQuiz(){document.getElementById('quizOverlay').classList.remove('open');document.body.style.overflow='';}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeQuiz();});
+    /* Quiz state */
+    var _qd = { betrieb:'', region:'', anfragen:'', website:'', ads_exp:'', start:'', budget:'' };
+    var _qCur = 0;
+    var QZTOTAL = 8;
 
-  function startQuiz(){
-    sp(1);
-    document.getElementById('qPW').style.display='';
-  }
-
-  function pick(btn,s){
-    btn.closest('.qch').querySelectorAll('.qc').forEach(function(c){c.classList.remove('sel');});
-    btn.classList.add('sel');
-    var n=document.getElementById('qn'+s);if(n)n.classList.add('rdy');
-  }
-  function gv(s){var el=document.querySelector('#qc'+s+' .qc.sel');return el?el.dataset.val:'';}
-
-  function sp(n){
-    document.querySelectorAll('.qstep').forEach(function(s){s.classList.remove('act');});
-    var el=document.getElementById('qs'+n);
-    if(el){el.classList.remove('act');void el.offsetWidth;el.classList.add('act');}
-    if(n>0){
-      document.getElementById('qPF').style.width=Math.round((n/TOTAL)*100)+'%';
-      document.getElementById('qPL').textContent='Schritt '+n+' von '+TOTAL;
+    function openModal() {
+      document.getElementById('modal-bg').classList.add('lp-modal-bg--open');
+      document.body.style.overflow = 'hidden';
     }
-    _cur=n;
-    document.querySelector('.qcard').scrollTop=0;
-  }
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('modal-bg') && !e.target.closest('.lp-modal__close')) return;
+      document.getElementById('modal-bg').classList.remove('lp-modal-bg--open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal({target:document.getElementById('modal-bg')}); });
 
-  function nx(s){
-    if(s===1)_d.betrieb=gv(s);
-    if(s===2)_d.region=gv(s);
-    if(s===3)_d.anfragen=gv(s);
-    if(s===4)_d.website_exists=gv(s);
-    if(s===5)_d.ads_exp=gv(s);
-    if(s===6)_d.zeitpunkt_wunsch=gv(s);
-    if(s===7)_d.budget=gv(s);
-    sp(s+1);
-  }
-  function pv(s){sp(s>1?s-1:0);}
+    function qzStart() {
+      document.getElementById('qz-prog-wrap').style.display = '';
+      qzGo(1);
+    }
 
-  function buildMsg(){
-    return ['Betrieb: '+_d.betrieb,'Region: '+_d.region,'Anfragen/Monat: '+_d.anfragen,'Website: '+_d.website_exists,'Google Ads: '+_d.ads_exp,'Start: '+_d.zeitpunkt_wunsch,_d.budget?'Budget: '+_d.budget:''].filter(Boolean).join(' | ');
-  }
+    function qzGo(n) {
+      document.getElementById('qz-' + _qCur).classList.remove('lp-step-content--active');
+      _qCur = n;
+      var el = document.getElementById('qz-' + n);
+      el.classList.remove('lp-step-content--active');
+      void el.offsetWidth;
+      el.classList.add('lp-step-content--active');
+      if (n > 0) {
+        document.getElementById('qz-fill').style.width = Math.round((n / QZTOTAL) * 100) + '%';
+        document.getElementById('qz-label').textContent = 'Schritt ' + n + ' von ' + QZTOTAL;
+      }
+      document.querySelector('.lp-modal').scrollTop = 0;
+    }
 
-  function send(){
-    var vn=document.getElementById('fvn').value.trim(),nn=document.getElementById('fnn').value.trim(),tel=document.getElementById('ftel').value.trim(),mail=document.getElementById('fmail').value.trim(),priv=document.getElementById('fpriv').checked;
-    if(!vn){alert('Bitte Vorname angeben.');return;}
-    if(!nn){alert('Bitte Nachname angeben.');return;}
-    if(!tel){alert('Bitte Telefonnummer angeben.');return;}
-    if(!mail){alert('Bitte E-Mail angeben.');return;}
-    if(!priv){alert('Bitte Datenschutzerklärung akzeptieren.');return;}
-    var btn=document.getElementById('qSub');
-    btn.disabled=true;btn.textContent='Wird gesendet…';
-    var p=Object.assign({name:vn+' '+nn,email:mail,telefon:tel,betrieb:_d.betrieb,ziel:'Komplettsystem (Website + Ads + KI)',anfragen:_d.anfragen,website_exists:_d.website_exists,zeitpunkt_wunsch:_d.zeitpunkt_wunsch,budget:_d.budget||undefined,nachricht:buildMsg(),seite:'galabau-mehr-kunden'},_utm);
-    fetch('https://fastraone-admin.vercel.app/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
-    .then(function(r){if(!r.ok)throw new Error(r.status);})
-    .then(function(){
-      document.querySelectorAll('.qstep').forEach(function(s){s.style.display='none';});
-      document.getElementById('qPW').style.display='none';
-      document.getElementById('qSucc').classList.add('show');
-    }).catch(function(){
-      btn.disabled=false;btn.textContent='Platz jetzt sichern →';
-      alert('Fehler. Bitte ruf uns an: +49 163 3781657');
+    /* Choice buttons */
+    document.querySelectorAll('.lp-choice[data-qz]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var key = btn.dataset.qz;
+        document.querySelectorAll('.lp-choice[data-qz="' + key + '"]').forEach(function(b){ b.classList.remove('lp-choice--selected'); });
+        btn.classList.add('lp-choice--selected');
+        _qd[key] = btn.dataset.val;
+        var stepNum = parseInt(btn.closest('.lp-step-content').id.replace('qz-', ''), 10);
+        var nxt = document.getElementById('qz-nxt-' + stepNum);
+        if (nxt) nxt.disabled = false;
+      });
     });
-  }
 
-  function tgl(btn){
-    var item=btn.closest('.lp-fi'),ans=item.querySelector('.lp-fa'),open=item.classList.contains('open');
-    document.querySelectorAll('.lp-fi').forEach(function(i){i.classList.remove('open');i.querySelector('.lp-fa').style.maxHeight='0';});
-    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
-  }
+    function qzSubmit() {
+      var vn   = document.getElementById('qz-vn').value.trim();
+      var nn   = document.getElementById('qz-nn').value.trim();
+      var tel  = document.getElementById('qz-tel').value.trim();
+      var mail = document.getElementById('qz-mail').value.trim();
+      var priv = document.getElementById('qz-priv').checked;
+      if (!vn)   { alert('Bitte Vorname angeben.'); return; }
+      if (!nn)   { alert('Bitte Nachname angeben.'); return; }
+      if (!tel)  { alert('Bitte Telefonnummer angeben.'); return; }
+      if (!priv) { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
 
-  /* Hide progress bar on intro step initially */
-  document.getElementById('qPW').style.display='none';
+      var sub = document.getElementById('qz-sub');
+      sub.disabled = true; sub.textContent = 'Wird gesendet…';
 
-  if(typeof IntersectionObserver!=='undefined'){
-    var ro=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');ro.unobserve(e.target);}});},{threshold:.07});
-    document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
-  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('is-visible');});}
-</script>
+      var nachricht = [
+        'Betrieb: ' + _qd.betrieb,
+        'Region: '  + _qd.region,
+        'Anfragen: '+ _qd.anfragen,
+        'Website: ' + _qd.website,
+        'Ads: '     + _qd.ads_exp,
+        'Start: '   + _qd.start,
+        _qd.budget ? 'Budget: ' + _qd.budget : ''
+      ].filter(Boolean).join(' | ');
+
+      var payload = Object.assign({
+        name:          vn + ' ' + nn,
+        email:         mail || undefined,
+        telefon:       tel,
+        betrieb:       _qd.betrieb,
+        ziel:          'Komplettsystem (Website + Ads + Funnel)',
+        anfragen:      _qd.anfragen,
+        website_exists:_qd.website,
+        zeitpunkt_wunsch: _qd.start,
+        budget:        _qd.budget || undefined,
+        nachricht:     nachricht,
+        seite:         'galabau-mehr-kunden'
+      }, _utm);
+
+      fetch('https://fastraone-admin.vercel.app/api/leads', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      }).then(function(r){ if(!r.ok) throw new Error(r.status); })
+      .then(function() {
+        document.getElementById('qz-prog-wrap').style.display = 'none';
+        document.getElementById('qz-8').classList.remove('lp-step-content--active');
+        document.getElementById('qz-succ').style.display = 'block';
+      }).catch(function() {
+        sub.disabled = false;
+        sub.textContent = 'Platz jetzt sichern →';
+        alert('Fehler beim Senden. Ruf uns an: +49 163 3781657');
+      });
+    }
+
+    /* Scroll reveal */
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); ro.unobserve(e.target); } });
+    }, { threshold:0.07 });
+    document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+    </script>
+  </Fragment>
+
 </BaseLayout>
+
+<style is:global>
+/* ═══════════════════════════════════════════════════════════════════
+   URGENCY BAR
+═══════════════════════════════════════════════════════════════════ */
+.lp-topbar {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px;
+  background:linear-gradient(90deg,#f97316,#ef4444); color:#fff;
+  font-size:.82rem; font-weight:600; padding:10px 20px; text-align:center;
+  position:relative; z-index:10;
+}
+.lp-topbar__dot {
+  width:7px; height:7px; border-radius:50%; background:#fff; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+.lp-topbar__sep { opacity:.5; }
+.lp-topbar__cta {
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.3);
+  color:#fff; font-size:.78rem; font-weight:700; padding:4px 14px; border-radius:999px;
+  cursor:pointer; font-family:inherit; transition:background .15s;
+}
+.lp-topbar__cta:hover { background:rgba(255,255,255,.28); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO — dark with photo
+═══════════════════════════════════════════════════════════════════ */
+.lp-hero {
+  position:relative; overflow:hidden;
+  padding:18px 0 0;
+  background:
+    linear-gradient(rgba(5,12,20,0.78) 0%, rgba(7,17,26,0.88) 100%),
+    url('https://images.unsplash.com/photo-1605117882932-f9e32b03fea9?auto=format&fit=crop&w=1600&q=80') center 40% / cover no-repeat;
+}
+.lp-hero__grid-bg {
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+.lp-hero__glow {
+  position:absolute; top:-160px; left:50%; transform:translateX(-50%);
+  width:900px; height:700px; z-index:1; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(110,236,157,.14) 0%, rgba(110,236,157,.04) 40%, transparent 70%);
+}
+.lp-hero .container { position:relative; z-index:2; }
+.lp-hero__center {
+  max-width:720px; margin:0 auto; text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+/* Pill */
+.lp-pill {
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:.84rem; font-weight:600; color:rgba(255,255,255,.82);
+  background:rgba(110,236,157,.1); border:1px solid rgba(110,236,157,.22);
+  padding:7px 16px 7px 12px; border-radius:999px; margin-bottom:14px;
+}
+.lp-pill-dot {
+  width:8px; height:8px; border-radius:50%; background:#3dd87a; flex:none;
+  animation:lpPulse 2s ease-out infinite;
+}
+@keyframes lpPulse {
+  0%  { box-shadow:0 0 0 0 rgba(61,216,122,.55) }
+  70% { box-shadow:0 0 0 8px rgba(61,216,122,0) }
+  100%{ box-shadow:0 0 0 0 rgba(61,216,122,0) }
+}
+
+/* H1 */
+.lp-h1 {
+  font-family:var(--f-head); font-weight:800; letter-spacing:-0.035em;
+  font-size:clamp(2.2rem,5vw,3.6rem); line-height:1.06; color:#fff; margin-bottom:16px;
+}
+.lp-accent-grad {
+  background:linear-gradient(90deg,#5df09e 0%,#22c55e 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.lp-sub {
+  color:rgba(255,255,255,.58); font-size:clamp(.95rem,1.6vw,1.05rem);
+  line-height:1.7; max-width:50ch; margin-bottom:24px;
+}
+.lp-sub strong { color:rgba(255,255,255,.88); }
+
+/* Offer strip */
+.lp-offer-strip {
+  display:flex; align-items:stretch; width:100%; max-width:560px;
+  background:rgba(255,255,255,.055); border:1px solid rgba(110,236,157,.22);
+  border-radius:18px; overflow:hidden; margin-bottom:28px;
+}
+.lp-offer-item {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:3px; padding:14px 6px;
+}
+.lp-offer-item__val {
+  font-family:var(--f-head); font-size:clamp(1.1rem,2vw,1.4rem);
+  font-weight:800; letter-spacing:-0.04em; color:#fff; line-height:1;
+}
+.lp-offer-item__val--green { color:#4ade80; }
+.lp-offer-item__label { font-size:.68rem; color:rgba(255,255,255,.44); font-weight:500; text-align:center; }
+.lp-offer-divider { width:1px; background:rgba(255,255,255,.08); flex:none; }
+
+/* Guarantee line */
+.lp-guarantee-line {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.8rem; color:rgba(255,255,255,.42); font-weight:600; margin-top:4px;
+}
+.lp-guarantee-line svg {
+  width:14px; height:14px; stroke:#4ade80; stroke-width:2; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; flex:none;
+}
+
+/* CTA row */
+.lp-cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px; justify-content:center; }
+
+/* Buttons */
+.lp-btn-primary {
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; font-weight:700; border:none; box-shadow:0 8px 24px rgba(84,221,146,.35);
+}
+.lp-btn-primary:hover {
+  background:linear-gradient(180deg,#8ff5b8 0%,#64e6a0 100%);
+  transform:translateY(-2px); box-shadow:0 14px 32px rgba(84,221,146,.45);
+}
+.lp-btn-ghost {
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.88); font-weight:600;
+}
+.lp-btn-ghost:hover {
+  background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.25); color:#fff;
+}
+
+/* Wave */
+.lp-wave { position:relative; margin-top:32px; line-height:0; z-index:3; }
+.lp-wave svg { display:block; width:100%; height:80px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MID SECTION — ROI + Steps
+═══════════════════════════════════════════════════════════════════ */
+.lp-mid { background:#f5f5f5; padding:44px 0 32px; }
+
+.lp-roi-strip {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+  gap:0; margin-bottom:44px;
+  background:#fff; border:1px solid var(--line); border-radius:20px;
+  padding:24px 32px; box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+@media (max-width:620px) { .lp-roi-strip { flex-direction:column; gap:16px; text-align:center; } }
+.lp-roi-num { flex:1; text-align:center; min-width:140px; }
+.lp-roi-num__val {
+  display:block; font-family:var(--f-head); font-size:clamp(1.1rem,2.5vw,1.6rem);
+  font-weight:900; letter-spacing:-0.05em; color:var(--ink); margin-bottom:4px;
+}
+.lp-roi-num--accent .lp-roi-num__val { color:var(--blue-strong); }
+.lp-roi-num__label { font-size:.74rem; color:var(--gray-2); line-height:1.3; }
+.lp-roi-arrow {
+  font-size:1.4rem; color:rgba(22,165,102,.35); padding:0 12px; flex:none;
+}
+@media (max-width:620px) { .lp-roi-arrow { transform:rotate(90deg); } }
+
+.lp-steps-row {
+  display:flex; align-items:flex-start; gap:0; position:relative;
+}
+@media (max-width:620px) { .lp-steps-row { flex-direction:column; gap:16px; } }
+.lp-step-sm {
+  flex:1; text-align:center; padding:0 16px; display:flex; flex-direction:column; align-items:center; gap:7px;
+}
+.lp-step-sm__n {
+  width:36px; height:36px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(135deg,#6EEC9D,#22c55e); color:#06351e;
+  font-size:.78rem; font-weight:900; flex:none;
+}
+.lp-step-sm strong { font-size:.9rem; color:var(--ink); font-weight:700; }
+.lp-step-sm span { font-size:.78rem; color:var(--gray-2); line-height:1.4; }
+.lp-step-sm__conn {
+  flex:none; align-self:center; margin-top:-24px;
+  width:32px; height:1px; background:rgba(22,165,102,.3); position:relative;
+}
+.lp-step-sm__conn::after {
+  content:""; position:absolute; right:-4px; top:-3px;
+  border:4px solid transparent; border-left-color:rgba(22,165,102,.35);
+}
+@media (max-width:620px) { .lp-step-sm__conn { display:none; } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK SECTION (Offer + CTA)
+═══════════════════════════════════════════════════════════════════ */
+.lp-testi-section {
+  position:relative; overflow:hidden; padding:40px 0 36px;
+  background:
+    linear-gradient(rgba(5,12,20,0.84) 0%, rgba(7,17,26,0.92) 100%),
+    url('https://images.unsplash.com/photo-1734079692160-fcbe4be6ab96?auto=format&fit=crop&w=1400&q=80') center 60% / cover no-repeat;
+}
+.lp-testi__mesh {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.lp-testi-card {
+  position:relative; overflow:hidden;
+  max-width:640px; margin:0 auto; text-align:center;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
+  border-radius:28px; padding:40px 36px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+@media (max-width:480px) { .lp-testi-card { padding:28px 20px; } }
+.lp-testi-card__glow {
+  position:absolute; top:-120px; left:50%; transform:translateX(-50%);
+  width:500px; height:380px; pointer-events:none;
+  background:radial-gradient(ellipse,rgba(110,236,157,.10) 0%,transparent 65%);
+}
+.lp-testi-card > *:not(.lp-testi-card__glow) { position:relative; z-index:1; }
+.lp-testi__stars { margin-bottom:20px; display:flex; justify-content:center; }
+.lp-testi__quote {
+  font-size:clamp(1rem,2vw,1.1rem); color:rgba(255,255,255,.78);
+  line-height:1.75; font-style:normal; margin-bottom:20px; font-weight:500;
+}
+.lp-testi__quote strong { color:#fff; }
+.lp-testi__cta-row { display:flex; justify-content:center; }
+
+.lp-final-cta {
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  max-width:640px; margin:20px auto 0;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:20px; padding:22px 28px;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.lp-final-cta__text { display:flex; flex-direction:column; gap:4px; }
+.lp-final-cta__text strong { font-size:1rem; font-weight:800; color:#fff; }
+.lp-final-cta__text span { font-size:.78rem; color:rgba(255,255,255,.45); }
+.lp-final-cta__btn {
+  display:inline-flex; align-items:center; gap:9px;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; font-weight:800; font-size:.9rem; font-family:inherit;
+  padding:12px 22px; border-radius:999px; border:none; cursor:pointer;
+  box-shadow:0 6px 20px rgba(84,221,146,.35); white-space:nowrap;
+  transition:transform .17s, box-shadow .17s;
+}
+.lp-final-cta__btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(84,221,146,.45); }
+.lp-final-cta__btn svg { width:16px; height:16px; stroke:#06351e; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════════ */
+.lp-footer {
+  background:#07111a; border-top:1px solid rgba(255,255,255,.07);
+  padding:28px 22px; text-align:center;
+}
+.lp-footer p { font-size:.74rem; color:rgba(255,255,255,.3); line-height:2; }
+.lp-footer a { color:rgba(255,255,255,.4); text-decoration:underline; text-underline-offset:3px; transition:color .15s; }
+.lp-footer a:hover { color:rgba(255,255,255,.7); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════════════ */
+.lp-modal-bg {
+  position:fixed; inset:0; z-index:999;
+  background:rgba(4,10,14,0.72); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center; padding:16px;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.lp-modal-bg--open { opacity:1; pointer-events:all; }
+.lp-modal {
+  position:relative; background:#fff; border-radius:26px;
+  width:100%; max-width:520px; max-height:90dvh; overflow-y:auto;
+  box-shadow:0 40px 100px rgba(0,0,0,.4);
+  transform:translateY(20px) scale(0.97);
+  transition:transform .28s cubic-bezier(.34,1.56,.64,1);
+}
+.lp-modal-bg--open .lp-modal { transform:none; }
+.lp-modal__close {
+  position:absolute; top:16px; right:16px; z-index:10;
+  width:34px; height:34px; border-radius:50%; border:none; cursor:pointer;
+  background:#f3f4f6; color:var(--gray); display:grid; place-items:center;
+  transition:background .15s;
+}
+.lp-modal__close:hover { background:#e5e7eb; color:var(--ink); }
+.lp-modal__close svg { width:16px; height:16px; }
+.lp-modal__inner { padding:36px 32px 32px; }
+@media (max-width:480px) { .lp-modal__inner { padding:28px 18px 24px; } }
+.lp-modal__head { margin-bottom:20px; }
+.lp-modal__title { font-family:var(--f-head); font-size:1.35rem; font-weight:800; letter-spacing:-0.03em; color:var(--ink); margin-bottom:6px; }
+.lp-modal__sub { font-size:.84rem; color:var(--gray); line-height:1.55; }
+
+/* Progress bar (new style: single fill bar) */
+.lp-form-sub { font-size:.8rem; color:var(--gray-2); margin-bottom:16px; font-weight:600; }
+.lp-progress {
+  height:4px; background:rgba(0,0,0,.08); border-radius:4px; overflow:hidden; margin-bottom:10px;
+}
+.lp-progress__fill { height:100%; border-radius:4px; background:var(--blue-strong); transition:width .3s ease; }
+
+/* Quiz steps */
+.lp-step-content { display:none; animation:lpIn .24s ease; }
+.lp-step-content--active { display:block; }
+@keyframes lpIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.lp-q {
+  font-size:.95rem; font-weight:700; color:var(--ink);
+  letter-spacing:-0.015em; margin-bottom:14px; line-height:1.4;
+}
+.lp-choices { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-bottom:20px; }
+@media (max-width:400px) { .lp-choices { grid-template-columns:1fr 1fr; } }
+.lp-choice {
+  background:#f8f9fa; border:1.5px solid var(--line); border-radius:11px;
+  padding:12px 8px; color:var(--ink-soft); font-size:.84rem;
+  font-weight:600; cursor:pointer; font-family:inherit;
+  transition:all .13s; text-align:center; line-height:1.3;
+}
+.lp-choice:hover { border-color:rgba(22,165,102,.4); background:#f0faf3; color:var(--ink); }
+.lp-choice--selected { border-color:var(--blue-strong); background:#e8f7ec; color:var(--blue-strong); }
+
+/* Quiz nav */
+.lp-qnav { display:flex; align-items:center; gap:10px; margin-top:8px; }
+.lp-qback {
+  background:none; border:none; cursor:pointer; font-family:inherit;
+  font-size:.85rem; font-weight:600; color:var(--gray-2); padding:8px 0;
+  transition:color .15s; white-space:nowrap; flex-shrink:0;
+}
+.lp-qback:hover { color:var(--ink); }
+.lp-qnxt {
+  flex:1; padding:13px; font-size:.9rem; border-radius:999px;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; font-weight:700; border:none; cursor:pointer; font-family:inherit;
+  box-shadow:0 6px 20px rgba(84,221,146,.35); transition:opacity .15s, transform .17s, box-shadow .17s;
+}
+.lp-qnxt:disabled { opacity:.4; pointer-events:none; }
+.lp-qnxt:not(:disabled):hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(84,221,146,.45); }
+
+/* Form inputs */
+.lp-input {
+  display:block; width:100%; background:#f8f9fa; border:1.5px solid var(--line);
+  border-radius:13px; padding:13px 16px; color:var(--ink); font-size:.95rem;
+  font-family:inherit; outline:none; transition:border-color .17s; margin-bottom:10px;
+}
+.lp-input::placeholder { color:var(--gray-2); }
+.lp-input:focus { border-color:rgba(22,165,102,.5); background:#fff; }
+.lp-privacy {
+  display:flex; align-items:flex-start; gap:10px;
+  margin-bottom:14px; margin-top:4px; cursor:pointer;
+}
+.lp-privacy input[type="checkbox"] {
+  width:16px; height:16px; flex-shrink:0; margin-top:3px; accent-color:var(--blue-strong);
+}
+.lp-privacy span { font-size:.77rem; color:var(--gray-2); line-height:1.6; }
+.lp-privacy a { color:var(--blue-strong); text-decoration:underline; text-underline-offset:2px; }
+
+.lp-btn-modal-next {
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:15px; border-radius:999px; border:none; cursor:pointer;
+  font-family:inherit; font-size:1rem; font-weight:700;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; box-shadow:0 6px 20px rgba(84,221,146,.35);
+  transition:transform .17s, box-shadow .17s;
+}
+.lp-btn-modal-next:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(84,221,146,.45); }
+
+/* Success */
+.lp-success { display:none; text-align:center; padding:20px 0 10px; animation:lpIn .4s ease; }
+.lp-success__icon { font-size:3rem; display:block; margin-bottom:18px; }
+.lp-success h3 {
+  font-family:var(--f-head); font-size:1.3rem; font-weight:800;
+  letter-spacing:-0.03em; margin-bottom:10px; color:var(--ink);
+}
+.lp-success p { color:var(--gray); font-size:.88rem; line-height:1.7; }
+
+/* Price CTA (reused in testi card) */
+.lp-price-new__cta {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:15px; border-radius:999px; border:none; cursor:pointer;
+  font-family:var(--f-head); font-size:1rem; font-weight:800;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e; box-shadow:0 8px 28px rgba(84,221,146,.4);
+  transition:transform .18s, box-shadow .18s; margin-bottom:14px;
+}
+.lp-price-new__cta:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(84,221,146,.5); }
+.lp-price-new__cta svg { width:17px; height:17px; stroke:#06351e; stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   REVEAL
+═══════════════════════════════════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease,transform .6s ease; }
+.reveal.is-visible { opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce) { .reveal { opacity:1 !important; transform:none !important; } }
+</style>
