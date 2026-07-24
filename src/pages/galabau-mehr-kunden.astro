@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Mehr GaLaBau-Aufträge in 14 Tagen | Fastra One"
-  description="Das digitale Kundengewinnungssystem für Garten- und Landschaftsbauunternehmen. Qualifizierte Anfragen auf Knopfdruck — ohne Agentur-Risiko."
+  description="Das vollständige Kundengewinnungssystem für Garten- und Landschaftsbauer. Website, Google Ads, Funnel — komplett eingerichtet in 14 Tagen."
   navVariant="none"
   footerVariant="none"
 >
@@ -13,997 +13,994 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </Fragment>
 
 <style>
-  /* ─── TOKENS ─────────────────────────────────────────────── */
-  :root {
-    --ink: #0f172a;
-    --ink-soft: #374151;
-    --ink-muted: #6b7280;
-    --bg: #ffffff;
-    --bg-soft: #f8fafc;
-    --bg-dark: #0a1f14;
-    --green: #16a566;
-    --green-dark: #0e8f57;
-    --green-light: #e8faf1;
-    --green-muted: #b3e8ce;
-    --line: rgba(0,0,0,0.07);
-    --line-dark: rgba(0,0,0,0.13);
-    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
-    --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
-    --r: 16px;
-    --r-sm: 10px;
-  }
+/* ── LP-spezifisch (baut auf global.css Tokens auf) ───────── */
 
-  /* ─── RESET ──────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: var(--ink); background: var(--bg); }
-  img { max-width: 100%; display: block; }
-  button { cursor: pointer; border: none; background: none; font-family: inherit; }
-  a { text-decoration: none; }
+.lp-announce {
+  background: var(--ink);
+  color: rgba(255,255,255,.75);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+.lp-announce strong { color: var(--blue); }
+.lp-announce .lp-ac {
+  color: var(--blue);
+  border-bottom: 1px solid rgba(110,236,157,.4);
+  cursor: pointer;
+  font-weight: 600;
+}
 
-  /* ─── LAYOUT ─────────────────────────────────────────────── */
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-  .container--narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 96px 0; }
-  @media(max-width:768px){ section { padding: 64px 0; } }
+/* Minimal sticky nav */
+.lp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(11,15,26,.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.lp-nav img { height: 24px; filter: brightness(0) invert(1); display: block; }
+.lp-nav__right { display: flex; align-items: center; gap: 14px; }
+.lp-nav__phone {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  transition: color .15s;
+}
+.lp-nav__phone:hover { color: var(--blue); }
+.lp-nav__btn {
+  padding: 9px 18px;
+  background: var(--blue);
+  color: #06351e;
+  font-size: 13.5px; font-weight: 700;
+  border-radius: 999px;
+  border: none; cursor: pointer;
+  font-family: inherit;
+  transition: background .15s, transform .15s;
+}
+.lp-nav__btn:hover { background: #8ff5b8; transform: translateY(-1px); }
+@media(max-width:560px) { .lp-nav__phone { display:none; } .lp-nav__btn { font-size:12.5px; padding:8px 14px; } }
 
-  /* ─── ANNOUNCE BAR ───────────────────────────────────────── */
-  .announce { background: var(--ink); color: #fff; text-align: center; padding: 10px 24px; font-size: 13px; font-weight: 500; letter-spacing: .01em; }
-  .announce strong { color: #4ade80; }
-  .announce a { color: #fff; border-bottom: 1px solid rgba(255,255,255,.35); }
+/* Hero dark */
+.lp-hero {
+  background: #0b0f1a;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 88px;
+}
+.lp-hero .hd-bg { opacity: .6; }
+.lp-hero-glow {
+  position: absolute; top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 380px;
+  background: radial-gradient(ellipse, rgba(110,236,157,.17) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lp-hero__in { position: relative; z-index: 1; text-align: center; }
+.lp-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.82);
+  margin-bottom: 28px;
+}
+.lp-pill-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+.lp-hero h1 {
+  font-family: var(--f-head);
+  font-size: clamp(36px,6.5vw,72px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.033em;
+  color: #fff;
+  margin-bottom: 22px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+.lp-hero h1 .acc { color: var(--blue); }
+.lp-hero__sub {
+  font-size: clamp(16px,2.2vw,19px);
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
+  max-width: 560px;
+  margin: 0 auto 34px;
+}
+.lp-checks {
+  display: flex; flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin-bottom: 40px;
+}
+.lp-check {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,.5);
+}
+.lp-check svg { color: var(--blue); flex-shrink: 0; }
+.lp-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 11px; }
+.lp-no-risk { font-size: 12.5px; color: rgba(255,255,255,.33); }
+.lp-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px; overflow: hidden;
+  margin-top: 64px;
+  max-width: 540px; margin-left: auto; margin-right: auto;
+}
+.lp-stat { background: rgba(255,255,255,.04); padding: 22px 20px; text-align: center; }
+.lp-stat-val { font-family: var(--f-head); font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -.035em; }
+.lp-stat-val .u { font-size: 17px; color: var(--blue); }
+.lp-stat-lbl { font-size: 12px; color: rgba(255,255,255,.38); font-weight: 500; margin-top: 3px; }
 
-  /* ─── HERO ───────────────────────────────────────────────── */
-  .hero { position: relative; padding: 100px 0 96px; overflow: hidden; }
-  .hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(22,165,102,.12) 0%, transparent 70%); pointer-events: none; }
-  .hero__grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 0%, transparent 80%); pointer-events: none; }
-  .hero__inner { position: relative; text-align: center; }
-  .hero__pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; background: var(--green-light); border: 1px solid var(--green-muted); border-radius: 99px; font-size: 12.5px; font-weight: 600; color: var(--green-dark); margin-bottom: 32px; }
-  .hero__pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-  .hero h1 { font-size: clamp(38px,6vw,68px); font-weight: 800; line-height: 1.06; letter-spacing: -.03em; color: var(--ink); margin-bottom: 24px; }
-  .hero h1 .grad { background: linear-gradient(135deg, var(--green) 0%, #0fbf6f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
-  .hero__sub { font-size: 18px; color: var(--ink-soft); line-height: 1.65; max-width: 540px; margin: 0 auto 36px; }
-  @media(max-width:768px){ .hero__sub { font-size: 16px; } }
-  .hero__checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin-bottom: 40px; }
-  .hero__check { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: var(--ink-soft); }
-  .hero__check svg { color: var(--green); flex-shrink: 0; }
-  .hero__cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--green); color: #fff; font-size: 16px; font-weight: 700; border-radius: 12px; transition: background .15s, transform .15s, box-shadow .15s; box-shadow: 0 4px 20px rgba(22,165,102,.35); }
-  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(22,165,102,.45); }
-  .btn-primary:active { transform: translateY(0); }
-  .btn-primary svg { transition: transform .15s; }
-  .btn-primary:hover svg { transform: translateX(3px); }
-  .hero__no-risk { font-size: 13px; color: var(--ink-muted); }
-  .hero__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); border-radius: var(--r); overflow: hidden; margin-top: 64px; max-width: 580px; margin-left: auto; margin-right: auto; }
-  .hero__stat { background: var(--bg); padding: 22px 20px; text-align: center; }
-  .hero__stat-val { font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -.03em; }
-  .hero__stat-val .unit { font-size: 16px; font-weight: 700; color: var(--green); }
-  .hero__stat-label { font-size: 12.5px; color: var(--ink-muted); font-weight: 500; margin-top: 3px; }
+/* Trust */
+.lp-trust { background: #fff; padding: 30px 0; border-bottom: 1px solid var(--line); }
+.lp-trust-lbl { text-align: center; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); margin-bottom: 18px; }
+.lp-trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px 20px; }
+.lp-badge {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px;
+  background: #f9fafb;
+  border: 1px solid rgba(61,61,61,.1);
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.lp-badge svg { color: var(--blue-strong); flex-shrink: 0; }
 
-  /* ─── LOGOS / VERTRAUEN ──────────────────────────────────── */
-  .trust { padding: 40px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .trust__label { text-align: center; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 24px; }
-  .trust__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 36px; }
-  .trust__badge { display: flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--r-sm); font-size: 13px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
-  .trust__badge svg { color: var(--green); }
+/* Generic section */
+.lp-sec { padding: 88px 0; }
+.lp-sec--g { background: var(--bg); }
+.lp-sec--d { background: #0b0f1a; }
+.lp-label {
+  font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--blue-strong);
+  margin-bottom: 12px;
+}
+.lp-h2 {
+  font-family: var(--f-head);
+  font-size: clamp(28px,4.5vw,48px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.09;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.lp-h2--w { color: #fff; }
+.lp-sub {
+  font-size: 17px;
+  color: var(--gray);
+  line-height: 1.65;
+  max-width: 540px;
+  margin-bottom: 56px;
+}
+.lp-sub--w { color: rgba(255,255,255,.52); }
+@media(max-width:768px) { .lp-sec { padding: 64px 0; } }
 
-  /* ─── PROBLEM ────────────────────────────────────────────── */
-  .problem { background: var(--bg-soft); }
-  .section-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
-  .section-h2 { font-size: clamp(28px,4vw,46px); font-weight: 800; line-height: 1.1; letter-spacing: -.025em; color: var(--ink); margin-bottom: 16px; }
-  .section-sub { font-size: 17px; color: var(--ink-soft); line-height: 1.6; max-width: 540px; margin-bottom: 56px; }
-  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media(max-width:900px){ .problem-grid { grid-template-columns: repeat(2,1fr); } }
-  @media(max-width:560px){ .problem-grid { grid-template-columns: 1fr; } }
-  .problem-card { background: var(--bg); border: 1px solid var(--line-dark); border-radius: var(--r); padding: 28px 24px; transition: box-shadow .2s, border-color .2s; }
-  .problem-card:hover { box-shadow: var(--shadow-md); border-color: var(--green-muted); }
-  .problem-card__icon { width: 36px; height: 36px; border-radius: var(--r-sm); background: #fef3f2; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: #dc2626; }
-  .problem-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
-  .problem-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
+/* Problem cards */
+.lp-pgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+@media(max-width:900px){.lp-pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.lp-pgrid{grid-template-columns:1fr}}
+.lp-pcard {
+  background: #fff;
+  border: 1px solid rgba(61,61,61,.09);
+  border-radius: 18px;
+  padding: 26px 22px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.lp-pcard:hover { box-shadow: var(--shadow-card); border-color: rgba(61,61,61,.17); }
+.lp-pcard-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px; background: #fff0f0;
+  display: flex; align-items: center; justify-content: center;
+  color: #dc2626; margin-bottom: 14px;
+}
+.lp-pcard h3 { font-family: var(--f-head); font-size: 15.5px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+.lp-pcard p { font-size: 14px; color: var(--gray); line-height: 1.65; }
 
-  /* ─── BRIDGE ─────────────────────────────────────────────── */
-  .bridge { background: var(--bg-dark); padding: 80px 0; }
-  .bridge__inner { text-align: center; }
-  .bridge__eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 20px; }
-  .bridge__h2 { font-size: clamp(26px,4vw,42px); font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: -.025em; margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; }
-  .bridge__sub { font-size: 17px; color: rgba(255,255,255,.65); line-height: 1.65; max-width: 520px; margin: 0 auto 40px; }
-  .bridge__btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: rgba(22,165,102,.15); border: 1px solid rgba(22,165,102,.4); color: #4ade80; font-size: 15px; font-weight: 600; border-radius: 10px; transition: background .15s, border-color .15s; }
-  .bridge__btn:hover { background: rgba(22,165,102,.25); border-color: rgba(22,165,102,.6); }
+/* Bridge */
+.lp-bridge { background: #0b0f1a; padding: 72px 0; }
+.lp-bridge__in { text-align: center; max-width: 680px; margin: 0 auto; }
+.lp-bridge-ey { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+.lp-bridge h2 { font-family: var(--f-head); font-size: clamp(22px,4vw,38px); font-weight: 800; color: #fff; letter-spacing: -.025em; line-height: 1.18; margin-bottom: 16px; }
+.lp-bridge p { font-size: 17px; color: rgba(255,255,255,.52); line-height: 1.65; margin-bottom: 36px; }
 
-  /* ─── SYSTEM / OFFER ─────────────────────────────────────── */
-  .system__header { text-align: center; margin-bottom: 56px; }
-  .system__name { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: 6px 14px; border-radius: 99px; margin-bottom: 16px; }
-  .system__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
-  @media(max-width:900px){ .system__grid { grid-template-columns: repeat(2,1fr); } }
-  @media(max-width:560px){ .system__grid { grid-template-columns: 1fr; } }
-  .system-card { border: 1px solid var(--line-dark); border-radius: var(--r); padding: 24px; transition: box-shadow .2s, border-color .2s, transform .2s; }
-  .system-card:hover { box-shadow: var(--shadow-md); border-color: var(--green-muted); transform: translateY(-2px); }
-  .system-card__icon { width: 36px; height: 36px; border-radius: var(--r-sm); background: var(--green-light); display: flex; align-items: center; justify-content: center; color: var(--green); margin-bottom: 14px; }
-  .system-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .system-card p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.6; }
-  .system__guarantee { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #86efac; border-radius: var(--r); padding: 28px 32px; display: flex; align-items: flex-start; gap: 20px; }
-  @media(max-width:600px){ .system__guarantee { flex-direction: column; padding: 24px; } }
-  .system__guarantee-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--green); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
-  .system__guarantee-text h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .system__guarantee-text p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+/* Offer Stack */
+.lp-sysname {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue-strong);
+  background: rgba(22,165,102,.1);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 20px;
+}
+.lp-sgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 36px; }
+@media(max-width:900px){.lp-sgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.lp-sgrid{grid-template-columns:1fr}}
+.lp-scard {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.lp-scard:hover { box-shadow: var(--shadow-card); border-color: rgba(22,165,102,.3); transform: translateY(-2px); }
+.lp-scard-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: rgba(22,165,102,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue-strong); margin-bottom: 12px;
+}
+.lp-scard h3 { font-family: var(--f-head); font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+.lp-scard p { font-size: 13px; color: var(--gray); line-height: 1.55; }
+.lp-gbox {
+  background: linear-gradient(135deg,#f0fdf4 0%,#e8faf1 100%);
+  border: 1.5px solid rgba(22,165,102,.3);
+  border-radius: 18px; padding: 28px 32px;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+@media(max-width:600px){.lp-gbox{flex-direction:column;padding:22px 18px}}
+.lp-gbox-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--blue-strong);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.lp-gbox h3 { font-family: var(--f-head); font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.lp-gbox p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
 
-  /* ─── PROCESS ────────────────────────────────────────────── */
-  .process { background: var(--bg-soft); }
-  .process__steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; position: relative; }
-  @media(max-width:768px){ .process__steps { grid-template-columns: 1fr; gap: 0; } }
-  .process__step { padding: 40px 32px; position: relative; }
-  @media(max-width:768px){ .process__step { padding: 32px 24px 0; } }
-  .process__step + .process__step::before {
-    content: '';
-    position: absolute;
-    top: 44px;
-    left: 0;
-    width: 1px;
-    height: calc(100% - 44px);
-    background: var(--line-dark);
-  }
-  @media(max-width:768px){
-    .process__step + .process__step::before { display: none; }
-    .process__step { padding-bottom: 32px; border-bottom: 1px solid var(--line-dark); }
-    .process__step:last-child { border-bottom: none; }
-  }
-  .process__num { width: 40px; height: 40px; border-radius: 12px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-  .process__step h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-  .process__step .days { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
-  .process__step p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; }
+/* Proof placeholders */
+.lp-proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+@media(max-width:900px){.lp-proof-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.lp-proof-grid{grid-template-columns:1fr}}
+.lp-proof-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px 20px;
+  position: relative;
+}
+.lp-proof-tag {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 11px; font-weight: 600; color: var(--gray-2);
+  background: var(--bg); padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line);
+}
+.lp-proof-stars { color: #f59e0b; font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
+.lp-proof-body {
+  font-size: 14.5px; color: var(--gray); font-style: italic; line-height: 1.65; margin-bottom: 18px;
+  min-height: 80px;
+  background: repeating-linear-gradient(transparent,transparent 23px,rgba(61,61,61,.06) 23px,rgba(61,61,61,.06) 24px);
+  border-radius: 4px; padding: 6px 0;
+}
+.lp-proof-author { display: flex; align-items: center; gap: 12px; }
+.lp-proof-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(22,165,102,.12);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-head); font-size: 15px; font-weight: 700; color: var(--blue-strong);
+  flex-shrink: 0;
+}
+.lp-proof-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.lp-proof-loc { font-size: 12.5px; color: var(--gray-2); }
 
-  /* ─── WHY US ─────────────────────────────────────────────── */
-  .why__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 64px; margin-top: 56px; }
-  @media(max-width:768px){ .why__grid { grid-template-columns: 1fr; gap: 28px; } }
-  .why__item { display: flex; gap: 16px; }
-  .why__item-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green-light); display: flex; align-items: center; justify-content: center; color: var(--green); flex-shrink: 0; margin-top: 2px; }
-  .why__item h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .why__item p { font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
+/* Why */
+.lp-wgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px 48px; margin-top: 48px; }
+@media(max-width:700px){.lp-wgrid{grid-template-columns:1fr;gap:24px}}
+.lp-witem { display: flex; gap: 16px; }
+.lp-wicon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(22,165,102,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue-strong); flex-shrink: 0; margin-top: 2px;
+}
+.lp-witem h3 { font-family: var(--f-head); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.lp-witem p { font-size: 14px; color: var(--gray); line-height: 1.65; }
 
-  /* ─── FAQ ────────────────────────────────────────────────── */
-  .faq { background: var(--bg-soft); }
-  .faq__list { margin-top: 48px; display: flex; flex-direction: column; gap: 8px; max-width: 720px; margin-left: auto; margin-right: auto; }
-  .faq__item { background: var(--bg); border: 1px solid var(--line-dark); border-radius: var(--r); overflow: hidden; }
-  .faq__q { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; text-align: left; font-size: 15.5px; font-weight: 600; color: var(--ink); gap: 16px; }
-  .faq__q svg { flex-shrink: 0; color: var(--ink-muted); transition: transform .25s; }
-  .faq__item.open .faq__q svg { transform: rotate(45deg); color: var(--green); }
-  .faq__a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-  .faq__a-inner { padding: 0 24px 20px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; }
+/* Process */
+.lp-proc { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 56px; }
+@media(max-width:768px){.lp-proc{grid-template-columns:1fr}}
+.lp-pstep { padding: 0 32px 40px; position: relative; }
+.lp-pstep+.lp-pstep::before {
+  content:''; position:absolute; left:0; top:36px;
+  height:calc(100% - 36px); width:1px; background:var(--line);
+}
+@media(max-width:768px){
+  .lp-pstep{padding:32px 0 0;border-bottom:1px solid var(--line);}
+  .lp-pstep:last-child{border-bottom:none;}
+  .lp-pstep+.lp-pstep::before{display:none;}
+}
+.lp-pnum {
+  width:40px;height:40px;border-radius:12px;
+  background:var(--ink);color:#fff;
+  font-family:var(--f-head);font-size:15px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.lp-pday { font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue-strong);margin-bottom:8px; }
+.lp-pstep h3 { font-family:var(--f-head);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px; }
+.lp-pstep p { font-size:14.5px;color:var(--gray);line-height:1.65; }
 
-  /* ─── FINAL CTA ──────────────────────────────────────────── */
-  .final-cta { background: var(--ink); position: relative; overflow: hidden; }
-  .final-cta__glow { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(22,165,102,.3) 0%, transparent 70%); pointer-events: none; }
-  .final-cta__inner { position: relative; text-align: center; padding: 96px 24px; }
-  .final-cta h2 { font-size: clamp(28px,4vw,48px); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 16px; }
-  .final-cta h2 span { color: var(--green); }
-  .final-cta__sub { font-size: 17px; color: rgba(255,255,255,.6); max-width: 480px; margin: 0 auto 40px; line-height: 1.6; }
-  .btn-primary-lg { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: var(--green); color: #fff; font-size: 17px; font-weight: 700; border-radius: 14px; transition: background .15s, transform .15s, box-shadow .15s; box-shadow: 0 6px 24px rgba(22,165,102,.45); }
-  .btn-primary-lg:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(22,165,102,.55); }
-  .final-cta__meta { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,.45); }
+/* FAQ */
+.lp-faq-list { margin-top: 48px; max-width:720px; margin-left:auto;margin-right:auto; }
+.lp-faq-item { background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:8px; }
+.lp-faq-q {
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 22px;text-align:left;
+  font-family:inherit;font-size:15.5px;font-weight:600;color:var(--ink);
+  background:none;border:none;cursor:pointer;
+}
+.lp-faq-q svg { flex-shrink:0;color:var(--gray);transition:transform .25s,color .25s; }
+.lp-faq-item.open .lp-faq-q svg { transform:rotate(45deg);color:var(--blue-strong); }
+.lp-faq-a { max-height:0;overflow:hidden;transition:max-height .3s ease; }
+.lp-faq-ai { padding:0 22px 20px;font-size:14.5px;color:var(--gray);line-height:1.7; }
 
-  /* ─── FOOTER ─────────────────────────────────────────────── */
-  .lp-footer { padding: 32px 24px; border-top: 1px solid var(--line); text-align: center; }
-  .lp-footer__inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 32px; font-size: 13px; color: var(--ink-muted); }
-  .lp-footer a { color: var(--ink-muted); border-bottom: 1px solid var(--line-dark); }
-  .lp-footer a:hover { color: var(--ink); }
+/* Final CTA */
+.lp-fcta { background:#0b0f1a;position:relative;overflow:hidden;padding:96px 0; }
+.lp-fcta-glow {
+  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:600px;height:300px;
+  background:radial-gradient(ellipse,rgba(110,236,157,.2) 0%,transparent 70%);
+  pointer-events:none;
+}
+.lp-fcta__in { position:relative;z-index:1;text-align:center; }
+.lp-fcta h2 {
+  font-family:var(--f-head);font-size:clamp(28px,4.5vw,52px);font-weight:800;
+  color:#fff;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;
+}
+.lp-fcta h2 span { color:var(--blue); }
+.lp-fcta p { font-size:17px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 40px;line-height:1.65; }
+.lp-fcta-meta { margin-top:18px;font-size:13px;color:rgba(255,255,255,.32); }
+@media(max-width:768px){.lp-fcta{padding:72px 0;}}
 
-  /* ─── QUIZ OVERLAY ───────────────────────────────────────── */
-  .quiz-overlay { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 16px; }
-  .quiz-overlay.open { display: flex; }
-  .quiz-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.75); backdrop-filter: blur(6px); }
-  .quiz-card { position: relative; background: var(--bg); border-radius: 24px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 36px 36px 40px; box-shadow: var(--shadow-lg); }
-  @media(max-width:540px){ .quiz-card { padding: 28px 20px 32px; border-radius: 18px; } }
-  .quiz-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--ink-muted); background: var(--bg-soft); transition: background .15s; }
-  .quiz-close:hover { background: var(--line-dark); color: var(--ink); }
-  .quiz-progress-wrap { margin-bottom: 28px; }
-  .quiz-progress-label { font-size: 12px; font-weight: 600; color: var(--ink-muted); margin-bottom: 8px; }
-  .quiz-progress-bar { height: 4px; background: var(--line-dark); border-radius: 99px; overflow: hidden; }
-  .quiz-progress-fill { height: 100%; background: var(--green); border-radius: 99px; transition: width .3s ease; }
-  .quiz-step { display: none; }
-  .quiz-step.active { display: block; animation: stepIn .25s ease; }
-  @keyframes stepIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
-  .quiz-q { font-size: 20px; font-weight: 800; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -.02em; }
-  .quiz-hint { font-size: 13.5px; color: var(--ink-muted); margin-bottom: 24px; }
-  .quiz-choices { display: flex; flex-direction: column; gap: 10px; }
-  .quiz-choice { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 2px solid var(--line-dark); border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--ink-soft); text-align: left; transition: border-color .15s, background .15s, color .15s; }
-  .quiz-choice:hover { border-color: var(--green-muted); background: var(--green-light); color: var(--ink); }
-  .quiz-choice.selected { border-color: var(--green); background: var(--green-light); color: var(--ink); font-weight: 600; }
-  .quiz-choice-dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--line-dark); flex-shrink: 0; transition: border-color .15s, background .15s; display: flex; align-items: center; justify-content: center; }
-  .quiz-choice.selected .quiz-choice-dot { border-color: var(--green); background: var(--green); }
-  .quiz-choice.selected .quiz-choice-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
-  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
-  .quiz-back { font-size: 14px; font-weight: 500; color: var(--ink-muted); display: flex; align-items: center; gap: 5px; padding: 8px 0; }
-  .quiz-back:hover { color: var(--ink); }
-  .quiz-next { display: inline-flex; align-items: center; gap: 7px; padding: 13px 24px; background: var(--green); color: #fff; font-size: 15px; font-weight: 700; border-radius: 10px; transition: background .15s; opacity: .5; pointer-events: none; }
-  .quiz-next.ready { opacity: 1; pointer-events: auto; }
-  .quiz-next.ready:hover { background: var(--green-dark); }
+/* Footer */
+.lp-foot { padding:28px 22px;border-top:1px solid var(--line);background:#fff; }
+.lp-foot__in { display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 28px;font-size:13px;color:var(--gray-2); }
+.lp-foot a { color:var(--gray-2);border-bottom:1px solid var(--line); }
+.lp-foot a:hover { color:var(--ink); }
 
-  /* ─── CONTACT FORM (last quiz step) ─────────────────────── */
-  .quiz-form-group { margin-bottom: 16px; }
-  .quiz-form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 7px; }
-  .quiz-form-group input { width: 100%; padding: 13px 15px; border: 2px solid var(--line-dark); border-radius: 10px; font-size: 15px; color: var(--ink); background: var(--bg); outline: none; transition: border-color .15s; font-family: inherit; }
-  .quiz-form-group input:focus { border-color: var(--green); }
-  .quiz-form-group input::placeholder { color: var(--ink-muted); }
-  .quiz-privacy { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; }
-  .quiz-privacy input[type="checkbox"] { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--green); flex-shrink: 0; }
-  .quiz-privacy label { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
-  .quiz-privacy a { color: var(--green); border-bottom: 1px solid var(--green-muted); }
-  .quiz-submit { width: 100%; padding: 16px; background: var(--green); color: #fff; font-size: 16px; font-weight: 700; border-radius: 12px; transition: background .15s, transform .15s; box-shadow: 0 4px 16px rgba(22,165,102,.3); }
-  .quiz-submit:hover { background: var(--green-dark); }
-  .quiz-submit:active { transform: scale(.99); }
-  .quiz-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+/* ── QUIZ MODAL ───────────────────────────────────────────── */
+.qov {
+  position:fixed;inset:0;z-index:9999;
+  display:none;align-items:center;justify-content:center;padding:16px;
+}
+.qov.open { display:flex; }
+.qbdrop {
+  position:absolute;inset:0;
+  background:rgba(11,15,26,.82);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.qcard {
+  position:relative;background:#fff;border-radius:24px;
+  width:100%;max-width:520px;max-height:92vh;overflow-y:auto;
+  padding:36px 36px 40px;
+  box-shadow:0 32px 80px rgba(0,0,0,.38);
+}
+@media(max-width:540px){.qcard{padding:28px 20px 32px;border-radius:18px;}}
+.qclose {
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;border-radius:8px;
+  background:var(--bg);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gray);transition:background .15s,color .15s;
+}
+.qclose:hover{background:var(--line);color:var(--ink);}
+.qprog-wrap { margin-bottom:28px; }
+.qprog-lbl { font-size:12px;font-weight:600;color:var(--gray-2);margin-bottom:8px; }
+.qprog-bar { height:4px;background:var(--line);border-radius:999px;overflow:hidden; }
+.qprog-fill { height:100%;background:linear-gradient(90deg,var(--blue-strong),var(--blue));border-radius:999px;transition:width .3s ease; }
+.qstep { display:none; }
+.qstep.act { display:block;animation:qin .22s ease; }
+@keyframes qin { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:none} }
+.qq { font-family:var(--f-head);font-size:20px;font-weight:800;color:var(--ink);line-height:1.28;letter-spacing:-.02em;margin-bottom:6px; }
+.qhint { font-size:13.5px;color:var(--gray-2);margin-bottom:22px;line-height:1.5; }
+.qchoices { display:flex;flex-direction:column;gap:10px; }
+.qchoice {
+  display:flex;align-items:center;gap:13px;
+  padding:15px 17px;
+  border:2px solid var(--line);border-radius:12px;
+  font-size:15px;font-weight:500;color:var(--ink-soft);
+  text-align:left;background:none;cursor:pointer;font-family:inherit;
+  transition:border-color .15s,background .15s,color .15s;
+}
+.qchoice:hover{border-color:rgba(22,165,102,.35);background:rgba(22,165,102,.05);}
+.qchoice.sel{border-color:var(--blue-strong);background:rgba(22,165,102,.07);color:var(--ink);font-weight:600;}
+.qdot {
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--line);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .15s,background .15s;
+}
+.qchoice.sel .qdot{border-color:var(--blue-strong);background:var(--blue-strong);}
+.qchoice.sel .qdot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff;}
+.qnav { display:flex;justify-content:space-between;align-items:center;margin-top:24px; }
+.qback {
+  display:flex;align-items:center;gap:5px;
+  font-size:14px;font-weight:500;color:var(--gray-2);
+  background:none;border:none;cursor:pointer;padding:8px 0;font-family:inherit;
+}
+.qback:hover{color:var(--ink);}
+.qnext {
+  display:inline-flex;align-items:center;gap:7px;
+  padding:12px 24px;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e;font-size:15px;font-weight:700;
+  border-radius:999px;border:none;cursor:pointer;font-family:inherit;
+  opacity:.4;pointer-events:none;
+  transition:opacity .15s,transform .15s,box-shadow .15s;
+}
+.qnext.rdy{opacity:1;pointer-events:auto;}
+.qnext.rdy:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(29,120,62,.3);}
 
-  /* ─── SUCCESS ─────────────────────────────────────────────── */
-  .quiz-success { display: none; text-align: center; padding: 16px 0 8px; }
-  .quiz-success.show { display: block; animation: stepIn .3s ease; }
-  .quiz-success__icon { width: 64px; height: 64px; border-radius: 20px; background: var(--green-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: var(--green); }
-  .quiz-success h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -.02em; }
-  .quiz-success p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+/* Form */
+.qfg { margin-bottom:14px; }
+.qfg label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+.qfg input {
+  width:100%;padding:13px 15px;
+  border:1.5px solid var(--line);border-radius:10px;
+  font-size:15px;color:var(--ink);background:#fff;font-family:inherit;
+  outline:none;transition:border-color .15s;
+}
+.qfg input:focus{border-color:var(--blue-strong);}
+.qfg input::placeholder{color:var(--gray-2);}
+.qpriv{display:flex;align-items:flex-start;gap:10px;margin:18px 0;}
+.qpriv input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--blue-strong);flex-shrink:0;}
+.qpriv label{font-size:13px;color:var(--gray-2);line-height:1.5;}
+.qpriv a{color:var(--blue-strong);border-bottom:1px solid rgba(22,165,102,.3);}
+.qsub {
+  width:100%;padding:16px;
+  background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%);
+  color:#06351e;font-size:16px;font-weight:700;
+  border-radius:14px;border:none;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:var(--shadow-blue);
+}
+.qsub:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(29,120,62,.4);}
+.qsub:active{transform:none;}
+.qsub:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
 
-  /* ─── REVEAL ANIMATIONS ──────────────────────────────────── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  @media(prefers-reduced-motion:reduce){ .reveal { opacity:1; transform:none; transition:none; } }
+/* Success */
+.qsuccess{display:none;text-align:center;padding:16px 0;}
+.qsuccess.show{display:block;animation:qin .3s ease;}
+.qsuccess-icon{width:64px;height:64px;border-radius:20px;background:rgba(22,165,102,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--blue-strong);}
+.qsuccess h3{font-family:var(--f-head);font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:10px;}
+.qsuccess p{font-size:15px;color:var(--gray);line-height:1.65;}
 </style>
 
-<!-- ════ ANNOUNCE BAR ════════════════════════════════════════════ -->
-<div class="announce">
-  <strong>Nur noch 3 Plätze</strong> im Juli verfügbar ·
-  Kampagne startet innerhalb von <strong>14 Tagen</strong> ·
-  <a href="#quiz-start" onclick="startQuiz(); return false;">Jetzt Platz sichern →</a>
+<!-- ANNOUNCE BAR ─────────────────────────────────────────── -->
+<div class="lp-announce">
+  <strong>Nur noch 3 freie Plätze</strong> in diesem Monat &middot;
+  System läuft in <strong>14 Tagen</strong> &middot;
+  <span class="lp-ac" onclick="openQuiz()">Platz sichern &rarr;</span>
 </div>
 
-<!-- ════ HERO ════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__grid"></div>
+<!-- MINIMAL NAV ──────────────────────────────────────────── -->
+<nav class="lp-nav">
+  <a href="/"><img src="/assets/logo.png" alt="Fastra One" /></a>
+  <div class="lp-nav__right">
+    <a href="tel:+491633781657" class="lp-nav__phone">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.08h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.81-1.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +49 163 3781657
+    </a>
+    <button class="lp-nav__btn" onclick="openQuiz()">Erstgespräch sichern</button>
+  </div>
+</nav>
+
+<!-- HERO ─────────────────────────────────────────────────── -->
+<section class="lp-hero">
+  <div class="hd-bg"></div>
+  <div class="lp-hero-glow"></div>
   <div class="container">
-    <div class="hero__inner">
-      <div class="hero__pill">
-        <span class="hero__pill-dot"></span>
-        Google Ads Spezialist für GaLaBau-Betriebe
+    <div class="lp-hero__in">
+      <div class="lp-pill">
+        <span class="lp-pill-dot"></span>
+        Speziell für GaLaBau-Betriebe in Deutschland
       </div>
 
       <h1>
-        Dein Auftragsbuch.
-        <span class="grad">Vollgebucht.</span>
-        In 14 Tagen.
+        Mehr GaLaBau-Aufträge.<br>
+        <span class="acc">Planbar. In 14 Tagen.</span>
       </h1>
 
-      <p class="hero__sub">
-        Das erste digitale Kundengewinnungssystem ausschließlich für Garten- und Landschaftsbauunternehmen.
-        Planbare Anfragen. Qualifizierte Interessenten. Kein Agentur-Risiko.
+      <p class="lp-hero__sub">
+        Während du Projekte abwickelst, gewinnt dein Wettbewerber online
+        die Kunden, die eigentlich deine sein könnten.
+        Das vollständige System dagegen läuft in zwei Wochen.
       </p>
 
-      <div class="hero__checks">
-        <span class="hero__check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Ohne Weiterempfehlungen
+      <div class="lp-checks">
+        <span class="lp-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Website + Google Ads + Funnel
         </span>
-        <span class="hero__check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Ohne jahrelange Agenturverträge
+        <span class="lp-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Nur 1 Betrieb pro Region
         </span>
-        <span class="hero__check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Exklusiv für GaLaBau-Betriebe
+        <span class="lp-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Kein Agentur-Risiko
         </span>
       </div>
 
-      <div class="hero__cta-wrap">
-        <button class="btn-primary" onclick="startQuiz()">
+      <div class="lp-cta-wrap">
+        <button class="btn btn--primary btn--lg" onclick="openQuiz()">
           Kostenloses Erstgespräch sichern
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
-        <span class="hero__no-risk">Kostenlos & unverbindlich · Antwort innerhalb von 24 h · Kein Spam</span>
+        <span class="lp-no-risk">Kostenlos &amp; unverbindlich &middot; Antwort in 24 h &middot; Kein Spam</span>
       </div>
 
-      <div class="hero__stats reveal">
-        <div class="hero__stat">
-          <div class="hero__stat-val">14<span class="unit"> Tage</span></div>
-          <div class="hero__stat-label">bis live</div>
+      <div class="lp-stats reveal">
+        <div class="lp-stat">
+          <div class="lp-stat-val">14<span class="u"> Tage</span></div>
+          <div class="lp-stat-lbl">bis live</div>
         </div>
-        <div class="hero__stat">
-          <div class="hero__stat-val">100<span class="unit">%</span></div>
-          <div class="hero__stat-label">auf GaLaBau spezialisiert</div>
+        <div class="lp-stat">
+          <div class="lp-stat-val">100<span class="u">%</span></div>
+          <div class="lp-stat-lbl">GaLaBau-Fokus</div>
         </div>
-        <div class="hero__stat">
-          <div class="hero__stat-val">1<span class="unit">×</span></div>
-          <div class="hero__stat-label">Partner pro Region</div>
+        <div class="lp-stat">
+          <div class="lp-stat-val">1<span class="u">×</span></div>
+          <div class="lp-stat-lbl">Betrieb pro Region</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ TRUST SIGNALS ══════════════════════════════════════════ -->
-<div class="trust">
+<!-- TRUST BAR ────────────────────────────────────────────── -->
+<div class="lp-trust">
   <div class="container">
-    <p class="trust__label">Auf diesen Systemen gebaut</p>
-    <div class="trust__row">
-      <div class="trust__badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Google Ads zertifiziert
-      </div>
-      <div class="trust__badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        DSGVO-konform
-      </div>
-      <div class="trust__badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        Conversion Tracking
-      </div>
-      <div class="trust__badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        Mobile-First Design
-      </div>
-      <div class="trust__badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Nur 1 Betrieb pro Region
-      </div>
+    <p class="lp-trust-lbl">Auf diesen Systemen gebaut</p>
+    <div class="lp-trust-row">
+      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google Ads zertifiziert</div>
+      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DSGVO-konform</div>
+      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Conversion Tracking</div>
+      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Exklusiv pro Region</div>
+      <div class="lp-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Mobile-First</div>
     </div>
   </div>
 </div>
 
-<!-- ════ PROBLEM ════════════════════════════════════════════════ -->
-<section class="problem">
+<!-- PROBLEM ──────────────────────────────────────────────── -->
+<section class="lp-sec lp-sec--g">
   <div class="container">
-    <p class="section-label reveal">Das kennst du</p>
-    <h2 class="section-h2 reveal">Warum Marketing für<br>GaLaBau-Betriebe scheitert.</h2>
-    <p class="section-sub reveal">Die meisten Betriebe kämpfen mit denselben Problemen — und wissen nicht, dass es eine bewährte Lösung gibt.</p>
+    <p class="lp-label reveal">Erkennst du dich hier wieder?</p>
+    <h2 class="lp-h2 reveal">Was wirklich hinter dem leeren<br>Auftragsbuch steckt.</h2>
+    <p class="lp-sub reveal">Die meisten GaLaBau-Betriebe kämpfen mit denselben Problemen — aber niemand spricht offen darüber.</p>
 
-    <div class="problem-grid">
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <h3>Zu wenige planbare Anfragen</h3>
-        <p>Du weißt nicht, wie viele Aufträge nächsten Monat kommen. Das Auftragsbuch hängt vom Zufall ab.</p>
+    <div class="lp-pgrid">
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Sonntagabend, Kalender halb leer</h3>
+        <p>Du weißt nicht, was nächsten Monat kommt. Das Auftragsbuch hängt vom Zufall ab — und das schläft sich schlecht.</p>
       </div>
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Geld für Werbung verloren</h3>
-        <p>Google, Facebook, eine Agentur — du hast investiert und trotzdem kaum Ergebnis gesehen. Das frustriert.</p>
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Weiterempfehlungen als einziger Vertrieb</h3>
+        <p>Solange Stammkunden aktiv sind, läuft es. Aber das ist kein Geschäftsmodell — das ist Glück. Und Glück skaliert nicht.</p>
       </div>
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Wettbewerber wirkt professioneller</h3>
-        <p>Deine Arbeit ist mindestens genauso gut. Aber online gewinnt der Konkurrent die Kunden — weil er besser sichtbar ist.</p>
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Dein Wettbewerber gewinnt online</h3>
+        <p>Er macht schlechtere Arbeit. Aber er wirkt professioneller, steht bei Google oben — und bekommt die Aufträge, die dir fehlen.</p>
       </div>
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Geld für Werbung verbrannt</h3>
+        <p>Du hast schon was versucht — Agentur, Social Ads, irgendwas. Ergebnis: Schmerzhaft wenig für das investierte Geld.</p>
+      </div>
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+        <h3>Die Website verkauft nicht</h3>
+        <p>Besucher kommen, gehen wieder. Keine Anfragen. Die Website ist ein digitaler Flyer — kein Vertrieb. Das kann sie nicht bleiben.</p>
+      </div>
+      <div class="lp-pcard reveal">
+        <div class="lp-pcard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <h3>Unqualifizierte Anfragen</h3>
-        <p>Interessenten fragen an, haben kein Budget oder sind schlicht nicht ernstgenommen. Deine Zeit wird vergeudet.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>Keine Zeit für Marketing</h3>
-        <p>Du arbeitest im Betrieb, nicht am Betrieb. Am Abend fehlt schlicht die Energie, sich noch mit Websites zu beschäftigen.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-        </div>
-        <h3>Website verkauft nicht</h3>
-        <p>Besucher kommen auf deine Seite — und gehen ohne Kontakt wieder. Die Website ist ein digitaler Flyer, kein Vertrieb.</p>
+        <p>Wenn Anfragen kommen, passen Budget oder Erwartung oft nicht. Du verbringst Zeit mit Gesprächen, die nirgendwo hinführen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ BRIDGE ══════════════════════════════════════════════════ -->
-<div class="bridge">
+<!-- BRIDGE ───────────────────────────────────────────────── -->
+<div class="lp-bridge">
   <div class="container">
-    <div class="bridge__inner">
-      <p class="bridge__eyebrow">Die Wahrheit</p>
-      <h2 class="bridge__h2">Der Unterschied zwischen vollen und leeren Auftragsbüchern ist kein Zufall.</h2>
-      <p class="bridge__sub">Es ist ein System. Und die, die es haben, wachsen — während andere auf Weiterempfehlungen warten.</p>
-      <button class="bridge__btn" onclick="startQuiz()">
+    <div class="lp-bridge__in">
+      <p class="lp-bridge-ey">Die Wahrheit</p>
+      <h2>Volle Auftragsbücher passieren nicht zufällig.<br>Sie entstehen durch ein System.</h2>
+      <p>Die Betriebe, die jetzt planbar Kunden gewinnen, haben kein Geheimwissen. Sie haben einfach früher mit dem richtigen System angefangen.</p>
+      <button class="btn btn--primary" onclick="openQuiz()">
         Zeig mir das System
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
     </div>
   </div>
 </div>
 
-<!-- ════ SYSTEM / OFFER STACK ════════════════════════════════════ -->
-<section>
+<!-- SYSTEM / OFFER STACK ─────────────────────────────────── -->
+<section class="lp-sec">
   <div class="container">
-    <div class="system__header">
-      <div class="system__name">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Das GaLaBau-Wachstumssystem
-      </div>
-      <h2 class="section-h2 reveal">Alles, was du brauchst.<br>Nichts, was du nicht brauchst.</h2>
-      <p class="section-sub reveal" style="margin: 0 auto 56px;">Kein Baukastenprinzip. Kein Stückwerk. Ein vollständiges System — exklusiv für deinen Betrieb gebaut.</p>
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="lp-sysname"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Das GaLaBau-Vertriebssystem</div>
+      <h2 class="lp-h2 reveal">Alles, was du brauchst.<br>In zwei Wochen eingerichtet.</h2>
+      <p class="lp-sub reveal" style="margin:0 auto;">Du kaufst keine Website. Du kaufst einen vollständigen digitalen Vertriebsprozess — der rund um die Uhr neue Aufträge generiert.</p>
     </div>
 
-    <div class="system__grid">
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
-        </div>
-        <h3>Premium GaLaBau-Website</h3>
-        <p>Schnell, modern, mobil optimiert. Designed ausschließlich für Garten- und Landschaftsbauunternehmen.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <h3>Google Ads Kampagne</h3>
-        <p>Komplett eingerichtet. Keyword-Recherche, Konkurrenzanalyse, Conversion Tracking — alles inklusive.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3>Individuelle Landingpage</h3>
-        <p>Eine Seite, die ausschließlich für Conversions gebaut ist. Kein Design-Spielzeug — ein Verkaufswerkzeug.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-        </div>
-        <h3>Qualifizierungs-Funnel</h3>
-        <p>Interessenten qualifizieren sich selbst. Du sprichst nur noch mit Kunden, die wirklich anfragen wollen.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3>WhatsApp-Integration</h3>
-        <p>Interessenten können direkt Kontakt aufnehmen — mit dem Kanal, den Handwerker wirklich nutzen.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>DSGVO-konformes Setup</h3>
-        <p>Datenschutzerklärung, Cookie-Consent, Impressum — alles sauber und rechtssicher eingerichtet.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"/></svg>
-        </div>
-        <h3>Conversion Tracking</h3>
-        <p>Du siehst genau, welche Anzeige welche Anfrage gebracht hat. Kein Rätselraten mehr.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <h3>Schnelle Ladezeiten</h3>
-        <p>Unter 2 Sekunden Ladezeit. Google belohnt das mit besseren Positionen — und Besucher bleiben länger.</p>
-      </div>
-      <div class="system-card reveal">
-        <div class="system-card__icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        </div>
-        <h3>Verkaufsstarke Texte</h3>
-        <p>Copywriting auf professionellem Niveau — formuliert für GaLaBau-Interessenten, nicht für Marketing-Manager.</p>
-      </div>
+    <div class="lp-sgrid">
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div><h3>Premium GaLaBau-Website</h3><p>Schnell, mobil-optimiert, ausschließlich für deine Branche designed. Kein Baukastenprodukt.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Google Ads Kampagne</h3><p>Keyword-Recherche, Anzeigentexte, Gebotsstrategie, Conversion Tracking — komplett eingerichtet.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Conversion-Landingpage</h3><p>Eine Seite, die ausschließlich auf Terminbuchung optimiert ist. Kein Branding — ein Werkzeug.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></div><h3>Qualifizierungs-Funnel</h3><p>Interessenten durchlaufen ein kurzes Quiz — du sprichst nur noch mit echten Kaufinteressenten.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3>Verkaufsstarke Texte</h3><p>Copywriting auf Conversion-Niveau — formuliert für GaLaBau-Kunden, nicht für Marketingmanager.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h3>Konkurrenzanalyse</h3><p>Wir analysieren deine lokalen Wettbewerber — und positionieren dich klar besser als sie.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>WhatsApp-Integration</h3><p>Interessenten kontaktieren dich über den Kanal, den Handwerker wirklich nutzen. Direkt, ohne Hürde.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>DSGVO-konformes Setup</h3><p>Datenschutzerklärung, Cookie-Consent, Impressum — alles korrekt eingerichtet, kein Rechtsrisiko.</p></div>
+      <div class="lp-scard reveal"><div class="lp-scard-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Maximale Ladegeschwindigkeit</h3><p>Unter 2 Sekunden. Bessere Google-Positionen, weniger Absprünge, höhere Conversion Rate.</p></div>
     </div>
 
-    <div class="system__guarantee reveal">
-      <div class="system__guarantee-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="system__guarantee-text">
-        <h3>Kein Ergebnis-Risiko für dich.</h3>
-        <p>Wenn das System läuft und wir keine qualifizierten Anfragen liefern, optimieren wir weiter — ohne Zusatzkosten. Du zahlst für Ergebnisse, nicht für Arbeitsstunden.</p>
+    <div class="lp-gbox reveal">
+      <div class="lp-gbox-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <h3>Kein Ergebnis, kein Problem.</h3>
+        <p>Wenn das System läuft und wir keine qualifizierten Anfragen liefern, optimieren wir weiter — ohne Aufpreis. Du zahlst für Ergebnisse, nicht für Arbeitsstunden. Das ist kein Werbeversprechen — das ist unser Geschäftsmodell.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ PROCESS ═════════════════════════════════════════════════ -->
-<section class="process">
+<!-- SOCIAL PROOF PLATZHALTER ─────────────────────────────── -->
+<section class="lp-sec lp-sec--g">
   <div class="container">
-    <p class="section-label reveal">So funktioniert es</p>
-    <h2 class="section-h2 reveal">In 3 Schritten zu<br>planbaren Anfragen.</h2>
+    <p class="lp-label reveal" style="text-align:center;">Was GaLaBau-Betriebe sagen</p>
+    <h2 class="lp-h2 reveal" style="text-align:center;">Ergebnisse, die für sich sprechen.</h2>
+    <p class="lp-sub reveal" style="margin:0 auto 48px;text-align:center;">Wir sind aktuell in der Startphase — die ersten Bewertungen unserer Partner folgen in Kürze. Deine könnte die erste sein.</p>
 
-    <div class="process__steps">
-      <div class="process__step reveal">
-        <div class="process__num">1</div>
-        <div class="days">Tag 1–2</div>
-        <h3>Strategie-Gespräch</h3>
-        <p>Wir analysieren deinen Betrieb, deine Region und deine Wettbewerber. Du bekommst eine klare Einschätzung — kostenlos und unverbindlich.</p>
+    <div class="lp-proof-grid">
+      <div class="lp-proof-card reveal">
+        <div class="lp-proof-tag">Folgt bald</div>
+        <div class="lp-proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="lp-proof-body">&nbsp;</div>
+        <div class="lp-proof-author"><div class="lp-proof-av">G</div><div><div class="lp-proof-name">GaLaBau-Betrieb</div><div class="lp-proof-loc">Norddeutschland</div></div></div>
       </div>
-      <div class="process__step reveal">
-        <div class="process__num">2</div>
-        <div class="days">Tag 3–13</div>
-        <h3>Vollständiger Aufbau</h3>
-        <p>Website, Landingpage, Google Ads — alles wird eingerichtet und getestet. Du musst dich um nichts kümmern.</p>
+      <div class="lp-proof-card reveal">
+        <div class="lp-proof-tag">Folgt bald</div>
+        <div class="lp-proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="lp-proof-body">&nbsp;</div>
+        <div class="lp-proof-author"><div class="lp-proof-av">G</div><div><div class="lp-proof-name">GaLaBau-Betrieb</div><div class="lp-proof-loc">Westdeutschland</div></div></div>
       </div>
-      <div class="process__step reveal">
-        <div class="process__num">3</div>
-        <div class="days">Ab Tag 14</div>
-        <h3>Erste Anfragen</h3>
-        <p>Dein System ist live. Google zeigt deine Anzeigen. Qualifizierte Interessenten finden dich. Du nimmst die Gespräche entgegen.</p>
+      <div class="lp-proof-card reveal">
+        <div class="lp-proof-tag">Folgt bald</div>
+        <div class="lp-proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="lp-proof-body">&nbsp;</div>
+        <div class="lp-proof-author"><div class="lp-proof-av">G</div><div><div class="lp-proof-name">GaLaBau-Betrieb</div><div class="lp-proof-loc">Süddeutschland</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════ WHY US ══════════════════════════════════════════════════ -->
-<section>
+<!-- WHY US ───────────────────────────────────────────────── -->
+<section class="lp-sec">
+  <div class="container" style="max-width:960px;">
+    <p class="lp-label reveal">Warum Fastra One</p>
+    <h2 class="lp-h2 reveal">Nicht noch eine Agentur.<br>Ein Ergebnis-Partner.</h2>
+
+    <div class="lp-wgrid">
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div><h3>100 % GaLaBau-Fokus</h3><p>Wir machen das nicht für alle. Nur für Garten- und Landschaftsbauer. Das bedeutet: bewährte Systeme statt generischer Lösungen.</p></div></div>
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h3>14 Tage statt 3 Monate</h3><p>Andere Agenturen brauchen Monate für das, was wir in zwei Wochen liefern. Kein Grund länger zu warten.</p></div></div>
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><h3>Nur 1 Betrieb pro Region</h3><p>Dein digitaler Vorsprung ist exklusiv. Wir nehmen keinen zweiten GaLaBau-Betrieb aus deiner Region an.</p></div></div>
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><h3>Alles aus einer Hand</h3><p>Website, Ads, Texte, Tracking — ein Ansprechpartner, ein System. Kein Ping-Pong zwischen Dienstleistern.</p></div></div>
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div><h3>Deine Daten, dein Konto</h3><p>Deine Website, dein Google Ads Konto, deine Daten. Keine Abhängigkeit, keine Lock-in-Situation.</p></div></div>
+      <div class="lp-witem reveal"><div class="lp-wicon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/></svg></div><div><h3>Kein Risiko für dich</h3><p>Kein langer Vertrag, keine Vorkasse ins Ungewisse. Du weißt genau, was du bekommst — bevor du unterschreibst.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROZESS ──────────────────────────────────────────────── -->
+<section class="lp-sec lp-sec--g">
   <div class="container">
-    <div class="container--narrow" style="max-width:900px">
-      <p class="section-label reveal">Warum Fastra One</p>
-      <h2 class="section-h2 reveal">Nicht noch eine Agentur.<br>Sondern ein Ergebnis-Partner.</h2>
+    <p class="lp-label reveal">So einfach geht es</p>
+    <h2 class="lp-h2 reveal">In 3 Schritten zu planbarenAnfragen.</h2>
 
-      <div class="why__grid">
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-          </div>
-          <div>
-            <h3>Exklusiv auf GaLaBau spezialisiert</h3>
-            <p>Wir machen das nicht für alle. Nur für Garten- und Landschaftsbauunternehmen. Das bedeutet: keine generischen Lösungen, sondern bewährte Systeme für deine Branche.</p>
-          </div>
-        </div>
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div>
-            <h3>Alles aus einer Hand</h3>
-            <p>Website, Ads, Texte, Tracking — ein Ansprechpartner, ein System. Kein Ping-Pong zwischen verschiedenen Dienstleistern.</p>
-          </div>
-        </div>
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <h3>In 14 Tagen live — nicht in 3 Monaten</h3>
-            <p>Andere Agenturen brauchen Monate für das, was wir in zwei Wochen liefern. Kein Grund, länger zu warten.</p>
-          </div>
-        </div>
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/></svg>
-          </div>
-          <div>
-            <h3>Kein Risiko für dich</h3>
-            <p>Keine langen Vertragsbindungen. Kein Vorauszahlung in die Ungewissheit. Du weißt genau, was du bekommst — bevor du zahlst.</p>
-          </div>
-        </div>
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          </div>
-          <div>
-            <h3>Du behältst die Kontrolle</h3>
-            <p>Deine Website, dein Ads-Konto, deine Daten. Wir bauen auf Systemen auf, die dir gehören — nicht uns.</p>
-          </div>
-        </div>
-        <div class="why__item reveal">
-          <div class="why__item-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <div>
-            <h3>Nur 1 Partner pro Region</h3>
-            <p>Wir arbeiten nicht gleichzeitig mit mehreren Betrieben aus derselben Region zusammen. Dein Vorteil bleibt exklusiv.</p>
-          </div>
-        </div>
-      </div>
+    <div class="lp-proc">
+      <div class="lp-pstep reveal"><div class="lp-pnum">1</div><div class="lp-pday">Tag 1 – 2</div><h3>Strategie-Gespräch</h3><p>Wir analysieren deinen Betrieb, deine Region und deine Wettbewerber. Du bekommst eine ehrliche Einschätzung — kostenlos, unverbindlich, ohne Verkaufs-Druck.</p></div>
+      <div class="lp-pstep reveal"><div class="lp-pnum">2</div><div class="lp-pday">Tag 3 – 13</div><h3>Vollständiger Aufbau</h3><p>Website, Landingpage, Google Ads, Funnel, Texte, Tracking — alles wird eingerichtet und getestet. Du kümmerst dich um dein Handwerk.</p></div>
+      <div class="lp-pstep reveal"><div class="lp-pnum">3</div><div class="lp-pday">Ab Tag 14</div><h3>Erste Anfragen</h3><p>Dein System ist live. Qualifizierte Interessenten finden dich über Google. Du nimmst die Gespräche entgegen und wählst die besten Aufträge aus.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ════ FAQ ══════════════════════════════════════════════════════ -->
-<section class="faq">
+<!-- FAQ ──────────────────────────────────────────────────── -->
+<section class="lp-sec">
   <div class="container">
-    <div class="container--narrow">
-      <p class="section-label reveal" style="text-align:center">Häufige Fragen</p>
-      <h2 class="section-h2 reveal" style="text-align:center">Alles, was du wissen möchtest.</h2>
-
-      <div class="faq__list">
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Was kostet das GaLaBau-Wachstumssystem?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Das Erstgespräch ist kostenlos und unverbindlich. Nach dem Call bekommst du ein individuelles Angebot — klar aufgeschlüsselt, ohne versteckte Kosten. Erst wenn du zustimmst, geht es los.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Was passiert, wenn ich keine Anfragen bekomme?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Dann optimieren wir weiter — ohne Aufpreis. Unser Ziel ist ein laufendes System, kein einmaliges Projekt. Wir stehen für das Ergebnis gerade.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Wie schnell bekomme ich die ersten Anfragen?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Das System ist in 14 Tagen live. Erste Anfragen kommen typischerweise in den ersten 2–4 Wochen nach dem Live-Gang — abhängig von Region, Budget und Saison. Google Ads braucht eine kurze Lernphase.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Muss ich selbst etwas vorbereiten oder liefern?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Kaum. Wir brauchen von dir: ein paar Infos über deinen Betrieb, Fotos deiner Arbeit (wenn vorhanden) und Zugang zu deinem Google-Konto. Den Rest erledigen wir.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Gibt es Vertragsbindungen?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Nein. Wir glauben an Ergebnisse, nicht an Vertragsbindung. Wenn du nicht zufrieden bist, hast du keinen Grund, zu bleiben. Und du wirst einen Grund haben.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Für wen ist das System geeignet?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Für GaLaBau-Betriebe mit 1–20 Mitarbeitern, die mehr qualifizierte Aufträge wollen und bereit sind, dafür in ein professionelles System zu investieren. Nicht geeignet für Betriebe, die erst mal nur schauen wollen.</div></div>
-        </div>
-        <div class="faq__item">
-          <button class="faq__q" onclick="toggleFaq(this)">
-            Was, wenn ich bereits eine Website habe?
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq__a"><div class="faq__a-inner">Kein Problem. Wir analysieren, ob deine bestehende Website weitergenutzt oder optimiert werden kann. In vielen Fällen ist ein Neuaufbau sinnvoller — das besprechen wir ehrlich im Erstgespräch.</div></div>
-        </div>
-      </div>
+    <p class="lp-label reveal" style="text-align:center;">FAQ</p>
+    <h2 class="lp-h2 reveal" style="text-align:center;">Deine Fragen, ehrlich beantwortet.</h2>
+    <div class="lp-faq-list">
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Was kostet das GaLaBau-Vertriebssystem?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Das Erstgespräch ist komplett kostenlos und unverbindlich. Nach unserem Call bekommst du ein klares, vollständiges Angebot — ohne versteckte Kosten. Erst wenn du zustimmst, starten wir.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Was, wenn ich trotzdem keine Anfragen bekomme?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Dann optimieren wir weiter — ohne Aufpreis. Wir stehen für das Ergebnis gerade. Ein System, das nicht funktioniert, wird so lange angepasst, bis es funktioniert.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Wann kommen die ersten Anfragen?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Das System ist in 14 Tagen live. Erste Anfragen kommen typischerweise in den ersten 2–4 Wochen — abhängig von Region, Budget und Saison. Google Ads hat eine kurze Lernphase von 1–2 Wochen.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Muss ich selbst viel vorbereiten?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Kaum. Wir brauchen: Infos zu deinem Betrieb, Fotos (falls vorhanden) und Zugang zu deinem Google-Konto. Texte, Setup, Technik, DSGVO — erledigen wir vollständig.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Gibt es Vertragsbindungen?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Nein. Wir glauben an Ergebnisse, nicht an Verträge, die dich festhalten. Wenn du nicht zufrieden bist, hast du keinen Grund zu bleiben. Aber du wirst einen Grund haben.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Ich habe bereits eine Website. Was passiert damit?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Wir analysieren im Erstgespräch ehrlich, ob deine bestehende Website optimiert oder neu aufgebaut werden sollte. Manchmal reicht eine Optimierung — manchmal ist ein Neuaufbau sinnvoller. Das besprechen wir transparent, bevor du entscheidest.</div></div></div>
+      <div class="lp-faq-item"><button class="lp-faq-q" onclick="toggleFaq(this)">Für wen ist das System geeignet?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="lp-faq-a"><div class="lp-faq-ai">Für GaLaBau-Betriebe mit 1–20 Mitarbeitern, die planbar mehr qualifizierte Aufträge wollen und bereit sind, in ein professionelles System zu investieren. Nicht für Betriebe, die erst mal nur schauen wollen.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════ FINAL CTA ════════════════════════════════════════════════ -->
-<section class="final-cta" id="quiz-start">
-  <div class="final-cta__glow"></div>
-  <div class="final-cta__inner">
-    <h2>Dein Auftragsbuch <span>wartet.</span></h2>
-    <p class="final-cta__sub">Beantworte 7 kurze Fragen. Wir bereiten damit dein kostenloses Erstgespräch vor — und du weißt danach genau, was für deinen Betrieb möglich ist.</p>
-    <button class="btn-primary-lg" onclick="startQuiz()">
-      Jetzt kostenloses Erstgespräch anfragen
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </button>
-    <p class="final-cta__meta">Kostenlos · Unverbindlich · Antwort innerhalb von 24 h</p>
+<!-- FINAL CTA ────────────────────────────────────────────── -->
+<section class="lp-fcta">
+  <div class="lp-fcta-glow"></div>
+  <div class="container">
+    <div class="lp-fcta__in">
+      <h2>Dein Auftragsbuch<br><span>wartet nicht.</span></h2>
+      <p>Beantworte 8 kurze Fragen. Wir bereiten damit dein kostenloses Erstgespräch vor — und du weißt danach genau, was für deinen Betrieb möglich ist.</p>
+      <button class="btn btn--primary btn--lg" onclick="openQuiz()">
+        Kostenloses Erstgespräch anfragen
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <p class="lp-fcta-meta">Kostenlos &middot; Unverbindlich &middot; Antwort in 24 h &middot; Kein Spam</p>
+    </div>
   </div>
 </section>
 
-<!-- ════ FOOTER ══════════════════════════════════════════════════ -->
-<footer class="lp-footer">
-  <div class="lp-footer__inner">
-    <span>© 2026 Fastra One · Paul Niklas Fasterding · Am Flachsgraben 9, 30657 Hannover</span>
+<!-- FOOTER ───────────────────────────────────────────────── -->
+<footer class="lp-foot">
+  <div class="lp-foot__in">
+    <span>&copy; 2026 Fastra One &middot; Paul Niklas Fasterding &middot; Am Flachsgraben 9, 30657 Hannover</span>
     <a href="/datenschutz">Datenschutz</a>
     <a href="/impressum">Impressum</a>
     <a href="tel:+491633781657">+49 163 3781657</a>
   </div>
 </footer>
 
-<!-- ════ QUIZ OVERLAY ════════════════════════════════════════════ -->
-<div class="quiz-overlay" id="quizOverlay">
-  <div class="quiz-backdrop" onclick="closeQuiz()"></div>
-  <div class="quiz-card" role="dialog" aria-modal="true" aria-label="Erstgespräch anfragen">
-    <button class="quiz-close" onclick="closeQuiz()" aria-label="Schließen">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+<!-- ══ QUIZ MODAL ═════════════════════════════════════════════ -->
+<div class="qov" id="quizOverlay">
+  <div class="qbdrop" onclick="closeQuiz()"></div>
+  <div class="qcard" role="dialog" aria-modal="true" aria-label="Erstgespräch anfragen">
+    <button class="qclose" onclick="closeQuiz()" aria-label="Schließen">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
 
-    <div class="quiz-progress-wrap">
-      <div class="quiz-progress-label" id="quizProgressLabel">Schritt 1 von 7</div>
-      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:14%"></div></div>
+    <div class="qprog-wrap">
+      <div class="qprog-lbl" id="qPL">Schritt 1 von 8</div>
+      <div class="qprog-bar"><div class="qprog-fill" id="qPF" style="width:12.5%"></div></div>
     </div>
 
-    <!-- Step 1: Betriebsgröße -->
-    <div class="quiz-step active" id="step1">
-      <h3 class="quiz-q">Wie groß ist dein Betrieb?</h3>
-      <p class="quiz-hint">Damit wir das Gespräch optimal vorbereiten können.</p>
-      <div class="quiz-choices" id="choices1">
-        <button class="quiz-choice" data-val="Nur ich selbst (Solo)" onclick="selectChoice(this,1)"><span class="quiz-choice-dot"></span>Nur ich selbst</button>
-        <button class="quiz-choice" data-val="2–5 Mitarbeiter" onclick="selectChoice(this,1)"><span class="quiz-choice-dot"></span>2–5 Mitarbeiter</button>
-        <button class="quiz-choice" data-val="6–15 Mitarbeiter" onclick="selectChoice(this,1)"><span class="quiz-choice-dot"></span>6–15 Mitarbeiter</button>
-        <button class="quiz-choice" data-val="Mehr als 15 Mitarbeiter" onclick="selectChoice(this,1)"><span class="quiz-choice-dot"></span>Mehr als 15 Mitarbeiter</button>
+    <!-- Q1 Betriebsgröße -->
+    <div class="qstep act" id="qs1">
+      <p class="qq">Wie groß ist dein Betrieb aktuell?</p>
+      <p class="qhint">Damit wir das Gespräch optimal auf dich zuschneiden können.</p>
+      <div class="qchoices" id="qc1">
+        <button class="qchoice" data-val="Solo (nur ich)" onclick="pick(this,1)"><span class="qdot"></span>Nur ich selbst (Solo)</button>
+        <button class="qchoice" data-val="2–5 Mitarbeiter" onclick="pick(this,1)"><span class="qdot"></span>2–5 Mitarbeiter</button>
+        <button class="qchoice" data-val="6–15 Mitarbeiter" onclick="pick(this,1)"><span class="qdot"></span>6–15 Mitarbeiter</button>
+        <button class="qchoice" data-val="Mehr als 15 Mitarbeiter" onclick="pick(this,1)"><span class="qdot"></span>Mehr als 15 Mitarbeiter</button>
       </div>
-      <div class="quiz-nav">
-        <span></span>
-        <button class="quiz-next" id="next1" onclick="nextStep(1)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><span></span><button class="qnext" id="qn1" onclick="nx(1)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 2: Aktuelle Anfragen -->
-    <div class="quiz-step" id="step2">
-      <h3 class="quiz-q">Wie viele Kundenanfragen bekommst du aktuell pro Monat?</h3>
-      <p class="quiz-hint">Ungefähr — kein genaues Ergebnis nötig.</p>
-      <div class="quiz-choices" id="choices2">
-        <button class="quiz-choice" data-val="Kaum welche (0–3)" onclick="selectChoice(this,2)"><span class="quiz-choice-dot"></span>Kaum welche (0–3)</button>
-        <button class="quiz-choice" data-val="Ein paar (4–10)" onclick="selectChoice(this,2)"><span class="quiz-choice-dot"></span>Ein paar (4–10)</button>
-        <button class="quiz-choice" data-val="Genug, ich will sie qualifizieren" onclick="selectChoice(this,2)"><span class="quiz-choice-dot"></span>Genug — ich will sie besser qualifizieren</button>
+    <!-- Q2 Region -->
+    <div class="qstep" id="qs2">
+      <p class="qq">Aus welcher Region kommst du?</p>
+      <p class="qhint">Wir prüfen, ob deine Region noch verfügbar ist.</p>
+      <div class="qchoices" id="qc2">
+        <button class="qchoice" data-val="Norddeutschland" onclick="pick(this,2)"><span class="qdot"></span>Norddeutschland (HH, HB, SH, MV, NI)</button>
+        <button class="qchoice" data-val="Westdeutschland" onclick="pick(this,2)"><span class="qdot"></span>Westdeutschland (NRW, RP, SL)</button>
+        <button class="qchoice" data-val="Mitteldeutschland" onclick="pick(this,2)"><span class="qdot"></span>Mitteldeutschland (HE, TH, ST, BB, BE)</button>
+        <button class="qchoice" data-val="Süddeutschland" onclick="pick(this,2)"><span class="qdot"></span>Süddeutschland (BY, BW, SN)</button>
       </div>
-      <div class="quiz-nav">
-        <button class="quiz-back" onclick="prevStep(2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-next" id="next2" onclick="nextStep(2)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><button class="qback" onclick="pv(2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext" id="qn2" onclick="nx(2)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 3: Website -->
-    <div class="quiz-step" id="step3">
-      <h3 class="quiz-q">Hast du bereits eine professionelle Website?</h3>
-      <p class="quiz-hint">Wir analysieren, was sinnvoll ist — ohne Verpflichtung.</p>
-      <div class="quiz-choices" id="choices3">
-        <button class="quiz-choice" data-val="Nein, noch keine" onclick="selectChoice(this,3)"><span class="quiz-choice-dot"></span>Nein, noch keine</button>
-        <button class="quiz-choice" data-val="Ja, aber veraltet oder ohne Ergebnis" onclick="selectChoice(this,3)"><span class="quiz-choice-dot"></span>Ja, aber veraltet oder ohne Ergebnis</button>
-        <button class="quiz-choice" data-val="Ja, moderne Website" onclick="selectChoice(this,3)"><span class="quiz-choice-dot"></span>Ja, moderne Website</button>
+    <!-- Q3 Anfragen -->
+    <div class="qstep" id="qs3">
+      <p class="qq">Wie viele Kundenanfragen bekommst du pro Monat?</p>
+      <p class="qhint">Ungefähr — kein genaues Ergebnis nötig.</p>
+      <div class="qchoices" id="qc3">
+        <button class="qchoice" data-val="Kaum welche (0–3)" onclick="pick(this,3)"><span class="qdot"></span>Kaum welche (0–3)</button>
+        <button class="qchoice" data-val="Ein paar (4–10)" onclick="pick(this,3)"><span class="qdot"></span>Ein paar (4–10)</button>
+        <button class="qchoice" data-val="Genug, aber oft unqualifiziert" onclick="pick(this,3)"><span class="qdot"></span>Genug, aber oft unqualifiziert</button>
       </div>
-      <div class="quiz-nav">
-        <button class="quiz-back" onclick="prevStep(3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-next" id="next3" onclick="nextStep(3)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><button class="qback" onclick="pv(3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext" id="qn3" onclick="nx(3)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 4: Größte Herausforderung -->
-    <div class="quiz-step" id="step4">
-      <h3 class="quiz-q">Was ist dein größtes Marketing-Problem?</h3>
-      <p class="quiz-hint">Ehrlich — damit wir wirklich helfen können.</p>
-      <div class="quiz-choices" id="choices4">
-        <button class="quiz-choice" data-val="Zu wenige Anfragen" onclick="selectChoice(this,4)"><span class="quiz-choice-dot"></span>Zu wenige Anfragen</button>
-        <button class="quiz-choice" data-val="Zu viele unqualifizierte Anfragen" onclick="selectChoice(this,4)"><span class="quiz-choice-dot"></span>Zu viele unqualifizierte Anfragen</button>
-        <button class="quiz-choice" data-val="Keine Zeit für Marketing" onclick="selectChoice(this,4)"><span class="quiz-choice-dot"></span>Keine Zeit für Marketing</button>
-        <button class="quiz-choice" data-val="Bisherige Werbung hat nichts gebracht" onclick="selectChoice(this,4)"><span class="quiz-choice-dot"></span>Bisherige Werbung hat nichts gebracht</button>
+    <!-- Q4 Website -->
+    <div class="qstep" id="qs4">
+      <p class="qq">Hast du bereits eine professionelle Website?</p>
+      <p class="qhint">Wir analysieren, was sinnvoll ist — ehrlich, ohne Verpflichtung.</p>
+      <div class="qchoices" id="qc4">
+        <button class="qchoice" data-val="Noch keine Website" onclick="pick(this,4)"><span class="qdot"></span>Noch keine</button>
+        <button class="qchoice" data-val="Ja, veraltet oder ohne Ergebnis" onclick="pick(this,4)"><span class="qdot"></span>Ja, aber veraltet oder ohne Ergebnis</button>
+        <button class="qchoice" data-val="Ja, moderne Website" onclick="pick(this,4)"><span class="qdot"></span>Ja, moderne Website</button>
       </div>
-      <div class="quiz-nav">
-        <button class="quiz-back" onclick="prevStep(4)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-next" id="next4" onclick="nextStep(4)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><button class="qback" onclick="pv(4)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext" id="qn4" onclick="nx(4)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 5: Starttermin -->
-    <div class="quiz-step" id="step5">
-      <h3 class="quiz-q">Wann möchtest du starten?</h3>
-      <p class="quiz-hint">Wir richten uns nach dir.</p>
-      <div class="quiz-choices" id="choices5">
-        <button class="quiz-choice" data-val="Sofort / dringend" onclick="selectChoice(this,5)"><span class="quiz-choice-dot"></span>So schnell wie möglich</button>
-        <button class="quiz-choice" data-val="In den nächsten 3 Monaten" onclick="selectChoice(this,5)"><span class="quiz-choice-dot"></span>In den nächsten 3 Monaten</button>
-        <button class="quiz-choice" data-val="Erst mal informieren" onclick="selectChoice(this,5)"><span class="quiz-choice-dot"></span>Ich möchte mich erst informieren</button>
+    <!-- Q5 Google Ads Erfahrung -->
+    <div class="qstep" id="qs5">
+      <p class="qq">Hast du bereits Google Ads ausprobiert?</p>
+      <p class="qhint">Hilft uns, die richtige Strategie zu wählen.</p>
+      <div class="qchoices" id="qc5">
+        <button class="qchoice" data-val="Noch nie Google Ads genutzt" onclick="pick(this,5)"><span class="qdot"></span>Noch nie ausprobiert</button>
+        <button class="qchoice" data-val="Google Ads genutzt, ohne Erfolg" onclick="pick(this,5)"><span class="qdot"></span>Ja, aber ohne richtiges Ergebnis</button>
+        <button class="qchoice" data-val="Google Ads mit etwas Erfolg" onclick="pick(this,5)"><span class="qdot"></span>Ja, mit etwas Erfolg</button>
       </div>
-      <div class="quiz-nav">
-        <button class="quiz-back" onclick="prevStep(5)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-next" id="next5" onclick="nextStep(5)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><button class="qback" onclick="pv(5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext" id="qn5" onclick="nx(5)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 6: Budget (optional) -->
-    <div class="quiz-step" id="step6">
-      <h3 class="quiz-q">Welches monatliche Budget planst du für professionelles Marketing?</h3>
-      <p class="quiz-hint">Optional — hilft uns, das Gespräch optimal vorzubereiten.</p>
-      <div class="quiz-choices" id="choices6">
-        <button class="quiz-choice" data-val="" onclick="selectChoice(this,6)"><span class="quiz-choice-dot"></span>Das ist noch offen</button>
-        <button class="quiz-choice" data-val="Bis 500 €/Monat" onclick="selectChoice(this,6)"><span class="quiz-choice-dot"></span>Bis 500 €/Monat</button>
-        <button class="quiz-choice" data-val="500–1.500 €/Monat" onclick="selectChoice(this,6)"><span class="quiz-choice-dot"></span>500–1.500 €/Monat</button>
-        <button class="quiz-choice" data-val="Über 1.500 €/Monat" onclick="selectChoice(this,6)"><span class="quiz-choice-dot"></span>Über 1.500 €/Monat</button>
+    <!-- Q6 Starttermin -->
+    <div class="qstep" id="qs6">
+      <p class="qq">Wann möchtest du starten?</p>
+      <p class="qhint">Kein Druck — wir richten uns nach dir.</p>
+      <div class="qchoices" id="qc6">
+        <button class="qchoice" data-val="Sofort / dringend" onclick="pick(this,6)"><span class="qdot"></span>So schnell wie möglich</button>
+        <button class="qchoice" data-val="In den nächsten 3 Monaten" onclick="pick(this,6)"><span class="qdot"></span>In den nächsten 3 Monaten</button>
+        <button class="qchoice" data-val="Erst mal informieren" onclick="pick(this,6)"><span class="qdot"></span>Ich möchte mich erst informieren</button>
       </div>
-      <div class="quiz-nav">
-        <button class="quiz-back" onclick="prevStep(6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-next" id="next6" onclick="nextStep(6)">Weiter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </div>
+      <div class="qnav"><button class="qback" onclick="pv(6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext" id="qn6" onclick="nx(6)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
     </div>
 
-    <!-- Step 7: Kontaktdaten -->
-    <div class="quiz-step" id="step7">
-      <h3 class="quiz-q">Fast geschafft. Wohin sollen wir uns melden?</h3>
-      <p class="quiz-hint">Wir melden uns innerhalb von 24 Stunden — persönlich, nicht automatisch.</p>
-      <div class="quiz-form-group">
-        <label for="field-vorname">Vorname *</label>
-        <input id="field-vorname" type="text" placeholder="Max" autocomplete="given-name" />
+    <!-- Q7 Budget (optional) -->
+    <div class="qstep" id="qs7">
+      <p class="qq">Welches monatliche Budget planst du für Marketing?</p>
+      <p class="qhint">Optional — hilft uns zur Vorbereitung. Keine Pflicht.</p>
+      <div class="qchoices" id="qc7">
+        <button class="qchoice" data-val="" onclick="pick(this,7)"><span class="qdot"></span>Das ist noch offen</button>
+        <button class="qchoice" data-val="Bis 500 €/Monat" onclick="pick(this,7)"><span class="qdot"></span>Bis 500 €/Monat</button>
+        <button class="qchoice" data-val="500–1.500 €/Monat" onclick="pick(this,7)"><span class="qdot"></span>500–1.500 €/Monat</button>
+        <button class="qchoice" data-val="Über 1.500 €/Monat" onclick="pick(this,7)"><span class="qdot"></span>Über 1.500 €/Monat</button>
       </div>
-      <div class="quiz-form-group">
-        <label for="field-nachname">Nachname *</label>
-        <input id="field-nachname" type="text" placeholder="Mustermann" autocomplete="family-name" />
+      <div class="qnav"><button class="qback" onclick="pv(7)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button><button class="qnext rdy" id="qn7" onclick="nx(7)">Weiter <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
+    </div>
+
+    <!-- Q8 Kontakt -->
+    <div class="qstep" id="qs8">
+      <p class="qq">Fast geschafft. Wohin sollen wir uns melden?</p>
+      <p class="qhint">Wir melden uns persönlich innerhalb von 24 Stunden — nicht automatisch.</p>
+      <div class="qfg"><label for="fvn">Vorname *</label><input id="fvn" type="text" placeholder="Max" autocomplete="given-name" /></div>
+      <div class="qfg"><label for="fnn">Nachname *</label><input id="fnn" type="text" placeholder="Mustermann" autocomplete="family-name" /></div>
+      <div class="qfg"><label for="ftel">Telefon *</label><input id="ftel" type="tel" placeholder="+49 163 000 0000" autocomplete="tel" /></div>
+      <div class="qfg"><label for="fmail">E-Mail *</label><input id="fmail" type="email" placeholder="max@mustermann.de" autocomplete="email" /></div>
+      <div class="qpriv">
+        <input type="checkbox" id="fpriv" />
+        <label for="fpriv">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu.</label>
       </div>
-      <div class="quiz-form-group">
-        <label for="field-telefon">Telefon *</label>
-        <input id="field-telefon" type="tel" placeholder="+49 163 000 0000" autocomplete="tel" />
-      </div>
-      <div class="quiz-form-group">
-        <label for="field-email">E-Mail *</label>
-        <input id="field-email" type="email" placeholder="max@mustermann.de" autocomplete="email" />
-      </div>
-      <div class="quiz-privacy">
-        <input type="checkbox" id="privacy-check" />
-        <label for="privacy-check">
-          Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu. Diese Einwilligung kann ich jederzeit widerrufen.
-        </label>
-      </div>
-      <div class="quiz-nav" style="margin-top:8px">
-        <button class="quiz-back" onclick="prevStep(7)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Zurück</button>
-        <button class="quiz-submit" id="quiz-submit-btn" onclick="submitQuiz()">
-          Gespräch anfragen
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+      <div class="qnav" style="margin-top:8px;">
+        <button class="qback" onclick="pv(8)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Zurück</button>
+        <button class="qsub" id="qSub" onclick="send()">Gespräch anfragen &nbsp;&rarr;</button>
       </div>
     </div>
 
-    <!-- Success -->
-    <div class="quiz-success" id="quizSuccess">
-      <div class="quiz-success__icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
+    <!-- Erfolg -->
+    <div class="qsuccess" id="qSucc">
+      <div class="qsuccess-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h3>Anfrage eingegangen!</h3>
-      <p>Wir melden uns innerhalb von <strong>24 Stunden</strong> bei dir — persönlich, nicht per Autoresponder.<br><br>Schau in der Zwischenzeit in dein E-Mail-Postfach. 📬</p>
+      <p>Wir melden uns innerhalb von <strong>24 Stunden</strong> persönlich bei dir — nicht per Autoresponder. Schau in dein Postfach.</p>
     </div>
   </div>
 </div>
 
 <script>
-  /* ─ UTM aus URL lesen ─ */
-  var _up = new URLSearchParams(window.location.search);
-  var _utm = {
-    utm_source:   _up.get('utm_source')   || undefined,
-    utm_medium:   _up.get('utm_medium')   || undefined,
-    utm_campaign: _up.get('utm_campaign') || undefined,
-    utm_term:     _up.get('utm_term')     || undefined,
-    utm_content:  _up.get('utm_content')  || undefined,
-    referrer:     document.referrer       || undefined,
-    geraet:       window.innerWidth < 768 ? 'mobil' : 'desktop',
+  /* UTM */
+  var _sp=new URLSearchParams(window.location.search);
+  var _utm={
+    utm_source:_sp.get('utm_source')||undefined,utm_medium:_sp.get('utm_medium')||undefined,
+    utm_campaign:_sp.get('utm_campaign')||undefined,utm_term:_sp.get('utm_term')||undefined,
+    utm_content:_sp.get('utm_content')||undefined,referrer:document.referrer||undefined,
+    geraet:window.innerWidth<768?'mobil':'desktop',
   };
 
-  /* ─ Quiz State ─ */
-  var _state = { betrieb: '', anfragen: '', website_exists: '', herausforderung: '', zeitpunkt_wunsch: '', budget: '' };
-  var _current = 1;
-  var TOTAL = 7;
+  /* State */
+  var TOTAL=8, _cur=1;
+  var _d={betrieb:'',region:'',anfragen:'',website_exists:'',ads_exp:'',zeitpunkt_wunsch:'',budget:''};
 
-  function startQuiz() {
-    document.getElementById('quizOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeQuiz() {
-    document.getElementById('quizOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeQuiz(); });
+  function openQuiz(){document.getElementById('quizOverlay').classList.add('open');document.body.style.overflow='hidden';}
+  function closeQuiz(){document.getElementById('quizOverlay').classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeQuiz();});
 
-  function selectChoice(btn, step) {
-    var choices = btn.closest('.quiz-choices').querySelectorAll('.quiz-choice');
-    choices.forEach(function(c){ c.classList.remove('selected'); });
-    btn.classList.add('selected');
-    document.getElementById('next' + step).classList.add('ready');
+  function pick(btn,s){
+    btn.closest('.qchoices').querySelectorAll('.qchoice').forEach(function(c){c.classList.remove('sel');});
+    btn.classList.add('sel');
+    var n=document.getElementById('qn'+s);
+    if(n)n.classList.add('rdy');
   }
+  function gv(s){var el=document.querySelector('#qc'+s+' .qchoice.sel');return el?el.dataset.val:'';}
 
-  function getSelectedVal(step) {
-    var sel = document.querySelector('#choices' + step + ' .quiz-choice.selected');
-    return sel ? sel.dataset.val : null;
-  }
-
-  function updateProgress(step) {
-    var pct = Math.round((step / TOTAL) * 100);
-    document.getElementById('quizProgressFill').style.width = pct + '%';
-    document.getElementById('quizProgressLabel').textContent = 'Schritt ' + step + ' von ' + TOTAL;
+  function sp(n){
+    document.querySelectorAll('.qstep').forEach(function(s){s.classList.remove('act');});
+    var el=document.getElementById('qs'+n);
+    if(el){el.classList.remove('act');void el.offsetWidth;el.classList.add('act');}
+    document.getElementById('qPF').style.width=Math.round((n/TOTAL)*100)+'%';
+    document.getElementById('qPL').textContent='Schritt '+n+' von '+TOTAL;
+    _cur=n;
+    document.querySelector('.qcard').scrollTop=0;
   }
 
-  function showStep(n) {
-    document.querySelectorAll('.quiz-step').forEach(function(s){ s.classList.remove('active'); });
-    var el = document.getElementById('step' + n);
-    if(el) el.classList.add('active');
-    updateProgress(n);
-    _current = n;
+  function nx(s){
+    var v=gv(s);
+    if(s===1)_d.betrieb=v;
+    if(s===2)_d.region=v;
+    if(s===3)_d.anfragen=v;
+    if(s===4)_d.website_exists=v;
+    if(s===5)_d.ads_exp=v;
+    if(s===6)_d.zeitpunkt_wunsch=v;
+    if(s===7)_d.budget=v;
+    sp(s+1);
   }
+  function pv(s){if(s>1)sp(s-1);}
 
-  function nextStep(current) {
-    var val = getSelectedVal(current);
-    if(val === null) return;
-    /* Step 6 (Budget) = next btn always ready (optional field), even empty val allowed */
-    if(current === 1) _state.betrieb          = val;
-    if(current === 2) _state.anfragen         = val;
-    if(current === 3) _state.website_exists   = val;
-    if(current === 4) _state.herausforderung  = val;
-    if(current === 5) _state.zeitpunkt_wunsch = val;
-    if(current === 6) _state.budget           = val;
-    showStep(current + 1);
-    document.querySelector('.quiz-card').scrollTop = 0;
-  }
-  function prevStep(current) {
-    if(current <= 1) return;
-    showStep(current - 1);
-    document.querySelector('.quiz-card').scrollTop = 0;
-  }
-
-  /* Step 6 is optional → always make next ready when shown */
-  (function(){
-    var step6 = document.getElementById('step6');
-    if(!step6) return;
-    var obs = new MutationObserver(function(){
-      if(step6.classList.contains('active')){
-        document.getElementById('next6').classList.add('ready');
-      }
-    });
-    obs.observe(step6, { attributes: true, attributeFilter: ['class'] });
-  })();
-
-  function buildNachricht() {
+  function buildMsg(){
     return [
-      'Betrieb: ' + _state.betrieb,
-      'Anfragen/Monat: ' + _state.anfragen,
-      'Website: ' + _state.website_exists,
-      'Herausforderung: ' + _state.herausforderung,
-      'Starttermin: ' + _state.zeitpunkt_wunsch,
-      _state.budget ? 'Budget: ' + _state.budget : '',
+      'Betrieb: '+_d.betrieb,
+      'Region: '+_d.region,
+      'Anfragen/Monat: '+_d.anfragen,
+      'Website: '+_d.website_exists,
+      'Google Ads Erfahrung: '+_d.ads_exp,
+      'Starttermin: '+_d.zeitpunkt_wunsch,
+      _d.budget?'Budget: '+_d.budget:'',
     ].filter(Boolean).join(' | ');
   }
 
-  function submitQuiz() {
-    var vorname  = document.getElementById('field-vorname').value.trim();
-    var nachname = document.getElementById('field-nachname').value.trim();
-    var telefon  = document.getElementById('field-telefon').value.trim();
-    var email    = document.getElementById('field-email').value.trim();
-    var privacy  = document.getElementById('privacy-check').checked;
-
-    if(!vorname)  { alert('Bitte Vorname eingeben.'); return; }
-    if(!nachname) { alert('Bitte Nachname eingeben.'); return; }
-    if(!telefon)  { alert('Bitte Telefonnummer eingeben.'); return; }
-    if(!email)    { alert('Bitte E-Mail eingeben.'); return; }
-    if(!privacy)  { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
-
-    var btn = document.getElementById('quiz-submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet…';
-
-    var payload = Object.assign({
-      name:             vorname + ' ' + nachname,
-      email:            email,
-      telefon:          telefon,
-      betrieb:          _state.betrieb,
-      ziel:             'Komplettsystem (Website + Ads + KI)',
-      anfragen:         _state.anfragen,
-      website_exists:   _state.website_exists,
-      zeitpunkt_wunsch: _state.zeitpunkt_wunsch,
-      budget:           _state.budget || undefined,
-      nachricht:        buildNachricht(),
-      seite:            'galabau-mehr-kunden',
-    }, _utm);
-
-    fetch('https://fastraone-admin.vercel.app/api/leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-    .then(function(res) {
-      if(!res.ok) throw new Error('HTTP ' + res.status);
-      document.querySelectorAll('.quiz-step').forEach(function(s){ s.style.display = 'none'; });
-      document.getElementById('quizProgressLabel').style.display = 'none';
-      document.querySelector('.quiz-progress-bar').style.display = 'none';
-      document.getElementById('quizSuccess').classList.add('show');
-    })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'Gespräch anfragen';
-      alert('Etwas ist schiefgelaufen. Bitte ruf uns kurz an: +49 163 3781657');
+  function send(){
+    var vn=document.getElementById('fvn').value.trim();
+    var nn=document.getElementById('fnn').value.trim();
+    var tel=document.getElementById('ftel').value.trim();
+    var mail=document.getElementById('fmail').value.trim();
+    var priv=document.getElementById('fpriv').checked;
+    if(!vn){alert('Bitte Vorname angeben.');return;}
+    if(!nn){alert('Bitte Nachname angeben.');return;}
+    if(!tel){alert('Bitte Telefonnummer angeben.');return;}
+    if(!mail){alert('Bitte E-Mail angeben.');return;}
+    if(!priv){alert('Bitte Datenschutzerklärung akzeptieren.');return;}
+    var btn=document.getElementById('qSub');
+    btn.disabled=true;btn.textContent='Wird gesendet…';
+    var p=Object.assign({
+      name:vn+' '+nn,email:mail,telefon:tel,
+      betrieb:_d.betrieb,
+      ziel:'Komplettsystem (Website + Ads + KI)',
+      anfragen:_d.anfragen,
+      website_exists:_d.website_exists,
+      zeitpunkt_wunsch:_d.zeitpunkt_wunsch,
+      budget:_d.budget||undefined,
+      nachricht:buildMsg(),
+      seite:'galabau-mehr-kunden',
+    },_utm);
+    fetch('https://fastraone-admin.vercel.app/api/leads',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),
+    }).then(function(r){if(!r.ok)throw new Error(r.status);})
+    .then(function(){
+      document.querySelectorAll('.qstep').forEach(function(s){s.style.display='none';});
+      document.querySelector('.qprog-wrap').style.display='none';
+      document.getElementById('qSucc').classList.add('show');
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Gespräch anfragen →';
+      alert('Fehler. Bitte ruf uns an: +49 163 3781657');
     });
   }
 
-  /* ─ FAQ Accordion ─ */
-  function toggleFaq(btn) {
-    var item = btn.closest('.faq__item');
-    var answer = item.querySelector('.faq__a');
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq__item').forEach(function(i){
-      i.classList.remove('open');
-      i.querySelector('.faq__a').style.maxHeight = '0';
-    });
-    if(!isOpen) {
-      item.classList.add('open');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-    }
+  function toggleFaq(btn){
+    var item=btn.closest('.lp-faq-item');
+    var ans=item.querySelector('.lp-faq-a');
+    var open=item.classList.contains('open');
+    document.querySelectorAll('.lp-faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.lp-faq-a').style.maxHeight='0';});
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
   }
 
-  /* ─ Reveal Animations ─ */
-  var ro = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+  /* Scroll Reveal (nutzt globales .reveal/.is-visible) */
+  if(typeof IntersectionObserver!=='undefined'){
+    var ro=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');ro.unobserve(e.target);}});},{threshold:.07});
+    document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('is-visible');});}
 </script>
 </BaseLayout>
