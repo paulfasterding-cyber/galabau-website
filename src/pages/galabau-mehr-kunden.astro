@@ -119,6 +119,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- ════ PROBLEM ════════════════════════════════════════════════════ -->
+  <section class="lp-prob">
+    <div class="container">
+      <p class="lp-eyebrow" style="text-align:center">Klingt das bekannt?</p>
+      <h2 class="lp-offer-h2" style="text-align:center;margin-bottom:36px;">Warum dein Auftragsbuch<br>nicht voll wird.</h2>
+      <div class="lp-prob-g">
+        <div class="lp-prob-c reveal">
+          <div class="lp-prob-ico">📅</div>
+          <h3>Sonntagabend, Kalender halb leer</h3>
+          <p>Du weißt nicht, was nächsten Monat kommt. Das Auftragsbuch hängt vom Zufall ab — das schläft sich schlecht.</p>
+        </div>
+        <div class="lp-prob-c reveal">
+          <div class="lp-prob-ico">📢</div>
+          <h3>Weiterempfehlung als einziger Vertrieb</h3>
+          <p>Läuft gut, solange Stammkunden aktiv sind. Aber das ist kein Geschäftsmodell — das ist Glück. Und Glück skaliert nicht.</p>
+        </div>
+        <div class="lp-prob-c reveal">
+          <div class="lp-prob-ico">💸</div>
+          <h3>Geld für Werbung verbrannt</h3>
+          <p>Du hast schon was versucht. Ergebnis: schmerzhaft wenig für das investierte Geld. Keine Strategie, keine Ergebnisse.</p>
+        </div>
+        <div class="lp-prob-c reveal">
+          <div class="lp-prob-ico">🔍</div>
+          <h3>Dein Wettbewerber steht oben</h3>
+          <p>Er macht schlechtere Arbeit. Aber er wirkt online professioneller, steht bei Google oben — und bekommt die Aufträge die dir fehlen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════ GRAND SLAM OFFER ══════════════════════════════════════════ -->
   <section class="lp-offer-section">
     <div class="container">
@@ -241,6 +271,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p style="font-size:.76rem;color:var(--gray-2);margin-top:10px;">Kein Druck · Antwort in 24 h · Kein Spam</p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ════ TESTIMONIALS ════════════════════════════════════════════════ -->
+  <section class="lp-tst-sec">
+    <div class="container">
+      <p class="lp-eyebrow" style="text-align:center">Was GaLaBau-Betriebe sagen</p>
+      <h2 class="lp-offer-h2" style="text-align:center;margin-bottom:40px;">Erste Bewertungen folgen.<br>Deine könnte die erste sein.</h2>
+      <div class="lp-tst-g">
+        <div class="lp-tst-c reveal">
+          <div class="lp-tst-tag">Folgt bald</div>
+          <div class="lp-tst-stars">★★★★★</div>
+          <p class="lp-tst-q">&nbsp;</p>
+          <div class="lp-tst-a">
+            <div class="lp-tst-av">G</div>
+            <div><strong>GaLaBau-Betrieb</strong><span>Hannover</span></div>
+          </div>
+        </div>
+        <div class="lp-tst-c reveal">
+          <div class="lp-tst-tag">Folgt bald</div>
+          <div class="lp-tst-stars">★★★★★</div>
+          <p class="lp-tst-q">&nbsp;</p>
+          <div class="lp-tst-a">
+            <div class="lp-tst-av">G</div>
+            <div><strong>GaLaBau-Betrieb</strong><span>Hannover</span></div>
+          </div>
+        </div>
+        <div class="lp-tst-c reveal">
+          <div class="lp-tst-tag">Folgt bald</div>
+          <div class="lp-tst-stars">★★★★★</div>
+          <p class="lp-tst-q">&nbsp;</p>
+          <div class="lp-tst-a">
+            <div class="lp-tst-av">G</div>
+            <div><strong>GaLaBau-Betrieb</strong><span>Hannover</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -586,6 +653,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .lp-step-sm__conn { flex:none; align-self:center; margin-top:-24px; width:32px; height:1px; background:rgba(22,165,102,.3); position:relative; }
 .lp-step-sm__conn::after { content:""; position:absolute; right:-4px; top:-3px; border:4px solid transparent; border-left-color:rgba(22,165,102,.35); }
 @media (max-width:620px) { .lp-step-sm__conn { display:none; } }
+
+/* PROBLEM SECTION */
+.lp-prob { background:#f5f5f5; padding:64px 0 56px; }
+.lp-prob-g { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+@media(max-width:900px){.lp-prob-g{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.lp-prob-g{grid-template-columns:1fr}}
+.lp-prob-c { background:#fff; border:1px solid var(--line); border-radius:16px; padding:22px 18px; }
+.lp-prob-ico { font-size:1.5rem; margin-bottom:12px; }
+.lp-prob-c h3 { font-family:var(--f-head); font-size:.92rem; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+.lp-prob-c p { font-size:.8rem; color:var(--gray); line-height:1.6; }
+
+/* TESTIMONIALS SECTION */
+.lp-tst-sec { background:#fff; padding:64px 0 56px; border-top:1px solid var(--line); }
+.lp-tst-g { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media(max-width:800px){.lp-tst-g{grid-template-columns:1fr}}
+.lp-tst-c { background:#f8f9fa; border:1px solid var(--line); border-radius:16px; padding:22px 20px; position:relative; }
+.lp-tst-tag { position:absolute; top:12px; right:12px; font-size:.7rem; font-weight:700; color:var(--gray-2); background:#fff; border:1px solid var(--line); padding:3px 8px; border-radius:6px; }
+.lp-tst-stars { color:#f59e0b; font-size:1rem; letter-spacing:2px; margin-bottom:12px; }
+.lp-tst-q { font-size:.88rem; color:var(--gray); font-style:italic; line-height:1.65; margin-bottom:16px; min-height:60px; background:repeating-linear-gradient(transparent,transparent 22px,rgba(61,61,61,.05) 22px,rgba(61,61,61,.05) 23px); border-radius:4px; }
+.lp-tst-a { display:flex; align-items:center; gap:10px; }
+.lp-tst-av { width:36px; height:36px; border-radius:50%; background:rgba(22,165,102,.12); display:flex; align-items:center; justify-content:center; font-family:var(--f-head); font-size:.88rem; font-weight:700; color:var(--blue-strong); flex-shrink:0; }
+.lp-tst-a strong { display:block; font-size:.84rem; font-weight:700; color:var(--ink); }
+.lp-tst-a span { display:block; font-size:.74rem; color:var(--gray-2); }
 
 /* GRAND SLAM OFFER SECTION */
 .lp-offer-section { background:#fff; padding:72px 0 64px; }
