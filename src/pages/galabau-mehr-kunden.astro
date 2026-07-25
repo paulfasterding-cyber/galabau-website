@@ -349,7 +349,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Wave white → dark -->
   <div style="background:#fff;line-height:0;">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
-      <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60Z" fill="#07111a"/>
+      <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60Z" fill="#050e07"/>
     </svg>
   </div>
 
@@ -380,15 +380,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <div class="lp-final-cta reveal">
-        <div class="lp-final-cta__text">
-          <strong>Für Hannover &amp; Region</strong>
-          <span>Kostenlos · 2 Minuten · Noch 1 Platz frei</span>
-        </div>
-        <button class="lp-final-cta__btn" onclick="openModal()">
-          Platz sichern →
-        </button>
-      </div>
 
     </div>
   </section>
@@ -639,6 +630,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </script>
   </Fragment>
 
+  <!-- ════ COOKIE BANNER ══════════════════════════════════════════════ -->
+  <div class="ck-bar" id="ck-bar" role="region" aria-label="Cookie-Einstellungen" style="display:none">
+    <div class="ck-bar__inner">
+      <div class="ck-bar__text">
+        <strong>Cookies &amp; Datenschutz</strong>
+        <p>Wir nutzen technisch notwendige Cookies sowie verarbeiten deine Anfragedaten. Mehr dazu in unserer <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+      </div>
+      <div class="ck-bar__actions">
+        <button class="ck-btn ck-btn--ghost" onclick="ckReject()">Nur notwendige</button>
+        <button class="ck-btn ck-btn--primary" onclick="ckAccept()">Alles akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+    (function(){
+      if (!localStorage.getItem('ck_consent')) {
+        var bar = document.getElementById('ck-bar');
+        if (bar) bar.style.display = '';
+      }
+    })();
+    function ckAccept() {
+      localStorage.setItem('ck_consent', 'all');
+      var bar = document.getElementById('ck-bar');
+      if (bar) bar.style.display = 'none';
+    }
+    function ckReject() {
+      localStorage.setItem('ck_consent', 'essential');
+      var bar = document.getElementById('ck-bar');
+      if (bar) bar.style.display = 'none';
+    }
+    </script>
+  </Fragment>
+
 </BaseLayout>
 
 <style is:global>
@@ -759,9 +785,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .lp-guar-box span strong { display:inline; font-size:inherit; color:var(--blue-strong); }
 
 /* DARK SECTION */
-.lp-testi-section { position:relative; overflow:hidden; padding:40px 0 36px; background:linear-gradient(rgba(5,12,20,0.84) 0%, rgba(7,17,26,0.92) 100%), url('https://images.unsplash.com/photo-1734079692160-fcbe4be6ab96?auto=format&fit=crop&w=1400&q=80') center 60% / cover no-repeat; }
+.lp-testi-section { position:relative; overflow:hidden; padding:60px 0 60px; background:#050e07; }
 .lp-testi__mesh { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:60px 60px; }
-.lp-testi-card { position:relative; overflow:hidden; max-width:640px; margin:0 auto; text-align:center; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:28px; padding:40px 36px; box-shadow:0 24px 60px rgba(0,0,0,.35); }
+.lp-testi-card { position:relative; max-width:640px; margin:0 auto; text-align:center; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:28px; padding:40px 36px; box-shadow:0 24px 60px rgba(0,0,0,.35); }
 @media (max-width:480px) { .lp-testi-card { padding:28px 20px; } }
 .lp-testi-card__glow { position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:500px; height:380px; pointer-events:none; background:radial-gradient(ellipse,rgba(110,236,157,.10) 0%,transparent 65%); }
 .lp-testi-card > *:not(.lp-testi-card__glow) { position:relative; z-index:1; }
@@ -777,7 +803,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .lp-final-cta__btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(84,221,146,.45); }
 
 /* FOOTER */
-.lp-footer { background:#07111a; border-top:1px solid rgba(255,255,255,.07); padding:28px 22px; text-align:center; }
+.lp-footer { background:#050e07; border-top:1px solid rgba(255,255,255,.07); padding:28px 22px; text-align:center; }
 .lp-footer p { font-size:.74rem; color:rgba(255,255,255,.3); line-height:2; }
 .lp-footer a { color:rgba(255,255,255,.4); text-decoration:underline; text-underline-offset:3px; transition:color .15s; }
 .lp-footer a:hover { color:rgba(255,255,255,.7); }
@@ -835,14 +861,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .reveal:nth-child(4) { transition-delay:.24s; }
 @media (prefers-reduced-motion:reduce) { .reveal { opacity:1 !important; transform:none !important; transition:none !important; } }
 
+/* Cookie banner */
+.ck-bar { position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#fff; border-top:1px solid var(--line); box-shadow:0 -4px 24px rgba(0,0,0,.1); padding:16px 20px; }
+.ck-bar__inner { max-width:860px; margin:0 auto; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+.ck-bar__text { flex:1; min-width:220px; }
+.ck-bar__text strong { display:block; font-size:.88rem; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.ck-bar__text p { font-size:.78rem; color:var(--gray); margin:0; line-height:1.5; }
+.ck-bar__text a { color:var(--blue-strong); text-decoration:underline; text-underline-offset:2px; }
+.ck-bar__actions { display:flex; gap:10px; flex-shrink:0; flex-wrap:wrap; }
+.ck-btn { padding:10px 18px; border-radius:999px; font-family:inherit; font-size:.84rem; font-weight:700; cursor:pointer; transition:all .15s; white-space:nowrap; }
+.ck-btn--ghost { background:transparent; border:1.5px solid var(--line); color:var(--gray); }
+.ck-btn--ghost:hover { border-color:var(--ink); color:var(--ink); }
+.ck-btn--primary { background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%); border:none; color:#06351e; box-shadow:0 4px 14px rgba(84,221,146,.3); }
+.ck-btn--primary:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(84,221,146,.4); }
+
 /* Value stack: censored price row */
 .lp-vstack__yourprice { display:flex; align-items:center; gap:14px; padding:20px 22px; background:linear-gradient(135deg,#0b2e1d,#0f3d26); }
 .lp-vstack__yourprice-l { flex:1; }
 .lp-vstack__yourprice-label { display:flex; align-items:center; gap:7px; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.12em; color:#4ade80; margin-bottom:4px; }
 .lp-vstack__yourprice-hint { font-size:.72rem; color:rgba(255,255,255,.38); }
 .lp-vstack__yourprice-val { font-family:var(--f-head); font-size:2rem; font-weight:900; letter-spacing:-0.04em; color:#7ef0ab; display:flex; align-items:baseline; gap:1px; }
-.lp-px { color:#7ef0ab; }
-.lp-pb { color:#7ef0ab; filter:blur(6px); user-select:none; pointer-events:none; -webkit-touch-callout:none; }
+.lp-pb { color:transparent; text-shadow:0 0 9px rgba(126,240,171,.95); user-select:none; pointer-events:none; -webkit-touch-callout:none; }
 
 /* FAQ section */
 .lp-faq-sec { background:#fff; padding:56px 0 60px; }
