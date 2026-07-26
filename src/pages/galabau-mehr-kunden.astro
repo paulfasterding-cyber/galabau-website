@@ -351,8 +351,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Gradient transition white → dark -->
-  <div style="background:linear-gradient(to bottom,#fff 0%,#050e07 100%);height:80px;"></div>
+  <!-- Transition white → dark -->
+  <div style="background:linear-gradient(to bottom,#fff 0%,#050e07 100%);height:36px;"></div>
 
   <!-- ════ DARK SECTION: FINAL CTA ═══════════════════════════════════ -->
   <section class="lp-testi-section">
@@ -663,6 +663,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         document.getElementById('qz-prog-wrap').style.display = 'none';
         document.getElementById('qz-8').classList.remove('lp-step-content--active');
         document.getElementById('qz-succ').style.display = 'block';
+        if (window.dataLayer) window.dataLayer.push({ event:'lead_submit', lead_region:_qd.region, lead_seite:'galabau-mehr-kunden' });
       }).catch(function() {
         sub.disabled = false; sub.textContent = 'Platz jetzt sichern →';
         alert('Fehler beim Senden. Ruf uns an: +49 163 3781657');
@@ -675,17 +676,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }, { threshold:0.07 });
     document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
 
+    /* ── Google Tag Manager (DSGVO-konform: lädt nur nach Consent) ──────
+       TODO: GTM-Container-ID ersetzen → https://tagmanager.google.com
+       Format: GTM-XXXXXXX  |  Dann GA4 + Google Ads Conversion via GTM konfigurieren */
+    var _GTM_ID = 'GTM-XXXXXXX';
+    function _loadGTM() {
+      if (window._gtmLoaded) return;
+      window._gtmLoaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtm.js?id=' + _GTM_ID;
+      document.head.appendChild(s);
+    }
+
     /* Cookie banner */
     (function(){
-      if (!localStorage.getItem('ck_consent')) {
+      var consent = localStorage.getItem('ck_consent');
+      if (!consent) {
         var bar = document.getElementById('ck-bar');
         if (bar) bar.style.display = '';
+      } else if (consent === 'all') {
+        _loadGTM();
       }
     })();
     function ckAccept() {
       localStorage.setItem('ck_consent', 'all');
       var bar = document.getElementById('ck-bar');
       if (bar) bar.style.display = 'none';
+      _loadGTM();
     }
     function ckReject() {
       localStorage.setItem('ck_consent', 'essential');
@@ -926,7 +945,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .lp-cta-mega::after { content:''; position:absolute; top:0; left:-80%; width:40%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent); animation:ctaShimmer 3s 0.8s infinite; pointer-events:none; }
 .lp-cta-mega span { position:relative; z-index:1; }
 .lp-cta-mega svg { position:relative; z-index:1; }
-.lp-testi__urgency { display:flex; align-items:center; justify-content:center; gap:8px; font-size:.78rem; color:rgba(255,255,255,.4); margin-top:14px; font-weight:600; letter-spacing:.01em; }
+.lp-testi__urgency { display:flex; align-items:center; justify-content:center; gap:8px; font-size:.78rem; color:rgba(255,255,255,.4); margin-top:28px; font-weight:600; letter-spacing:.01em; }
 .lp-pulse-dot { width:7px; height:7px; border-radius:50%; background:#4ade80; flex:none; animation:lpPulse 2s ease-out infinite; }
 
 /* Cookie banner */
