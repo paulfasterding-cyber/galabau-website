@@ -241,7 +241,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div class="lp-vstack__yourprice">
           <div class="lp-yp-top">
-            <span class="lp-yp-badge">€€€€</span>
+            <span class="lp-yp-badge">Du sparst €€€€</span>
             <div class="lp-vstack__yourprice-val"><span class="lp-pb">897 €</span></div>
           </div>
           <div class="lp-vstack__yourprice-l">
@@ -351,12 +351,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Wave white → dark -->
-  <div style="background:#fff;line-height:0;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
-      <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60Z" fill="#050e07"/>
-    </svg>
-  </div>
+  <!-- Gradient transition white → dark -->
+  <div style="background:linear-gradient(to bottom,#fff 0%,#050e07 100%);height:80px;"></div>
 
   <!-- ════ DARK SECTION: FINAL CTA ═══════════════════════════════════ -->
   <section class="lp-testi-section">
@@ -382,10 +378,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span>Jetzt kostenlosen Platz sichern</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <p class="lp-testi__urgency">
-            <span class="lp-pulse-dot"></span>
-            Hannover: Noch 1 Platz frei · Antwort in 24 h · Kein Spam
-          </p>
+          <p class="lp-testi__urgency">Hannover · Noch 1 Platz frei · Antwort in 24 h</p>
         </div>
       </div>
 
@@ -949,6 +942,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .ck-btn--ghost:hover { border-color:var(--ink); color:var(--ink); }
 .ck-btn--primary { background:linear-gradient(180deg,#7ef0ab 0%,#54dd92 100%); border:none; color:#06351e; box-shadow:0 4px 14px rgba(84,221,146,.3); }
 .ck-btn--primary:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(84,221,146,.4); }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE OPTIMIERUNG
+══════════════════════════════════════════════════════════════ */
+
+/* Tablet (≤768px) */
+@media (max-width:768px) {
+  .lp-offer-section { padding:52px 0 44px; }
+  .lp-tst-sec { padding:44px 0 0; }
+  .lp-faq-sec { padding:40px 0 48px; }
+  .lp-prob { padding:44px 0 36px; }
+  .lp-vstack { margin-left:0; margin-right:0; }
+  .lp-guar-row { max-width:100%; }
+  .lp-vstack { max-width:100%; }
+}
+
+/* Mobil (≤600px) */
+@media (max-width:600px) {
+  /* Hero offer strip: 2×2 statt 4er-Reihe */
+  .lp-offer-strip { flex-wrap:wrap; border-radius:14px; }
+  .lp-offer-divider { display:none; }
+  .lp-offer-item { flex:0 0 50%; min-width:0; padding:12px 6px; }
+  .lp-offer-item:nth-child(1),
+  .lp-offer-item:nth-child(3) { border-bottom:1px solid rgba(255,255,255,.07); }
+  .lp-offer-item:nth-child(1),
+  .lp-offer-item:nth-child(5) { border-right:1px solid rgba(255,255,255,.07); }
+
+  /* Hero CTAs: untereinander */
+  .lp-cta-row { flex-direction:column; align-items:stretch; }
+  .lp-cta-row .btn { width:100%; justify-content:center; }
+
+  /* Hero Pill + Sub */
+  .lp-pill { font-size:.78rem; padding:6px 12px; text-align:center; }
+  .lp-sub { font-size:.92rem; }
+
+  /* Mid steps */
+  .lp-mid { padding:28px 0; }
+
+  /* Problem cards */
+  .lp-prob-c { padding:18px 14px; }
+
+  /* Value stack: items kompakter */
+  .lp-vstack__item { padding:13px 14px; gap:10px; }
+  .lp-vstack__text strong { font-size:.88rem; }
+  .lp-vstack__text span { font-size:.74rem; }
+  .lp-vstack__val { font-size:.82rem; }
+  .lp-vstack__total { padding:16px 14px; }
+  .lp-vstack__total-val { font-size:1.3rem; }
+
+  /* Yourprice: Badge + Preis untereinander */
+  .lp-yp-top { flex-direction:column; align-items:flex-start; gap:8px; }
+  .lp-vstack__yourprice-val { font-size:1.8rem; }
+  .lp-vstack__yourprice { padding:20px 16px; }
+  .lp-yp-cta { font-size:.96rem; padding:14px; }
+
+  /* Guarantee boxes */
+  .lp-guar-box { padding:14px 14px; }
+  .lp-guar-row { grid-template-columns:1fr; max-width:100%; }
+
+  /* Testimonials */
+  .lp-tst-q { font-size:.84rem; }
+  .lp-tst-c { padding:18px 16px; }
+
+  /* FAQ */
+  .lp-faq-item { padding:18px 16px; }
+  .lp-faq-g { grid-template-columns:1fr; }
+
+  /* Dark CTA section */
+  .lp-testi-section { padding:40px 0 44px; }
+  .lp-testi-card { padding:28px 18px; border-radius:18px; }
+  .lp-testi__quote { font-size:.92rem; }
+  .lp-cta-mega { font-size:.94rem !important; padding:15px 16px !important; max-width:100%; }
+  .lp-testi__urgency { font-size:.73rem; }
+
+  /* Footer */
+  .lp-footer p { font-size:.7rem; }
+
+  /* Cookie Banner: vertikal */
+  .ck-bar { padding:14px 16px; }
+  .ck-bar__inner { flex-direction:column; gap:12px; }
+  .ck-bar__actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; }
+  .ck-btn { font-size:.8rem; padding:10px 8px; }
+
+  /* Topbar */
+  .lp-topbar { font-size:.74rem; gap:4px 8px; padding:8px 14px; }
+  .lp-topbar__cta { display:none; }
+
+  /* Modal: Bottom Sheet auf Mobil */
+  .lp-modal-bg { align-items:flex-end; padding:0; }
+  .lp-modal { border-radius:22px 22px 0 0; max-height:93dvh; max-width:100%; }
+  .lp-modal-bg--open .lp-modal { transform:none; }
+  .lp-modal__inner { padding:24px 16px 20px; }
+  .lp-choices { gap:6px; }
+  .lp-choice { padding:11px 6px; font-size:.82rem; }
+  .lp-qnxt { font-size:.86rem; padding:12px; }
+}
+
+/* Sehr kleine Phones (≤380px) */
+@media (max-width:380px) {
+  .lp-h1 { font-size:1.95rem; }
+  .lp-offer-item__val { font-size:.95rem; }
+  .lp-offer-item__label { font-size:.6rem; }
+  .lp-vstack__yourprice-val { font-size:1.55rem; }
+  .lp-step-sm { padding:0 8px; }
+}
 
 /* Value stack: censored price row */
 .lp-vstack__yourprice { display:flex; flex-direction:column; gap:14px; padding:24px 22px; background:linear-gradient(135deg,#0b2e1d,#0f3d26); }
