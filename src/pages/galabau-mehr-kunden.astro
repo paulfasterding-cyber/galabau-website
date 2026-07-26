@@ -438,20 +438,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p style="text-align:center;font-size:.75rem;color:var(--gray-2);margin-top:12px;">Dauert 2 Minuten · Kostenlos · Kein Spam</p>
         </div>
 
-        <!-- STEP 1 -->
+        <!-- STEP 1: Name -->
         <div class="lp-step-content" id="qz-1">
-          <p class="lp-q">Wie groß ist dein Betrieb aktuell?</p>
+          <p class="lp-q">Wie heißt du?</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 16px;">Damit wir dich persönlich ansprechen können.</p>
+          <input type="text" class="lp-input" id="qz-name" placeholder="Dein Vor- und Nachname *" autocomplete="name">
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(0)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-1" onclick="qzFromStep1()" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Betriebsgröße -->
+        <div class="lp-step-content" id="qz-2">
+          <p class="lp-q" id="qz-2-q">Wie groß ist dein Betrieb?</p>
           <div class="lp-choices">
             <button class="lp-choice" data-qz="betrieb" data-val="Solo (nur ich)">Solo (nur ich)</button>
             <button class="lp-choice" data-qz="betrieb" data-val="2–5 Mitarbeiter">2–5 Mitarbeiter</button>
             <button class="lp-choice" data-qz="betrieb" data-val="6–15 Mitarbeiter">6–15 Mitarbeiter</button>
             <button class="lp-choice" data-qz="betrieb" data-val="Mehr als 15">Mehr als 15</button>
           </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(0)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-1" onclick="qzGo(2)" disabled>Weiter →</button></div>
+          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(1)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-2" onclick="qzGo(3)" disabled>Weiter →</button></div>
         </div>
 
-        <!-- STEP 2 -->
-        <div class="lp-step-content" id="qz-2">
+        <!-- STEP 3: Region -->
+        <div class="lp-step-content" id="qz-3">
           <p class="lp-q">Aus welcher Region kommst du?</p>
           <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 14px;">Wir prüfen, ob deine Region noch frei ist.</p>
           <div class="lp-choices">
@@ -460,73 +471,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <button class="lp-choice" data-qz="region" data-val="Westdeutschland">Westdeutschland<br><small style="font-weight:500;color:var(--gray-2)">NRW, RP, SL</small></button>
             <button class="lp-choice" data-qz="region" data-val="Süd/Mitteldeutschland">Süd / Mitte<br><small style="font-weight:500;color:var(--gray-2)">BY, BW, HE, SN…</small></button>
           </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(1)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-2" onclick="qzGo(3)" disabled>Weiter →</button></div>
+          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(2)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-3" onclick="qzGo(4)" disabled>Weiter →</button></div>
         </div>
 
-        <!-- STEP 3 -->
-        <div class="lp-step-content" id="qz-3">
-          <p class="lp-q">Wie viele Kundenanfragen bekommst du pro Monat?</p>
+        <!-- STEP 4: Telefon -->
+        <div class="lp-step-content" id="qz-4">
+          <p class="lp-q">Auf welche Nummer sollen wir uns melden?</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 16px;">Wir rufen persönlich an — kein Autoresponder, kein Spam.</p>
+          <input type="tel" class="lp-input" id="qz-tel" placeholder="Deine Handynummer *" autocomplete="tel">
+          <div class="lp-qnav">
+            <button class="lp-qback" onclick="qzGo(3)">← Zurück</button>
+            <button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-4" onclick="qzFromStep4()" disabled>Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Anfragen -->
+        <div class="lp-step-content" id="qz-5">
+          <p class="lp-q">Wie viele Anfragen bekommst du pro Monat?</p>
           <div class="lp-choices" style="grid-template-columns:1fr;">
             <button class="lp-choice" data-qz="anfragen" data-val="Kaum welche (0–3)">Kaum welche (0–3)</button>
             <button class="lp-choice" data-qz="anfragen" data-val="Ein paar (4–10)">Ein paar (4–10)</button>
             <button class="lp-choice" data-qz="anfragen" data-val="Genug, aber oft unqualifiziert">Genug, aber oft unqualifiziert</button>
           </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(2)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-3" onclick="qzGo(4)" disabled>Weiter →</button></div>
+          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(4)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-5" onclick="qzGo(6)" disabled>Weiter →</button></div>
         </div>
 
-        <!-- STEP 4 -->
-        <div class="lp-step-content" id="qz-4">
+        <!-- STEP 6: Website -->
+        <div class="lp-step-content" id="qz-6">
           <p class="lp-q">Hast du bereits eine professionelle Website?</p>
           <div class="lp-choices" style="grid-template-columns:1fr;">
             <button class="lp-choice" data-qz="website" data-val="Noch keine Website">Noch keine</button>
             <button class="lp-choice" data-qz="website" data-val="Ja, veraltet oder ohne Ergebnis">Ja, aber veraltet oder ohne Ergebnis</button>
             <button class="lp-choice" data-qz="website" data-val="Ja, moderne Website">Ja, moderne Website</button>
           </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(3)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-4" onclick="qzGo(5)" disabled>Weiter →</button></div>
+          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(5)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-6" onclick="qzGo(7)" disabled>Weiter →</button></div>
         </div>
 
-        <!-- STEP 5 -->
-        <div class="lp-step-content" id="qz-5">
-          <p class="lp-q">Hast du schon mal Google Ads ausprobiert?</p>
-          <div class="lp-choices" style="grid-template-columns:1fr;">
-            <button class="lp-choice" data-qz="ads_exp" data-val="Noch nie">Noch nie ausprobiert</button>
-            <button class="lp-choice" data-qz="ads_exp" data-val="Ja, ohne Erfolg">Ja, aber ohne richtiges Ergebnis</button>
-            <button class="lp-choice" data-qz="ads_exp" data-val="Ja, mit Erfolg">Ja, mit etwas Erfolg</button>
-          </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(4)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-5" onclick="qzGo(6)" disabled>Weiter →</button></div>
-        </div>
-
-        <!-- STEP 6 -->
-        <div class="lp-step-content" id="qz-6">
+        <!-- STEP 7: Start -->
+        <div class="lp-step-content" id="qz-7">
           <p class="lp-q">Wann möchtest du starten?</p>
           <div class="lp-choices" style="grid-template-columns:1fr;">
             <button class="lp-choice" data-qz="start" data-val="Sofort / dringend">So schnell wie möglich</button>
             <button class="lp-choice" data-qz="start" data-val="In den nächsten 3 Monaten">In den nächsten 3 Monaten</button>
             <button class="lp-choice" data-qz="start" data-val="Erst mal informieren">Ich möchte mich erst informieren</button>
           </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(5)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-6" onclick="qzGo(7)" disabled>Weiter →</button></div>
+          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(6)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt" id="qz-nxt-7" onclick="qzGo(8)" disabled>Weiter →</button></div>
         </div>
 
-        <!-- STEP 7 -->
-        <div class="lp-step-content" id="qz-7">
-          <p class="lp-q">Welches monatliche Budget planst du für Marketing?</p>
-          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 14px;">Optional — hilft uns zur Vorbereitung.</p>
-          <div class="lp-choices" style="grid-template-columns:1fr;">
-            <button class="lp-choice" data-qz="budget" data-val="">Das ist noch offen</button>
-            <button class="lp-choice" data-qz="budget" data-val="Bis 500 €/Monat">Bis 500 €/Monat</button>
-            <button class="lp-choice" data-qz="budget" data-val="500–1.500 €/Monat">500–1.500 €/Monat</button>
-            <button class="lp-choice" data-qz="budget" data-val="Über 1.500 €/Monat">Über 1.500 €/Monat</button>
-          </div>
-          <div class="lp-qnav"><button class="lp-qback" onclick="qzGo(6)">← Zurück</button><button class="lp-btn-modal-next lp-qnxt lp-qnxt--always" id="qz-nxt-7" onclick="qzGo(8)">Weiter →</button></div>
-        </div>
-
-        <!-- STEP 8: Kontakt -->
+        <!-- STEP 8: E-Mail + Datenschutz -->
         <div class="lp-step-content" id="qz-8">
-          <p class="lp-q">Fast geschafft — wohin sollen wir uns melden?</p>
-          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 18px;">Wir melden uns persönlich in 24 h — nicht automatisch.</p>
-          <input type="text"  class="lp-input" id="qz-vn"   placeholder="Vorname *" autocomplete="given-name">
-          <input type="text"  class="lp-input" id="qz-nn"   placeholder="Nachname *" autocomplete="family-name">
-          <input type="tel"   class="lp-input" id="qz-tel"  placeholder="Telefon * (+49 …)" autocomplete="tel">
+          <p class="lp-q">Fast geschafft!</p>
+          <p style="font-size:.8rem;color:var(--gray-2);margin:-6px 0 18px;">Wir melden uns persönlich in 24 h. E-Mail ist optional — nur falls du eine Bestätigung möchtest.</p>
           <input type="email" class="lp-input" id="qz-mail" placeholder="E-Mail (optional)" autocomplete="email">
           <label class="lp-privacy">
             <input type="checkbox" id="qz-priv">
@@ -550,6 +545,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <Fragment slot="scripts">
     <script is:inline>
+    /* UTM + device tracking */
     var _urlp = new URLSearchParams(window.location.search);
     var _utm = {
       utm_source:   _urlp.get('utm_source')   || undefined,
@@ -560,10 +556,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       referrer:     document.referrer         || undefined,
       geraet:       window.innerWidth < 768   ? 'mobil' : 'desktop'
     };
-    var _qd = { betrieb:'', region:'', anfragen:'', website:'', ads_exp:'', start:'', budget:'' };
+
+    /* Quiz state — name + telefon collected mid-flow */
+    var _qd = { name:'', betrieb:'', region:'', telefon:'', anfragen:'', website:'', start:'' };
     var _qCur = 0;
     var QZTOTAL = 8;
 
+    /* Modal open/close */
     function openModal() {
       document.getElementById('modal-bg').classList.add('lp-modal-bg--open');
       document.body.style.overflow = 'hidden';
@@ -575,6 +574,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal({target:document.getElementById('modal-bg')}); });
 
+    /* Step navigation */
     function qzStart() {
       document.getElementById('qz-prog-wrap').style.display = '';
       qzGo(1);
@@ -592,6 +592,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
       document.querySelector('.lp-modal').scrollTop = 0;
     }
+
+    /* Step 1 → collect name, personalize step 2 */
+    function qzFromStep1() {
+      var v = document.getElementById('qz-name').value.trim();
+      if (!v) { document.getElementById('qz-name').focus(); return; }
+      _qd.name = v;
+      var q2 = document.getElementById('qz-2-q');
+      if (q2) q2.textContent = 'Wie groß ist dein Betrieb, ' + v.split(' ')[0] + '?';
+      qzGo(2);
+    }
+
+    /* Step 4 → collect phone */
+    function qzFromStep4() {
+      var v = document.getElementById('qz-tel').value.trim();
+      if (!v) { document.getElementById('qz-tel').focus(); return; }
+      _qd.telefon = v;
+      qzGo(5);
+    }
+
+    /* Choice buttons */
     document.querySelectorAll('.lp-choice[data-qz]').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var key = btn.dataset.qz;
@@ -600,27 +620,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         _qd[key] = btn.dataset.val;
         var stepNum = parseInt(btn.closest('.lp-step-content').id.replace('qz-', ''), 10);
         var nxt = document.getElementById('qz-nxt-' + stepNum);
-        if (nxt && !nxt.classList.contains('lp-qnxt--always')) nxt.disabled = false;
+        if (nxt) nxt.disabled = false;
       });
     });
-    /* Budget step: always-enabled next btn */
-    var alwaysNxt = document.getElementById('qz-nxt-7');
-    if (alwaysNxt) alwaysNxt.disabled = false;
 
+    /* Name input: enable next on typing, Enter to advance */
+    var nameInput = document.getElementById('qz-name');
+    if (nameInput) {
+      nameInput.addEventListener('input', function() {
+        var nxt = document.getElementById('qz-nxt-1');
+        if (nxt) nxt.disabled = !this.value.trim();
+      });
+      nameInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); qzFromStep1(); }
+      });
+    }
+
+    /* Phone input: enable next on typing, Enter to advance */
+    var telInput = document.getElementById('qz-tel');
+    if (telInput) {
+      telInput.addEventListener('input', function() {
+        var nxt = document.getElementById('qz-nxt-4');
+        if (nxt) nxt.disabled = !this.value.trim();
+      });
+      telInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); qzFromStep4(); }
+      });
+    }
+
+    /* Submit */
     function qzSubmit() {
-      var vn = document.getElementById('qz-vn').value.trim();
-      var nn = document.getElementById('qz-nn').value.trim();
-      var tel = document.getElementById('qz-tel').value.trim();
-      var mail = document.getElementById('qz-mail').value.trim();
-      var priv = document.getElementById('qz-priv').checked;
-      if (!vn)   { alert('Bitte Vorname angeben.'); return; }
-      if (!nn)   { alert('Bitte Nachname angeben.'); return; }
-      if (!tel)  { alert('Bitte Telefonnummer angeben.'); return; }
+      var email = document.getElementById('qz-mail').value.trim();
+      var priv  = document.getElementById('qz-priv').checked;
+      if (!_qd.name)    { alert('Name fehlt — bitte zurück zu Schritt 1.'); qzGo(1); return; }
+      if (!_qd.telefon) { alert('Telefon fehlt — bitte zurück zu Schritt 4.'); qzGo(4); return; }
       if (!priv) { alert('Bitte Datenschutzerklärung akzeptieren.'); return; }
       var sub = document.getElementById('qz-sub');
       sub.disabled = true; sub.textContent = 'Wird gesendet…';
-      var nachricht = ['Betrieb: '+_qd.betrieb,'Region: '+_qd.region,'Anfragen: '+_qd.anfragen,'Website: '+_qd.website,'Ads: '+_qd.ads_exp,'Start: '+_qd.start,_qd.budget?'Budget: '+_qd.budget:''].filter(Boolean).join(' | ');
-      var payload = Object.assign({ name:vn+' '+nn, email:mail||undefined, telefon:tel, betrieb:_qd.betrieb, ziel:'GaLaBau Komplettsystem Hannover', anfragen:_qd.anfragen, website_exists:_qd.website, zeitpunkt_wunsch:_qd.start, budget:_qd.budget||undefined, nachricht:nachricht, seite:'galabau-mehr-kunden' }, _utm);
+      var nachricht = ['Name: '+_qd.name,'Betrieb: '+_qd.betrieb,'Region: '+_qd.region,'Anfragen: '+_qd.anfragen,'Website: '+_qd.website,'Start: '+_qd.start].filter(Boolean).join(' | ');
+      var payload = Object.assign({
+        name: _qd.name, email: email || undefined, telefon: _qd.telefon,
+        betrieb: _qd.betrieb, ziel: 'GaLaBau Komplettsystem Hannover',
+        anfragen: _qd.anfragen, website_exists: _qd.website,
+        zeitpunkt_wunsch: _qd.start, nachricht: nachricht, seite: 'galabau-mehr-kunden'
+      }, _utm);
       fetch('https://fastraone-admin.vercel.app/api/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
       .then(function(r){ if(!r.ok) throw new Error(r.status); })
       .then(function() {
@@ -632,29 +675,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         alert('Fehler beim Senden. Ruf uns an: +49 163 3781657');
       });
     }
+
+    /* Scroll reveal */
     var ro = new IntersectionObserver(function(entries) {
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); ro.unobserve(e.target); } });
     }, { threshold:0.07 });
     document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
-    </script>
-  </Fragment>
 
-  <!-- ════ COOKIE BANNER ══════════════════════════════════════════════ -->
-  <div class="ck-bar" id="ck-bar" role="region" aria-label="Cookie-Einstellungen" style="display:none">
-    <div class="ck-bar__inner">
-      <div class="ck-bar__text">
-        <strong>Cookies &amp; Datenschutz</strong>
-        <p>Wir nutzen technisch notwendige Cookies sowie verarbeiten deine Anfragedaten. Mehr dazu in unserer <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
-      </div>
-      <div class="ck-bar__actions">
-        <button class="ck-btn ck-btn--ghost" onclick="ckReject()">Nur notwendige</button>
-        <button class="ck-btn ck-btn--primary" onclick="ckAccept()">Alles akzeptieren</button>
-      </div>
-    </div>
-  </div>
-
-  <Fragment slot="scripts">
-    <script is:inline>
+    /* Cookie banner */
     (function(){
       if (!localStorage.getItem('ck_consent')) {
         var bar = document.getElementById('ck-bar');
@@ -673,6 +701,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     </script>
   </Fragment>
+
+  <!-- ════ COOKIE BANNER ══════════════════════════════════════════════ -->
+  <div class="ck-bar" id="ck-bar" role="region" aria-label="Cookie-Einstellungen" style="display:none">
+    <div class="ck-bar__inner">
+      <div class="ck-bar__text">
+        <strong>Cookies &amp; Datenschutz</strong>
+        <p>Wir nutzen technisch notwendige Cookies sowie verarbeiten deine Anfragedaten. Mehr dazu in unserer <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+      </div>
+      <div class="ck-bar__actions">
+        <button class="ck-btn ck-btn--ghost" onclick="ckReject()">Nur notwendige</button>
+        <button class="ck-btn ck-btn--primary" onclick="ckAccept()">Alles akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
 
 </BaseLayout>
 
