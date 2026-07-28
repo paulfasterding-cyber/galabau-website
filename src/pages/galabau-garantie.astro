@@ -578,26 +578,79 @@ nav.pill ul a:hover { color: var(--ink); }
 @media (max-width: 480px) { .g-card { padding: 36px 24px; } }
 
 /* ═══════════════════════════════════
-   FOOTER — Clean (kein dunkler Verlauf)
+   FOOTER — Premium Dark
 ═══════════════════════════════════ */
 footer {
-  background: var(--bg-alt);
-  border-top: 1px solid rgba(34,197,94,.1);
-  padding: 40px 0 28px;
+  background: #0d1117;
   position: relative; overflow: hidden;
 }
-footer .foot-links {
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
-  font-size: .8rem; color: var(--ink-2); position: relative; z-index: 2;
+/* Dezenter grüner Glow oben */
+footer::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 200px;
+  background: radial-gradient(ellipse, rgba(34,197,94,.08) 0%, transparent 70%);
+  pointer-events: none;
 }
-footer .foot-links a { transition: color .2s; }
-footer .foot-links a:hover { color: var(--ink); }
+/* Grüne Akzentlinie oben */
+.foot-accent {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .5;
+}
+/* Haupt-Grid */
+.foot-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  padding: 52px 0 44px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  position: relative; z-index: 2;
+}
+@media (max-width: 760px) { .foot-top { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Brand-Spalte */
+.foot-brand {}
+.foot-brand-name {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 800; font-size: 1.05rem; color: #fff;
+  margin-bottom: 10px;
+}
+.foot-brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.foot-tagline { font-size: .86rem; color: rgba(255,255,255,.45); line-height: 1.6; max-width: 26ch; margin-bottom: 18px; }
+.foot-addr { font-size: .78rem; color: rgba(255,255,255,.3); line-height: 1.7; }
+
+/* Link-Spalten */
+.foot-col h4 {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: rgba(255,255,255,.35);
+  margin-bottom: 18px;
+}
+.foot-col a {
+  display: block; font-size: .86rem;
+  color: rgba(255,255,255,.55); margin-bottom: 11px;
+  transition: color .2s;
+}
+.foot-col a:hover { color: var(--accent); }
+
+/* Bottom-Bar */
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+  padding: 18px 0 20px;
+  font-size: .75rem; color: rgba(255,255,255,.22);
+  position: relative; z-index: 2;
+}
+.foot-bottom a { color: rgba(255,255,255,.3); transition: color .2s; }
+.foot-bottom a:hover { color: rgba(255,255,255,.6); }
+
+/* Wordmark im Hintergrund */
 .foot-wordmark {
   font-family: var(--f-sans); font-weight: 800;
-  font-size: clamp(3rem, 11vw, 8rem);
-  color: var(--accent); opacity: .06;
+  font-size: clamp(3.5rem, 13vw, 10rem);
+  color: rgba(255,255,255,.025);
   text-align: center; line-height: 1; letter-spacing: -.03em;
-  margin-top: 16px; user-select: none; pointer-events: none;
+  margin-bottom: 0; user-select: none; pointer-events: none;
   position: relative; z-index: 1;
 }
 
@@ -1142,16 +1195,59 @@ footer .foot-links a:hover { color: var(--ink); }
 
 <!-- ─── FOOTER ────────────────────────────────── -->
 <footer>
+
+  <div class="foot-accent"></div>
+
   <div class="wrap">
-    <div class="foot-links">
-      <span>© 2026 Fastra One · Paul Fasterding · Am Flachsgraben 9, 30657 Hannover</span>
-      <div style="display:flex; gap:20px;">
-        <a href="/datenschutz">Datenschutz</a>
+    <div class="foot-top">
+
+      <!-- Brand -->
+      <div class="foot-brand">
+        <div class="foot-brand-name">
+          <span class="foot-brand-dot"></span>
+          Fastra One
+        </div>
+        <p class="foot-tagline">
+          Wir bauen Systeme, die automatisch neue Kunden gewinnen —
+          für Selbstständige im GaLaBau.
+        </p>
+        <address class="foot-addr">
+          Paul Niklas Fasterding<br>
+          Am Flachsgraben 9<br>
+          30657 Hannover
+        </address>
+      </div>
+
+      <!-- Rechtliches -->
+      <div class="foot-col">
+        <h4>Rechtliches</h4>
         <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutzerklärung</a>
+        <a href="/datenschutz#cookies">Cookie-Richtlinien</a>
+        <a href="/agb">AGB</a>
+      </div>
+
+      <!-- Kontakt / Links -->
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener">Termin buchen</a>
+        <a href="mailto:paul.web@outlook.de">E-Mail schreiben</a>
+        <a href="https://fastraone.de" target="_blank" rel="noopener">fastraone.de</a>
+      </div>
+
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Fastra One · Einzelunternehmen · Kleinunternehmer gem. § 19 UStG</span>
+      <div style="display:flex; gap:16px;">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
       </div>
     </div>
   </div>
+
   <div class="foot-wordmark" aria-hidden="true">Fastra One</div>
+
 </footer>
 
 
