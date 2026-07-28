@@ -324,7 +324,7 @@ nav.pill ul a:hover { color: var(--ink); }
 /* Thank You state */
 .f-thankyou { display: none; text-align: center; padding: 12px 0; }
 .f-thankyou.visible { display: block; }
-.f-ty-icon { font-size: 2.8rem; margin-bottom: 12px; }
+.f-ty-icon { width: 44px; height: 44px; margin: 0 auto 12px; color: var(--accent); }
 .f-ty-h { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
 .f-ty-p { font-size: .93rem; color: var(--gray); line-height: 1.6; max-width: 320px; margin: 0 auto; }
 .f-ty-p .hl { color: var(--accent-deep); font-weight: 600; }
@@ -347,162 +347,147 @@ nav.pill ul a:hover { color: var(--ink); }
 .f-ty-cal-label strong { display: block; font-size: .93rem; color: var(--ink); margin-top: 2px; }
 
 /* ═══════════════════════════════════════════════
-   CALENDAR SECTION — 3D Mockup
+   MOCKUP SECTION — Referenz-Stil (Faris Schmidt)
+   Exakt nachgebaut: Dot-Grid + Deep Shadow + Spring Float-Cards
 ═══════════════════════════════════════════════ */
-.cal-section {
-  padding: 40px 0 90px;
-  position: relative; overflow: hidden;
-}
-/* dezenter grüner Glow hinter dem Kalender */
-.cal-section::before {
-  content: ''; position: absolute;
-  top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 700px; height: 340px;
-  background: radial-gradient(ellipse, rgba(34,197,94,.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cal-scene {
-  perspective: 1100px;
+.mockup-section { padding: 40px 0 96px; }
+
+/* Äußerer Wrapper — position:relative für Float-Cards */
+.mockup-wrap {
   position: relative;
-  max-width: 560px; margin: 0 auto;
-  padding: 0 24px 60px;
+  max-width: 860px; margin: 0 auto; padding: 0 24px;
 }
-/* Glow-Shadow unter der Karte */
-.cal-scene::after {
-  content: ''; position: absolute;
-  bottom: 10px; left: 50%; transform: translateX(-50%);
-  width: 60%; height: 50px;
-  background: rgba(34,197,94,.18);
-  filter: blur(28px);
-  border-radius: 50%;
-  pointer-events: none;
+
+/* Hauptkarte — identische Struktur wie Referenz:
+   Dot-Grid + Verlauf + tiefer Schatten (0 40px 80px -20px) */
+.mockup {
+  background: linear-gradient(160deg, #eef4f0, #fff);
+  background-image:
+    radial-gradient(circle, rgba(34,197,94,.13) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 40px 80px -20px rgba(13,15,26,.22);
 }
-.cal-card {
+
+/* Inner-Card — weißes, klares Fenster */
+.mockup-inner {
   background: var(--white);
-  border: 1px solid rgba(0,0,0,.07);
-  border-radius: 20px;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,.04),
-    0 8px 24px rgba(0,0,0,.07),
-    0 32px 80px rgba(0,0,0,.11);
-  overflow: hidden;
-  transform: perspective(1100px) rotateX(9deg) rotateY(-4deg) scale(.97);
-  transition: transform .5s cubic-bezier(.16,1,.3,1);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: left;
 }
-.cal-card:hover {
-  transform: perspective(1100px) rotateX(4deg) rotateY(-1deg) scale(.99);
+
+/* Browser-Dots (Signatur-Detail aus Referenz) */
+.mockup-bar { display: flex; gap: 6px; margin-bottom: 20px; }
+.mockup-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+
+/* Kalender-Content innerhalb mockup-inner */
+.cal-header {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;
 }
-.cal-top {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 20px 14px;
-  border-bottom: 1px solid var(--card-line);
-}
-.cal-live-badge {
+.cal-live {
   display: flex; align-items: center; gap: 7px;
-  font-size: .72rem; font-weight: 700; letter-spacing: .04em;
-  text-transform: uppercase; color: var(--accent-deep);
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--accent-deep);
 }
-.cal-title-block h3 {
-  font-size: .93rem; font-weight: 700; color: var(--ink); line-height: 1.2;
-}
-.cal-title-block p { font-size: .72rem; color: var(--gray); }
-.cal-avatar {
-  width: 32px; height: 32px; border-radius: 50%;
+.cal-service { font-size: .82rem; font-weight: 700; color: var(--ink); }
+.cal-service small { display: block; font-size: .7rem; font-weight: 400; color: var(--gray); }
+.cal-avtr {
+  width: 30px; height: 30px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff; font-size: .72rem; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: .75rem; font-weight: 700;
 }
-.cal-body { padding: 16px 20px; }
-.cal-month-row {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 12px;
+.cal-split { display: grid; grid-template-columns: 1fr 1px 200px; gap: 0; }
+@media (max-width: 680px) { .cal-split { grid-template-columns: 1fr; } }
+.cal-divider { background: var(--line); margin: 0 20px; }
+@media (max-width: 680px) { .cal-divider { display: none; } }
+
+/* Kalender-Grid */
+.cal-grid-wrap { padding-right: 20px; }
+@media (max-width: 680px) { .cal-grid-wrap { padding-right: 0; margin-bottom: 18px; } }
+.cal-month-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cal-month { font-size: .85rem; font-weight: 700; color: var(--ink); }
+.cal-navs { display: flex; gap: 5px; }
+.cal-nav {
+  width: 24px; height: 24px; border: 1px solid var(--card-line); border-radius: 5px;
+  background: none; cursor: pointer; color: var(--gray); font-size: .78rem;
+  display: flex; align-items: center; justify-content: center; transition: background .15s;
 }
-.cal-month-label { font-size: .88rem; font-weight: 700; color: var(--ink); }
-.cal-nav-btns { display: flex; gap: 6px; }
-.cal-nav-btn {
-  width: 26px; height: 26px; border: 1px solid var(--card-line);
-  border-radius: 6px; background: none; cursor: pointer; font-size: .85rem;
-  display: flex; align-items: center; justify-content: center; color: var(--gray);
-  transition: background .15s;
-}
-.cal-nav-btn:hover { background: var(--accent-soft); color: var(--accent-deep); }
-.cal-weekdays {
-  display: grid; grid-template-columns: repeat(7, 1fr);
-  text-align: center; margin-bottom: 8px;
-}
-.cal-weekdays span { font-size: .66rem; font-weight: 600; color: var(--gray-light); padding: 2px 0; }
-.cal-days {
-  display: grid; grid-template-columns: repeat(7, 1fr);
-  gap: 2px; text-align: center;
-}
-.cal-days span {
-  width: 100%; padding: 6px 0;
-  font-size: .78rem; border-radius: 7px; color: var(--ink);
-  cursor: default;
-}
-.cal-days .avail { color: var(--accent-deep); font-weight: 600; cursor: pointer; }
-.cal-days .avail:hover { background: var(--accent-soft); }
-.cal-days .selected { background: var(--accent); color: #fff; font-weight: 700; }
-.cal-days .today { font-weight: 700; color: var(--ink); border: 1.5px solid var(--accent); }
-.cal-days .dimmed { color: var(--card-line); }
-.cal-times {
-  margin-top: 14px; border-top: 1px solid var(--card-line); padding-top: 12px;
-}
-.cal-times-label { font-size: .72rem; font-weight: 600; color: var(--gray); margin-bottom: 8px; }
-.cal-slots { display: flex; gap: 7px; flex-wrap: wrap; }
+.cal-nav:hover { background: var(--accent-soft); color: var(--accent-deep); }
+.cal-wdays { display: grid; grid-template-columns: repeat(7,1fr); text-align: center; margin-bottom: 5px; }
+.cal-wdays span { font-size: .62rem; font-weight: 600; color: var(--gray-light); padding: 2px 0; }
+.cal-days { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; text-align: center; }
+.cal-days span { padding: 5px 0; font-size: .75rem; border-radius: 6px; color: var(--ink); }
+.cal-days .av { color: var(--accent-deep); font-weight: 600; cursor: pointer; }
+.cal-days .av:hover { background: var(--accent-soft); }
+.cal-days .sel { background: var(--accent); color: #fff; font-weight: 700; }
+.cal-days .td { font-weight: 700; border: 1.5px solid var(--accent); }
+.cal-days .dim { color: #dde3dd; }
+
+/* Zeitslots rechte Spalte */
+.cal-times-col { padding-left: 20px; display: flex; flex-direction: column; justify-content: center; }
+@media (max-width: 680px) { .cal-times-col { padding-left: 0; border-top: 1px solid var(--line); padding-top: 14px; } }
+.cal-times-label { font-size: .7rem; font-weight: 700; color: var(--gray); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .05em; }
+.cal-slots { display: flex; flex-direction: column; gap: 7px; }
 .cal-slot {
-  padding: 5px 12px; border-radius: 7px;
-  border: 1px solid var(--card-line); font-size: .77rem;
-  background: none; cursor: pointer; color: var(--ink);
-  transition: all .15s;
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--card-line);
+  font-size: .8rem; background: none; cursor: pointer; color: var(--ink);
+  text-align: center; transition: all .15s;
 }
 .cal-slot:hover { border-color: var(--accent); color: var(--accent-deep); }
 .cal-slot.sel { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
-.cal-footer {
-  padding: 14px 20px 18px;
-  border-top: 1px solid var(--card-line);
-}
-.cal-book-btn {
-  display: block; width: 100%;
+.cal-confirm-btn {
+  display: block; width: 100%; margin-top: 12px;
   background: var(--ink); color: #fff;
-  font-family: var(--f-sans); font-size: .9rem; font-weight: 600;
-  padding: 12px; border-radius: 10px; border: none; cursor: pointer;
-  box-shadow: rgba(255,255,255,.10) 0 0 0 3px inset;
+  font-family: var(--f-sans); font-size: .85rem; font-weight: 600;
+  padding: 10px; border-radius: 8px; border: none; cursor: pointer;
+  box-shadow: rgba(255,255,255,.10) 0 0 0 2px inset;
   transition: background .2s, transform .2s;
 }
-.cal-book-btn:hover { background: #222; transform: translateY(-1px); }
+.cal-confirm-btn:hover { background: #1a1a1a; transform: translateY(-1px); }
 
-/* Floating badges auf dem Kalender */
-.cal-float {
+/* Float-Cards — exakt nach Referenz: Spring-Easing, tiefer Schatten */
+.float-card {
   position: absolute;
-  background: rgba(255,255,255,.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,0,0,.06);
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.10);
-  padding: 10px 14px;
-  display: flex; align-items: center; gap: 10px;
-  font-size: .76rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(13,15,26,.14);
+  padding: 16px 20px;
+  opacity: 0; transform: translateY(16px) scale(.9);
+  transition: opacity .5s cubic-bezier(.34,1.56,.64,1),
+              transform .5s cubic-bezier(.34,1.56,.64,1);
   white-space: nowrap;
 }
-.cal-float strong { display: block; font-size: .78rem; font-weight: 700; color: var(--ink); }
-.cal-float span   { color: var(--gray); font-size: .71rem; }
-.cal-float-icon {
-  width: 32px; height: 32px; border-radius: 8px;
+.mockup-wrap.is-visible .float-card { opacity: 1; transform: none; }
+
+/* Float-Card: Statistik (links oben) */
+.float-card.stat { top: 4%; left: -3%; transition-delay: .15s; }
+.float-card.stat .num {
+  font-family: var(--f-serif); font-size: 1.55rem; font-weight: 500;
+  font-style: italic; color: var(--accent); line-height: 1.1; display: block;
+}
+.float-card.stat .lbl { font-size: .75rem; color: var(--gray); margin-top: 2px; display: block; }
+
+/* Float-Card: Notification (rechts unten) */
+.float-card.notif {
+  bottom: 6%; right: -3%;
+  display: flex; align-items: center; gap: 12px; max-width: 260px;
+  transition-delay: .35s;
+}
+.float-card.notif .ic {
+  width: 36px; height: 36px; border-radius: 50%;
   background: var(--accent-soft);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .95rem; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; flex: none;
 }
-.cf-confirmed { top: -10px; right: -28px; animation: floatA 3.2s ease-in-out infinite; }
-.cf-revenue   { bottom: 60px; left: -32px; animation: floatB 4s ease-in-out infinite; }
-.cf-lead      { bottom: -8px; right: 24px; animation: floatA 3.8s ease-in-out 1s infinite; }
-@keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-@keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-@media (max-width: 600px) { .cal-float { display: none; } }
-@media (prefers-reduced-motion: reduce) {
-  .cal-float { animation: none; }
-}
+.float-card.notif b { font-size: .84rem; display: block; color: var(--ink); }
+.float-card.notif p { font-size: .74rem; color: var(--gray); margin: 0; }
+@media (max-width: 700px) { .float-card { display: none; } }
+@media (prefers-reduced-motion: reduce) { .float-card { opacity: 1; transform: none; transition: none; } }
 
 /* ═══════════════════════════════════════════════
    PAIN SECTION
@@ -599,7 +584,7 @@ nav.pill ul a:hover { color: var(--ink); }
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-deep));
 }
-.guarantee-icon { font-size: 2.6rem; margin-bottom: 14px; }
+.guarantee-icon { width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent); }
 .guarantee-card h2 {
   font-family: var(--f-sans); font-weight: 800;
   font-size: clamp(1.4rem, 3vw, 2rem);
@@ -702,7 +687,7 @@ footer .foot-links a:hover { color: rgba(255,255,255,.7); }
     </p>
 
     <div class="guarantee-pill reveal delay-2">
-      🛡️ Oder du zahlst uns keinen Cent
+      Oder du zahlst uns keinen Cent
     </div>
 
     <!-- Google Reviews -->
@@ -725,7 +710,7 @@ footer .foot-links a:hover { color: rgba(255,255,255,.7); }
 
         <!-- Step 0 — Vorname -->
         <div class="f-step visible" id="fstep-0">
-          <p class="f-question">Wie ist dein Vorname? 👋</p>
+          <p class="f-question">Wie ist dein Vorname?</p>
           <input class="f-input" id="f-vorname" type="text" placeholder="z.B. Thomas" autocomplete="given-name" />
           <p class="f-err" id="ferr-0">Bitte gib deinen Vornamen ein.</p>
           <button class="f-next-btn" onclick="fNext(0)">Weiter →</button>
@@ -768,7 +753,9 @@ footer .foot-links a:hover { color: rgba(255,255,255,.7); }
 
       <!-- THANK YOU -->
       <div class="f-thankyou" id="fThankyou">
-        <div class="f-ty-icon">🎉</div>
+        <div class="f-ty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="44" height="44"><circle cx="12" cy="12" r="10"/><polyline points="7 12 10.5 15.5 17 9"/></svg>
+        </div>
         <h2 class="f-ty-h">Du bist dabei — wir freuen uns!</h2>
         <p class="f-ty-p">
           Deine Anfrage ist angekommen. Wir melden uns
@@ -817,96 +804,104 @@ footer .foot-links a:hover { color: rgba(255,255,255,.7); }
 </section>
 
 
-<!-- ─── CALENDAR 3D SECTION ─────────────────────────────────── -->
-<section class="cal-section">
+<!-- ─── MOCKUP SECTION (Referenz-Stil: Dot-Grid + Float-Cards) ─ -->
+<section class="mockup-section">
+  <div class="wrap">
 
-  <div class="cal-scene reveal">
-    <div class="cal-card">
+    <div class="mockup-wrap reveal">
+      <div class="mockup">
+        <div class="mockup-inner">
 
-      <!-- Header -->
-      <div class="cal-top">
-        <div class="cal-live-badge">
-          <span class="pulse-dot"></span>
-          Live Buchungen
-        </div>
-        <div class="cal-title-block">
-          <h3>Termin buchen</h3>
-          <p>GaLaBau-Beratung · 30 Min · Kostenlos</p>
-        </div>
-        <div class="cal-avatar">FO</div>
-      </div>
-
-      <!-- Body -->
-      <div class="cal-body">
-        <div class="cal-month-row">
-          <span class="cal-month-label">August 2026</span>
-          <div class="cal-nav-btns">
-            <button class="cal-nav-btn">‹</button>
-            <button class="cal-nav-btn">›</button>
+          <!-- Browser-Dots -->
+          <div class="mockup-bar">
+            <span></span><span></span><span></span>
           </div>
-        </div>
-        <div class="cal-weekdays">
-          <span>Mo</span><span>Di</span><span>Mi</span>
-          <span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
-        </div>
-        <div class="cal-days">
-          <span class="dimmed"></span><span class="dimmed"></span><span class="dimmed"></span>
-          <span class="dimmed"></span><span class="avail">1</span><span class="dimmed">2</span><span class="dimmed">3</span>
-          <span class="avail">4</span><span class="avail">5</span><span class="avail">6</span>
-          <span class="avail">7</span><span class="avail">8</span><span class="dimmed">9</span><span class="dimmed">10</span>
-          <span class="avail">11</span><span class="avail">12</span><span class="today">13</span>
-          <span class="selected">14</span><span class="avail">15</span><span class="dimmed">16</span><span class="dimmed">17</span>
-          <span class="avail">18</span><span class="avail">19</span><span class="avail">20</span>
-          <span class="avail">21</span><span class="avail">22</span><span class="dimmed">23</span><span class="dimmed">24</span>
-          <span class="avail">25</span><span class="avail">26</span><span class="avail">27</span>
-          <span class="avail">28</span><span class="avail">29</span><span class="dimmed">30</span><span class="dimmed">31</span>
-        </div>
 
-        <div class="cal-times">
-          <p class="cal-times-label">Verfügbare Zeiten · Do, 14. August</p>
-          <div class="cal-slots">
-            <button class="cal-slot">09:00</button>
-            <button class="cal-slot sel">10:30</button>
-            <button class="cal-slot">14:00</button>
-            <button class="cal-slot">15:30</button>
+          <!-- Header: Live-Badge + Service + Avatar -->
+          <div class="cal-header">
+            <div class="cal-live">
+              <span class="pulse-dot"></span>
+              Live Buchungen
+            </div>
+            <div class="cal-service">
+              Termin buchen
+              <small>GaLaBau-Beratung · 30 Min · Kostenlos</small>
+            </div>
+            <div class="cal-avtr">FO</div>
           </div>
+
+          <!-- Split: Kalender-Grid | Zeitslots -->
+          <div class="cal-split">
+
+            <!-- Kalender -->
+            <div class="cal-grid-wrap">
+              <div class="cal-month-row">
+                <span class="cal-month">August 2026</span>
+                <div class="cal-navs">
+                  <button class="cal-nav">‹</button>
+                  <button class="cal-nav">›</button>
+                </div>
+              </div>
+              <div class="cal-wdays">
+                <span>Mo</span><span>Di</span><span>Mi</span>
+                <span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+              </div>
+              <div class="cal-days">
+                <span class="dim"></span><span class="dim"></span><span class="dim"></span>
+                <span class="dim"></span><span class="av">1</span><span class="dim">2</span><span class="dim">3</span>
+                <span class="av">4</span><span class="av">5</span><span class="av">6</span>
+                <span class="av">7</span><span class="av">8</span><span class="dim">9</span><span class="dim">10</span>
+                <span class="av">11</span><span class="av">12</span><span class="td">13</span>
+                <span class="sel">14</span><span class="av">15</span><span class="dim">16</span><span class="dim">17</span>
+                <span class="av">18</span><span class="av">19</span><span class="av">20</span>
+                <span class="av">21</span><span class="av">22</span><span class="dim">23</span><span class="dim">24</span>
+                <span class="av">25</span><span class="av">26</span><span class="av">27</span>
+                <span class="av">28</span><span class="av">29</span><span class="dim">30</span><span class="dim">31</span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="cal-divider"></div>
+
+            <!-- Zeitslots -->
+            <div class="cal-times-col">
+              <div class="cal-times-label">Do, 14. August</div>
+              <div class="cal-slots">
+                <button class="cal-slot">09:00 Uhr</button>
+                <button class="cal-slot sel">10:30 Uhr</button>
+                <button class="cal-slot">14:00 Uhr</button>
+                <button class="cal-slot">15:30 Uhr</button>
+              </div>
+              <button class="cal-confirm-btn">Termin bestätigen →</button>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="cal-footer">
-        <button class="cal-book-btn">Termin bestätigen →</button>
+      <!-- Float-Card: Statistik (links oben) — Fraunces-Zahl wie Referenz -->
+      <div class="float-card stat">
+        <span class="num">+3.200 €</span>
+        <span class="lbl">Ø Umsatz pro Monat<br>durch neue Kunden</span>
       </div>
 
-    </div>
-
-    <!-- Floating Badges -->
-    <div class="cal-float cf-confirmed">
-      <div class="cal-float-icon">✅</div>
-      <div>
-        <strong>Booking bestätigt</strong>
-        <span>Thomas M. · 14. Aug · 10:30 Uhr</span>
+      <!-- Float-Card: Notification (rechts unten) -->
+      <div class="float-card notif">
+        <div class="ic">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <b>Booking bestätigt</b>
+          <p>Thomas M. · Mo, 14. Aug · 10:30 Uhr</p>
+        </div>
       </div>
-    </div>
 
-    <div class="cal-float cf-revenue">
-      <div class="cal-float-icon">💰</div>
-      <div>
-        <strong>+3.200 € / Monat</strong>
-        <span>Ø Umsatz durch neue Kunden</span>
-      </div>
-    </div>
-
-    <div class="cal-float cf-lead">
-      <div class="cal-float-icon">📩</div>
-      <div>
-        <strong>Neue Anfrage</strong>
-        <span>Gerade eben · Hannover</span>
-      </div>
     </div>
 
   </div>
-
 </section>
 
 
@@ -1037,7 +1032,9 @@ footer .foot-links a:hover { color: rgba(255,255,255,.7); }
   <div class="wrap">
     <div class="guarantee-wrap">
       <div class="guarantee-card reveal">
-        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11.5 14.5 15 10"/></svg>
+        </div>
         <h2>
           <em>3 Aufträge in 30 Tagen</em><br>
           — oder du zahlst nichts.
