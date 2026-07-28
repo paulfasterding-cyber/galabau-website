@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="3 GaLaBau-Aufträge in 30 Tagen — Garantiert | Fastra One"
-  description="Wir garantieren dir 3 neue Aufträge in den nächsten 30 Tagen — oder du zahlst nichts. Exklusiv für GaLaBau-Betriebe."
+  description="Wir garantieren dir 3 qualifizierte Auftragsanfragen in 30 Tagen — oder du zahlst nichts. Exklusiv für GaLaBau-Betriebe."
   navVariant="none"
   footerVariant="none"
 >
@@ -13,33 +13,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <meta name="robots" content="noindex, nofollow" />
   <style is:global>
 
-/* ═══════════════════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #050e07;
-  --bg2:       #091409;
-  --mint:      #6EEC9D;
-  --mint-dim:  rgba(110,236,157,.12);
-  --red:       #ff4444;
-  --red-dim:   rgba(255,68,68,.12);
-  --white:     #ffffff;
-  --grey:      rgba(255,255,255,.55);
-  --grey-light:rgba(255,255,255,.08);
-  --border:    rgba(255,255,255,.08);
+  --bg:          #ffffff;
+  --bg-alt:      #f4faf6;
+  --bg-card:     #f8fbf9;
+  --ink:         #0c1a10;
+  --ink-2:       #4d6655;
+  --green:       #2bcf78;
+  --green-hover: #1fa85f;
+  --green-deep:  #0b2b15;
+  --red:         #dc2626;
+  --border:      #dceee3;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-body { background: var(--bg); color: var(--white); line-height: 1.6; }
+body { background: var(--bg); color: var(--ink); line-height: 1.6; }
 
 .g-container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
-.g-wide      { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-/* ═══════════════════════════════════════════════════════════
-   URGENCY BAR
-═══════════════════════════════════════════════════════════ */
+/* ── URGENCY BAR ─────────────────────────────────────────── */
 .g-topbar {
   background: var(--red);
   color: #fff;
@@ -52,106 +46,98 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
   top: 0;
   z-index: 100;
 }
-.g-topbar span { font-weight: 400; }
 
-/* ═══════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════ */
+/* ── HERO ────────────────────────────────────────────────── */
 .g-hero {
-  padding: 72px 0 60px;
+  padding: 68px 0 56px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
-.g-hero::before {
-  content: '';
-  position: absolute;
-  top: -80px; left: 50%;
-  transform: translateX(-50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(ellipse, rgba(110,236,157,.10) 0%, transparent 70%);
-  pointer-events: none;
+
+.g-quote-hook {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 400;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
+.g-quote-hook strong { color: var(--ink); font-style: normal; font-weight: 700; }
 
 .g-pill {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: var(--mint-dim);
-  border: 1px solid rgba(110,236,157,.25);
-  color: var(--mint);
-  font-size: .75rem;
+  background: rgba(43,207,120,.1);
+  border: 1px solid rgba(43,207,120,.3);
+  color: var(--green-hover);
+  font-size: .73rem;
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   text-transform: uppercase;
   padding: 6px 14px;
   border-radius: 99px;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 .g-pill-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--mint);
+  background: var(--green);
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
   0%,100% { opacity:1; transform:scale(1); }
-  50%      { opacity:.4; transform:scale(.8); }
+  50%      { opacity:.5; transform:scale(.75); }
 }
 
 .g-h1 {
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 6.5vw, 4rem);
   font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -.02em;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.g-h1 .accent { color: var(--green-hover); }
+
+.g-h1-sub {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink-2);
+  letter-spacing: -.01em;
   margin-bottom: 20px;
 }
-.g-h1 .accent {
-  background: linear-gradient(135deg, #6EEC9D, #3cd870);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
-.g-guarantee-badge {
+.g-guarantee-pill {
   display: inline-block;
-  margin-bottom: 24px;
-  background: var(--red-dim);
-  border: 1px solid rgba(255,68,68,.3);
-  color: #ff6666;
-  font-size: .85rem;
+  background: #fff4f4;
+  border: 1.5px solid #fca5a5;
+  color: #b91c1c;
+  font-size: .8rem;
   font-weight: 700;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 6px;
+  margin-bottom: 32px;
   letter-spacing: .01em;
 }
 
-.g-sub {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--grey);
-  max-width: 560px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
-}
-.g-sub strong { color: var(--white); }
-
 .g-hero-cta {
   display: inline-block;
-  background: var(--mint);
-  color: #030a04;
+  background: var(--green);
+  color: #fff;
   font-weight: 800;
   font-size: 1.05rem;
-  padding: 18px 36px;
+  padding: 18px 38px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: transform .15s, box-shadow .15s;
+  transition: background .15s, transform .15s, box-shadow .15s;
   text-decoration: none;
   letter-spacing: .01em;
 }
 .g-hero-cta:hover {
+  background: var(--green-hover);
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(110,236,157,.35);
+  box-shadow: 0 12px 36px rgba(43,207,120,.28);
 }
 
 .g-trust-row {
@@ -159,157 +145,168 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
-  font-size: .78rem;
-  color: var(--grey);
+  margin-top: 18px;
+  font-size: .77rem;
+  color: var(--ink-2);
   flex-wrap: wrap;
 }
 .g-trust-row span { display: flex; align-items: center; gap: 5px; }
-.g-trust-row .tick { color: var(--mint); font-size: 1rem; }
+.tick { color: var(--green-hover); font-weight: 800; }
 
-/* ═══════════════════════════════════════════════════════════
-   PROBLEM / PAIN
-═══════════════════════════════════════════════════════════ */
+/* Social proof bubbles */
+.g-notif-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.g-notif {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+  text-align: left;
+}
+.g-notif-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: rgba(43,207,120,.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.g-notif-text strong { display: block; font-size: .77rem; font-weight: 700; color: var(--ink); }
+.g-notif-text span   { font-size: .71rem; color: var(--ink-2); }
+
+/* ── PAIN ────────────────────────────────────────────────── */
 .g-pain {
-  padding: 60px 0;
+  padding: 68px 0 0;
   border-top: 1px solid var(--border);
 }
-.g-section-label {
-  font-size: .72rem;
+.g-eyebrow {
+  font-size: .71rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 12px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
 }
 .g-h2 {
   font-size: clamp(1.5rem, 3.5vw, 2.1rem);
   font-weight: 800;
+  letter-spacing: -.025em;
   line-height: 1.2;
-  letter-spacing: -.02em;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  color: var(--ink);
 }
 .g-pain-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
+  padding-bottom: 68px;
 }
 .g-pain-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  font-size: 1rem;
-  color: rgba(255,255,255,.8);
-  line-height: 1.5;
+  font-size: .97rem;
+  color: var(--ink);
+  line-height: 1.55;
 }
-.g-pain-list .icon {
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+.g-pain-list .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
 
-/* ═══════════════════════════════════════════════════════════
-   AGITATE
-═══════════════════════════════════════════════════════════ */
+/* ── AGITATE ─────────────────────────────────────────────── */
 .g-agitate {
-  padding: 0 0 60px;
+  padding: 0 0 68px;
 }
 .g-agitate-box {
-  background: rgba(255,68,68,.06);
-  border: 1px solid rgba(255,68,68,.2);
+  background: #fff5f5;
+  border: 1.5px solid #fca5a5;
   border-radius: 12px;
-  padding: 32px;
+  padding: 26px 24px;
 }
 .g-agitate-box p {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
-  color: rgba(255,255,255,.85);
+  color: var(--ink);
 }
-.g-agitate-box p + p { margin-top: 14px; }
-.g-agitate-box strong { color: #fff; }
 
-/* ═══════════════════════════════════════════════════════════
-   SOLUTION / VALUE STACK
-═══════════════════════════════════════════════════════════ */
+/* ── SOLUTION ────────────────────────────────────────────── */
 .g-solution {
-  padding: 60px 0;
+  padding: 68px 0;
   border-top: 1px solid var(--border);
 }
 .g-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 28px;
+  gap: 10px;
+  margin-top: 24px;
 }
 .g-stack-item {
   display: flex;
   gap: 14px;
-  align-items: flex-start;
-  background: var(--grey-light);
+  align-items: center;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 14px 18px;
 }
-.g-stack-item .si-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.g-stack-item .si-text strong {
-  display: block;
-  font-size: .95rem;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-.g-stack-item .si-text span {
-  font-size: .83rem;
-  color: var(--grey);
-  line-height: 1.4;
-}
+.g-stack-item .si-icon { font-size: 1.2rem; flex-shrink: 0; }
+.g-stack-item strong { display: block; font-size: .93rem; font-weight: 700; color: var(--ink); }
+.g-stack-item span { font-size: .82rem; color: var(--ink-2); line-height: 1.4; }
 
-/* ═══════════════════════════════════════════════════════════
-   GUARANTEE BOX
-═══════════════════════════════════════════════════════════ */
-.g-guarantee {
-  padding: 60px 0;
+/* ── GUARANTEE ───────────────────────────────────────────── */
+.g-guarantee-section {
+  background: var(--green-deep);
+  padding: 68px 0;
 }
-.g-guarantee-box {
-  background: linear-gradient(135deg, rgba(110,236,157,.08), rgba(110,236,157,.03));
-  border: 1.5px solid rgba(110,236,157,.3);
-  border-radius: 16px;
-  padding: 40px 32px;
-  text-align: center;
-}
-.g-guarantee-icon { font-size: 3rem; margin-bottom: 16px; }
+.g-guarantee-box { text-align: center; color: #fff; }
+.g-guarantee-icon { font-size: 2.8rem; margin-bottom: 14px; }
 .g-guarantee-title {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   font-weight: 900;
-  letter-spacing: -.02em;
-  margin-bottom: 16px;
-  line-height: 1.2;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
-.g-guarantee-title .accent-g {
-  background: linear-gradient(135deg, #6EEC9D, #3cd870);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.g-guarantee-title .accent-g { color: var(--green); }
 .g-guarantee-body {
-  font-size: .98rem;
-  color: var(--grey);
-  max-width: 480px;
+  font-size: .97rem;
+  color: rgba(255,255,255,.65);
+  max-width: 460px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.65;
 }
+.g-guarantee-cta {
+  display: inline-block;
+  margin-top: 28px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 800;
+  font-size: .98rem;
+  padding: 15px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s;
+}
+.g-guarantee-cta:hover { background: var(--green-hover); }
 
-/* ═══════════════════════════════════════════════════════════
-   MULTI-STEP FORM
-═══════════════════════════════════════════════════════════ */
+/* ── FUNNEL ──────────────────────────────────────────────── */
 .g-funnel {
-  padding: 60px 0 80px;
+  padding: 72px 0 80px;
   border-top: 1px solid var(--border);
-  background: var(--bg2);
 }
 .g-funnel-wrap {
   max-width: 520px;
@@ -318,141 +315,172 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
 }
 .g-funnel-head {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
-.g-funnel-head .step-label {
-  font-size: .72rem;
-  color: var(--mint);
+.g-funnel-head .f-eyebrow {
+  font-size: .71rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
+  color: var(--green-hover);
   margin-bottom: 8px;
 }
-.g-funnel-head .step-title {
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+.g-funnel-head .f-title {
+  font-size: clamp(1.3rem, 3vw, 1.75rem);
   font-weight: 800;
-  letter-spacing: -.02em;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.g-funnel-head .step-sub {
-  font-size: .88rem;
-  color: var(--grey);
+.g-funnel-head .f-sub {
+  font-size: .86rem;
+  color: var(--ink-2);
   margin-top: 6px;
 }
 
-/* Progress bar */
+/* Progress */
 .g-progress {
   display: flex;
   gap: 6px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 .g-progress-dot {
-  flex: 1;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--grey-light);
+  flex: 1; height: 4px;
+  border-radius: 4px;
+  background: var(--border);
   transition: background .3s;
 }
-.g-progress-dot.active { background: var(--mint); }
-.g-progress-dot.done   { background: rgba(110,236,157,.5); }
+.g-progress-dot.active { background: var(--green); }
+.g-progress-dot.done   { background: rgba(43,207,120,.45); }
 
-/* Step content */
+/* Steps */
 .g-step { display: none; }
 .g-step.visible { display: block; }
 
 .g-field-label {
   display: block;
-  font-size: .78rem;
+  font-size: .77rem;
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   text-transform: uppercase;
-  color: var(--grey);
+  color: var(--ink-2);
   margin-bottom: 10px;
 }
 .g-input {
   width: 100%;
-  background: rgba(255,255,255,.05);
+  background: #fff;
   border: 1.5px solid var(--border);
   border-radius: 8px;
-  color: var(--white);
+  color: var(--ink);
   font-size: 1.1rem;
-  padding: 16px 18px;
+  padding: 15px 16px;
   outline: none;
   transition: border-color .2s;
   font-family: inherit;
   appearance: none;
 }
-.g-input::placeholder { color: rgba(255,255,255,.25); }
-.g-input:focus { border-color: var(--mint); }
+.g-input::placeholder { color: #b0bdb6; }
+.g-input:focus { border-color: var(--green); }
 .g-input.error { border-color: var(--red); }
+
+.g-hint {
+  font-size: .74rem;
+  color: var(--ink-2);
+  margin-top: 7px;
+}
+
+.g-checkbox-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+}
+.g-checkbox-row input[type="checkbox"] {
+  width: 17px; height: 17px;
+  margin-top: 2px; flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--green);
+}
+.g-checkbox-row label {
+  font-size: .75rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.g-checkbox-row label a { color: var(--green-hover); text-decoration: underline; }
 
 .g-next-btn {
   display: block;
   width: 100%;
   margin-top: 16px;
-  background: var(--mint);
-  color: #030a04;
+  background: var(--green);
+  color: #fff;
   font-weight: 800;
   font-size: 1.05rem;
   padding: 17px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: transform .15s, box-shadow .15s, opacity .2s;
+  transition: background .15s, transform .15s, box-shadow .15s;
   font-family: inherit;
   letter-spacing: .01em;
 }
-.g-next-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(110,236,157,.3); }
-.g-next-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.g-next-btn:hover { background: var(--green-hover); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(43,207,120,.25); }
+.g-next-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
 
-.g-err-msg {
-  color: var(--red);
-  font-size: .78rem;
-  margin-top: 6px;
-  display: none;
-}
+.g-err-msg { color: var(--red); font-size: .76rem; margin-top: 6px; display: none; }
 .g-err-msg.show { display: block; }
 
-/* Thank you */
-.g-thankyou {
-  display: none;
-  text-align: center;
-  padding: 20px 0;
-}
+/* ── THANK YOU ───────────────────────────────────────────── */
+.g-thankyou { display: none; }
 .g-thankyou.visible { display: block; }
-.g-thankyou-icon { font-size: 3.5rem; margin-bottom: 20px; }
-.g-thankyou-title {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+
+.g-ty-head { text-align: center; padding: 10px 0 32px; }
+.ty-icon { font-size: 3rem; margin-bottom: 14px; }
+.g-ty-head h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 900;
-  letter-spacing: -.02em;
+  letter-spacing: -.025em;
+  color: var(--ink);
   margin-bottom: 12px;
 }
-.g-thankyou-sub {
-  font-size: .98rem;
-  color: var(--grey);
-  line-height: 1.6;
-  max-width: 400px;
-  margin: 0 auto;
-}
+.g-ty-head p { font-size: .97rem; color: var(--ink-2); max-width: 400px; margin: 0 auto; line-height: 1.65; }
+.g-ty-head .g-highlight { color: var(--green-hover); font-weight: 700; }
 
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════════ */
+.g-ty-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+.g-ty-cal-head { text-align: center; margin-bottom: 16px; }
+.g-ty-cal-head p { font-size: .84rem; color: var(--ink-2); }
+.g-ty-cal-head strong { display: block; font-size: 1rem; font-weight: 700; color: var(--ink); margin-top: 4px; }
+
+/* ── FOOTER TRANSITION + FOOTER ──────────────────────────── */
+.g-footer-transition {
+  height: 80px;
+  background: linear-gradient(to bottom, #ffffff 0%, var(--green-deep) 100%);
+}
+.g-footer {
+  background: var(--green-deep);
+  padding: 32px 20px;
+  text-align: center;
+  font-size: .75rem;
+  color: rgba(255,255,255,.4);
+}
+.g-footer a { color: rgba(255,255,255,.55); text-decoration: underline; }
+
 @media (max-width: 600px) {
-  .g-guarantee-box { padding: 28px 20px; }
-  .g-agitate-box   { padding: 24px 18px; }
+  .g-notif-row { flex-direction: column; align-items: center; }
 }
 
   </style>
 </Fragment>
 
-<!-- URGENCY BAR -->
+
+<!-- ─── URGENCY BAR ─────────────────────────────────────────── -->
 <div class="g-topbar">
-  Nur noch <span>&nbsp;1 freier Platz&nbsp;</span> in deiner Region — danach ist es zu spät
+  Nur noch <strong>1 freier Platz</strong> in deiner Region — danach ist es zu spät
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── HERO ───────────────────────────────────────────────── -->
 <section class="g-hero">
   <div class="g-container">
 
@@ -461,17 +489,21 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
       Exklusiv für GaLaBau-Betriebe
     </div>
 
+    <p class="g-quote-hook">
+      "Ich bin der Beste in meiner Stadt —<br>
+      <strong>aber kein Mensch weiß das."</strong>
+    </p>
+
     <h1 class="g-h1">
-      Wir garantieren dir<br>
-      <span class="accent">3 neue Aufträge</span><br>
-      in 30 Tagen.
+      Wir ändern das.<br>
+      <span class="accent">In 30 Tagen.</span>
     </h1>
 
-    <div class="g-guarantee-badge">Oder du zahlst uns keinen Cent.</div>
+    <div class="g-guarantee-pill">3 garantierte Auftragsanfragen — oder kein Cent.</div>
 
-    <p class="g-sub">
-      Kein Risiko. Kein Eigenaufwand. Kein Technik-Stress.<br>
-      <strong>Du baust — wir bringen die Aufträge.</strong>
+    <p style="font-size:1.02rem;color:var(--ink-2);max-width:480px;margin:0 auto 32px;line-height:1.65;">
+      Kein Marketing-Aufwand. Kein Technik-Stress.<br>
+      <strong style="color:var(--ink);">Du baust — wir füllen deinen Kalender.</strong>
     </p>
 
     <button class="g-hero-cta" onclick="scrollToFunnel()">
@@ -479,111 +511,107 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
     </button>
 
     <div class="g-trust-row">
-      <span><span class="tick">✓</span> Kostenlos &amp; unverbindlich</span>
-      <span><span class="tick">✓</span> Antwort in 24 Stunden</span>
-      <span><span class="tick">✓</span> 1× pro Region</span>
+      <span><span class="tick">✓</span> Kostenlos & unverbindlich</span>
+      <span><span class="tick">✓</span> Antwort in 24h</span>
+      <span><span class="tick">✓</span> 1 Betrieb pro Region</span>
+    </div>
+
+    <!-- Social proof bubbles -->
+    <div class="g-notif-row">
+      <div class="g-notif">
+        <div class="g-notif-icon">📩</div>
+        <div class="g-notif-text">
+          <strong>Neue Anfrage eingegangen</strong>
+          <span>Gerade eben · Hannover</span>
+        </div>
+      </div>
+      <div class="g-notif">
+        <div class="g-notif-icon">✅</div>
+        <div class="g-notif-text">
+          <strong>3 Aufträge in 27 Tagen</strong>
+          <span>GaLaBau-Betrieb · Hamburg</span>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     PROBLEM — SCHMERZ
-═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── PAIN ────────────────────────────────────────────────── -->
 <section class="g-pain">
   <div class="g-container">
 
-    <p class="g-section-label">Das Problem</p>
-    <h2 class="g-h2">Sei mal ehrlich zu dir selbst.</h2>
+    <p class="g-eyebrow">Das Problem</p>
+    <h2 class="g-h2">Kommt dir das bekannt vor?</h2>
 
     <ul class="g-pain-list">
       <li>
-        <span class="icon">😤</span>
-        <span>Du weißt heute nicht, was du <strong>nächsten Monat</strong> bauen wirst. Keine Planbarkeit. Nur Hoffnung.</span>
-      </li>
-      <li>
         <span class="icon">📞</span>
-        <span>Du hast dein Auftragsbuch mit <strong>Empfehlungen und Mundpropaganda</strong> gefüllt. Das ist kein System. Das ist Glück.</span>
+        <span><strong>"Wir leben von Mundpropaganda."</strong> Klappt jahrelang. Bis es plötzlich nicht mehr klappt. Und du nicht weißt, wann das nächste Telefon klingelt.</span>
       </li>
       <li>
-        <span class="icon">😰</span>
-        <span>Die ruhigen Wochen im Winter oder zwischen den Projekten? <strong>Stress pur.</strong> Wo kommt der nächste Auftrag her?</span>
+        <span class="icon">❄️</span>
+        <span>Oktober, November, Dezember: Stille. Mitarbeiter wollen beschäftigt werden, Fixkosten laufen weiter. Du zahlst aus der Substanz — und kämpfst um jeden Auftrag.</span>
       </li>
       <li>
-        <span class="icon">🏃</span>
-        <span>Du hast keine Zeit für Marketing. Du bist auf der Baustelle — und abends bist du zu erschöpft um dich darum zu kümmern.</span>
+        <span class="icon">🌐</span>
+        <span>Dein Konkurrent findet sich online — du nicht. Er kassiert die Anfragen. Nicht weil er besser ist. Sondern weil er sichtbar ist und du noch nicht.</span>
       </li>
     </ul>
 
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     AGITATE
-═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── AGITATE ─────────────────────────────────────────────── -->
 <section class="g-agitate">
   <div class="g-container">
     <div class="g-agitate-box">
       <p>
-        Während du das liest, hat dein Wettbewerber gerade ein System aufgesetzt.
-        Er weiß heute schon, was er in 6 Wochen baut. Sein Auftragsbuch ist voll.
-        Er muss keine Aufträge mehr jagen — <strong>die kommen automatisch.</strong>
-      </p>
-      <p>
-        Solange du nichts änderst, bleibt das so. Die Lücke zwischen dir und ihm
-        wird jeden Monat größer. Nicht weil er besser ist als du.
-        Sondern weil er ein System hat — und du noch nicht.
+        Während du das liest, weiß dein Konkurrent schon, was er in 6 Wochen baut.
+        Sein Kalender ist voll — auch im Winter. Er muss keine Aufträge mehr jagen.
+        <strong>Der Unterschied zu dir? Er hat ein System. Du noch nicht.</strong>
       </p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     SOLUTION — VALUE STACK
-═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── SOLUTION ────────────────────────────────────────────── -->
 <section class="g-solution">
   <div class="g-container">
 
-    <p class="g-section-label">Die Lösung</p>
-    <h2 class="g-h2">Wir übernehmen das komplett für dich.</h2>
-    <p style="color:var(--grey);font-size:.98rem;margin-bottom:4px;">
-      Du bekommst ein fertiges System das Anfragen bringt — in 30 Tagen.
-    </p>
+    <p class="g-eyebrow">Die Lösung</p>
+    <h2 class="g-h2">Wir bauen dein Auftragssystem — komplett.</h2>
 
     <div class="g-stack">
       <div class="g-stack-item">
         <span class="si-icon">🌐</span>
-        <div class="si-text">
-          <strong>Hochkonvertierende Webseite</strong>
-          <span>Speziell für GaLaBau-Betriebe gebaut — nicht irgendein Template.</span>
+        <div>
+          <strong>Webseite die Anfragen bringt</strong>
+          <span>Speziell für GaLaBau-Betriebe gebaut — kein Standard-Template.</span>
         </div>
       </div>
       <div class="g-stack-item">
         <span class="si-icon">📢</span>
-        <div class="si-text">
-          <strong>Google Ads — komplett aufgesetzt</strong>
-          <span>Wir schalten Ads in deiner Region. Du bekommst die Anfragen. Fertig.</span>
-        </div>
-      </div>
-      <div class="g-stack-item">
-        <span class="si-icon">🔄</span>
-        <div class="si-text">
-          <strong>Lead-Funnel + automatische Vorqualifizierung</strong>
-          <span>Nur ernsthafte Anfragen kommen durch — kein Zeitverschwendung.</span>
+        <div>
+          <strong>Google Ads in deiner Region</strong>
+          <span>Wir schalten und optimieren. Du bekommst die Anfragen.</span>
         </div>
       </div>
       <div class="g-stack-item">
         <span class="si-icon">📊</span>
-        <div class="si-text">
+        <div>
           <strong>Live-Dashboard mit deinen Anfragen</strong>
-          <span>Du siehst in Echtzeit wer sich angefragt hat — Name, Nummer, sofort.</span>
+          <span>Name, Nummer, Projekt — sofort auf dein Handy.</span>
         </div>
       </div>
       <div class="g-stack-item">
         <span class="si-icon">🔒</span>
-        <div class="si-text">
+        <div>
           <strong>Exklusivität in deiner Region</strong>
-          <span>Wir arbeiten nur mit einem GaLaBauer pro Region. Dein Wettbewerber bleibt draußen.</span>
+          <span>Nur 1 GaLaBauer pro Region. Dein Wettbewerber bleibt draußen.</span>
         </div>
       </div>
     </div>
@@ -591,108 +619,141 @@ body { background: var(--bg); color: var(--white); line-height: 1.6; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     GUARANTEE
-═══════════════════════════════════════════════════════════ -->
-<section class="g-guarantee">
+
+<!-- ─── GUARANTEE ───────────────────────────────────────────── -->
+<section class="g-guarantee-section">
   <div class="g-container">
     <div class="g-guarantee-box">
       <div class="g-guarantee-icon">🛡️</div>
       <h2 class="g-guarantee-title">
         <span class="accent-g">3 Aufträge in 30 Tagen</span><br>
-        — oder kein Cent.
+        — oder du zahlst nichts.
       </h2>
       <p class="g-guarantee-body">
-        Wenn du nach 30 Tagen nicht mindestens 3 qualifizierte Auftragsanfragen
-        erhalten hast, zahlst du uns nichts. Das Risiko liegt bei uns — nicht bei dir.
-        Das ist unser Versprechen.
+        Wenn du nach 30 Tagen keine 3 qualifizierten Auftragsanfragen hast,
+        zahlst du uns keinen Cent. Das Risiko liegt komplett bei uns — nicht bei dir.
       </p>
+      <button class="g-guarantee-cta" onclick="scrollToFunnel()">
+        Jetzt Platz sichern →
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     MULTI-STEP FUNNEL
-═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── MULTI-STEP FUNNEL ───────────────────────────────────── -->
 <section class="g-funnel" id="funnel">
   <div class="g-funnel-wrap">
 
     <div class="g-funnel-head">
-      <p class="step-label">Kostenlos &amp; unverbindlich anfragen</p>
-      <h2 class="step-title">Sichere dir deinen Platz</h2>
-      <p class="step-sub">Nur noch 1 Platz in deiner Region — dauert 30 Sekunden</p>
+      <p class="f-eyebrow">Kostenlos & unverbindlich anfragen</p>
+      <h2 class="f-title">Sichere dir deinen Platz</h2>
+      <p class="f-sub">Nur noch 1 Platz in deiner Region — dauert 30 Sekunden</p>
     </div>
 
-    <!-- Progress -->
-    <div class="g-progress" id="gProgress">
-      <div class="g-progress-dot active" id="dot-0"></div>
-      <div class="g-progress-dot" id="dot-1"></div>
-      <div class="g-progress-dot" id="dot-2"></div>
-      <div class="g-progress-dot" id="dot-3"></div>
-    </div>
+    <!-- FORM AREA -->
+    <div id="gFormArea">
+      <div class="g-progress" id="gProgress">
+        <div class="g-progress-dot active" id="dot-0"></div>
+        <div class="g-progress-dot" id="dot-1"></div>
+        <div class="g-progress-dot" id="dot-2"></div>
+        <div class="g-progress-dot" id="dot-3"></div>
+      </div>
 
-    <!-- STEP 0 — Vorname -->
-    <div class="g-step visible" id="step-0">
-      <label class="g-field-label" for="g-vorname">Wie ist dein Vorname?</label>
-      <input class="g-input" id="g-vorname" type="text" placeholder="z.B. Thomas" autocomplete="given-name" />
-      <p class="g-err-msg" id="err-0">Bitte gib deinen Vornamen ein.</p>
-      <button class="g-next-btn" onclick="nextStep(0)">Weiter →</button>
-    </div>
+      <!-- STEP 0 — Vorname -->
+      <div class="g-step visible" id="step-0">
+        <label class="g-field-label" for="g-vorname">Wie ist dein Vorname?</label>
+        <input class="g-input" id="g-vorname" type="text" placeholder="z.B. Thomas" autocomplete="given-name" />
+        <p class="g-err-msg" id="err-0">Bitte gib deinen Vornamen ein.</p>
+        <button class="g-next-btn" onclick="nextStep(0)">Weiter →</button>
+      </div>
 
-    <!-- STEP 1 — Nachname -->
-    <div class="g-step" id="step-1">
-      <label class="g-field-label" for="g-nachname">Und dein Nachname?</label>
-      <input class="g-input" id="g-nachname" type="text" placeholder="z.B. Müller" autocomplete="family-name" />
-      <p class="g-err-msg" id="err-1">Bitte gib deinen Nachnamen ein.</p>
-      <button class="g-next-btn" onclick="nextStep(1)">Weiter →</button>
-    </div>
+      <!-- STEP 1 — Nachname -->
+      <div class="g-step" id="step-1">
+        <label class="g-field-label" for="g-nachname">Und dein Nachname?</label>
+        <input class="g-input" id="g-nachname" type="text" placeholder="z.B. Müller" autocomplete="family-name" />
+        <p class="g-err-msg" id="err-1">Bitte gib deinen Nachnamen ein.</p>
+        <button class="g-next-btn" onclick="nextStep(1)">Weiter →</button>
+      </div>
 
-    <!-- STEP 2 — Handynummer -->
-    <div class="g-step" id="step-2">
-      <label class="g-field-label" for="g-phone">Deine Handynummer?</label>
-      <input class="g-input" id="g-phone" type="tel" placeholder="z.B. 0162 1234567" autocomplete="tel" />
-      <p class="g-err-msg" id="err-2">Bitte gib eine gültige Nummer ein.</p>
-      <p style="font-size:.74rem;color:var(--grey);margin-top:8px;">
-        Wir rufen dich an — kein Spam, versprochen.
-      </p>
-      <button class="g-next-btn" onclick="nextStep(2)">Weiter →</button>
-    </div>
+      <!-- STEP 2 — Handynummer -->
+      <div class="g-step" id="step-2">
+        <label class="g-field-label" for="g-phone">Deine Handynummer?</label>
+        <input class="g-input" id="g-phone" type="tel" placeholder="z.B. 0162 1234567" autocomplete="tel" />
+        <p class="g-err-msg" id="err-2">Bitte gib eine gültige Nummer ein.</p>
+        <p class="g-hint">Wir rufen dich an — kein Spam, versprochen.</p>
+        <button class="g-next-btn" onclick="nextStep(2)">Weiter →</button>
+      </div>
 
-    <!-- STEP 3 — E-Mail -->
-    <div class="g-step" id="step-3">
-      <label class="g-field-label" for="g-email">Deine E-Mail-Adresse?</label>
-      <input class="g-input" id="g-email" type="email" placeholder="z.B. thomas@musterbau.de" autocomplete="email" />
-      <p class="g-err-msg" id="err-3">Bitte gib eine gültige E-Mail-Adresse ein.</p>
-      <button class="g-next-btn" id="submitBtn" onclick="submitForm()">
-        Jetzt kostenlos Platz sichern →
-      </button>
+      <!-- STEP 3 — E-Mail -->
+      <div class="g-step" id="step-3">
+        <label class="g-field-label" for="g-email">Deine E-Mail-Adresse?</label>
+        <input class="g-input" id="g-email" type="email" placeholder="z.B. thomas@musterbau.de" autocomplete="email" />
+        <p class="g-err-msg" id="err-3">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+
+        <!-- Newsletter-Checkbox — DSGVO-konformes Opt-in -->
+        <div class="g-checkbox-row">
+          <input type="checkbox" id="g-newsletter" />
+          <label for="g-newsletter">
+            Ja, ich möchte auch kostenlose Tipps zur Auftragsgewinnung per E-Mail erhalten.
+            (Optional · <a href="/datenschutz" target="_blank">Datenschutz</a>)
+          </label>
+        </div>
+
+        <button class="g-next-btn" id="submitBtn" onclick="submitForm()">
+          Jetzt kostenlos Platz sichern →
+        </button>
+      </div>
     </div>
 
     <!-- THANK YOU -->
     <div class="g-thankyou" id="gThankyou">
-      <div class="g-thankyou-icon">🎉</div>
-      <h2 class="g-thankyou-title">Perfekt — wir melden uns!</h2>
-      <p class="g-thankyou-sub">
-        Wir haben deine Anfrage erhalten und melden uns innerhalb von
-        <strong>24 Stunden</strong> bei dir. Bereite dich auf 3 neue Aufträge vor.
-      </p>
+
+      <div class="g-ty-head">
+        <div class="ty-icon">🎉</div>
+        <h2>Du bist dabei — wir freuen uns!</h2>
+        <p>
+          Deine Anfrage ist bei uns angekommen.
+          Wir melden uns <span class="g-highlight">innerhalb der nächsten 24 Stunden</span>
+          persönlich bei dir — und starten dann direkt durch.
+        </p>
+      </div>
+
+      <hr class="g-ty-divider" />
+
+      <!-- Calendly Embed -->
+      <div class="g-ty-cal-head">
+        <p>Du willst nicht warten?</p>
+        <strong>Buch dir direkt einen Termin mit Paul</strong>
+      </div>
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/paul-web/30min?hide_gdpr_banner=1&primary_color=2bcf78"
+        style="min-width:280px;height:680px;"
+      ></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
     </div>
 
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════ -->
-<footer style="text-align:center;padding:28px 20px;font-size:.75rem;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.06);">
+
+<!-- ─── FOOTER TRANSITION ────────────────────────────────────── -->
+<div class="g-footer-transition"></div>
+
+
+<!-- ─── FOOTER ──────────────────────────────────────────────── -->
+<footer class="g-footer">
   © 2026 Fastra One · Paul Fasterding · Am Flachsgraben 9, 30657 Hannover ·
-  <a href="/datenschutz" style="color:inherit;text-decoration:underline;">Datenschutz</a> ·
-  <a href="/impressum" style="color:inherit;text-decoration:underline;">Impressum</a>
+  <a href="/datenschutz">Datenschutz</a> ·
+  <a href="/impressum">Impressum</a>
 </footer>
+
 
 <script is:inline>
 
-var _gd = { vorname:'', nachname:'', phone:'', email:'' };
+var _gd = { vorname:'', nachname:'', phone:'', email:'', newsletter: false };
 var _step = 0;
 
 function scrollToFunnel() {
@@ -712,11 +773,10 @@ function updateProgress(step) {
 function showStep(n) {
   for (var i = 0; i < 4; i++) {
     var s = document.getElementById('step-' + i);
-    if (s) { s.className = 'g-step' + (i === n ? ' visible' : ''); }
+    if (s) s.className = 'g-step' + (i === n ? ' visible' : '');
   }
   updateProgress(n);
   _step = n;
-  // Focus input
   var ids = ['g-vorname','g-nachname','g-phone','g-email'];
   var inp = document.getElementById(ids[n]);
   if (inp) setTimeout(function(){ inp.focus(); }, 100);
@@ -728,7 +788,6 @@ function nextStep(current) {
   var val = document.getElementById(ids[current]).value.trim();
   var errEl = document.getElementById('err-' + current);
 
-  // Validate
   var ok = false;
   if (current === 0) ok = val.length >= 2;
   if (current === 1) ok = val.length >= 2;
@@ -747,7 +806,6 @@ function nextStep(current) {
 }
 
 function submitForm() {
-  // Validate email first
   var email = document.getElementById('g-email').value.trim();
   var errEl = document.getElementById('err-3');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -756,25 +814,26 @@ function submitForm() {
     return;
   }
   _gd.email = email;
+  _gd.newsletter = document.getElementById('g-newsletter').checked;
 
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Wird gesendet...';
 
-  // UTM params
   var params = new URLSearchParams(window.location.search);
   var payload = {
-    name:     _gd.vorname + ' ' + _gd.nachname,
-    vorname:  _gd.vorname,
-    nachname: _gd.nachname,
-    phone:    _gd.phone,
-    email:    _gd.email,
-    seite:    'galabau-garantie',
-    utm_source:   params.get('utm_source')   || '',
-    utm_medium:   params.get('utm_medium')   || '',
-    utm_campaign: params.get('utm_campaign') || '',
-    utm_content:  params.get('utm_content')  || '',
-    created_at: new Date().toISOString()
+    name:        _gd.vorname + ' ' + _gd.nachname,
+    vorname:     _gd.vorname,
+    nachname:    _gd.nachname,
+    phone:       _gd.phone,
+    email:       _gd.email,
+    newsletter:  _gd.newsletter,
+    seite:       'galabau-garantie',
+    utm_source:    params.get('utm_source')   || '',
+    utm_medium:    params.get('utm_medium')   || '',
+    utm_campaign:  params.get('utm_campaign') || '',
+    utm_content:   params.get('utm_content')  || '',
+    created_at:  new Date().toISOString()
   };
 
   fetch('https://fastraone-admin.vercel.app/api/leads', {
@@ -784,36 +843,17 @@ function submitForm() {
   })
   .then(function(r) { return r.ok ? r : Promise.reject(r.status); })
   .then(function() {
-    // DataLayer push (GTM)
-    if (window.dataLayer) window.dataLayer.push({
-      event: 'lead_submit',
-      lead_seite: 'galabau-garantie'
-    });
+    if (window.dataLayer) window.dataLayer.push({ event: 'lead_submit', lead_seite: 'galabau-garantie' });
     showThankyou();
   })
-  .catch(function() {
-    // Show success anyway (don't block user on network error)
-    showThankyou();
-  });
+  .catch(function() { showThankyou(); });
 }
 
 function showThankyou() {
-  for (var i = 0; i < 4; i++) {
-    var s = document.getElementById('step-' + i);
-    if (s) s.className = 'g-step';
-  }
-  var progress = document.getElementById('gProgress');
-  if (progress) progress.style.display = 'none';
-  var ty = document.getElementById('gThankyou');
-  if (ty) ty.className = 'g-thankyou visible';
-  // Mark all dots done
-  for (var j = 0; j < 4; j++) {
-    var d = document.getElementById('dot-' + j);
-    if (d) d.className = 'g-progress-dot done';
-  }
+  document.getElementById('gFormArea').style.display = 'none';
+  document.getElementById('gThankyou').className = 'g-thankyou visible';
 }
 
-// Enter key support
 document.addEventListener('keydown', function(e) {
   if (e.key !== 'Enter') return;
   var actions = [
