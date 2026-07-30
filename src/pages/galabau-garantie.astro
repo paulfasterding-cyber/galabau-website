@@ -987,39 +987,76 @@ footer::before {
         </div>
       </div>
 
-      <!-- KARTE 2: Mundpropaganda mit rotem X -->
+      <!-- KARTE 2: Mundpropaganda — Empfehlungskette bricht ab -->
       <div class="card-m reveal d1">
         <div class="illus-bg">
           <svg viewBox="0 0 280 136" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
             <defs>
-              <filter id="p-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="3" stdDeviation="7" flood-color="#00000012"/>
+              <filter id="md-n-sh" x="-25%" y="-25%" width="150%" height="150%">
+                <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#00000011"/>
               </filter>
+              <filter id="md-b-sh" x="-15%" y="-35%" width="130%" height="170%">
+                <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#00000014"/>
+              </filter>
+              <clipPath id="n1c"><circle cx="50" cy="62" r="19.5"/></clipPath>
+              <clipPath id="n2c"><circle cx="138" cy="62" r="19.5"/></clipPath>
             </defs>
-            <!-- Person 1 (links) -->
-            <g class="ill-el d1">
-              <!-- Kopf -->
-              <circle cx="68" cy="40" r="20" fill="#e5e7eb" filter="url(#p-shadow)"/>
-              <!-- Körper -->
-              <rect x="50" y="65" width="36" height="50" rx="18" fill="#e5e7eb"/>
+
+            <!-- Verbindung 1: solide grün, Node1 → Node2 -->
+            <line x1="70" y1="62" x2="112" y2="62" stroke="#86efac" stroke-width="2" stroke-linecap="round" class="ill-el d2"/>
+            <path d="M108 58 L114 62 L108 66" stroke="#86efac" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="ill-el d2"/>
+
+            <!-- Verbindung 2: gestrichelt grau, Node2 → ? -->
+            <line x1="158" y1="62" x2="212" y2="62" stroke="#e5e7eb" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" class="ill-el d3"/>
+
+            <!-- Node 1: Zufriedener Kunde (grün) -->
+            <g class="ill-el d1" filter="url(#md-n-sh)">
+              <circle cx="50" cy="62" r="20" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <g clip-path="url(#n1c)">
+                <circle cx="50" cy="56" r="6.5" fill="#22c55e"/>
+                <path d="M32 82 Q50 67 68 82 L68 86 L32 86 Z" fill="#22c55e"/>
+              </g>
             </g>
-            <!-- Person 2 (rechts) -->
-            <g class="ill-el d1">
-              <circle cx="212" cy="40" r="20" fill="#e5e7eb" filter="url(#p-shadow)"/>
-              <rect x="194" y="65" width="36" height="50" rx="18" fill="#e5e7eb"/>
+
+            <!-- Node 2: Empfehlung (grau) -->
+            <g class="ill-el d2" filter="url(#md-n-sh)">
+              <circle cx="138" cy="62" r="20" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+              <g clip-path="url(#n2c)">
+                <circle cx="138" cy="56" r="6.5" fill="#d1d5db"/>
+                <path d="M120 82 Q138 67 156 82 L156 86 L120 86 Z" fill="#d1d5db"/>
+              </g>
             </g>
-            <!-- Sprechblasen (klein) -->
-            <g class="ill-el d2">
-              <rect x="92" y="28" width="40" height="18" rx="9" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-              <path d="M96 46l-8 6 12-2z" fill="white" stroke="#e5e7eb" stroke-width="0.5"/>
-              <rect x="148" y="28" width="40" height="18" rx="9" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-              <path d="M184 46l8 6-12-2z" fill="white" stroke="#e5e7eb" stroke-width="0.5"/>
+
+            <!-- Kettenbruch: Rotes X -->
+            <g class="ill-el d4">
+              <circle cx="185" cy="62" r="10" fill="rgba(239,68,68,.09)" stroke="#fca5a5" stroke-width="1.2"/>
+              <line x1="179.5" y1="56.5" x2="190.5" y2="67.5" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="190.5" y1="56.5" x2="179.5" y2="67.5" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
             </g>
-            <!-- Rotes X (Kreis + Linien) -->
+
+            <!-- "?" Platzhalter-Node -->
             <g class="ill-el d3">
-              <circle cx="140" cy="68" r="34" fill="rgba(239,68,68,.07)" stroke="#fca5a5" stroke-width="1.5"/>
-              <line x1="120" y1="48" x2="160" y2="88" stroke="#ef4444" stroke-width="5.5" stroke-linecap="round"/>
-              <line x1="160" y1="48" x2="120" y2="88" stroke="#ef4444" stroke-width="5.5" stroke-linecap="round"/>
+              <circle cx="230" cy="62" r="18" fill="#fafafa" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <text x="230" y="67.5" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="18" fill="#d1d5db" font-weight="700">?</text>
+            </g>
+
+            <!-- Badge 1: Uhr + "Unplanbar" -->
+            <g class="ill-el ill-breathe d1" filter="url(#md-b-sh)">
+              <rect x="4" y="6" width="108" height="28" rx="14" fill="white"/>
+              <circle cx="20" cy="20" r="9" fill="#fef3c7"/>
+              <circle cx="20" cy="20" r="6.5" fill="none" stroke="#d97706" stroke-width="1.3"/>
+              <line x1="20" y1="20" x2="20" y2="15" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/>
+              <line x1="20" y1="20" x2="23.5" y2="22" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/>
+              <text x="36" y="24.5" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#111111" font-weight="600">Unplanbar</text>
+            </g>
+
+            <!-- Badge 2: Warnung + "Kein Plan B" -->
+            <g class="ill-el d3" filter="url(#md-b-sh)">
+              <rect x="152" y="100" width="124" height="28" rx="14" fill="white"/>
+              <circle cx="168" cy="114" r="9" fill="#fef2f2"/>
+              <line x1="168" y1="109" x2="168" y2="115.5" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="168" cy="118.5" r="1.3" fill="#ef4444"/>
+              <text x="184" y="118.5" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#111111" font-weight="600">Kein Plan B</text>
             </g>
           </svg>
         </div>
