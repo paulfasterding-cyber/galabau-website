@@ -666,6 +666,89 @@ footer::before { display: none; }
 .btn-outline-dark { background: transparent; color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.15); box-shadow: none; padding: 11px 20px; }
 .btn-outline-dark:hover { background: rgba(255,255,255,.06); color: #fff; }
 
+/* ── Anfragen-Visual ── */
+.sys-visual {
+  position: relative; height: 460px; max-width: 700px;
+  margin: 0 auto 44px; overflow: hidden;
+}
+.sys-visual::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 28px 28px; pointer-events: none;
+}
+/* Glühender Hintergrund */
+.sys-hub-glow {
+  position: absolute; top: 50%; left: 50%;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,.28) 0%, transparent 70%);
+  transform: translate(-50%,-50%);
+  animation: sys-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sys-pulse {
+  0%,100% { opacity: .8; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: .4; transform: translate(-50%,-50%) scale(1.12); }
+}
+/* Konzentrische Ringe */
+.sys-ring {
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 50%; border: 1px solid rgba(34,197,94,.18);
+  transform: translate(-50%,-50%);
+}
+.sys-ring.r1 { width: 160px; height: 160px; border-color: rgba(34,197,94,.3); }
+.sys-ring.r2 { width: 280px; height: 280px; border-color: rgba(34,197,94,.12); }
+.sys-ring.r3 { width: 420px; height: 420px; border-color: rgba(34,197,94,.06); }
+/* Logo-Kreis Mitte */
+.sys-hub-circle {
+  position: absolute; top: 50%; left: 50%;
+  width: 122px; height: 122px;
+  transform: translate(-50%,-50%);
+  border-radius: 50%; border: 1.5px solid rgba(34,197,94,.45);
+  background: #0c1422;
+  box-shadow: 0 0 48px rgba(34,197,94,.22), inset 0 0 24px rgba(34,197,94,.08);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.sys-hub-circle img { width: 76px; filter: brightness(0) invert(1); }
+/* Notification-Karten */
+.sys-ncard {
+  position: absolute;
+  background: rgba(11,16,26,.92); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 10px 36px 10px 10px;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.45);
+  min-width: 190px;
+}
+.sys-ncard-dot {
+  position: absolute; top: 10px; right: 12px;
+  width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,.7);
+}
+.sys-ncard-avatar {
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(34,197,94,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(34,197,94,.7);
+}
+.sys-ncard strong { display: block; font-size: .82rem; color: #fff; font-weight: 700; line-height: 1.2; }
+.sys-ncard span { font-size: .71rem; color: rgba(255,255,255,.42); display: block; margin-top: 2px; }
+/* Positionen */
+.sys-ncard.n1 { top: 7%;  left: 14%; }
+.sys-ncard.n2 { top: 7%;  right: 8%; }
+.sys-ncard.n3 { top: 50%; left: -2%; transform: translateY(-50%); }
+.sys-ncard.n4 { top: 50%; right:-2%; transform: translateY(-50%); }
+.sys-ncard.n5 { bottom: 9%; left: 15%; }
+.sys-ncard.n6 { bottom: 9%; right: 8%; }
+@media (max-width: 640px) {
+  .sys-visual { height: 360px; }
+  .sys-ncard.n3, .sys-ncard.n4 { display: none; }
+  .sys-ring.r3 { display: none; }
+  .sys-ncard { min-width: 150px; }
+  .sys-ncard strong { font-size: .75rem; }
+  .sys-ncard span { font-size: .67rem; }
+}
+
 /* ═══════════════════════════════════
    KALENDER — gebuchte Slots
 ═══════════════════════════════════ */
@@ -1151,7 +1234,49 @@ footer::before { display: none; }
       <p>Während du auf der Baustelle bist, klingelt dein Telefon.</p>
     </div>
 
-    <div class="sys-cta reveal d3">
+    <!-- Visual: Logo + Anfragen-Karten -->
+    <div class="sys-visual reveal d3">
+      <div class="sys-hub-glow"></div>
+      <div class="sys-ring r1"></div>
+      <div class="sys-ring r2"></div>
+      <div class="sys-ring r3"></div>
+      <div class="sys-hub-circle">
+        <img src="/assets/logo.png" alt="Fastra One">
+      </div>
+      <!-- 6 Notification-Karten -->
+      <div class="sys-ncard n1">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Thomas B. · Terrassenbau...</span></div>
+      </div>
+      <div class="sys-ncard n2">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Andrea W. · Hecke & Bepf...</span></div>
+      </div>
+      <div class="sys-ncard n3">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Familie Köhler · Gartenpl...</span></div>
+      </div>
+      <div class="sys-ncard n4">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Klaus R. · Hofgestaltung</span></div>
+      </div>
+      <div class="sys-ncard n5">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Stefan M. · Rasen anlegen</span></div>
+      </div>
+      <div class="sys-ncard n6">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><strong>Neue Anfrage</strong><span>Julia N. · Garten neu ge...</span></div>
+      </div>
+    </div>
+
+    <div class="sys-cta reveal d4">
       <button class="btn btn-primary" onclick="scrollToForm()">
         Jetzt einklinken
         <span class="btn-arrow">
