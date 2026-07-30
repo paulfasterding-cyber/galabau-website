@@ -655,6 +655,21 @@ footer::before {
 }
 
 /* ═══════════════════════════════════
+   SYSTEM CENTER (Lösung-Sektion)
+═══════════════════════════════════ */
+.system-center { text-align: center; max-width: 540px; margin: 0 auto; }
+.system-center h2 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); letter-spacing: -.04em; line-height: 1.06; margin-bottom: 18px; }
+.system-center > p { color: var(--ink-2); font-size: 1.05rem; line-height: 1.68; max-width: 42ch; margin: 0 auto; }
+.system-btns { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════
+   KALENDER — gebuchte Slots
+═══════════════════════════════════ */
+.m-days .bk { background: rgba(34,197,94,.15); color: var(--accent-deep); font-weight: 600; }
+.m-slot.bk  { color: #9ca3af; border-color: #f3f4f6; background: #f9fafb; cursor: default; font-size: .74rem; }
+.m-slot.bk::after { content: ' ✓'; font-size: .7rem; color: var(--accent); }
+
+/* ═══════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════ */
 @media (max-width: 520px) {
@@ -676,8 +691,7 @@ footer::before {
 <div class="nav-outer">
   <nav class="pill">
     <div class="nav-brand">
-      <span class="nav-dot"></span>
-      Fastra One
+      <img src="/assets/logo.png" alt="Fastra One" style="height:26px;display:block;">
     </div>
     <ul>
       <li><a href="#problem">Problem</a></li>
@@ -704,7 +718,8 @@ footer::before {
     </span>
 
     <h1 class="reveal d1">
-      3 neue Aufträge.<br>
+      3 neue Aufträge<br>
+      für GaLaBau-Betriebe.<br>
       30 Tage. <em>Garantiert.</em>
     </h1>
 
@@ -871,23 +886,24 @@ footer::before {
               <div class="m-days">
                 <span class="dim"></span><span class="dim"></span><span class="dim"></span>
                 <span class="dim"></span><span class="av">1</span><span class="dim">2</span><span class="dim">3</span>
-                <span class="av">4</span><span class="av">5</span><span class="av">6</span>
-                <span class="av">7</span><span class="av">8</span><span class="dim">9</span><span class="dim">10</span>
-                <span class="av">11</span><span class="av">12</span><span class="td">13</span>
-                <span class="sel">14</span><span class="av">15</span><span class="dim">16</span><span class="dim">17</span>
-                <span class="av">18</span><span class="av">19</span><span class="av">20</span>
-                <span class="av">21</span><span class="av">22</span><span class="dim">23</span><span class="dim">24</span>
-                <span class="av">25</span><span class="av">26</span><span class="av">27</span>
-                <span class="av">28</span><span class="av">29</span><span class="dim">30</span><span class="dim">31</span>
+                <span class="bk">4</span><span class="bk">5</span><span class="av">6</span>
+                <span class="bk">7</span><span class="av">8</span><span class="dim">9</span><span class="dim">10</span>
+                <span class="bk">11</span><span class="av">12</span><span class="td">13</span>
+                <span class="sel">14</span><span class="bk">15</span><span class="dim">16</span><span class="dim">17</span>
+                <span class="bk">18</span><span class="bk">19</span><span class="av">20</span>
+                <span class="av">21</span><span class="bk">22</span><span class="dim">23</span><span class="dim">24</span>
+                <span class="bk">25</span><span class="bk">26</span><span class="av">27</span>
+                <span class="av">28</span><span class="bk">29</span><span class="dim">30</span><span class="dim">31</span>
               </div>
             </div>
             <div class="m-div"></div>
             <div class="m-times-col">
               <div class="m-tlabel">Do, 14. August</div>
               <div class="m-slots">
-                <button class="m-slot">09:00 Uhr</button>
+                <button class="m-slot bk">08:00 Uhr</button>
+                <button class="m-slot bk">09:30 Uhr</button>
                 <button class="m-slot sel">10:30 Uhr</button>
-                <button class="m-slot">14:00 Uhr</button>
+                <button class="m-slot bk">13:00 Uhr</button>
                 <button class="m-slot">15:30 Uhr</button>
               </div>
               <button class="m-confirm">Termin bestätigen →</button>
@@ -909,9 +925,9 @@ footer::before {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div>
-          <div class="fc-notif-title">Booking bestätigt</div>
-          <div class="fc-notif-body">Thomas M. · Mo, 14. Aug</div>
-          <div class="fc-notif-time">10:30 Uhr · GaLaBau-Beratung</div>
+          <div class="fc-notif-title">3 Buchungen heute</div>
+          <div class="fc-notif-body">Thomas M. · Stefan K. · Jana B.</div>
+          <div class="fc-notif-time">10:30 · 13:00 · 15:30 Uhr</div>
         </div>
       </div>
 
@@ -931,53 +947,33 @@ footer::before {
 
     <div class="cards3">
 
-      <!-- KARTE 1: Person mit Smartphone + Chat-Bubbles -->
+      <!-- KARTE 1: Leerer Anfragen-Eingang -->
       <div class="card-m reveal">
         <div class="illus-bg">
           <svg viewBox="0 0 280 136" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-            <defs>
-              <filter id="ph-shadow" x="-30%" y="-30%" width="160%" height="160%">
-                <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#00000018"/>
-              </filter>
-              <filter id="badge-sh" x="-15%" y="-30%" width="130%" height="160%">
-                <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#00000014"/>
-              </filter>
-            </defs>
-            <!-- Telefon (zentriert) -->
-            <g class="ill-el d2" filter="url(#ph-shadow)">
-              <rect x="109" y="12" width="62" height="108" rx="11" fill="white" stroke="#e5e7eb" stroke-width="1.2"/>
-              <!-- Screen -->
-              <rect x="115" y="26" width="50" height="82" rx="5" fill="#f9fafb"/>
-              <!-- Kamera -->
-              <circle cx="140" cy="20" r="2.5" fill="#d1d5db"/>
-              <!-- Chat-Bubbles auf Screen -->
-              <rect x="118" y="32" width="30" height="10" rx="5" fill="#22c55e" class="ill-el d3"/>
-              <rect x="134" y="47" width="28" height="10" rx="5" fill="#e5e7eb" class="ill-el d3"/>
-              <rect x="118" y="62" width="34" height="10" rx="5" fill="#22c55e" class="ill-el d4"/>
-              <rect x="134" y="77" width="24" height="10" rx="5" fill="#e5e7eb" class="ill-el d4"/>
-              <!-- Home-Indicator -->
-              <rect x="130" y="110" width="20" height="3" rx="1.5" fill="#e5e7eb"/>
+            <!-- App-Fenster -->
+            <g class="ill-el d1" style="filter:drop-shadow(0 4px 18px rgba(0,0,0,.08))">
+              <rect x="46" y="8" width="188" height="96" rx="14" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="46" y="8" width="188" height="34" rx="14" fill="#f9fafb"/>
+              <rect x="46" y="28" width="188" height="14" fill="#f9fafb"/>
+              <line x1="46" y1="42" x2="234" y2="42" stroke="#e5e7eb" stroke-width="1"/>
+              <circle cx="62" cy="25" r="4" fill="#fca5a5"/>
+              <circle cx="76" cy="25" r="4" fill="#fde68a"/>
+              <circle cx="90" cy="25" r="4" fill="#bbf7d0"/>
+              <text x="140" y="29" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="9.5" font-weight="600" fill="#9ca3af">Anfragen-Eingang</text>
             </g>
-            <!-- Badge 1: Neue Anfrage (links oben) -->
-            <g class="ill-el ill-breathe d1" filter="url(#badge-sh)">
-              <rect x="4" y="14" width="98" height="28" rx="14" fill="white"/>
-              <circle cx="20" cy="28" r="9" fill="#22c55e"/>
-              <path d="M16.5 28.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="36" y="32.5" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#111111" font-weight="600">Neue Anfrage</text>
+            <!-- "0" Leer-Zustand -->
+            <g class="ill-el d2">
+              <text x="140" y="80" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="44" font-weight="500" font-style="italic" fill="#e5e7eb">0</text>
+              <text x="140" y="97" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="8.5" font-weight="600" letter-spacing=".06em" fill="#d1d5db">NEUE ANFRAGEN</text>
             </g>
-            <!-- Badge 2: Neuer Auftrag (rechts oben) -->
-            <g class="ill-el d2" filter="url(#badge-sh)">
-              <rect x="178" y="8" width="98" height="28" rx="14" fill="white"/>
-              <circle cx="194" cy="22" r="9" fill="#22c55e"/>
-              <path d="M190.5 22.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="210" y="26.5" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#111111" font-weight="600">Neuer Auftrag</text>
-            </g>
-            <!-- Badge 3: Termin bestätigt (rechts unten) -->
-            <g class="ill-el d3" filter="url(#badge-sh)">
-              <rect x="160" y="102" width="116" height="28" rx="14" fill="white"/>
-              <circle cx="176" cy="116" r="9" fill="#22c55e"/>
-              <path d="M172.5 116.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="192" y="120.5" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#111111" font-weight="600">Termin bestätigt</text>
+            <!-- Badge: Warnung -->
+            <g class="ill-el ill-breathe d1" style="filter:drop-shadow(0 2px 8px rgba(0,0,0,.10))">
+              <rect x="6" y="102" width="176" height="27" rx="13.5" fill="white"/>
+              <circle cx="22" cy="115.5" r="8.5" fill="#fef2f2"/>
+              <line x1="22" y1="111" x2="22" y2="116.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/>
+              <circle cx="22" cy="120" r="1.2" fill="#ef4444"/>
+              <text x="38" y="119.5" font-family="Inter,-apple-system,sans-serif" font-size="9.5" fill="#111111" font-weight="600">Nächste Anfrage: unbekannt</text>
             </g>
           </svg>
         </div>
@@ -1101,23 +1097,10 @@ footer::before {
               <rect x="243" y="92" width="19" height="12" rx="4" fill="#ef4444"/>
             </g>
 
-            <!-- Rote Trendlinie (Herbst→Winter) -->
-            <g class="ill-el d4">
-              <polyline
-                points="202,72 227,84 252,92"
-                stroke="#ef4444" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round"
-                fill="none"
-              />
-              <!-- Pfeil am Ende -->
-              <path d="M247 90 L252 95 L257 90" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </g>
-
-            <!-- Minus-Symbol über Winter-Balken -->
-            <g class="ill-el d5">
-              <rect x="219" y="70" width="16" height="3" rx="1.5" fill="#ef4444"/>
-              <!-- kleines "-" Label -->
-              <text x="230" y="68" font-family="Inter,sans-serif" font-size="9" fill="#ef4444" font-weight="700" text-anchor="middle">–40%</text>
+            <!-- Pill-Badge "–40%" (kein Trendpfeil) -->
+            <g class="ill-el d4" style="filter:drop-shadow(0 2px 7px rgba(0,0,0,.09))">
+              <rect x="198" y="52" width="60" height="22" rx="11" fill="white" stroke="#fca5a5" stroke-width="1"/>
+              <text x="228" y="67" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="10.5" fill="#ef4444" font-weight="700">–40%</text>
             </g>
 
             <!-- Monats-Labels -->
@@ -1148,46 +1131,23 @@ footer::before {
 <!-- ─── LÖSUNG ────────────────────────────────── -->
 <section class="section" id="loesung">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Dein <em>Auftragssystem</em> — fertig gebaut.</h2>
-      <p>Alles aus einer Hand. Wir bauen es. Du nutzt es. Du bekommst die Aufträge.</p>
-    </div>
-    <div class="sol-grid">
-      <div class="sol-item reveal">
-        <div class="sol-check">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Webseite die Anfragen bringt</strong>
-          <span>Speziell für GaLaBau-Betriebe — kein Standard-Template.</span>
-        </div>
-      </div>
-      <div class="sol-item reveal d1">
-        <div class="sol-check">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Google Ads in deiner Region</strong>
-          <span>Wir schalten und optimieren. Du bekommst die Anfragen.</span>
-        </div>
-      </div>
-      <div class="sol-item reveal d1">
-        <div class="sol-check">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Live-Dashboard mit deinen Anfragen</strong>
-          <span>Name, Nummer, Projekt — sofort auf dein Handy.</span>
-        </div>
-      </div>
-      <div class="sol-item reveal d2">
-        <div class="sol-check">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Exklusivität in deiner Region</strong>
-          <span>Nur 1 GaLaBauer pro Region. Dein Wettbewerber bleibt draußen.</span>
-        </div>
+    <div class="system-center reveal">
+      <span class="hero-badge" style="margin-bottom:28px;">
+        <span class="pulse-dot"></span>
+        Exklusiv · 1 GaLaBau-Betrieb pro Region
+      </span>
+      <h2>Das <em>Fastra One</em><br>System.</h2>
+      <p>Wir bauen dir die Maschine, die jeden Monat planbar neue Aufträge bringt — damit dein Kalender nie wieder leer ist.</p>
+      <div class="system-btns">
+        <button class="btn btn-primary" onclick="scrollToForm()">
+          Jetzt anfragen
+          <span class="btn-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </button>
+        <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="btn btn-outline">
+          Direkt Termin buchen
+        </a>
       </div>
     </div>
   </div>
