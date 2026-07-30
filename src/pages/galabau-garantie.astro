@@ -628,8 +628,8 @@ footer::before { display: none; }
   font-family: var(--f-sans); font-size: clamp(5rem, 16vw, 15rem);
   font-weight: 900; letter-spacing: -.03em; text-transform: uppercase;
   color: rgb(23,31,48); display: block; user-select: none; white-space: nowrap;
-  -webkit-mask-image: linear-gradient(#000 0%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(#000 0%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(#000 0%, rgba(0,0,0,.6) 55%, transparent 85%);
+  mask-image: linear-gradient(#000 0%, rgba(0,0,0,.6) 55%, transparent 85%);
 }
 
 /* ═══════════════════════════════════
@@ -673,8 +673,10 @@ footer::before { display: none; }
 }
 .sys-visual::before {
   content: ''; position: absolute; inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,.045) 1px, transparent 1px);
-  background-size: 28px 28px; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 60px 60px; pointer-events: none;
 }
 /* Glühender Hintergrund */
 .sys-hub-glow {
@@ -733,13 +735,33 @@ footer::before { display: none; }
 }
 .sys-ncard strong { display: block; font-size: .82rem; color: #fff; font-weight: 700; line-height: 1.2; }
 .sys-ncard span { font-size: .71rem; color: rgba(255,255,255,.42); display: block; margin-top: 2px; }
-/* Positionen */
-.sys-ncard.n1 { top: 7%;  left: 14%; }
-.sys-ncard.n2 { top: 7%;  right: 8%; }
-.sys-ncard.n3 { top: 50%; left: -2%; transform: translateY(-50%); }
-.sys-ncard.n4 { top: 50%; right:-2%; transform: translateY(-50%); }
-.sys-ncard.n5 { bottom: 9%; left: 15%; }
-.sys-ncard.n6 { bottom: 9%; right: 8%; }
+/* Float-Animationen */
+@keyframes floatUp   { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-9px)} }
+@keyframes floatDown { 0%,100%{transform:translateY(0)}    50%{transform:translateY(9px)} }
+@keyframes floatN3   { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% - 9px))} }
+@keyframes floatN4   { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% + 9px))} }
+@keyframes pulseDot  {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.6); }
+  70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+@keyframes ringBreath { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* Positionen + Animationen */
+.sys-ncard-dot { animation: pulseDot 2s ease-out infinite; }
+.sys-ring.r1 { animation: ringBreath 3s ease-in-out infinite; }
+.sys-ring.r2 { animation: ringBreath 3s ease-in-out .6s infinite; }
+.sys-ring.r3 { animation: ringBreath 3s ease-in-out 1.2s infinite; }
+.sys-ncard.n1 { top: 7%;  left: 14%;  animation: floatUp   6s   ease-in-out       infinite; }
+.sys-ncard.n2 { top: 7%;  right: 8%;  animation: floatDown 5.5s ease-in-out  .8s  infinite; }
+.sys-ncard.n3 { top: 50%; left: -2%;  animation: floatN3   7s   ease-in-out  1.2s infinite; }
+.sys-ncard.n4 { top: 50%; right:-2%;  animation: floatN4   6.5s ease-in-out  .4s  infinite; }
+.sys-ncard.n5 { bottom: 9%; left: 15%; animation: floatUp  5.8s ease-in-out  1.6s infinite; }
+.sys-ncard.n6 { bottom: 9%; right: 8%; animation: floatDown 6.2s ease-in-out .2s  infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sys-ncard, .sys-ring, .sys-hub-glow { animation: none !important; }
+}
 @media (max-width: 640px) {
   .sys-visual { height: 360px; }
   .sys-ncard.n3, .sys-ncard.n4 { display: none; }
@@ -748,6 +770,10 @@ footer::before { display: none; }
   .sys-ncard strong { font-size: .75rem; }
   .sys-ncard span { font-size: .67rem; }
 }
+
+/* Wellen-Übergang: hell → dunkel */
+.wave-to-dark { background: var(--bg); line-height: 0; margin-bottom: -1px; position: relative; z-index: 2; }
+.wave-to-dark svg { display: block; width: 100%; height: 68px; }
 
 /* ═══════════════════════════════════
    KALENDER — gebuchte Slots
@@ -1214,6 +1240,13 @@ footer::before { display: none; }
   </div>
 </section>
 
+
+<!-- Wellen-Übergang: weiß → dunkel (fastraone.de Stil) -->
+<div class="wave-to-dark" aria-hidden="true">
+  <svg viewBox="0 0 1440 68" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,68 L1440,68 L1440,32 C1200,56 960,10 720,32 C480,56 240,10 0,28 Z" fill="#0b0f1a"/>
+  </svg>
+</div>
 
 <!-- ─── LÖSUNG ────────────────────────────────── -->
 <section class="section system-dark" id="loesung">
