@@ -453,7 +453,7 @@ nav.pill ul a:hover { color: var(--ink); }
 }
 .fc-lbl { font-size: .73rem; color: var(--ink-2); margin-top: 2px; display: block; line-height: 1.4; }
 /* Notif card */
-.float-card.notif { bottom: 5%; right: -2.5%; display: flex; align-items: flex-start; gap: 12px; max-width: 240px; transition-delay: .35s; }
+.float-card.notif { bottom: 5%; right: -2.5%; display: flex; align-items: flex-start; gap: 12px; max-width: 290px; transition-delay: .35s; }
 .fc-ic {
   width: 36px; height: 36px; border-radius: 10px;
   background: var(--accent-soft);
@@ -655,12 +655,27 @@ footer::before {
 }
 
 /* ═══════════════════════════════════
-   SYSTEM CENTER (Lösung-Sektion)
+   SYSTEM DARK (fastraone.de Stil)
 ═══════════════════════════════════ */
-.system-center { text-align: center; max-width: 540px; margin: 0 auto; }
-.system-center h2 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); letter-spacing: -.04em; line-height: 1.06; margin-bottom: 18px; }
-.system-center > p { color: var(--ink-2); font-size: 1.05rem; line-height: 1.68; max-width: 42ch; margin: 0 auto; }
+.system-dark { background: #0b0f1a; }
+.system-dark::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(34,197,94,.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.system-center { text-align: center; max-width: 560px; margin: 0 auto; }
+.system-center h2 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); letter-spacing: -.04em; line-height: 1.06; margin-bottom: 18px; color: #fff; }
+.system-center h2 em { color: var(--accent); }
+.system-center > p { color: rgba(255,255,255,.5); font-size: 1.05rem; line-height: 1.68; max-width: 42ch; margin: 0 auto; }
+.system-dark .hero-badge { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.25); color: #4ade80; }
+.system-dark .hero-badge .pulse-dot { background: #4ade80; }
+.system-dark .hero-badge .pulse-dot::after { border-color: #4ade80; }
+.system-arc { width: 84px; height: 84px; margin: 0 auto 24px; }
 .system-btns { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-outline-dark { background: transparent; color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.15); box-shadow: none; padding: 11px 20px; }
+.btn-outline-dark:hover { background: rgba(255,255,255,.06); color: #fff; }
 
 /* ═══════════════════════════════════
    KALENDER — gebuchte Slots
@@ -1097,10 +1112,10 @@ footer::before {
               <rect x="243" y="92" width="19" height="12" rx="4" fill="#ef4444"/>
             </g>
 
-            <!-- Pill-Badge "–40%" (kein Trendpfeil) -->
+            <!-- Pill-Badge "–40%" oben rechts -->
             <g class="ill-el d4" style="filter:drop-shadow(0 2px 7px rgba(0,0,0,.09))">
-              <rect x="198" y="52" width="60" height="22" rx="11" fill="white" stroke="#fca5a5" stroke-width="1"/>
-              <text x="228" y="67" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="10.5" fill="#ef4444" font-weight="700">–40%</text>
+              <rect x="198" y="8" width="60" height="22" rx="11" fill="white" stroke="#fca5a5" stroke-width="1"/>
+              <text x="228" y="23" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="10.5" fill="#ef4444" font-weight="700">–40%</text>
             </g>
 
             <!-- Monats-Labels -->
@@ -1129,15 +1144,32 @@ footer::before {
 
 
 <!-- ─── LÖSUNG ────────────────────────────────── -->
-<section class="section" id="loesung">
+<section class="section system-dark" id="loesung">
   <div class="wrap">
     <div class="system-center reveal">
+
+      <!-- Circular Arc — Fastra One Logo-Mark -->
+      <div class="system-arc">
+        <svg viewBox="0 0 84 84" fill="none" width="84" height="84">
+          <!-- Hintergrund-Ring -->
+          <circle cx="42" cy="42" r="32" stroke="rgba(34,197,94,.12)" stroke-width="3"/>
+          <!-- Haupt-Arc (wie Fastra-Logo, ~300°, Lücke unten rechts) -->
+          <circle cx="42" cy="42" r="32" stroke="#22c55e" stroke-width="5.5" stroke-linecap="round"
+                  fill="none" stroke-dasharray="148 53" transform="rotate(-140 42 42)" opacity=".9"/>
+          <!-- Kurzer Gegen-Arc -->
+          <circle cx="42" cy="42" r="32" stroke="rgba(34,197,94,.35)" stroke-width="5.5" stroke-linecap="round"
+                  fill="none" stroke-dasharray="30 171" transform="rotate(120 42 42)"/>
+        </svg>
+      </div>
+
       <span class="hero-badge" style="margin-bottom:28px;">
         <span class="pulse-dot"></span>
         Exklusiv · 1 GaLaBau-Betrieb pro Region
       </span>
+
       <h2>Das <em>Fastra One</em><br>System.</h2>
       <p>Wir bauen dir die Maschine, die jeden Monat planbar neue Aufträge bringt — damit dein Kalender nie wieder leer ist.</p>
+
       <div class="system-btns">
         <button class="btn btn-primary" onclick="scrollToForm()">
           Jetzt anfragen
@@ -1145,10 +1177,11 @@ footer::before {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
         </button>
-        <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="btn btn-outline">
+        <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="btn btn-outline-dark">
           Direkt Termin buchen
         </a>
       </div>
+
     </div>
   </div>
 </section>
@@ -1243,7 +1276,9 @@ footer::before {
     </div>
   </div>
 
-  <div class="foot-wordmark" aria-hidden="true">Fastra One</div>
+  <div class="foot-wordmark" aria-hidden="true">
+    <img src="/assets/logo-wordmark.png" alt="" style="opacity:.055;mix-blend-mode:screen;max-width:520px;width:72%;display:block;margin:0 auto;">
+  </div>
 
 </footer>
 
