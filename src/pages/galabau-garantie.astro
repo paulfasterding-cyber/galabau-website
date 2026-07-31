@@ -186,13 +186,23 @@ nav.pill ul a:hover { color: var(--ink); }
 .hero-bg-photo {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%; object-fit: cover;
-  opacity: .07;
-  filter: blur(4px) saturate(1.2);
-  transform: scale(1.06);
+  opacity: .18;
+  filter: blur(2px) saturate(1.3);
+  transform: scale(1.05);
   pointer-events: none;
 }
-/* kein grüner Glow oben */
-.hero::before { display: none; }
+/* Weißer Gradient-Ausblend: oben leicht, unten voll weiß → nahtloser Übergang zum Kalender */
+.hero::before {
+  display: block;
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,.25) 0%,
+    rgba(255,255,255,.55) 55%,
+    rgba(255,255,255,1)   90%
+  );
+  pointer-events: none;
+}
 /* Dezentes Dot-Grid (wie Referenz-Template) */
 .hero::after {
   content: '';
