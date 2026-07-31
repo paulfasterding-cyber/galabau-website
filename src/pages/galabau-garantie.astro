@@ -70,14 +70,34 @@ img   { max-width: 100%; display: block; }
    URGENCY BAR
 ═══════════════════════════════════ */
 .urg {
-  background: var(--red);
-  color: #fff;
-  text-align: center;
-  padding: 9px 20px;
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: .02em;
+  background: #0b0f1a;
+  border-bottom: 1px solid rgba(34,197,94,.15);
+  color: rgba(255,255,255,.88);
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 10px 20px;
+  font-size: .82rem; font-weight: 500;
+  position: sticky; top: 0; z-index: 200;
+  flex-wrap: wrap;
 }
+.urg-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #f97316; flex-shrink: 0;
+  animation: pulseOrange 2s ease-out infinite;
+}
+@keyframes pulseOrange {
+  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,.7); }
+  70%  { box-shadow: 0 0 0 7px rgba(249,115,22,0); }
+  100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+}
+.urg strong { color: #4ade80; font-weight: 700; }
+.urg-sep { color: rgba(255,255,255,.2); }
+.urg-btn {
+  background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3);
+  color: #4ade80; font-size: .77rem; font-weight: 700;
+  padding: 4px 13px; border-radius: 999px; cursor: pointer;
+  letter-spacing: .01em; transition: background .18s;
+}
+.urg-btn:hover { background: rgba(34,197,94,.22); }
 
 /* ═══════════════════════════════════
    NAV — Pill (Faris-Schmidt-Referenz)
@@ -583,7 +603,7 @@ footer::before { display: none; }
 .foot-top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
+  gap: 60px;
   padding: 64px 0 52px;
 }
 @media (max-width: 760px) { .foot-top { grid-template-columns: 1fr; gap: 32px; } }
@@ -671,13 +691,7 @@ footer::before { display: none; }
   position: relative; height: 460px; max-width: 700px;
   margin: 0 auto 44px; overflow: hidden;
 }
-.sys-visual::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
-  background-size: 60px 60px; pointer-events: none;
-}
+.sys-visual::before { display: none; }
 /* Glühender Hintergrund */
 .sys-hub-glow {
   position: absolute; top: 50%; left: 50%;
@@ -691,15 +705,10 @@ footer::before { display: none; }
   0%,100% { opacity: .8; transform: translate(-50%,-50%) scale(1); }
   50% { opacity: .4; transform: translate(-50%,-50%) scale(1.12); }
 }
-/* Konzentrische Ringe */
-.sys-ring {
-  position: absolute; top: 50%; left: 50%;
-  border-radius: 50%; border: 1px solid rgba(34,197,94,.18);
-  transform: translate(-50%,-50%);
+/* SVG-Ringe mit orbitierenden Bögen */
+.sys-rings-svg {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
 }
-.sys-ring.r1 { width: 160px; height: 160px; border-color: rgba(34,197,94,.3); }
-.sys-ring.r2 { width: 280px; height: 280px; border-color: rgba(34,197,94,.12); }
-.sys-ring.r3 { width: 420px; height: 420px; border-color: rgba(34,197,94,.06); }
 /* Logo-Kreis Mitte */
 .sys-hub-circle {
   position: absolute; top: 50%; left: 50%;
@@ -712,15 +721,16 @@ footer::before { display: none; }
   z-index: 2;
 }
 .sys-hub-circle img { width: 76px; filter: brightness(0) invert(1); }
-/* Notification-Karten */
+/* Notification-Karten — fastraone.de Stil */
 .sys-ncard {
   position: absolute;
-  background: rgba(11,16,26,.92); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 14px; padding: 10px 36px 10px 10px;
+  background: linear-gradient(135deg, rgba(22,28,52,.94), rgba(12,15,28,.94));
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 14px; padding: 10px 34px 10px 10px;
   display: flex; align-items: center; gap: 10px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0,0,0,.45);
-  min-width: 190px;
+  backdrop-filter: blur(20px);
+  box-shadow: rgba(110,236,157,.05) 0 0 0 1px, rgba(0,0,0,.3) 0 6px 24px;
+  min-width: 190px; width: 210px;
 }
 .sys-ncard-dot {
   position: absolute; top: 10px; right: 12px;
@@ -745,13 +755,8 @@ footer::before { display: none; }
   70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
   100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
 }
-@keyframes ringBreath { 0%,100%{opacity:1} 50%{opacity:.3} }
-
 /* Positionen + Animationen */
 .sys-ncard-dot { animation: pulseDot 2s ease-out infinite; }
-.sys-ring.r1 { animation: ringBreath 3s ease-in-out infinite; }
-.sys-ring.r2 { animation: ringBreath 3s ease-in-out .6s infinite; }
-.sys-ring.r3 { animation: ringBreath 3s ease-in-out 1.2s infinite; }
 .sys-ncard.n1 { top: 7%;  left: 14%;  animation: floatUp   6s   ease-in-out       infinite; }
 .sys-ncard.n2 { top: 7%;  right: 8%;  animation: floatDown 5.5s ease-in-out  .8s  infinite; }
 .sys-ncard.n3 { top: 50%; left: -2%;  animation: floatN3   7s   ease-in-out  1.2s infinite; }
@@ -796,7 +801,10 @@ footer::before { display: none; }
 
 <!-- ─── URGENCY BAR ──────────────────────────── -->
 <div class="urg">
-  Nur noch <strong>1 freier Platz</strong> in deiner Region — danach ist es zu spät
+  <span class="urg-dot"></span>
+  <span>Nur noch <strong>1 freier Platz</strong> in deiner Region</span>
+  <span class="urg-sep">—</span>
+  <button class="urg-btn" onclick="scrollToForm()">Jetzt sichern →</button>
 </div>
 
 
@@ -1270,9 +1278,27 @@ footer::before { display: none; }
     <!-- Visual: Logo + Anfragen-Karten -->
     <div class="sys-visual reveal d3">
       <div class="sys-hub-glow"></div>
-      <div class="sys-ring r1"></div>
-      <div class="sys-ring r2"></div>
-      <div class="sys-ring r3"></div>
+
+      <!-- SVG-Ringe mit rotierenden grünen Bögen -->
+      <svg class="sys-rings-svg" viewBox="0 0 700 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Statische Basis-Ringe -->
+        <circle cx="350" cy="230" r="80"  stroke="rgba(34,197,94,.2)"  stroke-width="1"/>
+        <circle cx="350" cy="230" r="140" stroke="rgba(34,197,94,.1)"  stroke-width="1"/>
+        <circle cx="350" cy="230" r="205" stroke="rgba(34,197,94,.06)" stroke-width="1"/>
+        <!-- Rotierender grüner Bogen — Ring 1 (schnell, 4s) -->
+        <circle cx="350" cy="230" r="80" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="48 454" fill="none">
+          <animateTransform attributeName="transform" type="rotate" from="-90 350 230" to="270 350 230" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Rotierender grüner Bogen — Ring 2 (mittel, 7s, Gegenrichtung Offset) -->
+        <circle cx="350" cy="230" r="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="70 809" fill="none" opacity=".75">
+          <animateTransform attributeName="transform" type="rotate" from="60 350 230" to="420 350 230" dur="7s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Rotierender grüner Bogen — Ring 3 (langsam, 12s, umgekehrt) -->
+        <circle cx="350" cy="230" r="205" stroke="#86efac" stroke-width="1" stroke-linecap="round" stroke-dasharray="95 1193" fill="none" opacity=".5">
+          <animateTransform attributeName="transform" type="rotate" from="180 350 230" to="-180 350 230" dur="12s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+
       <div class="sys-hub-circle">
         <img src="/assets/logo.png" alt="Fastra One">
       </div>
