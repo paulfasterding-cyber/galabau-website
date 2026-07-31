@@ -70,34 +70,33 @@ img   { max-width: 100%; display: block; }
    URGENCY BAR
 ═══════════════════════════════════ */
 .urg {
-  background: #0b0f1a;
-  border-bottom: 1px solid rgba(34,197,94,.15);
-  color: rgba(255,255,255,.88);
+  background: #dc2626;
+  color: #fff;
   display: flex; align-items: center; justify-content: center;
-  gap: 10px; padding: 10px 20px;
-  font-size: .82rem; font-weight: 500;
-  position: sticky; top: 0; z-index: 200;
+  gap: 10px; padding: 9px 20px;
+  font-size: .82rem; font-weight: 600;
+  position: relative; z-index: 10;
   flex-wrap: wrap;
 }
 .urg-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: #f97316; flex-shrink: 0;
+  background: #fff; flex-shrink: 0;
   animation: pulseOrange 2s ease-out infinite;
 }
 @keyframes pulseOrange {
-  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,.7); }
-  70%  { box-shadow: 0 0 0 7px rgba(249,115,22,0); }
-  100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+  70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
 }
-.urg strong { color: #4ade80; font-weight: 700; }
-.urg-sep { color: rgba(255,255,255,.2); }
+.urg strong { color: #fff; font-weight: 800; }
+.urg-sep { color: rgba(255,255,255,.4); }
 .urg-btn {
-  background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.3);
-  color: #4ade80; font-size: .77rem; font-weight: 700;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.45);
+  color: #fff; font-size: .77rem; font-weight: 700;
   padding: 4px 13px; border-radius: 999px; cursor: pointer;
   letter-spacing: .01em; transition: background .18s;
 }
-.urg-btn:hover { background: rgba(34,197,94,.22); }
+.urg-btn:hover { background: rgba(255,255,255,.28); }
 
 /* ═══════════════════════════════════
    NAV — Pill (Faris-Schmidt-Referenz)
@@ -182,6 +181,15 @@ nav.pill ul a:hover { color: var(--ink); }
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+/* GaLaBau Hero-Foto Hintergrund */
+.hero-bg-photo {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: .07;
+  filter: blur(4px) saturate(1.2);
+  transform: scale(1.06);
+  pointer-events: none;
 }
 /* kein grüner Glow oben */
 .hero::before { display: none; }
@@ -655,7 +663,7 @@ footer::before { display: none; }
 /* ═══════════════════════════════════
    SYSTEM DARK — fastraone.de Stil
 ═══════════════════════════════════ */
-.system-dark { background: #0b0f1a; text-align: center; }
+.system-dark { background: #0b0f1a; text-align: center; overflow: hidden; }
 .system-dark .hero-badge { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.25); color: #4ade80; }
 .system-dark .hero-badge .pulse-dot { background: #4ade80; }
 .system-dark .hero-badge .pulse-dot::after { border-color: #4ade80; }
@@ -688,8 +696,8 @@ footer::before { display: none; }
 
 /* ── Anfragen-Visual ── */
 .sys-visual {
-  position: relative; height: 460px; max-width: 700px;
-  margin: 0 auto 44px; overflow: hidden;
+  position: relative; height: 420px; max-width: 700px;
+  margin: 0 auto 44px; overflow: visible;
 }
 .sys-visual::before { display: none; }
 /* Glühender Hintergrund */
@@ -759,8 +767,8 @@ footer::before { display: none; }
 .sys-ncard-dot { animation: pulseDot 2s ease-out infinite; }
 .sys-ncard.n1 { top: 7%;  left: 14%;  animation: floatUp   6s   ease-in-out       infinite; }
 .sys-ncard.n2 { top: 7%;  right: 8%;  animation: floatDown 5.5s ease-in-out  .8s  infinite; }
-.sys-ncard.n3 { top: 50%; left: -2%;  animation: floatN3   7s   ease-in-out  1.2s infinite; }
-.sys-ncard.n4 { top: 50%; right:-2%;  animation: floatN4   6.5s ease-in-out  .4s  infinite; }
+.sys-ncard.n3 { top: 50%; left: 3%;   animation: floatN3   7s   ease-in-out  1.2s infinite; }
+.sys-ncard.n4 { top: 50%; right: 3%;  animation: floatN4   6.5s ease-in-out  .4s  infinite; }
 .sys-ncard.n5 { bottom: 9%; left: 15%; animation: floatUp  5.8s ease-in-out  1.6s infinite; }
 .sys-ncard.n6 { bottom: 9%; right: 8%; animation: floatDown 6.2s ease-in-out .2s  infinite; }
 
@@ -779,6 +787,9 @@ footer::before { display: none; }
 /* Wellen-Übergang: hell → dunkel */
 .wave-to-dark { background: var(--bg); line-height: 0; margin-bottom: -1px; position: relative; z-index: 2; }
 .wave-to-dark svg { display: block; width: 100%; height: 68px; }
+/* Wellen-Übergang: dunkel → hell */
+.wave-to-light { background: #0b0f1a; line-height: 0; margin-top: -1px; position: relative; z-index: 2; }
+.wave-to-light svg { display: block; width: 100%; height: 68px; }
 
 /* ═══════════════════════════════════
    KALENDER — gebuchte Slots
@@ -831,6 +842,7 @@ footer::before { display: none; }
 
 <!-- ─── HERO ─────────────────────────────────── -->
 <section class="hero">
+  <img src="/assets/garden.jpg" alt="" class="hero-bg-photo" aria-hidden="true">
   <div class="wrap">
 
     <span class="hero-badge reveal">
@@ -1349,6 +1361,14 @@ footer::before { display: none; }
 
   </div>
 </section>
+
+
+<!-- Wellen-Übergang: dunkel → hell -->
+<div class="wave-to-light" aria-hidden="true">
+  <svg viewBox="0 0 1440 68" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,68 L1440,68 L1440,32 C1200,56 960,10 720,32 C480,56 240,10 0,28 Z" fill="#f8fdf9"/>
+  </svg>
+</div>
 
 
 <!-- ─── GARANTIE ──────────────────────────────── -->
