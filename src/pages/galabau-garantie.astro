@@ -51,8 +51,10 @@ body  {
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
   font-feature-settings: 'rlig' 1, 'calt' 1;
   background: var(--bg-alt);
-  background-image: radial-gradient(circle, rgba(34,197,94,.09) 1px, transparent 1.3px);
-  background-size: 24px 24px;
+  background-image:
+    linear-gradient(rgba(34,197,94,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   background-attachment: fixed;
 }
 a     { color: inherit; text-decoration: none; }
@@ -378,12 +380,7 @@ nav.pill ul a:hover { color: var(--ink); }
 /* ═══════════════════════════════════
    MOCKUP SECTION — Referenz exakt
 ═══════════════════════════════════ */
-.mockup-section {
-  padding: 40px 0 96px;
-  background: var(--bg-alt);
-  background-image: radial-gradient(circle, rgba(34,197,94,.09) 1px, transparent 1.3px);
-  background-size: 24px 24px;
-}
+.mockup-section { padding: 40px 0 96px; background: transparent; }
 .mockup-wrap {
   position: relative;
   max-width: 900px; margin: 0 auto; padding: 0 28px;
@@ -511,11 +508,7 @@ nav.pill ul a:hover { color: var(--ink); }
    SECTION LAYOUT
 ═══════════════════════════════════ */
 .section { padding: 90px 0; }
-.section.alt {
-  background: var(--bg-alt);
-  background-image: radial-gradient(circle, rgba(34,197,94,.09) 1px, transparent 1.3px);
-  background-size: 24px 24px;
-}
+.section.alt { background: transparent; }
 .section-head { text-align: center; max-width: 600px; margin: 0 auto 56px; }
 .section-head h2 {
   font-weight: 800; font-size: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -806,11 +799,7 @@ footer::before { display: none; }
 /* ═══════════════════════════════════
    LÖSUNG — Split Live-Feed
 ═══════════════════════════════════ */
-.loesung-section {
-  background: var(--bg-alt);
-  background-image: radial-gradient(circle, rgba(34,197,94,.10) 1px, transparent 1.3px);
-  background-size: 24px 24px;
-}
+.loesung-section { background: transparent; }
 .lf-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -841,36 +830,53 @@ footer::before { display: none; }
 .lf-p:last-of-type { margin-bottom: 36px; }
 .lf-p strong { color: var(--ink); font-weight: 700; }
 
-/* Panel — hell, premium */
+/* Panel — macOS-Stil, premium */
 .lf-panel {
   background: #fff;
-  border-radius: 20px; overflow: hidden;
-  border: 1px solid rgba(0,0,0,.07);
-  box-shadow: 0 2px 4px rgba(0,0,0,.04), 0 12px 40px rgba(0,0,0,.08), 0 40px 80px rgba(0,0,0,.06);
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.09);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.06),
+    0 4px 12px rgba(0,0,0,.06),
+    0 16px 40px rgba(0,0,0,.08),
+    0 40px 80px rgba(0,0,0,.07);
 }
 .lf-panel-bar {
-  padding: 13px 18px; border-bottom: 1px solid rgba(0,0,0,.06);
-  display: flex; align-items: center; justify-content: space-between;
-  background: #fafafa;
+  padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,.07);
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(180deg, #f7f7f7 0%, #f0f0f0 100%);
+}
+/* Traffic Lights */
+.lf-traffic { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+.lf-tl {
+  display: block; width: 12px; height: 12px; border-radius: 50%;
+  box-shadow: inset 0 -1px 1px rgba(0,0,0,.15), inset 0 1px 1px rgba(255,255,255,.5);
+}
+.lf-tl-red    { background: linear-gradient(135deg, #ff6961, #ff3b30); }
+.lf-tl-yellow { background: linear-gradient(135deg, #ffdb6d, #ffcc00); }
+.lf-tl-green  { background: linear-gradient(135deg, #5dde5a, #28c840); }
+/* URL bar */
+.lf-panel-url {
+  flex: 1; background: rgba(0,0,0,.06); border-radius: 6px;
+  padding: 4px 10px; font-size: .68rem; color: #6b7280; text-align: center;
+  border: 1px solid rgba(0,0,0,.07);
 }
 .lf-panel-status {
-  display: flex; align-items: center; gap: 8px;
-  font-size: .67rem; font-weight: 700; color: #0d1117; letter-spacing: .07em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  font-size: .63rem; font-weight: 700; color: #16a34a; letter-spacing: .07em; text-transform: uppercase;
 }
 .lf-live-dot {
-  width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+  width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
   box-shadow: 0 0 0 0 rgba(34,197,94,.4);
   animation: lf-pulse 2.4s ease infinite;
 }
 @keyframes lf-pulse {
   0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
-  60%  { box-shadow: 0 0 0 6px rgba(34,197,94,.0); }
+  60%  { box-shadow: 0 0 0 5px rgba(34,197,94,.0); }
   100% { box-shadow: 0 0 0 0 rgba(34,197,94,.0); }
 }
-.lf-panel-dots { display: flex; gap: 5px; }
-.lf-panel-dots span {
-  display: block; width: 10px; height: 10px; border-radius: 50%; background: #e5e7eb;
-}
+/* Chart */
+.lf-chart { display: block; width: 100%; margin-top: 14px; }
 /* Revenue hero stat */
 .lf-revenue {
   padding: 22px 20px 18px;
@@ -1433,22 +1439,54 @@ footer::before { display: none; }
         <button class="btn btn-primary" onclick="scrollToForm()">Jetzt kostenlos anfragen <span class="btn-arrow">→</span></button>
       </div>
 
-      <!-- RIGHT: Live Panel -->
+      <!-- RIGHT: Live Panel (macOS-Stil) -->
       <div class="lf-panel">
+
+        <!-- macOS Titlebar -->
         <div class="lf-panel-bar">
+          <div class="lf-traffic">
+            <span class="lf-tl lf-tl-red"></span>
+            <span class="lf-tl lf-tl-yellow"></span>
+            <span class="lf-tl lf-tl-green"></span>
+          </div>
+          <div class="lf-panel-url">fastraone.de/system</div>
           <div class="lf-panel-status">
             <div class="lf-live-dot"></div>
-            <span>System aktiv</span>
-          </div>
-          <div class="lf-panel-dots">
-            <span></span><span></span><span></span>
+            <span>LIVE</span>
           </div>
         </div>
 
+        <!-- Revenue + Chart -->
         <div class="lf-revenue">
-          <div class="lf-revenue-label">Umsatz generiert — dieser Monat</div>
-          <div class="lf-revenue-number">21.400 €</div>
-          <div class="lf-revenue-sub">↑ <strong>+34%</strong> gegenüber Vormonat · 9 Aufträge</div>
+          <div class="lf-revenue-top">
+            <div>
+              <div class="lf-revenue-label">Umsatz · August 2026</div>
+              <div class="lf-revenue-number">21.400 €</div>
+              <div class="lf-revenue-sub">↑ <strong>+34%</strong> zum Vormonat · 9 Aufträge</div>
+            </div>
+          </div>
+          <!-- Bar Chart -->
+          <svg class="lf-chart" viewBox="0 0 280 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="0" y1="56" x2="280" y2="56" stroke="#f3f4f6" stroke-width="1"/>
+            <line x1="0" y1="36" x2="280" y2="36" stroke="#f3f4f6" stroke-width="1"/>
+            <line x1="0" y1="16" x2="280" y2="16" stroke="#f3f4f6" stroke-width="1"/>
+            <!-- Bars: Mar-Aug steigend -->
+            <rect x="4"   y="50" width="30" height="6"  rx="3" fill="#bbf7d0"/>
+            <rect x="50"  y="42" width="30" height="14" rx="3" fill="#86efac"/>
+            <rect x="96"  y="34" width="30" height="22" rx="3" fill="#4ade80"/>
+            <rect x="142" y="24" width="30" height="32" rx="3" fill="#22c55e"/>
+            <rect x="188" y="16" width="30" height="40" rx="3" fill="#22c55e"/>
+            <!-- Aktueller Monat: hervorgehoben -->
+            <rect x="234" y="4"  width="30" height="52" rx="3" fill="#16a34a"/>
+            <!-- Label aktueller Monat -->
+            <text x="249" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#16a34a" font-weight="700">Aug</text>
+            <text x="203" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af">Jul</text>
+            <text x="157" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af">Jun</text>
+            <text x="111" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af">Mai</text>
+            <text x="65"  y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af">Apr</text>
+            <text x="19"  y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af">Mrz</text>
+          </svg>
         </div>
 
         <div class="lf-rows">
