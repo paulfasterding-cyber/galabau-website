@@ -706,65 +706,60 @@ footer::before { display: none; }
 .btn-outline-dark { background: transparent; color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.15); box-shadow: none; padding: 11px 20px; }
 .btn-outline-dark:hover { background: rgba(255,255,255,.06); color: #fff; }
 
-/* ── Anfragen-Visual ── */
+/* ── Anfragen-Visual (light) ── */
 .sys-visual {
-  position: relative; height: 420px; max-width: 700px;
-  margin: 0 auto 44px; overflow: visible;
+  position: relative; height: 300px; max-width: 620px;
+  margin: 0 auto 32px; overflow: visible;
 }
 .sys-visual::before { display: none; }
-/* Glühender Hintergrund */
 .sys-hub-glow {
   position: absolute; top: 50%; left: 50%;
-  width: 260px; height: 260px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(34,197,94,.28) 0%, transparent 70%);
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,.10) 0%, transparent 70%);
   transform: translate(-50%,-50%);
   animation: sys-pulse 4s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes sys-pulse {
-  0%,100% { opacity: .8; transform: translate(-50%,-50%) scale(1); }
-  50% { opacity: .4; transform: translate(-50%,-50%) scale(1.12); }
+  0%,100% { opacity: .9; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: .5; transform: translate(-50%,-50%) scale(1.1); }
 }
-/* SVG-Ringe mit orbitierenden Bögen */
 .sys-rings-svg {
   position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
 }
-/* Logo-Kreis Mitte */
 .sys-hub-circle {
   position: absolute; top: 50%; left: 50%;
-  width: 122px; height: 122px;
+  width: 90px; height: 90px;
   transform: translate(-50%,-50%);
-  border-radius: 50%; border: 1.5px solid rgba(34,197,94,.45);
-  background: #0c1422;
-  box-shadow: 0 0 48px rgba(34,197,94,.22), inset 0 0 24px rgba(34,197,94,.08);
+  border-radius: 50%; border: 1.5px solid rgba(34,197,94,.30);
+  background: #fff;
+  box-shadow: 0 0 28px rgba(34,197,94,.10), 0 4px 16px rgba(0,0,0,.06);
   display: flex; align-items: center; justify-content: center;
   z-index: 2;
 }
-.sys-hub-circle img { width: 76px; filter: brightness(0) invert(1); }
-/* Notification-Karten — fastraone.de Stil */
+.sys-hub-circle img { width: 54px; filter: none; }
 .sys-ncard {
   position: absolute;
-  background: linear-gradient(135deg, rgba(22,28,52,.94), rgba(12,15,28,.94));
-  border: 1px solid rgba(255,255,255,.11);
-  border-radius: 14px; padding: 10px 34px 10px 10px;
-  display: flex; align-items: center; gap: 10px;
-  backdrop-filter: blur(20px);
-  box-shadow: rgba(110,236,157,.05) 0 0 0 1px, rgba(0,0,0,.3) 0 6px 24px;
-  min-width: 190px; width: 210px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 12px; padding: 9px 28px 9px 9px;
+  display: flex; align-items: center; gap: 9px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  width: 168px;
 }
 .sys-ncard-dot {
-  position: absolute; top: 10px; right: 12px;
-  width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
-  box-shadow: 0 0 6px rgba(34,197,94,.7);
+  position: absolute; top: 9px; right: 11px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 5px rgba(34,197,94,.6);
 }
 .sys-ncard-avatar {
-  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
-  background: rgba(34,197,94,.1);
+  width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0;
+  background: var(--accent-soft);
   display: flex; align-items: center; justify-content: center;
-  color: rgba(34,197,94,.7);
+  color: var(--accent-deep);
 }
-.sys-ncard strong { display: block; font-size: .82rem; color: #fff; font-weight: 700; line-height: 1.2; }
-.sys-ncard span { font-size: .71rem; color: rgba(255,255,255,.42); display: block; margin-top: 2px; }
+.sys-ncard strong { display: block; font-size: .78rem; color: var(--ink); font-weight: 700; line-height: 1.2; }
+.sys-ncard span { font-size: .68rem; color: var(--ink-2); display: block; margin-top: 1px; opacity: .7; }
 /* Float-Animationen */
 @keyframes floatUp   { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-9px)} }
 @keyframes floatDown { 0%,100%{transform:translateY(0)}    50%{transform:translateY(9px)} }
@@ -788,12 +783,11 @@ footer::before { display: none; }
   .sys-ncard, .sys-ring, .sys-hub-glow { animation: none !important; }
 }
 @media (max-width: 640px) {
-  .sys-visual { height: 360px; }
-  .sys-ncard.n3, .sys-ncard.n4 { display: none; }
-  .sys-ring.r3 { display: none; }
-  .sys-ncard { min-width: 150px; }
-  .sys-ncard strong { font-size: .75rem; }
-  .sys-ncard span { font-size: .67rem; }
+  .sys-visual { height: 260px; }
+  .sys-ncard.n5 { display: none; }
+  .sys-ncard { width: 140px; }
+  .sys-ncard strong { font-size: .72rem; }
+  .sys-ncard span { font-size: .63rem; }
 }
 
 /* Wellen-Übergang: hell → dunkel */
@@ -1290,56 +1284,54 @@ footer::before { display: none; }
   <div class="wrap">
 
     <div class="section-head reveal">
-      <h2>So füllst du deinen Kalender <em>planbar.</em></h2>
-      <p>Kein Zufall. Kein Hoffen auf Empfehlungen. Ein System, das jeden Monat läuft, während du auf der Baustelle bist.</p>
+      <h2>Das System, das <em>deinen Kalender füllt.</em></h2>
+      <p>Planbare Anfragen. Jeden Monat. Automatisch.</p>
     </div>
 
-    <div class="sol-grid">
-      <div class="sol-item reveal">
-        <div class="sol-check">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <div class="sys-visual reveal">
+      <div class="sys-hub-glow"></div>
+      <svg class="sys-rings-svg" viewBox="0 0 620 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="310" cy="150" rx="88" ry="68" stroke="rgba(34,197,94,.22)" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <ellipse cx="310" cy="150" rx="170" ry="132" stroke="rgba(34,197,94,.11)" stroke-width="1.5" stroke-dasharray="8 6"/>
+        <ellipse cx="310" cy="150" rx="252" ry="196" stroke="rgba(34,197,94,.05)" stroke-width="1" stroke-dasharray="12 8"/>
+      </svg>
+      <div class="sys-hub-circle">
+        <img src="/assets/logo-wordmark.png" alt="Fastra One"/>
+      </div>
+      <div class="sys-ncard n1">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
         <div>
-          <strong>Gezielte Google Ads</strong>
-          <span>Kunden, die gerade nach deinen Leistungen suchen, landen direkt bei dir. Nicht bei der Konkurrenz.</span>
+          <strong>Neue Anfrage</strong>
+          <span>GaLaBau · Hannover</span>
         </div>
       </div>
-      <div class="sol-item reveal d1">
-        <div class="sol-check">
+      <div class="sys-ncard n2">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div>
-          <strong>Qualifizierte Anfragen</strong>
-          <span>Kein Preisvergleich, kein Zeitverlust. Du bekommst Interessenten mit echtem Auftrag.</span>
+          <strong>Auftrag gesichert</strong>
+          <span>+2.400 €</span>
         </div>
       </div>
-      <div class="sol-item reveal d2">
-        <div class="sol-check">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <div class="sys-ncard n5">
+        <div class="sys-ncard-dot"></div>
+        <div class="sys-ncard-avatar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div>
-          <strong>Fertig in 2 Wochen</strong>
-          <span>Vom ersten Gespräch bis zur ersten Anfrage dauert es meist keine 14 Tage.</span>
-        </div>
-      </div>
-      <div class="sol-item reveal d3">
-        <div class="sol-check">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Garantiert oder kostenlos</strong>
-          <span>3 Anfragen in 30 Tagen, oder du zahlst keinen Cent. Das Risiko liegt bei uns.</span>
+          <strong>Google Ads live</strong>
+          <span>3 Klicks heute</span>
         </div>
       </div>
     </div>
 
-    <div style="text-align:center; margin-top:44px;" class="reveal d2">
-      <button class="btn btn-primary" onclick="scrollToForm()">
-        Jetzt Platz sichern
-        <span class="btn-arrow">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-      </button>
+    <div style="text-align:center; margin-top:8px;" class="reveal d1">
+      <button class="btn btn-primary" onclick="scrollToForm()">Jetzt Platz sichern <span class="btn-arrow">→</span></button>
     </div>
 
   </div>
