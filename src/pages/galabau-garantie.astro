@@ -708,14 +708,14 @@ footer::before { display: none; }
 
 /* ── Anfragen-Visual (light) ── */
 .sys-visual {
-  position: relative; height: 300px; max-width: 620px;
-  margin: 0 auto 32px; overflow: visible;
+  position: relative; height: 240px; max-width: 560px;
+  margin: 0 auto 28px; overflow: visible;
 }
 .sys-visual::before { display: none; }
 .sys-hub-glow {
   position: absolute; top: 50%; left: 50%;
-  width: 180px; height: 180px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(34,197,94,.10) 0%, transparent 70%);
+  width: 140px; height: 140px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,.12) 0%, transparent 70%);
   transform: translate(-50%,-50%);
   animation: sys-pulse 4s ease-in-out infinite;
   pointer-events: none;
@@ -729,37 +729,37 @@ footer::before { display: none; }
 }
 .sys-hub-circle {
   position: absolute; top: 50%; left: 50%;
-  width: 90px; height: 90px;
+  width: 76px; height: 76px;
   transform: translate(-50%,-50%);
-  border-radius: 50%; border: 1.5px solid rgba(34,197,94,.30);
-  background: #fff;
-  box-shadow: 0 0 28px rgba(34,197,94,.10), 0 4px 16px rgba(0,0,0,.06);
+  border-radius: 50%; border: 1.5px solid rgba(34,197,94,.40);
+  background: var(--ink);
+  box-shadow: 0 0 28px rgba(34,197,94,.14), 0 4px 14px rgba(0,0,0,.22);
   display: flex; align-items: center; justify-content: center;
   z-index: 2;
 }
-.sys-hub-circle img { width: 54px; filter: none; }
+.sys-hub-circle img { width: 44px; filter: brightness(0) invert(1); }
 .sys-ncard {
   position: absolute;
   background: #fff;
   border: 1px solid rgba(0,0,0,.07);
-  border-radius: 12px; padding: 9px 28px 9px 9px;
-  display: flex; align-items: center; gap: 9px;
+  border-radius: 10px; padding: 7px 22px 7px 8px;
+  display: flex; align-items: center; gap: 7px;
   box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-  width: 168px;
+  width: 148px;
 }
 .sys-ncard-dot {
-  position: absolute; top: 9px; right: 11px;
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-  box-shadow: 0 0 5px rgba(34,197,94,.6);
+  position: absolute; top: 8px; right: 9px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 4px rgba(34,197,94,.6);
 }
 .sys-ncard-avatar {
-  width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
   background: var(--accent-soft);
   display: flex; align-items: center; justify-content: center;
   color: var(--accent-deep);
 }
-.sys-ncard strong { display: block; font-size: .78rem; color: var(--ink); font-weight: 700; line-height: 1.2; }
-.sys-ncard span { font-size: .68rem; color: var(--ink-2); display: block; margin-top: 1px; opacity: .7; }
+.sys-ncard strong { display: block; font-size: .73rem; color: var(--ink); font-weight: 700; line-height: 1.2; }
+.sys-ncard span { font-size: .64rem; color: var(--ink-2); display: block; margin-top: 1px; opacity: .7; }
 /* Float-Animationen */
 @keyframes floatUp   { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-9px)} }
 @keyframes floatDown { 0%,100%{transform:translateY(0)}    50%{transform:translateY(9px)} }
@@ -783,11 +783,11 @@ footer::before { display: none; }
   .sys-ncard, .sys-ring, .sys-hub-glow { animation: none !important; }
 }
 @media (max-width: 640px) {
-  .sys-visual { height: 260px; }
+  .sys-visual { height: 220px; }
   .sys-ncard.n5 { display: none; }
-  .sys-ncard { width: 140px; }
-  .sys-ncard strong { font-size: .72rem; }
-  .sys-ncard span { font-size: .63rem; }
+  .sys-ncard { width: 128px; }
+  .sys-ncard strong { font-size: .68rem; }
+  .sys-ncard span { font-size: .6rem; }
 }
 
 /* Wellen-Übergang: hell → dunkel */
@@ -1296,7 +1296,7 @@ footer::before { display: none; }
         <ellipse cx="310" cy="150" rx="252" ry="196" stroke="rgba(34,197,94,.05)" stroke-width="1" stroke-dasharray="12 8"/>
       </svg>
       <div class="sys-hub-circle">
-        <img src="/assets/logo-wordmark.png" alt="Fastra One"/>
+        <img src="/assets/logo-badge-dark.png" alt="Fastra One"/>
       </div>
       <div class="sys-ncard n1">
         <div class="sys-ncard-dot"></div>
