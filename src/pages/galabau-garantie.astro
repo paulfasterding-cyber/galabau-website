@@ -193,18 +193,18 @@ nav.pill ul a:hover { color: var(--ink); }
   filter: saturate(1.15);
   pointer-events: none;
 }
-/* Gradient: oben transparent, unten weiß → Übergang zum Kalender */
-.hero::before {
-  display: block;
+/* Gradient über gesamte hero-zone (Urg + Nav + Hero) → einheitlicher Look */
+.hero-zone::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(to bottom,
-    rgba(255,255,255,.18) 0%,
-    rgba(255,255,255,.52) 50%,
-    rgba(255,255,255,1)   85%
+    rgba(255,255,255,0)    0%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,1)   82%
   );
   pointer-events: none;
 }
+.hero::before { display: none; }
 /* Dezentes Dot-Grid (wie Referenz-Template) */
 .hero::after {
   content: '';
