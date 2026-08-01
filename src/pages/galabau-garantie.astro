@@ -105,8 +105,6 @@ img   { max-width: 100%; display: block; }
   position: sticky; top: 0; z-index: 100;
   display: flex; justify-content: center;
   padding: 12px 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 nav.pill {
   width: 100%; max-width: 1060px;
@@ -832,7 +830,6 @@ footer::before { display: none; }
 <div class="urg" style="position:relative;z-index:5;">
   <span class="urg-dot"></span>
   <span>Nur noch <strong>1 freier Platz</strong> in deiner Region</span>
-  <span class="urg-sep">—</span>
   <button class="urg-btn" onclick="scrollToForm()">Jetzt sichern →</button>
 </div>
 
@@ -864,12 +861,12 @@ footer::before { display: none; }
 
     <span class="hero-badge reveal">
       <span class="pulse-dot"></span>
-      Exklusiv für GaLaBau-Betriebe in Deutschland
+      Exklusiv für GaLaBau Betriebe in Deutschland
     </span>
 
     <h1 class="reveal d1">
       3 neue Aufträge<br>
-      für GaLaBau-Betriebe.<br>
+      für GaLaBau Betriebe.<br>
       30 Tage. <em>Garantiert.</em>
     </h1>
 
@@ -879,7 +876,7 @@ footer::before { display: none; }
     </p>
 
     <div class="g-pill reveal d2">
-      Kein Risiko — Garantie oder Geld zurück
+      Kein Risiko · Garantie oder Geld zurück
     </div>
 
     <div class="google-row reveal d2">
@@ -896,38 +893,47 @@ footer::before { display: none; }
           <div class="fp-dot" id="fdot-1"></div>
           <div class="fp-dot" id="fdot-2"></div>
           <div class="fp-dot" id="fdot-3"></div>
+          <div class="fp-dot" id="fdot-4"></div>
         </div>
 
-        <!-- Schritt 0 -->
+        <!-- Schritt 0: Betriebsname -->
         <div class="f-step visible" id="fstep-0">
-          <p class="f-q">Wie ist dein Vorname?</p>
-          <input class="f-input" id="f-vn" type="text" placeholder="z.B. Thomas" autocomplete="given-name" />
-          <p class="f-err" id="ferr-0">Bitte gib deinen Vornamen ein.</p>
+          <p class="f-q">Wie heißt dein Betrieb?</p>
+          <input class="f-input" id="f-bt" type="text" placeholder="z.B. Musterbau GmbH" autocomplete="organization" />
+          <p class="f-err" id="ferr-0">Bitte gib den Namen deines Betriebs ein.</p>
           <button class="f-btn" onclick="fNext(0)">Weiter →</button>
         </div>
 
-        <!-- Schritt 1 -->
+        <!-- Schritt 1: Vorname -->
         <div class="f-step" id="fstep-1">
-          <p class="f-q">Und dein Nachname?</p>
-          <input class="f-input" id="f-nn" type="text" placeholder="z.B. Müller" autocomplete="family-name" />
-          <p class="f-err" id="ferr-1">Bitte gib deinen Nachnamen ein.</p>
+          <p class="f-q">Wie ist dein Vorname?</p>
+          <input class="f-input" id="f-vn" type="text" placeholder="z.B. Thomas" autocomplete="given-name" />
+          <p class="f-err" id="ferr-1">Bitte gib deinen Vornamen ein.</p>
           <button class="f-btn" onclick="fNext(1)">Weiter →</button>
         </div>
 
-        <!-- Schritt 2 -->
+        <!-- Schritt 2: Nachname -->
         <div class="f-step" id="fstep-2">
-          <p class="f-q">Deine Handynummer?</p>
-          <input class="f-input" id="f-ph" type="tel" placeholder="z.B. 0162 1234567" autocomplete="tel" />
-          <p class="f-err" id="ferr-2">Bitte gib eine gültige Nummer ein.</p>
-          <p class="f-hint">Wir rufen dich persönlich an — kein Spam.</p>
+          <p class="f-q">Und dein Nachname?</p>
+          <input class="f-input" id="f-nn" type="text" placeholder="z.B. Müller" autocomplete="family-name" />
+          <p class="f-err" id="ferr-2">Bitte gib deinen Nachnamen ein.</p>
           <button class="f-btn" onclick="fNext(2)">Weiter →</button>
         </div>
 
-        <!-- Schritt 3 -->
+        <!-- Schritt 3: Handynummer -->
         <div class="f-step" id="fstep-3">
+          <p class="f-q">Deine Handynummer?</p>
+          <input class="f-input" id="f-ph" type="tel" placeholder="z.B. 0162 1234567" autocomplete="tel" />
+          <p class="f-err" id="ferr-3">Bitte gib eine gültige Nummer ein.</p>
+          <p class="f-hint">Wir rufen dich persönlich an, kein Spam.</p>
+          <button class="f-btn" onclick="fNext(3)">Weiter →</button>
+        </div>
+
+        <!-- Schritt 4: E-Mail -->
+        <div class="f-step" id="fstep-4">
           <p class="f-q">Deine E-Mail-Adresse?</p>
           <input class="f-input" id="f-em" type="email" placeholder="z.B. thomas@musterbau.de" autocomplete="email" />
-          <p class="f-err" id="ferr-3">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+          <p class="f-err" id="ferr-4">Bitte gib eine gültige E-Mail-Adresse ein.</p>
           <div class="f-news">
             <input type="checkbox" id="f-nl" />
             <label for="f-nl">
@@ -949,7 +955,7 @@ footer::before { display: none; }
             <polyline points="7 12 10.5 15.5 17 9"/>
           </svg>
         </div>
-        <h2 class="f-ty-h">Perfekt — wir melden uns!</h2>
+        <h2 class="f-ty-h">Perfekt, wir melden uns!</h2>
         <p class="f-ty-p">
           Deine Anfrage ist angekommen.
           Wir melden uns <strong>innerhalb von 24 Stunden</strong> persönlich bei dir.
@@ -1016,7 +1022,7 @@ footer::before { display: none; }
             </div>
             <div class="m-service">
               Termin buchen
-              <small>GaLaBau-Beratung · 30 Min · Kostenlos</small>
+              <small>GaLaBau Beratung · 30 Min · Kostenlos</small>
             </div>
             <div class="m-avtr">FO</div>
           </div>
@@ -1093,7 +1099,7 @@ footer::before { display: none; }
 
     <div class="section-head reveal">
       <h2>Drei Gründe, warum dein Kalender <em>leer bleibt</em></h2>
-      <p>Erkennst du dich wieder? Fast jeder GaLaBau-Betrieb kämpft mit denselben drei Mustern.</p>
+      <p>Erkennst du dich wieder? Fast jeder GaLaBau Betrieb kämpft mit denselben drei Mustern.</p>
     </div>
 
     <div class="cards3">
@@ -1130,7 +1136,7 @@ footer::before { display: none; }
         </div>
         <div class="c-body">
           <h3>Keine planbaren Aufträge</h3>
-          <p>Du weißt nicht, wann das nächste Telefon klingelt. Das System fehlt — nicht der Wille.</p>
+          <p>Du weißt nicht, wann das nächste Telefon klingelt. Das System fehlt, nicht der Wille.</p>
         </div>
       </div>
 
@@ -1209,7 +1215,7 @@ footer::before { display: none; }
         </div>
         <div class="c-body">
           <h3>Nur Mundpropaganda</h3>
-          <p>Klappt jahrelang — bis es plötzlich nicht mehr klappt. Und kein Plan B da ist.</p>
+          <p>Klappt jahrelang, bis es plötzlich nicht mehr klappt. Und kein Plan B da ist.</p>
         </div>
       </div>
 
@@ -1270,7 +1276,7 @@ footer::before { display: none; }
         </div>
         <div class="c-body">
           <h3>Oktober, November, Dezember</h3>
-          <p>Der Umsatz bricht ein. Mitarbeiter, Fixkosten — du zahlst aus der Substanz.</p>
+          <p>Der Umsatz bricht ein. Mitarbeiter, Fixkosten. Du zahlst aus der Substanz.</p>
         </div>
       </div>
 
@@ -1279,114 +1285,65 @@ footer::before { display: none; }
 </section>
 
 
-<!-- Wellen-Übergang: weiß → dunkel (fastraone.de Stil) -->
-<div class="wave-to-dark" aria-hidden="true">
-  <svg viewBox="0 0 1440 68" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,68 L1440,68 L1440,32 C1200,56 960,10 720,32 C480,56 240,10 0,28 Z" fill="#0b0f1a"/>
-  </svg>
-</div>
-
 <!-- ─── LÖSUNG ────────────────────────────────── -->
-<section class="section system-dark" id="loesung">
+<section class="section" id="loesung">
   <div class="wrap">
 
-    <span class="hero-badge reveal">
-      <span class="pulse-dot"></span>
-      Exklusiv · 1 GaLaBau-Betrieb pro Region
-    </span>
-
-    <div class="sys-headline reveal d1">
-      <h2>Dein Kalender,<br>6 Wochen ausgebucht.</h2>
-      <em>Planbar. Jeden Monat.</em>
+    <div class="section-head reveal">
+      <h2>So füllst du deinen Kalender <em>planbar.</em></h2>
+      <p>Kein Zufall. Kein Hoffen auf Empfehlungen. Ein System, das jeden Monat läuft, während du auf der Baustelle bist.</p>
     </div>
 
-    <div class="sys-body reveal d2">
-      <p>Betriebe mit dem Fastra One System machen durchschnittlich <strong>21.000 € mehr Umsatz</strong> im Monat — ohne Kaltakquise, ohne Mundpropaganda.</p>
-      <p>Während du auf der Baustelle bist, klingelt dein Telefon.</p>
-    </div>
-
-    <!-- Visual: Logo + Anfragen-Karten -->
-    <div class="sys-visual reveal d3">
-      <div class="sys-hub-glow"></div>
-
-      <!-- SVG-Ringe mit rotierenden grünen Bögen -->
-      <svg class="sys-rings-svg" viewBox="0 0 700 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Statische Basis-Ringe -->
-        <circle cx="350" cy="230" r="80"  stroke="rgba(34,197,94,.2)"  stroke-width="1"/>
-        <circle cx="350" cy="230" r="140" stroke="rgba(34,197,94,.1)"  stroke-width="1"/>
-        <circle cx="350" cy="230" r="205" stroke="rgba(34,197,94,.06)" stroke-width="1"/>
-        <!-- Rotierender grüner Bogen — Ring 1 (schnell, 4s) -->
-        <circle cx="350" cy="230" r="80" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="48 454" fill="none">
-          <animateTransform attributeName="transform" type="rotate" from="-90 350 230" to="270 350 230" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <!-- Rotierender grüner Bogen — Ring 2 (mittel, 7s, Gegenrichtung Offset) -->
-        <circle cx="350" cy="230" r="140" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="70 809" fill="none" opacity=".75">
-          <animateTransform attributeName="transform" type="rotate" from="60 350 230" to="420 350 230" dur="7s" repeatCount="indefinite"/>
-        </circle>
-        <!-- Rotierender grüner Bogen — Ring 3 (langsam, 12s, umgekehrt) -->
-        <circle cx="350" cy="230" r="205" stroke="#86efac" stroke-width="1" stroke-linecap="round" stroke-dasharray="95 1193" fill="none" opacity=".5">
-          <animateTransform attributeName="transform" type="rotate" from="180 350 230" to="-180 350 230" dur="12s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-
-      <div class="sys-hub-circle">
-        <img src="/assets/logo.png" alt="Fastra One">
+    <div class="sol-grid">
+      <div class="sol-item reveal">
+        <div class="sol-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <strong>Gezielte Google Ads</strong>
+          <span>Kunden, die gerade nach deinen Leistungen suchen, landen direkt bei dir. Nicht bei der Konkurrenz.</span>
+        </div>
       </div>
-      <!-- 6 Notification-Karten -->
-      <div class="sys-ncard n1">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Thomas B. · Terrassenbau...</span></div>
+      <div class="sol-item reveal d1">
+        <div class="sol-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <strong>Qualifizierte Anfragen</strong>
+          <span>Kein Preisvergleich, kein Zeitverlust. Du bekommst Interessenten mit echtem Auftrag.</span>
+        </div>
       </div>
-      <div class="sys-ncard n2">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Andrea W. · Hecke & Bepf...</span></div>
+      <div class="sol-item reveal d2">
+        <div class="sol-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <strong>Fertig in 2 Wochen</strong>
+          <span>Vom ersten Gespräch bis zur ersten Anfrage dauert es meist keine 14 Tage.</span>
+        </div>
       </div>
-      <div class="sys-ncard n3">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Familie Köhler · Gartenpl...</span></div>
-      </div>
-      <div class="sys-ncard n4">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Klaus R. · Hofgestaltung</span></div>
-      </div>
-      <div class="sys-ncard n5">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Stefan M. · Rasen anlegen</span></div>
-      </div>
-      <div class="sys-ncard n6">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><strong>Neue Anfrage</strong><span>Julia N. · Garten neu ge...</span></div>
+      <div class="sol-item reveal d3">
+        <div class="sol-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <strong>Garantiert oder kostenlos</strong>
+          <span>3 Anfragen in 30 Tagen, oder du zahlst keinen Cent. Das Risiko liegt bei uns.</span>
+        </div>
       </div>
     </div>
 
-    <div class="sys-cta reveal d4">
+    <div style="text-align:center; margin-top:44px;" class="reveal d2">
       <button class="btn btn-primary" onclick="scrollToForm()">
-        Jetzt einklinken
+        Jetzt Platz sichern
         <span class="btn-arrow">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
       </button>
-      <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="btn btn-outline-dark">
-        Direkt Termin buchen
-      </a>
     </div>
 
   </div>
 </section>
-
-
-<!-- Wellen-Übergang: dunkel → hell -->
-<div class="wave-to-light" aria-hidden="true">
-  <svg viewBox="0 0 1440 68" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,68 L1440,68 L1440,32 C1200,56 960,10 720,32 C480,56 240,10 0,28 Z" fill="#f8fdf9"/>
-  </svg>
-</div>
 
 
 <!-- ─── GARANTIE ──────────────────────────────── -->
@@ -1485,40 +1442,41 @@ footer::before { display: none; }
 
 <script is:inline>
 
-var _fd = { vn:'', nn:'', ph:'', em:'', nl:false };
+var _fd = { bt:'', vn:'', nn:'', ph:'', em:'', nl:false };
 var _step = 0;
 
 function scrollToForm() {
   document.getElementById('heroForm').scrollIntoView({ behavior:'smooth', block:'center' });
-  setTimeout(function(){ var el = document.getElementById('f-vn'); if(el) el.focus(); }, 450);
+  setTimeout(function(){ var el = document.getElementById('f-bt'); if(el) el.focus(); }, 450);
 }
 
 function fUpdateProg(s) {
-  for (var i=0; i<4; i++) {
+  for (var i=0; i<5; i++) {
     var d = document.getElementById('fdot-'+i);
     d.className = 'fp-dot' + (i < s ? ' done' : i === s ? ' active' : '');
   }
 }
 
 function fShowStep(n) {
-  for (var i=0; i<4; i++) {
+  for (var i=0; i<5; i++) {
     var s = document.getElementById('fstep-'+i);
     if (s) s.className = 'f-step' + (i===n ? ' visible' : '');
   }
   fUpdateProg(n); _step = n;
-  var ids = ['f-vn','f-nn','f-ph','f-em'];
+  var ids = ['f-bt','f-vn','f-nn','f-ph','f-em'];
   var inp = document.getElementById(ids[n]);
   if (inp) setTimeout(function(){ inp.focus(); }, 60);
 }
 
 function fNext(cur) {
-  var ids  = ['f-vn','f-nn','f-ph','f-em'];
-  var keys = ['vn','nn','ph','em'];
+  var ids  = ['f-bt','f-vn','f-nn','f-ph','f-em'];
+  var keys = ['bt','vn','nn','ph','em'];
   var val  = document.getElementById(ids[cur]).value.trim();
   var errEl = document.getElementById('ferr-'+cur);
   var ok = cur===0 ? val.length>=2
          : cur===1 ? val.length>=2
-         : cur===2 ? val.replace(/\s/g,'').length>=6
+         : cur===2 ? val.length>=2
+         : cur===3 ? val.replace(/\s/g,'').length>=6
          : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
   if (!ok) {
     errEl.className = 'f-err show';
@@ -1533,7 +1491,7 @@ function fNext(cur) {
 
 function fSubmit() {
   var em = document.getElementById('f-em').value.trim();
-  var errEl = document.getElementById('ferr-3');
+  var errEl = document.getElementById('ferr-4');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
     errEl.className = 'f-err show';
     document.getElementById('f-em').classList.add('err');
@@ -1545,6 +1503,7 @@ function fSubmit() {
   btn.disabled = true; btn.textContent = 'Wird gesendet…';
   var p = new URLSearchParams(window.location.search);
   var payload = {
+    betrieb: _fd.bt,
     name: _fd.vn + ' ' + _fd.nn,
     vorname: _fd.vn, nachname: _fd.nn,
     phone: _fd.ph, email: _fd.em, newsletter: _fd.nl,
@@ -1574,7 +1533,7 @@ function fShowTY() {
 
 document.addEventListener('keydown', function(e){
   if (e.key !== 'Enter') return;
-  var a = [function(){fNext(0);},function(){fNext(1);},function(){fNext(2);},function(){fSubmit();}];
+  var a = [function(){fNext(0);},function(){fNext(1);},function(){fNext(2);},function(){fNext(3);},function(){fSubmit();}];
   if (a[_step]) a[_step]();
 });
 

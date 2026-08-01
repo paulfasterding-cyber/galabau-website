@@ -4,24 +4,24 @@ interface Props {
   backHref?: string;
   backLabel?: string;
 }
-const { variant = 'full', backHref = 'index.html', backLabel = 'Startseite' } = Astro.props;
+const { variant = 'full', backHref = '/', backLabel = 'Startseite' } = Astro.props;
 ---
 
 {variant === 'full' && (
   <header class="navwrap" id="top">
     <nav class="nav2" id="nav2-main" aria-label="Hauptnavigation">
       <a href="#top" class="brand" aria-label="Fastra One">
-        <img class="logo logo--nav" src="assets/logo.png" alt="Fastra One" />
+        <img class="logo logo--nav" src="assets/logo.png" alt="Fastra One" width="946" height="482" decoding="async" />
       </a>
       <ul class="nav2__links">
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#preise">Preise</a></li>
-        <li><a href="case-studies.html">Case Studies</a></li>
-        <li><a href="blog.html">Ratgeber</a></li>
+        <li><a href="/case-studies">Case Studies</a></li>
+        <li><a href="/blog">Ratgeber</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="partner.html" class="nav2__partner">Partner</a></li>
+        <li><a href="/partner" class="nav2__partner">Partner</a></li>
       </ul>
-      <a href="kontakt.html" class="btn btn--primary nav2__cta">Kontaktiere Uns</a>
+      <a href="/kontakt" class="btn btn--primary nav2__cta">Kontaktiere Uns</a>
       <button class="nav2__burger" id="burger-main" aria-label="Menü" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -29,11 +29,11 @@ const { variant = 'full', backHref = 'index.html', backLabel = 'Startseite' } = 
     <div class="nav2__mobile-menu" id="mobile-menu-main">
       <a href="#leistungen">Leistungen</a>
       <a href="#preise">Preise</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="blog.html">Ratgeber</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/blog">Ratgeber</a>
       <a href="#faq">FAQ</a>
-      <a href="partner.html">Partner</a>
-      <a href="kontakt.html" class="btn btn--primary">Kontaktiere Uns</a>
+      <a href="/partner">Partner</a>
+      <a href="/kontakt" class="btn btn--primary">Kontaktiere Uns</a>
     </div>
   </header>
 )}
@@ -41,31 +41,31 @@ const { variant = 'full', backHref = 'index.html', backLabel = 'Startseite' } = 
 {variant === 'back' && (
   <header class="navwrap">
     <nav class="nav2" id="nav2-back" aria-label="Navigation">
-      <a href="index.html" class="brand" aria-label="Fastra One – Start">
-        <img class="logo" src="assets/logo.png" alt="Fastra One" />
+      <a href="/" class="brand" aria-label="Fastra One – Start">
+        <img class="logo" src="assets/logo.png" alt="Fastra One" width="946" height="482" decoding="async" />
       </a>
       <ul class="nav2__links">
-        <li><a href="index.html#leistungen">Leistungen</a></li>
-        <li><a href="index.html#preise">Preise</a></li>
-        <li><a href="case-studies.html">Case Studies</a></li>
-        <li><a href="blog.html">Ratgeber</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="partner.html" class="nav2__partner">Partner</a></li>
+        <li><a href="/#leistungen">Leistungen</a></li>
+        <li><a href="/#preise">Preise</a></li>
+        <li><a href="/case-studies">Case Studies</a></li>
+        <li><a href="/blog">Ratgeber</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/partner" class="nav2__partner">Partner</a></li>
       </ul>
-      <a href="kontakt.html" class="btn btn--primary nav2__cta">Kontaktiere Uns</a>
+      <a href="/kontakt" class="btn btn--primary nav2__cta">Kontaktiere Uns</a>
       <button class="nav2__burger" id="burger-back" aria-label="Menü" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </nav>
     <div class="nav2__mobile-menu" id="mobile-menu-back">
-      <a href="index.html">← Zur Startseite</a>
-      <a href="index.html#leistungen">Leistungen</a>
-      <a href="index.html#preise">Preise</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="blog.html">Ratgeber</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="partner.html">Partner</a>
-      <a href="kontakt.html" class="btn btn--primary">Kontaktiere Uns</a>
+      <a href="/">← Zur Startseite</a>
+      <a href="/#leistungen">Leistungen</a>
+      <a href="/#preise">Preise</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/blog">Ratgeber</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/partner">Partner</a>
+      <a href="/kontakt" class="btn btn--primary">Kontaktiere Uns</a>
     </div>
   </header>
 )}
@@ -116,8 +116,8 @@ const { variant = 'full', backHref = 'index.html', backLabel = 'Startseite' } = 
 {variant === 'minimal' && (
   <header class="navwrap">
     <nav class="nav2" aria-label="Navigation">
-      <a href="index.html" class="home" aria-label="Fastra One – Start">
-        <img class="logo" src="assets/logo.png" alt="Fastra One" />
+      <a href="/" class="home" aria-label="Fastra One – Start">
+        <img class="logo" src="assets/logo.png" alt="Fastra One" width="946" height="482" decoding="async" />
       </a>
       <a href={backHref} class="nav2__back" aria-label={`Zurück zu ${backLabel}`}>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
