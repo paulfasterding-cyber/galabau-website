@@ -790,6 +790,99 @@ footer::before { display: none; }
   .sys-ncard span { font-size: .6rem; }
 }
 
+/* ═══════════════════════════════════
+   LÖSUNG — Split Live-Feed
+═══════════════════════════════════ */
+.loesung-section {
+  background: linear-gradient(160deg, #eef4f1, #f8fdf9);
+  background-image: radial-gradient(circle, rgba(34,197,94,.11) 1px, transparent 1.3px);
+  background-size: 24px 24px;
+}
+.lf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.lf-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25);
+  border-radius: 999px; padding: 5px 14px; margin-bottom: 24px;
+  font-size: .71rem; font-weight: 700; color: #15803d; letter-spacing: .05em; text-transform: uppercase;
+}
+.lf-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0;
+}
+.lf-headline {
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+  letter-spacing: -.04em; line-height: 1.1; margin-bottom: 22px; font-weight: 800; color: var(--ink);
+}
+.lf-headline em {
+  font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 400; color: var(--accent);
+}
+.lf-p {
+  color: #374151; font-size: .97rem; line-height: 1.72; margin-bottom: 16px;
+}
+.lf-p:last-of-type { margin-bottom: 36px; }
+.lf-p strong { color: var(--ink); font-weight: 700; }
+
+/* Panel */
+.lf-panel {
+  background: #0d1117; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 32px 72px rgba(0,0,0,.22), 0 6px 20px rgba(0,0,0,.1);
+}
+.lf-panel-bar {
+  padding: 13px 18px; border-bottom: 1px solid rgba(255,255,255,.06);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lf-panel-status {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .67rem; font-weight: 700; color: rgba(255,255,255,.4); letter-spacing: .09em; text-transform: uppercase;
+}
+.lf-live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+  box-shadow: 0 0 8px rgba(34,197,94,.6);
+  animation: lf-pulse 2.4s ease infinite;
+}
+@keyframes lf-pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+.lf-panel-dots { display: flex; gap: 5px; }
+.lf-panel-dots span {
+  display: block; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.08);
+}
+.lf-rows {}
+.lf-row {
+  padding: 13px 18px; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.lf-row:last-child { border-bottom: none; }
+.lf-row-win { background: rgba(34,197,94,.04); }
+.lf-icon {
+  width: 34px; height: 34px; border-radius: 10px; background: rgba(34,197,94,.1);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.lf-icon-win { background: rgba(34,197,94,.18); }
+.lf-row-text { flex: 1; min-width: 0; }
+.lf-row-text strong { display: block; font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.9); margin-bottom: 3px; }
+.lf-row-text span { font-size: .7rem; color: rgba(255,255,255,.28); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lf-time { font-size: .64rem; color: rgba(255,255,255,.2); flex-shrink: 0; }
+.lf-amount { font-size: .82rem; font-weight: 700; color: #4ade80; flex-shrink: 0; }
+.lf-footer {
+  padding: 10px 18px; background: rgba(34,197,94,.07); border-top: 1px solid rgba(34,197,94,.12);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lf-footer-label { font-size: .69rem; color: rgba(255,255,255,.3); }
+.lf-footer-stats { display: flex; gap: 18px; }
+.lf-footer-stats span { font-size: .78rem; font-weight: 700; color: #4ade80; }
+@media (max-width: 768px) {
+  .lf-grid { grid-template-columns: 1fr; gap: 40px; }
+  .lf-headline { font-size: 1.9rem; }
+}
+
 /* Wellen-Übergang: hell → dunkel */
 .wave-to-dark { background: var(--bg); line-height: 0; margin-bottom: -1px; position: relative; z-index: 2; }
 .wave-to-dark svg { display: block; width: 100%; height: 68px; }
@@ -1280,60 +1373,101 @@ footer::before { display: none; }
 
 
 <!-- ─── LÖSUNG ────────────────────────────────── -->
-<section class="section" id="loesung">
+<section class="section loesung-section" id="loesung">
   <div class="wrap">
 
-    <div class="section-head reveal">
-      <h2>Das System, das <em>deinen Kalender füllt.</em></h2>
-      <p>Planbare Anfragen. Jeden Monat. Automatisch.</p>
-    </div>
+    <div class="lf-grid reveal">
 
-    <div class="sys-visual reveal">
-      <div class="sys-hub-glow"></div>
-      <svg class="sys-rings-svg" viewBox="0 0 620 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="310" cy="150" rx="88" ry="68" stroke="rgba(34,197,94,.22)" stroke-width="1.5" stroke-dasharray="6 4"/>
-        <ellipse cx="310" cy="150" rx="170" ry="132" stroke="rgba(34,197,94,.11)" stroke-width="1.5" stroke-dasharray="8 6"/>
-        <ellipse cx="310" cy="150" rx="252" ry="196" stroke="rgba(34,197,94,.05)" stroke-width="1" stroke-dasharray="12 8"/>
-      </svg>
-      <div class="sys-hub-circle">
-        <img src="/assets/logo-badge-dark.png" alt="Fastra One"/>
+      <!-- LEFT: Emotion -->
+      <div class="lf-text">
+        <div class="lf-badge">
+          <span class="lf-badge-dot"></span>
+          Die Lösung
+        </div>
+        <h2 class="lf-headline">
+          Stell dir vor,<br>
+          dein Kalender ist<br>
+          <em>einfach voll.</em>
+        </h2>
+        <p class="lf-p">
+          Kein Hoffen auf Mundpropaganda.<br>
+          Kein Bangen was nächsten Monat reinkommt.<br>
+          Planbare Anfragen — jeden Monat, automatisch.
+        </p>
+        <p class="lf-p">
+          Wir bauen dir ein System das das möglich macht. Und weil wir überzeugt sind, dass es funktioniert — garantieren wir dir <strong>3 Aufträge in 30 Tagen</strong> oder du zahlst keinen Cent.
+        </p>
+        <button class="btn btn-primary" onclick="scrollToForm()">Jetzt kostenlos anfragen <span class="btn-arrow">→</span></button>
       </div>
-      <div class="sys-ncard n1">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <div>
-          <strong>Neue Anfrage</strong>
-          <span>GaLaBau · Hannover</span>
-        </div>
-      </div>
-      <div class="sys-ncard n2">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div>
-          <strong>Auftrag gesichert</strong>
-          <span>+2.400 €</span>
-        </div>
-      </div>
-      <div class="sys-ncard n5">
-        <div class="sys-ncard-dot"></div>
-        <div class="sys-ncard-avatar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div>
-          <strong>Google Ads live</strong>
-          <span>3 Klicks heute</span>
-        </div>
-      </div>
-    </div>
 
-    <div style="text-align:center; margin-top:8px;" class="reveal d1">
-      <button class="btn btn-primary" onclick="scrollToForm()">Jetzt Platz sichern <span class="btn-arrow">→</span></button>
-    </div>
+      <!-- RIGHT: Live Panel -->
+      <div class="lf-panel">
+        <div class="lf-panel-bar">
+          <div class="lf-panel-status">
+            <div class="lf-live-dot"></div>
+            <span>System aktiv</span>
+          </div>
+          <div class="lf-panel-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
 
+        <div class="lf-rows">
+          <div class="lf-row">
+            <div class="lf-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="lf-row-text">
+              <strong>Neue Anfrage</strong>
+              <span>Thomas K. · Hannover · Gartenpflege</span>
+            </div>
+            <div class="lf-time">vor 4 Min</div>
+          </div>
+
+          <div class="lf-row lf-row-win">
+            <div class="lf-icon lf-icon-win">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="lf-row-text">
+              <strong>Auftrag gesichert</strong>
+              <span>Terrassenbau · Garbsen</span>
+            </div>
+            <div class="lf-amount">+2.400 €</div>
+          </div>
+
+          <div class="lf-row">
+            <div class="lf-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="lf-row-text">
+              <strong>Neue Anfrage</strong>
+              <span>Stefan M. · Burgwedel · Rasenpflege</span>
+            </div>
+            <div class="lf-time">vor 1 Std</div>
+          </div>
+
+          <div class="lf-row lf-row-win">
+            <div class="lf-icon lf-icon-win">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="lf-row-text">
+              <strong>Auftrag gesichert</strong>
+              <span>Zaunbau · Isernhagen</span>
+            </div>
+            <div class="lf-amount">+1.800 €</div>
+          </div>
+        </div>
+
+        <div class="lf-footer">
+          <span class="lf-footer-label">Diese Woche</span>
+          <div class="lf-footer-stats">
+            <span>+7 Anfragen</span>
+            <span>+6.200 €</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
