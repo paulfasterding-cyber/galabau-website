@@ -3,6 +3,14 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview", "start": "node server.js" },
-  "dependencies": { "astro": "^4.16.18", "serve": "^14.2.4" }
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "astro": "^7.1.6",
+    "serve": "^14.2.4"
+  }
 }
