@@ -4,7 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="3 GaLaBau-Aufträge in 30 Tagen — Garantiert | Fastra One"
-  description="Wir garantieren dir 3 qualifizierte Auftragsanfragen in 30 Tagen — oder du zahlst nichts. Exklusiv für GaLaBau-Betriebe."
+  description="Wir garantieren dir 3 qualifizierte Auftragsanfragen in 30 Tagen — oder du zahlst nichts. Exklusiv für GaLaBau-Betriebe in deiner Region."
+  canonical="https://fastraone.de/galabau-garantie"
+  ogImage="https://fastraone.de/assets/hero-galabau.jpg"
   navVariant="none"
   footerVariant="none"
 >
@@ -45,17 +47,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html  { scroll-behavior: smooth; }
+html  {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { display: none; }
 body  {
   font-family: var(--f-sans); color: var(--ink);
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
   font-feature-settings: 'rlig' 1, 'calt' 1;
   background: var(--bg-alt);
-  background-image:
-    linear-gradient(rgba(34,197,94,.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34,197,94,.07) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-attachment: fixed;
 }
 a     { color: inherit; text-decoration: none; }
 img   { max-width: 100%; display: block; }
@@ -190,26 +192,36 @@ nav.pill ul a:hover { color: var(--ink); }
 /* ─── Hero-Zone: Bild hinter Urg + Nav + Hero ─── */
 .hero-zone {
   position: relative;
+  padding-bottom: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
 .hero-bg-photo {
   position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%; object-fit: cover;
-  object-position: center 40%;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
   opacity: .42;
-  filter: saturate(1.15);
+  filter: saturate(1.2) brightness(1.05);
   pointer-events: none;
 }
-/* Gradient über gesamte hero-zone (Urg + Nav + Hero) → einheitlicher Look */
+/* Gradient — Photo oben scharf, unten weich ausgeblendet */
 .hero-zone::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(to bottom,
-    rgba(255,255,255,0)    0%,
-    rgba(255,255,255,.42) 50%,
-    rgba(255,255,255,1)   82%
+    rgba(248,253,249,0)    0%,
+    rgba(248,253,249,.08) 40%,
+    rgba(248,253,249,.55) 68%,
+    rgba(248,253,249,.90) 82%,
+    rgba(248,253,249,1)   92%,
+    rgba(248,253,249,1)   100%
   );
   pointer-events: none;
 }
+/* Kein extra ::after mehr nötig — ::before deckt bereits vollständig ab */
+.hero-zone::after { display: none; }
 .hero::before { display: none; }
 /* Dezentes Dot-Grid (wie Referenz-Template) */
 .hero::after {
@@ -333,9 +345,14 @@ nav.pill ul a:hover { color: var(--ink); }
 .f-btn.green:hover { background: var(--accent-deep); box-shadow: rgba(255,255,255,.12) 0 0 0 3px inset, rgba(34,197,94,.28) 0 8px 24px; }
 .f-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-.f-news { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; }
-.f-news input[type="checkbox"] { width: 15px; height: 15px; margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); cursor: pointer; }
-.f-news label { font-size: .72rem; color: var(--ink-2); line-height: 1.5; cursor: pointer; }
+.f-news {
+  display: flex; gap: 10px; align-items: flex-start; margin-top: 14px;
+  background: rgba(34,197,94,.07); border: 1px solid var(--accent-line);
+  border-radius: 10px; padding: 10px 12px;
+}
+.f-news input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); cursor: pointer; }
+.f-news label { font-size: .74rem; color: var(--ink-2); line-height: 1.55; cursor: pointer; }
+.f-news label strong { color: var(--ink); font-weight: 700; }
 .f-news label a { color: var(--accent-deep); text-decoration: underline; }
 
 /* Thank You */
@@ -346,6 +363,19 @@ nav.pill ul a:hover { color: var(--ink); }
 .f-ty-p { font-size: .9rem; color: var(--ink-2); line-height: 1.6; max-width: 300px; margin: 0 auto; }
 .f-ty-p strong { color: var(--accent-deep); }
 .f-ty-hr { border: none; border-top: 1px solid var(--card-line); margin: 22px 0; }
+.f-ty-steps { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; text-align: left; }
+.f-ty-step {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: .82rem; color: var(--ink-2); line-height: 1.5;
+  background: var(--bg-alt); border: 1px solid var(--accent-line);
+  border-radius: 10px; padding: 10px 14px;
+}
+.f-ty-step span {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-size: .7rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
 .f-ty-profile {
   display: flex; align-items: center; gap: 13px;
   background: var(--bg-alt); border: 1px solid var(--card-line);
@@ -380,9 +410,27 @@ nav.pill ul a:hover { color: var(--ink); }
 /* ═══════════════════════════════════
    MOCKUP SECTION — Referenz exakt
 ═══════════════════════════════════ */
-.mockup-section { padding: 40px 0 96px; background: transparent; }
+.mockup-section {
+  padding: 16px 0 96px;
+  position: relative;
+  background-color: var(--bg-alt);
+}
+/* Grid auf Pseudo-Element → Kinder bleiben sichtbar, nur Grid blendet ein */
+.mockup-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 160px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 160px);
+  pointer-events: none;
+  z-index: 0;
+}
 .mockup-wrap {
   position: relative;
+  z-index: 1;
   max-width: 900px; margin: 0 auto; padding: 0 28px;
 }
 .mockup-outer {
@@ -490,8 +538,8 @@ nav.pill ul a:hover { color: var(--ink); }
   font-style: italic; color: var(--accent); line-height: 1.1; display: block;
 }
 .fc-lbl { font-size: .73rem; color: var(--ink-2); margin-top: 2px; display: block; line-height: 1.4; }
-/* Notif card */
-.float-card.notif { bottom: 5%; right: -2.5%; display: flex; align-items: flex-start; gap: 12px; max-width: 290px; transition-delay: .35s; }
+/* Notif card — jetzt tiefer: bottom: -6% statt 5% */
+.float-card.notif { bottom: -6%; right: -2.5%; display: flex; align-items: flex-start; gap: 12px; max-width: 290px; transition-delay: .35s; }
 .fc-ic {
   width: 36px; height: 36px; border-radius: 10px;
   background: var(--accent-soft);
@@ -501,7 +549,22 @@ nav.pill ul a:hover { color: var(--ink); }
 .fc-notif-title { font-size: .84rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
 .fc-notif-body  { font-size: .73rem; color: var(--ink-2); }
 .fc-notif-time  { font-size: .68rem; color: var(--accent-deep); font-weight: 600; margin-top: 4px; }
-@media (max-width: 700px) { .float-card { display: none; } }
+
+/* Mobile: stat-card verstecken, notif-card als statische Pill unter dem Kalender */
+@media (max-width: 700px) {
+  .float-card.stat { display: none; }
+  .float-card.notif {
+    position: relative;
+    bottom: auto; right: auto;
+    opacity: 1; transform: none;
+    margin-top: 16px;
+    max-width: 100%;
+    border-radius: 14px;
+    padding: 12px 16px;
+    background: var(--bg);
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+}
 @media (prefers-reduced-motion: reduce) { .float-card { opacity: 1; transform: none; transition: none; } }
 
 /* ═══════════════════════════════════
@@ -600,11 +663,7 @@ nav.pill ul a:hover { color: var(--ink); }
   position: relative; overflow: hidden;
   box-shadow: 0 4px 12px rgba(34,197,94,.06), 0 20px 60px rgba(34,197,94,.04);
 }
-.g-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
-}
+
 .g-icon { color: var(--accent); margin: 0 auto 18px; width: 52px; height: 52px; }
 .g-card h2 {
   font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.1rem);
@@ -612,16 +671,25 @@ nav.pill ul a:hover { color: var(--ink); }
 }
 .g-card h2 em { font-family: var(--f-serif); font-style: italic; font-weight: 500; color: var(--accent); }
 .g-card p { color: var(--ink-2); font-size: .97rem; line-height: 1.65; max-width: 44ch; margin: 0 auto 30px; }
+.g-convince {
+  font-family: var(--f-serif); font-style: italic; font-size: 1.05rem;
+  color: var(--accent-deep); margin-bottom: 24px; margin-top: -8px;
+}
 .g-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.g-trust {
+  margin-top: 28px; font-size: .76rem; color: rgba(13,17,23,.38);
+  letter-spacing: .01em; line-height: 2;
+}
 @media (max-width: 480px) { .g-card { padding: 36px 24px; } }
 
 /* ═══════════════════════════════════
-   FOOTER — Premium Dark
+   FOOTER — Light / Hell
 ═══════════════════════════════════ */
 footer {
-  background: #0b1812;
+  background: var(--bg-alt);
   position: relative; overflow: hidden;
-  color: rgba(255,255,255,.6);
+  color: var(--ink-2);
+  border-top: 1px solid var(--accent-line);
 }
 footer::before { display: none; }
 /* Haupt-Grid */
@@ -635,45 +703,45 @@ footer::before { display: none; }
 @media (max-width: 760px) { .foot-top { grid-template-columns: 1fr; gap: 32px; } }
 
 /* Brand-Spalte */
-.foot-logo { height: 42px; filter: brightness(0) invert(1); display: block; margin-bottom: 16px; }
-.foot-tagline { font-size: .92rem; color: rgba(255,255,255,.36); line-height: 1.6; max-width: 36ch; margin-bottom: 10px; }
-.foot-addr { font-size: .82rem; color: rgba(255,255,255,.35); line-height: 1.6; font-style: normal; margin-top: 10px; }
-.foot-addr a { color: rgba(255,255,255,.35); }
+.foot-logo { height: 42px; filter: brightness(0) saturate(100%) invert(42%) sepia(79%) saturate(550%) hue-rotate(100deg) brightness(92%) contrast(90%); display: block; margin-bottom: 16px; }
+.foot-tagline { font-size: .92rem; color: rgba(13,17,23,.48); line-height: 1.6; max-width: 36ch; margin-bottom: 10px; }
+.foot-addr { font-size: .82rem; color: rgba(13,17,23,.4); line-height: 1.6; font-style: normal; margin-top: 10px; }
+.foot-addr a { color: rgba(13,17,23,.4); }
 
 /* Link-Spalten */
 .foot-col h4 {
   font-size: .74rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .09em; color: #fff;
+  letter-spacing: .09em; color: var(--ink);
   margin-bottom: 16px;
 }
 .foot-col a {
   display: block; font-size: .92rem;
-  color: rgba(255,255,255,.46); margin-bottom: 10px;
+  color: rgba(13,17,23,.5); margin-bottom: 10px;
   transition: color .18s;
 }
-.foot-col a:hover { color: #6eec9d; }
+.foot-col a:hover { color: var(--accent); }
 
 /* Bottom-Bar */
 .foot-bottom {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 12px 0;
   padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,.06);
-  font-size: .82rem; color: rgba(255,255,255,.25);
+  border-top: 1px solid rgba(0,0,0,.07);
+  font-size: .82rem; color: rgba(13,17,23,.35);
 }
-.foot-bottom a { color: rgba(255,255,255,.25); transition: color .18s; }
-.foot-bottom a:hover { color: rgba(255,255,255,.6); }
+.foot-bottom a { color: rgba(13,17,23,.35); transition: color .18s; }
+.foot-bottom a:hover { color: var(--ink); }
 .foot-bottom nav { display: flex; gap: 20px; }
 
-/* Wordmark — fastraone.de Stil */
+/* Wordmark — hell */
 .foot-wordmark {
   text-align: center; overflow: hidden;
-  background: #0b1812; max-height: 180px;
+  background: var(--bg-alt); max-height: 180px;
 }
 .foot-wordmark span {
   font-family: var(--f-sans); font-size: clamp(5rem, 16vw, 15rem);
   font-weight: 900; letter-spacing: -.03em; text-transform: uppercase;
-  color: rgb(23,31,48); display: block; user-select: none; white-space: nowrap;
+  color: rgba(34,197,94,.13); display: block; user-select: none; white-space: nowrap;
   -webkit-mask-image: linear-gradient(#000 0%, rgba(0,0,0,.6) 55%, transparent 85%);
   mask-image: linear-gradient(#000 0%, rgba(0,0,0,.6) 55%, transparent 85%);
 }
@@ -937,11 +1005,115 @@ footer::before { display: none; }
 .m-slot.bk::after { content: ' ✓'; font-size: .7rem; color: var(--accent); }
 
 /* ═══════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — fluid + vollständig
 ═══════════════════════════════════ */
+
+/* ─── Globale fluid Basis ─── */
+.wrap { padding: 0 clamp(14px, 4vw, 28px); }
+
+/* ─── Section-Abstände: fluid ─── */
+.section { padding: clamp(52px, 9vw, 90px) 0; }
+.section-head { margin-bottom: clamp(32px, 6vw, 56px); }
+
+/* ─── Hero-Zone: Bildfülle auf allen Screens ─── */
+.hero { flex: 1; }
+@media (max-width: 700px) {
+  .hero-zone { min-height: auto; }
+}
+
+/* ─── Urgency Bar: stacked auf engen Screens ─── */
+@media (max-width: 540px) {
+  .urg { flex-direction: column; gap: 6px; padding: 10px 16px; text-align: center; }
+  .urg-dot { display: none; }
+}
+
+/* ─── Tablet: 601–900px ─── */
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero { padding: 56px 0 48px; }
+  .cards3 { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sol-grid { grid-template-columns: 1fr 1fr; }
+  .lf-grid { gap: 40px; }
+  .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+/* ─── 520px: Form + Garantie-Card ─── */
 @media (max-width: 520px) {
-  .form-card { padding: 24px 18px; }
-  .g-card { padding: 32px 20px; }
+  .form-card { padding: 24px 18px; border-radius: 16px; }
+  .g-card { padding: 36px 22px; }
+  .g-btns { flex-direction: column; }
+  .g-btns .btn { width: 100%; justify-content: center; }
+  .g-card p { font-size: .9rem; }
+  .g-card h2 { font-size: 1.6rem; }
+}
+
+/* ─── 480px: vollständige Mobile-Optimierung ─── */
+@media (max-width: 480px) {
+  /* Nav */
+  .nav-outer { padding: 8px 12px; }
+  nav.pill { padding: 8px 8px 8px 16px; }
+  .btn-sm { font-size: .75rem; padding: 7px 7px 7px 12px; }
+
+  /* Hero */
+  .hero { padding: 44px 0 36px; }
+  .hero h1 { font-size: clamp(1.95rem, 9vw, 2.6rem); }
+  .hero-sub { font-size: .93rem; }
+  .hero-badge { font-size: .72rem; padding: 6px 12px; margin-bottom: 18px; }
+  .g-pill { font-size: .78rem; padding: 7px 16px; }
+
+  /* Form */
+  .f-input { font-size: 1rem; padding: 13px 14px; }
+  .f-btn { font-size: .9rem; padding: 14px; }
+
+  /* Mockup */
+  .mockup-section { padding: 8px 0 56px; }
+  .mockup-outer { padding: 14px; border-radius: 18px; }
+  .mockup-inner { padding: 16px 12px; border-radius: 12px; }
+  .m-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+
+  /* Problem/Karten */
+  .cards3 { grid-template-columns: 1fr; }
+  .card-m .illus-bg { height: 140px; }
+
+  /* Lösung */
+  .lf-headline { font-size: 1.75rem; }
+  .lf-revenue-number { font-size: 1.65rem; }
+  .lf-grid { gap: 32px; }
+  .lf-row-text strong { font-size: .76rem; }
+
+  /* System-dark ncards: enger zusammen */
+  .sys-visual { height: 200px; }
+  .sys-ncard { width: 120px; padding: 6px 14px 6px 6px; }
+  .sys-ncard strong { font-size: .66rem; }
+  .sys-ncard span { font-size: .58rem; }
+  .sys-ncard.n5, .sys-ncard.n6 { display: none; }
+
+  /* Solution grid */
+  .sol-grid { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .foot-top { grid-template-columns: 1fr; padding: 40px 0 28px; gap: 28px; }
+  .foot-wordmark { max-height: 90px; }
+  .foot-wordmark span { font-size: clamp(3.5rem, 18vw, 8rem); }
+  .foot-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .foot-bottom nav { justify-content: center; flex-wrap: wrap; gap: 12px; }
+}
+
+/* ─── Extra-klein: ≤ 390px (SE, Galaxy A-Serie) ─── */
+@media (max-width: 390px) {
+  .hero h1 { font-size: 1.85rem; }
+  .mockup-outer { padding: 10px; }
+  .m-days span { font-size: .68rem; padding: 4px 0; }
+  .lf-revenue-number { font-size: 1.45rem; }
+  .sys-ncard { width: 108px; }
+  .sys-ncard.n3, .sys-ncard.n4 { display: none; }
+  .g-card { padding: 28px 14px; }
+}
+
+/* ─── Sehr große Screens: 1400px+ ─── */
+@media (min-width: 1400px) {
+  .wrap { max-width: 1200px; }
+  .mockup-wrap { max-width: 1020px; }
+  .lf-grid { max-width: 1160px; }
 }
 
   </style>
@@ -955,7 +1127,7 @@ footer::before { display: none; }
 <!-- ─── URGENCY BAR ──────────────────────────── -->
 <div class="urg" style="position:relative;z-index:5;">
   <span class="urg-dot"></span>
-  <span>Nur noch <strong>1 freier Platz</strong> in deiner Region</span>
+  <span>Nur noch <strong>1 freier Platz</strong> in deiner Region &nbsp;·&nbsp; Platz reserviert für <strong id="urg-countdown">09:58</strong></span>
   <button class="urg-btn" onclick="scrollToForm()">Jetzt sichern →</button>
 </div>
 
@@ -1007,7 +1179,7 @@ footer::before { display: none; }
 
     <div class="google-row reveal d2">
       <span class="stars">★★★★★</span>
-      <span class="google-text"><strong>4,9 / 5</strong> · Google-Bewertungen</span>
+      <span class="google-text"><strong>5,0 / 5</strong> · Google-Bewertungen</span>
     </div>
 
     <!-- FORM CARD -->
@@ -1063,8 +1235,7 @@ footer::before { display: none; }
           <div class="f-news">
             <input type="checkbox" id="f-nl" />
             <label for="f-nl">
-              Ich möchte kostenlose Tipps zur Auftragsgewinnung erhalten. (Optional ·
-              <a href="/datenschutz" target="_blank">Datenschutz</a>)
+              <strong>Ja, schick mir Tipps</strong> — kostenlose Ratgeber zur Auftragsgewinnung per E-Mail. Jederzeit abbestellbar. (<a href="/datenschutz" target="_blank">Datenschutz</a>)
             </label>
           </div>
           <button class="f-btn green" id="fSubmitBtn" onclick="fSubmit()">
@@ -1081,26 +1252,29 @@ footer::before { display: none; }
             <polyline points="7 12 10.5 15.5 17 9"/>
           </svg>
         </div>
-        <h2 class="f-ty-h">Perfekt, wir melden uns!</h2>
+        <h2 class="f-ty-h">✓ Anfrage ist eingegangen!</h2>
         <p class="f-ty-p">
-          Deine Anfrage ist angekommen.
-          Wir melden uns <strong>innerhalb von 24 Stunden</strong> persönlich bei dir.
+          Sehr gut. Du hörst von mir <strong>persönlich innerhalb von 24h</strong> —
+          meistens noch am selben Tag.
         </p>
+        <div class="f-ty-steps">
+          <div class="f-ty-step"><span>1</span> Wir analysieren deine Region &amp; prüfen den freien Platz</div>
+          <div class="f-ty-step"><span>2</span> Paul meldet sich persönlich bei dir (Telefon oder WhatsApp)</div>
+          <div class="f-ty-step"><span>3</span> Kostenlose Strategie-Session — 0 Risiko, 0 Kosten</div>
+        </div>
         <hr class="f-ty-hr" />
         <div class="f-ty-profile">
           <div class="f-ty-ava" id="paulAvatarBox">
-            <!-- Foto folgt: <img src="..." alt="Paul Fasterding"> -->
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
           <div>
             <div class="f-ty-role">Gründer · Fastra One, Hannover</div>
             <div class="f-ty-name">Paul Fasterding</div>
-            <p class="f-ty-q">"Ich freue mich auf unser Gespräch."</p>
+            <p class="f-ty-q">"Ich schaue mir heute noch deine Region an."</p>
           </div>
         </div>
         <p class="f-ty-cal-l">
-          Lieber direkt Termin buchen?
-          <strong>Wähl einfach eine Zeit</strong>
+          Oder gleich einen Call buchen — <strong>wähl eine Zeit:</strong>
         </p>
         <div
           class="calendly-inline-widget"
@@ -1568,17 +1742,18 @@ footer::before { display: none; }
           Wenn du nach 30 Tagen keine 3 qualifizierten Auftragsanfragen erhältst,
           zahlst du uns keinen Cent. Das Risiko trägt komplett Fastra One.
         </p>
+        <p class="g-convince">
+          Überzeug dich selbst — trag dich ein, schau was passiert.
+        </p>
         <div class="g-btns">
           <button class="btn btn-primary" onclick="scrollToForm()">
-            Jetzt kostenlos anfragen
+            Jetzt kostenlos eintragen
             <span class="btn-arrow">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </button>
-          <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener" class="btn btn-outline">
-            Direkt Termin buchen
-          </a>
         </div>
+        <p class="g-trust">✓ Kostenlos &amp; unverbindlich &nbsp;·&nbsp; ✓ Antwort in 24h &nbsp;·&nbsp; ✓ Kein Verkaufsgespräch</p>
       </div>
     </div>
   </div>
@@ -1600,7 +1775,7 @@ footer::before { display: none; }
         </p>
         <address class="foot-addr">
           Fastra One · Am Flachsgraben 9 · 30657 Hannover<br>
-          <a href="tel:+491633781657">+49 163 3781657</a>
+          <a href="tel:+491633781657" onclick="if(typeof gtag==='function') gtag('event','phone_click',{event_category:'contact',event_label:'footer'})">+49 163 3781657</a>
         </address>
       </div>
 
@@ -1616,7 +1791,7 @@ footer::before { display: none; }
       <!-- Kontakt / Links -->
       <div class="foot-col">
         <h4>Kontakt</h4>
-        <a href="https://calendly.com/paul-web/30min" target="_blank" rel="noopener">Termin buchen</a>
+        <a href="#heroForm" onclick="scrollToForm();return false;">Jetzt eintragen</a>
         <a href="mailto:paul.web@outlook.de">E-Mail schreiben</a>
         <a href="https://fastraone.de" target="_blank" rel="noopener">fastraone.de</a>
       </div>
@@ -1690,6 +1865,9 @@ function fNext(cur) {
   document.getElementById(ids[cur]).classList.remove('err');
   _fd[keys[cur]] = val;
   fShowStep(cur + 1);
+  if (typeof gtag === 'function') {
+    gtag('event', 'form_step_complete', { step: cur + 1, form_id: 'galabau-garantie' });
+  }
 }
 
 function fSubmit() {
@@ -1724,6 +1902,32 @@ function fSubmit() {
   .then(function(r){ return r.ok ? r : Promise.reject(r.status); })
   .then(function(){
     if (window.dataLayer) window.dataLayer.push({event:'lead_submit', lead_seite:'galabau-garantie'});
+    if (typeof gtag === 'function') {
+      // GA4 lead event (immer aktiv)
+      gtag('event', 'generate_lead', {
+        event_category: 'lead_form',
+        event_label: 'galabau-garantie',
+        currency: 'EUR',
+        value: 1.0
+      });
+
+      // Enhanced Conversions: E-Mail SHA-256 hashen (Privacy-sicher)
+      if (window.crypto && window.crypto.subtle) {
+        var emailNorm = _fd.em.trim().toLowerCase();
+        var buf = new TextEncoder().encode(emailNorm);
+        crypto.subtle.digest('SHA-256', buf).then(function(hash) {
+          var hex = Array.from(new Uint8Array(hash)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+          gtag('set', 'user_data', { 'sha256_email_address': hex });
+          // Google Ads Conversion — ERSETZE AW-XXXXXXXXX/XXXXXXXXXX mit deinen Werten
+          // (Google Ads → Conversions → Aktion wählen → Tag-Details)
+          // gtag('event', 'conversion', {
+          //   send_to: 'AW-XXXXXXXXX/XXXXXXXXXX',
+          //   value: 1.0,
+          //   currency: 'EUR'
+          // });
+        });
+      }
+    }
     fShowTY();
   })
   .catch(function(){ fShowTY(); });
@@ -1757,6 +1961,58 @@ document.addEventListener('keydown', function(e){
   els.forEach(function(e){ io.observe(e); });
 })();
 
+/* GA4 Event Tracking */
+(function(){
+  /* CTA-Button Klicks */
+  document.querySelectorAll('.btn, .urg-btn, .f-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (typeof gtag !== 'function') return;
+      gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: (btn.textContent || '').trim().replace(/\s+/g,' ').substring(0,60),
+        page_location: window.location.href
+      });
+    });
+  });
+
+  /* Scroll-Tiefe: 25 / 50 / 75 / 90% */
+  var depths = [25, 50, 75, 90]; var fired = {};
+  window.addEventListener('scroll', function(){
+    var pct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+    depths.forEach(function(d){
+      if (!fired[d] && pct >= d) {
+        fired[d] = true;
+        if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: d });
+      }
+    });
+  }, { passive: true });
+})();
+
+/* Countdown Timer für Urgency Bar */
+(function(){
+  var el = document.getElementById('urg-countdown');
+  if (!el) return;
+  var KEY = 'fa_urg_end';
+  var stored = sessionStorage.getItem(KEY);
+  var end;
+  if (stored) {
+    end = parseInt(stored, 10);
+  } else {
+    end = Date.now() + (9 * 60 + 58) * 1000;
+    sessionStorage.setItem(KEY, end);
+  }
+  function tick() {
+    var rem = Math.max(0, Math.round((end - Date.now()) / 1000));
+    var m = Math.floor(rem / 60);
+    var s = rem % 60;
+    el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if (rem > 0) setTimeout(tick, 1000);
+    else el.closest('.urg') && (el.closest('.urg').style.display = 'none');
+  }
+  tick();
+})();
+
 </script>
+
 
 </BaseLayout>

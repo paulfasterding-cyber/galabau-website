@@ -53,42 +53,66 @@ const {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={ogImage} />
 
-  <!-- Preconnect für Google Analytics (spart DNS-Zeit) -->
+  <!-- Preconnects: Google Tag Manager, Ads, Analytics -->
   <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googleadservices.com" />
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <!-- Kritische Schriften preloaden (verhindert FOUT) -->
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/jakarta-800-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link href="/fonts/fonts.css" rel="stylesheet" />
 
-  <!-- Google Consent Mode v2 — Standard: ABGELEHNT (§ 25 TTDSG / DSGVO-konform) -->
-  <!-- Muss VOR dem gtag.js-Script stehen -->
+  <!--
+    ═══════════════════════════════════════════
+    GOOGLE TAG — Consent Mode v2 + GA4 + Ads
+    ═══════════════════════════════════════════
+    GA4-ID:       G-PHF77H0TJS  ← schon aktiv
+    Google Ads:   AW-XXXXXXXXX  ← HIER deine Google Ads Tag-ID eintragen
+                  (Google Ads → Tools → Google Tag → Tag-ID)
+    ═══════════════════════════════════════════
+  -->
   <script is:inline>
+    // 1. Consent Mode v2 — Standard ABGELEHNT (§ 25 TTDSG)
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
+      'ad_storage':         'denied',
+      'ad_user_data':       'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
-      'wait_for_update': 500
+      'analytics_storage':  'denied',
+      'wait_for_update':    500
     });
-    // Gespeicherte Einwilligung direkt anwenden (kein Flackern)
+    // Gespeicherte Einwilligung sofort anwenden (kein Flackern beim Reload)
     if (typeof localStorage !== 'undefined' && localStorage.getItem('fa_consent') === 'granted') {
       gtag('consent', 'update', {
-        'ad_storage': 'granted',
-        'ad_user_data': 'granted',
+        'ad_storage':         'granted',
+        'ad_user_data':       'granted',
         'ad_personalization': 'granted',
-        'analytics_storage': 'granted'
+        'analytics_storage':  'granted'
       });
     }
   </script>
+
+  <!-- 2. gtag.js laden (ein einziges Script für GA4 + Ads) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHF77H0TJS" is:inline></script>
+
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-PHF77H0TJS');
+
+    // GA4
+    gtag('config', 'G-PHF77H0TJS', {
+      'send_page_view': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+
+    // Google Ads Tag — ERSETZE "AW-XXXXXXXXX" mit deiner echten Tag-ID
+    // gtag('config', 'AW-XXXXXXXXX');
+
+    // Conversion Linker (verbessert Cross-Device Matching)
+    gtag('set', 'linker', { 'domains': ['fastraone.de'] });
   </script>
 
   <slot name="head" />

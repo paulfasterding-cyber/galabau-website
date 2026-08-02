@@ -5,8 +5,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="Datenschutzerklärung – Fastra One"
   description="Datenschutzerklärung von Fastra One – Informationen zur Datenverarbeitung gemäß DSGVO."
-  navVariant="back"
-  footerVariant="full"
+  navVariant="minimal"
+  navBackHref="/"
+  navBackLabel="Zurück zur Startseite"
+  footerVariant="simple"
 >
   <Fragment slot="head">
     <meta name="robots" content="noindex" />
@@ -18,19 +20,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .legal-hero p { color:rgba(255,255,255,.45); font-size:.9rem; margin-top:10px; }
 
 .legal-body { max-width:760px; margin-inline:auto; padding:clamp(40px,6vw,72px) 22px clamp(60px,8vw,100px); }
-.legal-body h2 { font-family:var(--f-head); font-size:1.2rem; font-weight:700; margin:36px 0 10px; color:#0c0d10; }
-.legal-body h3 { font-size:1rem; font-weight:700; margin:20px 0 6px; color:#0c0d10; }
-.legal-body p, .legal-body li { margin-bottom:10px; color:#3d3d3d; line-height:1.72; }
-.legal-body ul { padding-left:22px; }
+.legal-body h2 { font-family:var(--f-head); font-size:1.2rem; font-weight:700; margin:40px 0 10px; color:#0c0d10; border-top:1px solid #f0f0f0; padding-top:28px; }
+.legal-body h2:first-child { border-top:none; padding-top:0; margin-top:0; }
+.legal-body h3 { font-size:.97rem; font-weight:700; margin:20px 0 6px; color:#0c0d10; }
+.legal-body p, .legal-body li { margin-bottom:10px; color:#3d3d3d; line-height:1.75; font-size:.95rem; }
+.legal-body ul { padding-left:22px; margin-bottom:12px; }
 .legal-body a { color:#16a566; }
 .legal-body strong { color:#0c0d10; }
-.legal-note { background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px; padding:16px 18px; margin:28px 0; font-size:.9rem; color:#565a66; }
+.legal-note { background:#fefce8; border:1px solid #fde68a; border-radius:12px; padding:16px 18px; margin:32px 0; font-size:.88rem; color:#78350f; line-height:1.6; }
+.legal-info-box { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:16px 18px; margin:16px 0; font-size:.88rem; color:#14532d; line-height:1.6; }
+.legal-toc { background:#f8f9fb; border:1px solid #e5e7eb; border-radius:12px; padding:18px 22px; margin-bottom:36px; }
+.legal-toc h3 { margin:0 0 10px; font-size:.88rem; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.06em; }
+.legal-toc ol { padding-left:20px; margin:0; }
+.legal-toc li { margin-bottom:4px; font-size:.88rem; }
+.legal-toc a { color:#374151; text-decoration:none; }
+.legal-toc a:hover { color:#16a566; }
   </style>
 
   <section class="legal-hero">
     <div class="container">
       <h1>Datenschutzerklärung</h1>
-      <p>Stand: Juni 2026</p>
+      <p>Stand: August 2026</p>
     </div>
   </section>
 
@@ -42,98 +52,241 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <main class="legal-body">
 
-    <h2>1. Verantwortlicher</h2>
+    <nav class="legal-toc" aria-label="Inhaltsverzeichnis">
+      <h3>Inhalt</h3>
+      <ol>
+        <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+        <li><a href="#allgemeines">Allgemeines zur Datenverarbeitung</a></li>
+        <li><a href="#hosting">Hosting (Hostinger)</a></li>
+        <li><a href="#formular">Kontakt- und Lead-Formular</a></li>
+        <li><a href="#newsletter">E-Mail-Marketing / Newsletter</a></li>
+        <li><a href="#calendly">Terminbuchung (Calendly)</a></li>
+        <li><a href="#cookies">Cookies, Einwilligungsmanagement &amp; §&thinsp;25 TTDSG</a></li>
+        <li><a href="#analytics">Google Analytics 4</a></li>
+        <li><a href="#ads">Google Ads Conversion-Tracking</a></li>
+        <li><a href="#fonts">Webschriften (Google Fonts)</a></li>
+        <li><a href="#rechte">Ihre Rechte</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="verantwortlicher">1. Verantwortlicher</h2>
     <p>
-      Verantwortlich für die Datenverarbeitung auf dieser Website:<br />
       Fastra One – Paul Niklas Fasterding<br />
       Am Flachsgraben 9, 30657 Hannover<br />
       E-Mail: <a href="mailto:paul.web@outlook.de">paul.web@outlook.de</a><br />
-      Telefon: <a href="tel:+491633781657">+49 163 3781657</a>
+      Telefon: <a href="tel:+491633781657">+49&thinsp;163&thinsp;3781657</a>
     </p>
 
-    <h2>2. Allgemeines zur Datenverarbeitung</h2>
+    <h2 id="allgemeines">2. Allgemeines zur Datenverarbeitung</h2>
     <p>
-      Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer
-      funktionsfähigen Website sowie unserer Leistungen erforderlich ist. Rechtsgrundlagen
-      sind insbesondere Art. 6 Abs. 1 lit. a (Einwilligung), lit. b (Vertrag bzw.
-      vorvertragliche Maßnahmen) und lit. f (berechtigtes Interesse) DSGVO.
+      Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung
+      einer funktionsfähigen Website sowie unserer Leistungen erforderlich ist oder
+      Sie eine Einwilligung erteilt haben. Sofern keine gesonderte Rechtsgrundlage
+      genannt wird, sind Rechtsgrundlagen insbesondere:
     </p>
-
-    <h2>3. Hosting (Netlify)</h2>
-    <p>
-      Diese Website wird bei Netlify (Netlify, Inc., 512 2nd Street, Suite 200, San Francisco,
-      CA 94107, USA) gehostet. Beim Aufruf der Website werden technisch notwendige Daten
-      (insb. IP-Adresse, Datum und Uhrzeit des Zugriffs, abgerufene Seite, Browsertyp) in
-      Server-Logfiles verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
-      (sichere und stabile Bereitstellung). Die Übermittlung in die USA erfolgt auf Basis
-      der EU-Standardvertragsklauseln; Netlify ist unter dem EU-US Data Privacy Framework
-      zertifiziert. Mit Netlify besteht ein Auftragsverarbeitungsvertrag (Art. 28 DSGVO).
-    </p>
-
-    <h2>4. Kontaktformular</h2>
-    <p>
-      Wenn Sie das Kontaktformular nutzen, verarbeiten wir die von Ihnen angegebenen Daten
-      (Vorname, Nachname, E-Mail-Adresse, Telefonnummer, Nachricht) zur Bearbeitung Ihrer
-      Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a und lit. b DSGVO.
-    </p>
-    <h3>Verarbeitung über Google (Google Tabellen / Apps Script)</h3>
-    <p>
-      Die über das Formular übermittelten Daten werden mittels Google Apps Script in einer
-      Google-Tabelle (Google Sheets) gespeichert. Anbieter ist Google Ireland Limited,
-      Gordon House, Barrow Street, Dublin 4, Irland (für Nutzer im EWR), ggf. mit
-      Datenübermittlung an Google LLC, USA. Die Übermittlung erfolgt auf Grundlage der
-      EU-Standardvertragsklauseln; Google ist unter dem EU-US Data Privacy Framework
-      zertifiziert. Mit Google besteht ein Auftragsverarbeitungsvertrag.
-    </p>
-    <p>
-      Wir speichern Ihre Anfrage, bis sie abschließend bearbeitet ist bzw. solange
-      gesetzliche Aufbewahrungspflichten bestehen. Sie können der Speicherung jederzeit
-      widersprechen und die Löschung verlangen (siehe Punkt 8).
-    </p>
-
-    <h2>5. Terminbuchung (Calendly)</h2>
-    <p>
-      Für die Vereinbarung von Erstgesprächen verlinken wir auf den Dienst Calendly
-      (Calendly LLC, 271 17th St NW, Atlanta, GA 30363, USA). Erst wenn Sie den Link
-      aktiv anklicken, werden Sie zu Calendly weitergeleitet und dort Ihre Angaben
-      (z. B. Name, E-Mail-Adresse, Terminwunsch) verarbeitet. Es gilt dann die
-      Datenschutzerklärung von Calendly. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
-    </p>
-
-    <h2>6. Schriftarten &amp; Skripte</h2>
-    <p>
-      Die auf dieser Website verwendeten Schriftarten sowie alle JavaScript-Bibliotheken
-      werden lokal von unserem Server ausgeliefert (Self-Hosting). Es findet <strong>keine</strong>
-      Verbindung zu externen CDN-Servern (z. B. Google Fonts, jsDelivr) statt;
-      es werden hierfür keine Daten an Dritte übermittelt.
-    </p>
-
-    <h2>7. Cookies &amp; Analyse</h2>
-    <p>
-      Diese Website setzt keine Tracking- oder Marketing-Cookies und verwendet keine
-      Analyse-Dienste, die ein Einwilligungsbanner erfordern würden.
-    </p>
-
-    <h2>8. Ihre Rechte</h2>
-    <p>Sie haben jederzeit das Recht auf:</p>
     <ul>
-      <li>Auskunft (Art. 15 DSGVO)</li>
-      <li>Berichtigung (Art. 16 DSGVO)</li>
-      <li>Löschung (Art. 17 DSGVO)</li>
-      <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-      <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
-      <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
-      <li>Widerruf einer erteilten Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
+      <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung</li>
+      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Vertragsanbahnung oder -erfüllung</li>
+      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse</li>
+    </ul>
+
+    <h2 id="hosting">3. Hosting (Hostinger)</h2>
+    <p>
+      Diese Website wird bei <strong>Hostinger International Ltd.</strong>, 61 Lordou Vironos
+      Street, 6023 Larnaca, Zypern (EU) gehostet. Beim Aufruf der Website werden technisch
+      notwendige Daten (insb. IP-Adresse, Datum und Uhrzeit des Zugriffs, abgerufene Seite,
+      Browsertyp) in Server-Logfiles verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+      DSGVO (sichere und stabile Bereitstellung). Da Hostinger in Zypern (EU/EWR) ansässig
+      ist, findet insoweit keine Drittlandübermittlung statt. Mit Hostinger besteht ein
+      Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.
+    </p>
+
+    <h2 id="formular">4. Kontakt- und Lead-Formular</h2>
+    <p>
+      Wenn Sie unser Lead-Formular (auf der Seite „GaLaBau-Garantie") nutzen, erheben und
+      verarbeiten wir folgende Daten: Betriebsname, Vorname, Nachname, Telefonnummer,
+      E-Mail-Adresse sowie optionale Einwilligung zum E-Mail-Newsletter. Zweck ist die
+      Bearbeitung Ihrer Anfrage und Kontaktaufnahme. Rechtsgrundlage ist Art. 6 Abs. 1
+      lit. b DSGVO (vorvertragliche Maßnahmen) sowie für den Newsletter Art. 6 Abs. 1
+      lit. a DSGVO (Einwilligung).
+    </p>
+    <p>
+      Zusätzlich werden technische Metadaten übermittelt (UTM-Parameter der besuchten URL,
+      Seite, Zeitstempel), um die Herkunft der Anfrage nachzuvollziehen.
+    </p>
+
+    <h3>Verarbeitung über unser Backend (Vercel + Supabase)</h3>
+    <p>
+      Die Formulardaten werden per verschlüsselter HTTPS-Verbindung an unser internes
+      Backend (API-Endpunkt: <code>fastraone-admin.vercel.app</code>) übertragen und dort
+      in einer Datenbank gespeichert.
+    </p>
+    <ul>
+      <li>
+        <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789, USA –
+        API-Laufzeitumgebung. Übermittlung in die USA auf Basis der EU-Standardvertragsklauseln;
+        Vercel ist unter dem EU-US Data Privacy Framework zertifiziert.
+      </li>
+      <li>
+        <strong>Supabase Inc.</strong>, 970 Toa Payoh North #07-04, Singapur 318992 –
+        Datenbankdienst. Tatsächliche Datenspeicherung erfolgt in der EU (Frankfurt/AWS).
+        Übermittlung auf Basis der EU-Standardvertragsklauseln.
+      </li>
     </ul>
     <p>
-      Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
-      z. B. der Landesbeauftragten für den Datenschutz Niedersachsen.
+      Mit beiden Dienstleistern besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.
+      Wir speichern Ihre Anfrage bis zur abschließenden Bearbeitung bzw. solange gesetzliche
+      Aufbewahrungspflichten bestehen. Sie können der Speicherung jederzeit widersprechen und
+      die Löschung verlangen (siehe Punkt 11).
+    </p>
+
+    <h2 id="newsletter">5. E-Mail-Marketing / Newsletter</h2>
+    <p>
+      Wenn Sie im Formular die Checkbox „Ja, schick mir Tipps" aktivieren, erklären Sie sich
+      damit einverstanden, dass wir Ihnen kostenlose Ratgeber und Informationen zur
+      Auftragsgewinnung per E-Mail zusenden dürfen. Diese Einwilligung ist freiwillig und
+      beeinflusst nicht die Bearbeitung Ihrer Anfrage.
+    </p>
+    <p>
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 7 Abs. 2 Nr. 3 UWG.
+      Sie können die Einwilligung jederzeit widerrufen – durch Klick auf den Abmeldelink
+      in jeder E-Mail oder per Nachricht an
+      <a href="mailto:paul.web@outlook.de">paul.web@outlook.de</a>.
+    </p>
+
+    <h2 id="calendly">6. Terminbuchung (Calendly)</h2>
+    <p>
+      Nach erfolgreicher Formular-Einreichung wird auf der Bestätigungsseite ein
+      Calendly-Widget eingebettet, das die Buchung eines Erstgesprächs ermöglicht.
+      Anbieter ist <strong>Calendly LLC</strong>, 271 17th St NW #1000, Atlanta,
+      GA 30363, USA. Wenn Sie den Kalender nutzen, werden dort Ihre Angaben
+      (Name, E-Mail-Adresse, Terminwunsch) verarbeitet; es gilt dann die
+      <a href="https://calendly.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Calendly</a>.
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Die Übermittlung in die USA
+      erfolgt auf Basis der EU-Standardvertragsklauseln; Calendly ist unter dem
+      EU-US Data Privacy Framework zertifiziert.
+    </p>
+
+    <h2 id="cookies">7. Cookies, Einwilligungsmanagement &amp; §&thinsp;25 TTDSG</h2>
+    <p>
+      Beim Besuch dieser Website wird ein Cookie-Banner eingeblendet, der nach
+      §&thinsp;25 TTDSG Ihre Einwilligung für nicht notwendige Cookies und
+      Tracking-Dienste einholt. Ohne Ihre Einwilligung werden <strong>keine</strong>
+      Analyse- oder Marketing-Cookies gesetzt.
+    </p>
+
+    <h3>Technisch notwendige Cookies</h3>
+    <p>
+      Wir speichern Ihre Cookie-Einwilligung in <code>localStorage</code> (Schlüssel:
+      <code>fa_consent</code>) sowie einen Countdown-Wert in <code>sessionStorage</code>
+      (Schlüssel: <code>fa_urg_end</code>). Diese Speicherungen erfordern keine Einwilligung
+      nach §&thinsp;25 Abs. 2 TTDSG, da sie ausschließlich der Funktionsfähigkeit der
+      Website dienen.
+    </p>
+
+    <h3>Einwilligung widerrufen</h3>
+    <p>
+      Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
+      Klicken Sie dazu auf den grünen <strong>„Cookies"-Button</strong> unten links im
+      Browser-Fenster und wählen Sie „Nur notwendige". Darüber hinaus können Sie
+      Cookies direkt in Ihrem Browser löschen oder sperren.
+    </p>
+
+    <div class="legal-info-box">
+      <strong>Hinweis:</strong> Google Analytics und Google Ads werden erst nach Ihrer
+      ausdrücklichen Einwilligung aktiviert. Verweigern Sie die Einwilligung, werden
+      keine Tracking-Daten übertragen.
+    </div>
+
+    <h2 id="analytics">8. Google Analytics 4</h2>
+    <p>
+      Mit Ihrer Einwilligung nutzen wir <strong>Google Analytics 4</strong> (Mess-ID:
+      G-PHF77H0TJS) des Anbieters Google Ireland Limited, Gordon House, Barrow Street,
+      Dublin 4, Irland. Google Analytics verarbeitet Daten über Ihr Nutzungsverhalten auf
+      unserer Website (besuchte Seiten, Verweildauer, Interaktionen, ungekürzte IP-Adresse –
+      diese wird jedoch vor Speicherung anonymisiert) und übermittelt diese an Server von
+      Google LLC, USA.
+    </p>
+    <p>
+      Wir erfassen folgende Ereignisse: Formular-Schritte (<code>form_step_complete</code>),
+      Lead-Einreichung (<code>generate_lead</code>), CTA-Klicks (<code>cta_click</code>)
+      und Scroll-Tiefe (<code>scroll_depth</code>).
+    </p>
+    <p>
+      Wir haben die IP-Anonymisierung aktiviert und Google Analytics so konfiguriert, dass
+      personenbezogene Daten erst nach Einwilligung übertragen werden (Consent Mode v2).
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Die Übermittlung in die USA erfolgt
+      auf Basis der EU-Standardvertragsklauseln; Google ist unter dem EU-US Data Privacy
+      Framework zertifiziert. Mit Google besteht ein Auftragsverarbeitungsvertrag.
+    </p>
+    <p>
+      Sie können der Verarbeitung durch Google Analytics jederzeit widersprechen, indem
+      Sie Ihre Einwilligung über den Cookie-Button (unten links) widerrufen oder das
+      offizielle Browser-Add-on von Google installieren:
+      <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.
+    </p>
+
+    <h2 id="ads">9. Google Ads Conversion-Tracking</h2>
+    <p>
+      Mit Ihrer Einwilligung setzen wir das Conversion-Tracking von
+      <strong>Google Ads</strong> (Google Ireland Limited, Adresse wie oben) ein.
+      Wenn Sie auf eine unserer Google-Anzeigen klicken und anschließend eine Handlung
+      auf unserer Website vornehmen (z. B. Formular ausfüllen), wird ein Cookie gesetzt,
+      das die Konversion erfasst. Die hierdurch gewonnenen Informationen werden verwendet,
+      um Statistiken über die Wirksamkeit unserer Werbemaßnahmen zu erstellen.
+    </p>
+    <p>
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Eine Datenweitergabe in die USA
+      erfolgt auf Basis der EU-Standardvertragsklauseln; Google ist unter dem
+      EU-US Data Privacy Framework zertifiziert. Sie können die Einwilligung jederzeit
+      über den Cookie-Button widerrufen.
+    </p>
+
+    <h2 id="fonts">10. Webschriften (Google Fonts)</h2>
+    <p>
+      Auf der Seite „GaLaBau-Garantie" wird die Schriftart <em>Fraunces</em> über den
+      Dienst <strong>Google Fonts</strong> (Google Ireland Limited, Gordon House, Barrow
+      Street, Dublin 4, Irland) eingebunden. Dabei wird beim Laden der Seite eine
+      Verbindung zu Google-Servern hergestellt; hierbei wird Ihre IP-Adresse
+      übertragen. Google kann diese Daten ggf. an Server in den USA weiterleiten.
+    </p>
+    <p>
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+      einheitlichen, korrekten Darstellung der Schriften). Die Übermittlung in die USA
+      erfolgt auf Basis der EU-Standardvertragsklauseln; Google ist unter dem
+      EU-US Data Privacy Framework zertifiziert.
+    </p>
+
+    <h2 id="rechte">11. Ihre Rechte</h2>
+    <p>Sie haben jederzeit das Recht auf:</p>
+    <ul>
+      <li><strong>Auskunft</strong> über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+      <li><strong>Löschung</strong> Ihrer Daten (Art. 17 DSGVO)</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+      <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      <li><strong>Widerruf</strong> einer erteilten Einwilligung jederzeit mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>
+      Zur Ausübung Ihrer Rechte wenden Sie sich an:
+      <a href="mailto:paul.web@outlook.de">paul.web@outlook.de</a>
+    </p>
+    <p>
+      Sie haben außerdem das Recht, sich bei der zuständigen Datenschutz-Aufsichtsbehörde
+      zu beschweren. Für Niedersachsen ist das:
+    </p>
+    <p>
+      Die Landesbeauftragte für den Datenschutz Niedersachsen<br />
+      Prinzenstraße 5, 30159 Hannover<br />
+      <a href="https://www.lfd.niedersachsen.de" target="_blank" rel="noopener">www.lfd.niedersachsen.de</a>
     </p>
 
     <div class="legal-note">
-      Hinweis: Diese Datenschutzerklärung ist eine sorgfältig erstellte Vorlage und ersetzt
-      keine individuelle Rechtsberatung. Bitte vor dem Live-Gang final prüfen (lassen) und an
-      die tatsächlich eingesetzten Dienste anpassen.
+      <strong>Hinweis:</strong> Diese Datenschutzerklärung wurde sorgfältig auf Basis der
+      tatsächlich eingesetzten Dienste erstellt (Stand August 2026). Sie ersetzt keine
+      individuelle Rechtsberatung. Vor dem Schalten von Google Ads empfehlen wir eine
+      abschließende Prüfung durch einen Fachanwalt für IT-/Datenschutzrecht.
     </div>
 
   </main>

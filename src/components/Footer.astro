@@ -5,6 +5,7 @@ interface Props {
 const { variant = 'full' } = Astro.props;
 ---
 
+{variant !== 'simple' && (
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
@@ -44,21 +45,77 @@ const { variant = 'full' } = Astro.props;
     <span>Hannover · Deutschland</span>
   </div>
 </footer>
+)}
+
+{variant === 'simple' && (
+<footer class="footer-simple">
+  <div class="container footer-simple__inner">
+    <a href="/" class="footer-simple__brand" aria-label="Zurück zur Startseite">
+      <img src="assets/logo.png" alt="Fastra One" height="28" loading="lazy" decoding="async" />
+    </a>
+    <nav class="footer-simple__links" aria-label="Rechtliches">
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/agb">AGB</a>
+    </nav>
+    <span class="footer-simple__copy">© 2026 Fastra One · Hannover</span>
+  </div>
+</footer>
+)}
 
 <style is:global>
-.footer{background:#0b0f1a;border-top:none;padding:64px 0 0;color:rgba(255,255,255,.6)}
+.footer{background:#0b1812;border-top:1px solid rgba(34,197,94,.10);padding:64px 0 0;color:rgba(255,255,255,.6)}
 .footer__inner{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:52px}
-.footer__brand .logo{height:42px;filter:brightness(0) invert(1)}
+.footer__brand .logo{height:42px;filter:brightness(0) saturate(100%) invert(80%) sepia(28%) saturate(938%) hue-rotate(91deg) brightness(102%) contrast(104%)}
 .footer__brand p{margin-top:14px;color:rgba(255,255,255,.36);max-width:36ch;font-size:.92rem;line-height:1.6}
 .footer__col{display:flex;flex-direction:column;gap:0}
 .footer__col h3{font-size:.74rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.09em;margin-bottom:16px}
 .footer__col a{color:rgba(255,255,255,.46);font-size:.92rem;margin-bottom:10px;transition:color .18s}
 .footer__col a:hover{color:#6EEC9D}
-.footer__wordmark{text-align:center;padding:0;line-height:1;overflow:hidden;background:#0b0f1a;max-height:180px}
-.footer__wordmark span{font-family:var(--f-head);font-size:clamp(5rem,16vw,15rem);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:#171f30;display:block;user-select:none;white-space:nowrap;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%);mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%)}
+.footer__wordmark{text-align:center;padding:0;line-height:1;overflow:hidden;background:#0b1812;max-height:180px}
+.footer__wordmark span{font-family:var(--f-head);font-size:clamp(5rem,16vw,15rem);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:#0d2216;display:block;user-select:none;white-space:nowrap;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%);mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,.6) 55%,transparent 85%)}
 .footer__bottom{margin-top:0;padding:22px 0;border-top:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.25);font-size:.82rem;display:flex;flex-wrap:wrap;gap:12px 0;justify-content:space-between;align-items:center}
 .footer__bottom-links{display:flex;gap:20px}
 .footer__bottom-links a{color:rgba(255,255,255,.25);transition:color .18s}
 .footer__bottom-links a:hover{color:rgba(255,255,255,.6)}
 @media(min-width:760px){.footer__inner{grid-template-columns:2fr 1fr 1fr;gap:60px}}
+
+/* ── Simple Footer (Rechtsseiten) ── */
+.footer-simple {
+  background: #f8f9fa;
+  border-top: 1px solid #e5e7eb;
+  padding: 20px 0;
+}
+.footer-simple__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-simple__brand img {
+  height: 28px;
+  filter: brightness(0) saturate(100%) invert(28%) sepia(55%) saturate(600%) hue-rotate(110deg) brightness(90%) contrast(88%);
+  display: block;
+}
+.footer-simple__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-simple__links a {
+  font-size: .82rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color .18s;
+}
+.footer-simple__links a:hover { color: #22c55e; }
+.footer-simple__copy {
+  font-size: .78rem;
+  color: #9ca3af;
+}
+@media (max-width: 600px) {
+  .footer-simple__inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer-simple__brand { order: -1; }
+}
 </style>

@@ -5,8 +5,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="Impressum – Fastra One"
   description="Impressum von Fastra One – Paul Niklas Fasterding, Am Flachsgraben 9, 30657 Hannover."
-  navVariant="back"
-  footerVariant="full"
+  navVariant="minimal"
+  navBackHref="/"
+  navBackLabel="Zurück zur Startseite"
+  footerVariant="simple"
 >
   <Fragment slot="head">
     <meta name="robots" content="noindex" />
@@ -27,7 +29,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="legal-hero">
     <div class="container">
       <h1>Impressum</h1>
-      <p>Angaben gemäß § 5 DDG</p>
+      <p>Angaben gemäß § 5 DDG · Stand: August 2026</p>
     </div>
   </section>
 
