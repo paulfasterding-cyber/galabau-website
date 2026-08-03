@@ -342,6 +342,13 @@ nav.pill ul a:hover { color: var(--ink); }
 }
 .f-btn:hover { background: #1a1a2e; transform: translateY(-2px); box-shadow: rgba(255,255,255,.10) 0 0 0 3px inset, rgba(0,0,0,.2) 0 8px 24px; }
 .f-btn.green { background: var(--accent); }
+.f-spinner {
+  display: inline-block; width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+  border-radius: 50%; animation: spin .7s linear infinite;
+  margin-right: 8px; vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 .f-btn.green:hover { background: var(--accent-deep); box-shadow: rgba(255,255,255,.12) 0 0 0 3px inset, rgba(34,197,94,.28) 0 8px 24px; }
 .f-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 
@@ -1273,15 +1280,6 @@ footer::before { display: none; }
             <p class="f-ty-q">"Ich schaue mir heute noch deine Region an."</p>
           </div>
         </div>
-        <p class="f-ty-cal-l">
-          Oder gleich einen Call buchen — <strong>wähl eine Zeit:</strong>
-        </p>
-        <div
-          class="calendly-inline-widget"
-          data-url="https://calendly.com/paul-web/30min?hide_gdpr_banner=1&primary_color=22c55e"
-          style="min-width:280px; height:640px;"
-        ></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
 
     </div><!-- /form-card -->
@@ -1881,13 +1879,12 @@ function fSubmit() {
   _fd.em = em;
   _fd.nl = document.getElementById('f-nl').checked;
   var btn = document.getElementById('fSubmitBtn');
-  btn.disabled = true; btn.textContent = 'Wird gesendet…';
+  btn.disabled = true; btn.innerHTML = '<span class="f-spinner"></span>Wird gesendet…';
   var p = new URLSearchParams(window.location.search);
   var payload = {
     betrieb: _fd.bt,
     name: _fd.vn + ' ' + _fd.nn,
-    vorname: _fd.vn, nachname: _fd.nn,
-    phone: _fd.ph, email: _fd.em, newsletter: _fd.nl,
+    telefon: _fd.ph, email: _fd.em,
     seite: 'galabau-garantie',
     utm_source:   p.get('utm_source')   || '',
     utm_medium:   p.get('utm_medium')   || '',
@@ -1908,23 +1905,23 @@ function fSubmit() {
         event_category: 'lead_form',
         event_label: 'galabau-garantie',
         currency: 'EUR',
-        value: 1.0
+        value: 600.0
       });
 
-      // Enhanced Conversions: E-Mail SHA-256 hashen (Privacy-sicher)
+      // Google Ads Conversion — immer feuern
+      gtag('event', 'conversion', {
+        send_to: 'AW-18219193505/yOKvCMvs99ocEKGpy-9D',
+        value: 600.0,
+        currency: 'EUR'
+      });
+
+      // Enhanced Conversions: E-Mail SHA-256 (optional, verbessert Matching)
       if (window.crypto && window.crypto.subtle) {
         var emailNorm = _fd.em.trim().toLowerCase();
         var buf = new TextEncoder().encode(emailNorm);
         crypto.subtle.digest('SHA-256', buf).then(function(hash) {
           var hex = Array.from(new Uint8Array(hash)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
           gtag('set', 'user_data', { 'sha256_email_address': hex });
-          // Google Ads Conversion — ERSETZE AW-XXXXXXXXX/XXXXXXXXXX mit deinen Werten
-          // (Google Ads → Conversions → Aktion wählen → Tag-Details)
-          // gtag('event', 'conversion', {
-          //   send_to: 'AW-XXXXXXXXX/XXXXXXXXXX',
-          //   value: 1.0,
-          //   currency: 'EUR'
-          // });
         });
       }
     }
