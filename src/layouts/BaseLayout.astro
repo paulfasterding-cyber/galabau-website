@@ -67,9 +67,9 @@ const {
     ═══════════════════════════════════════════
     GOOGLE TAG — Consent Mode v2 + GA4 + Ads
     ═══════════════════════════════════════════
-    GA4-ID:       G-PHF77H0TJS  ← schon aktiv
-    Google Ads:   AW-XXXXXXXXX  ← HIER deine Google Ads Tag-ID eintragen
-                  (Google Ads → Tools → Google Tag → Tag-ID)
+    GA4-ID:       G-PHF77H0TJS
+    Google Ads:   AW-18219193505
+    Conversion:   AW-18219193505/yOKvCMvs99ocEKGpy-9D (Lead-Formular senden)
     ═══════════════════════════════════════════
   -->
   <script is:inline>
@@ -108,8 +108,8 @@ const {
       'cookie_flags': 'SameSite=None;Secure'
     });
 
-    // Google Ads Tag — ERSETZE "AW-XXXXXXXXX" mit deiner echten Tag-ID
-    // gtag('config', 'AW-XXXXXXXXX');
+    // Google Ads Tag
+    gtag('config', 'AW-18219193505');
 
     // Conversion Linker (verbessert Cross-Device Matching)
     gtag('set', 'linker', { 'domains': ['fastraone.de'] });

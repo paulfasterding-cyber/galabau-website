@@ -31,18 +31,17 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # - Eigene Domain: erlaubt
   # - Inline-Scripts/Styles: nötig (Astro nutzt sie intern)
   # - Google Analytics/Tag Manager: erlaubt
-  # - Calendly-Widget: erlaubt (für Terminbuchung)
   # - Supabase API: erlaubt (für Onboarding-Seite)
+  # - Vercel API: erlaubt (Lead-Formular sendet dorthin)
+  # - Google Fonts: erlaubt (galabau-garantie nutzt Fraunces)
   # - Plugins (Flash etc.): komplett gesperrt
-  # - Eigene Domain als einziger Form-Ziel: gesperrt für Fremde
   Header always set Content-Security-Policy "\
 default-src 'self'; \
-script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com; \
-style-src 'self' 'unsafe-inline'; \
+script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com; \
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
 img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com; \
-font-src 'self' data:; \
-connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://djcvqnswbkipjwpmlisj.supabase.co; \
-frame-src https://calendly.com; \
+font-src 'self' data: https://fonts.gstatic.com; \
+connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://djcvqnswbkipjwpmlisj.supabase.co https://fastraone-admin.vercel.app; \
 object-src 'none'; \
 base-uri 'self'; \
 form-action 'self'; \
