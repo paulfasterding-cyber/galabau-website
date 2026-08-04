@@ -550,6 +550,15 @@ nav.pill ul a:hover { color: var(--ink); }
 }
 .m-slot:hover { border-color: var(--accent); color: var(--accent-deep); }
 .m-slot.sel { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.m-booked {
+  text-align: left !important;
+  font-size: .76rem !important;
+  padding: 7px 12px !important;
+  color: var(--ink-2);
+  cursor: default !important;
+}
+.m-booked:hover { border-color: var(--card-line) !important; color: var(--ink-2) !important; }
+.m-slot.bk { background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent-deep); }
 .m-confirm {
   display: block; width: 100%; margin-top: 10px;
   background: var(--ink); color: #fff;
@@ -559,6 +568,14 @@ nav.pill ul a:hover { color: var(--ink); }
   transition: background .2s, transform .2s;
 }
 .m-confirm:hover { background: #1a1a2e; transform: translateY(-1px); }
+.m-confirm-badge {
+  cursor: default !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  text-align: center;
+  letter-spacing: -.01em;
+}
+.m-confirm-badge:hover { transform: none !important; background: var(--accent) !important; }
 
 /* Float-Cards — Referenz-exakt: Spring-Pop + tiefer Schatten */
 .float-card {
@@ -1060,7 +1077,18 @@ footer::before { display: none; }
 /* ─── Hero-Zone: Bildfülle auf allen Screens ─── */
 .hero { flex: 1; }
 @media (max-width: 700px) {
-  .hero-zone { min-height: auto; }
+  .hero-zone { min-height: 100svh; }
+  .hero-bg-photo { opacity: .55; }
+  .hero-zone::before {
+    background: linear-gradient(to bottom,
+      rgba(248,253,249,0)    0%,
+      rgba(248,253,249,.05) 45%,
+      rgba(248,253,249,.45) 72%,
+      rgba(248,253,249,.88) 86%,
+      rgba(248,253,249,1)   94%,
+      rgba(248,253,249,1)   100%
+    );
+  }
 }
 
 /* ─── Urgency Bar: stacked auf engen Screens ─── */
@@ -1164,7 +1192,7 @@ footer::before { display: none; }
 
 <!-- ═══ HERO-ZONE: Bild liegt hinter Urg + Nav + Hero ═══ -->
 <div class="hero-zone">
-<img src="/assets/hero-galabau.jpg" alt="" class="hero-bg-photo" aria-hidden="true">
+<img src="/assets/hero-galabau.jpg" alt="" class="hero-bg-photo" aria-hidden="true" loading="eager" fetchpriority="high">
 
 <!-- ─── URGENCY BAR ──────────────────────────── -->
 <div class="urg" style="position:relative;z-index:5;">
@@ -1342,6 +1370,7 @@ footer::before { display: none; }
 <!-- ─── MOCKUP / KALENDER ─────────────────────── -->
 <section class="mockup-section">
   <div class="wrap">
+    <p class="mockup-context reveal" style="text-align:center;font-size:.82rem;font-weight:600;color:var(--accent-deep);letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px;">So sieht dein Kalender nach 30 Tagen aus</p>
     <div class="mockup-wrap reveal">
       <div class="mockup-outer">
         <div class="mockup-inner">
@@ -1354,10 +1383,10 @@ footer::before { display: none; }
               Live Buchungen
             </div>
             <div class="m-service">
-              Termin buchen
-              <small>GaLaBau Beratung · 30 Min · Kostenlos</small>
+              Dein Kalender
+              <small>Neue Kundenanfragen · August 2026</small>
             </div>
-            <div class="m-avtr">FO</div>
+            <div class="m-avtr">DU</div>
           </div>
 
           <div class="m-split">
@@ -1388,15 +1417,15 @@ footer::before { display: none; }
             </div>
             <div class="m-div"></div>
             <div class="m-times-col">
-              <div class="m-tlabel">Do, 14. August</div>
+              <div class="m-tlabel">Diese Woche · Neue Aufträge</div>
               <div class="m-slots">
-                <button class="m-slot bk">08:00 Uhr</button>
-                <button class="m-slot bk">09:30 Uhr</button>
-                <button class="m-slot sel">10:30 Uhr</button>
-                <button class="m-slot bk">13:00 Uhr</button>
-                <button class="m-slot">15:30 Uhr</button>
+                <div class="m-slot bk m-booked">Thomas M. · Gartenbau</div>
+                <div class="m-slot bk m-booked">Stefan K. · Pflasterung</div>
+                <div class="m-slot bk m-booked">Jana B. · Rasenpflege</div>
+                <div class="m-slot bk m-booked">Klaus W. · Zaunbau</div>
+                <div class="m-slot bk m-booked">Maria S. · Terrassenbau</div>
               </div>
-              <button class="m-confirm">Termin bestätigen →</button>
+              <div class="m-confirm m-confirm-badge">5 Aufträge bestätigt ✓</div>
             </div>
           </div>
 
