@@ -75,6 +75,31 @@ img   { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
 /* ═══════════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════════ */
+.announce-bar {
+  background: #0b1812;
+  color: #fff;
+  text-align: center;
+  padding: 11px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 6;
+  border-bottom: 1px solid rgba(43,207,120,.2);
+}
+.announce-bar strong {
+  color: #2bcf78;
+  font-weight: 700;
+}
+.announce-emoji { font-size: 1.1rem; }
+
+/* ═══════════════════════════════════
    URGENCY BAR
 ═══════════════════════════════════ */
 .urg {
@@ -1130,6 +1155,12 @@ footer::before { display: none; }
 <!-- ═══ HERO-ZONE: Bild liegt hinter Urg + Nav + Hero ═══ -->
 <div class="hero-zone">
 <img src="/assets/hero-galabau.jpg" alt="" class="hero-bg-photo" aria-hidden="true">
+
+<!-- ─── ANNOUNCEMENT BAR ─────────────────────── -->
+<div class="announce-bar">
+  <span class="announce-emoji">👷</span>
+  <span><strong>Galabauer aufgepasst:</strong> Ich liefere dir 3 Aufträge — oder du zahlst keinen Cent.</span>
+</div>
 
 <!-- ─── URGENCY BAR ──────────────────────────── -->
 <div class="urg" style="position:relative;z-index:5;">
