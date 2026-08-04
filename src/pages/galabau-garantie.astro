@@ -278,10 +278,20 @@ nav.pill ul a:hover { color: var(--ink); }
   margin: 0 auto 18px;
   max-width: 26ch;
 }
+.h1-hook {
+  display: block;
+  margin-bottom: .55em;
+}
+.h1-main {
+  display: block;
+  margin-bottom: 0;
+}
 .hero h1 em {
+  display: block;
   font-family: var(--f-serif); font-style: italic;
   font-weight: 500; color: var(--accent);
   letter-spacing: -.02em;
+  margin-top: .05em;
 }
 .hero-sub {
   font-size: clamp(1rem, 2vw, 1.15rem);
@@ -1195,9 +1205,8 @@ footer::before { display: none; }
     </span>
 
     <h1 class="reveal d1">
-      Galabauer aufgepasst:<br>
-      Ich liefere dir 3 Aufträge<br>
-      in den nächsten 30 Tagen.<br>
+      <span class="h1-hook">Galabauer aufgepasst!</span>
+      <span class="h1-main">Ich liefere dir 3 Aufträge<br>in den nächsten 30 Tagen.</span>
       <em>Oder du zahlst keinen Cent.</em>
     </h1>
 
