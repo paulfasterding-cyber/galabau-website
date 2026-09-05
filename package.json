@@ -4,6 +4,6 @@
   "version": "1.0.0",
   "description": "Statische Website von Fastra One - eine Einzeldatei, kein Framework",
   "scripts": {
-    "build": "mkdir -p dist && cp index.html .htaccess dist/ && echo 'Fertig: dist/ enthaelt die Seite'"
+    "build": "mkdir -p dist && cp index.html .htaccess trailer.mp4 trailer-poster.jpg dist/ && echo 'Fertig: dist/ enthaelt Seite und Trailer'"
   }
 }

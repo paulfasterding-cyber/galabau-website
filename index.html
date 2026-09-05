@@ -1198,6 +1198,20 @@
     .lino-foto{ position:relative; left:auto; bottom:auto; width:52%; height:200px }
   }
   .photo-slot{ display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center }
+  /* Trailer im gruenen Banner: fuellt die Flaeche, startet stumm */
+  .cta-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+    background:#0D1E14 }
+  .cta-ton{ position:absolute; right:16px; bottom:16px; z-index:2; width:42px; height:42px;
+    display:grid; place-items:center; border:none; border-radius:50%; cursor:pointer; color:#fff;
+    background:rgba(13,30,20,.55); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), 0 6px 16px -6px rgba(0,0,0,.7);
+    transition:transform .2s ease, background .2s ease }
+  .cta-ton:hover{ transform:scale(1.07); background:rgba(13,30,20,.75) }
+  .cta-ton:focus-visible{ outline:2px solid #fff; outline-offset:3px }
+  .cta-ton .an{ display:none }
+  .cta-ton[data-ton="an"] .an{ display:block }
+  .cta-ton[data-ton="an"] .aus{ display:none }
+  @media (prefers-reduced-motion: reduce){ .cta-video{ display:none } }
   .photo-slot span{ font-size:13px; letter-spacing:1.6px; text-transform:uppercase; color:rgba(255,255,255,.45) }
   @media (max-width:900px){ .cta-banner .visual{min-height:240px} }
   @media (prefers-reduced-motion: reduce){ .cta-obj{transition:none; animation:none!important} }
@@ -1764,10 +1778,20 @@
 <section class="section" style="padding-top:0">
   <div class="cta-banner reveal">
     <div class="visual">
-      <div class="photo-slot" aria-hidden="true">
-        <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.1"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-3.8 3.4-6.5 7.5-6.5s7.5 2.7 7.5 6.5"/></svg>
-        <span>Platz für dein Foto</span>
-      </div>
+      <video class="cta-video" id="ctaVideo" poster="trailer-poster.jpg"
+             muted autoplay loop playsinline preload="none"
+             aria-label="Fastra One Trailer: wie planbare Kundengewinnung aussieht">
+        <source src="trailer.mp4" type="video/mp4">
+      </video>
+      <button type="button" class="cta-ton" id="ctaTon"
+              aria-label="Ton einschalten" title="Ton einschalten">
+        <svg class="aus" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 5 6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+        <svg class="an" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 5 6 9H3v6h3l5 4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
     </div>
     <div class="copy">
       <h3 class="serif">Du weißt nie, was nächsten Monat kommt, weil deine Kundengewinnung nicht planbar ist.</h3>
@@ -3566,6 +3590,36 @@ var BUCHUNGS_LINK = "";
 
 </script>
 
+
+<script>
+/* Trailer im gruenen Banner: laedt erst, wenn er ins Bild kommt.
+   Startet stumm, weil Browser Ton ohne Klick ohnehin blockieren. */
+(function(){
+  const v = document.getElementById('ctaVideo');
+  const knopf = document.getElementById('ctaTon');
+  if(!v || !knopf) return;
+
+  const beobachter = new IntersectionObserver((eintraege) => {
+    eintraege.forEach(e => {
+      if(e.isIntersecting){
+        if(v.preload !== 'auto'){ v.preload = 'auto'; v.load(); }
+        v.play().catch(()=>{});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  beobachter.observe(v);
+
+  knopf.addEventListener('click', () => {
+    v.muted = !v.muted;
+    knopf.dataset.ton = v.muted ? 'aus' : 'an';
+    knopf.setAttribute('aria-label', v.muted ? 'Ton einschalten' : 'Ton ausschalten');
+    knopf.setAttribute('title', knopf.getAttribute('aria-label'));
+    if(!v.muted) v.play().catch(()=>{});
+  });
+})();
+</script>
 </body>
 </html>
 
