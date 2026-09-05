@@ -1,0 +1,29 @@
+# FTP-Struktur, erstellt Sat Sep  5 12:59:36 UTC 2026
+
+## Landeverzeichnis nach dem Login
+ftp://u258741365:zijdep-nyhzat-Feqgu3@152.239.126.4
+drwxr-xr-x   2 u258741365 o1009661839     4096 Sep  5 12:59 .
+drwx--x---   9 u258741365 48           4096 Aug  3 16:33 ..
+-rw-r--r--   1 u258741365 o1009661839      759 Sep  5 12:59 .ftp-deploy-sync-state.json
+-rw-r--r--   1 u258741365 o1009661839     1052 Sep  5 12:44 .htaccess
+-rw-r--r--   1 u258741365 o1009661839  1729832 Sep  5 12:44 index.html
+
+## Inhalt von public_html (falls vorhanden)
+cd: Access failed: 550 /public_html/public_html: No such file or directory
+ftp://u258741365:zijdep-nyhzat-Feqgu3@152.239.126.4/%2Fpublic_html
+drwxr-xr-x   2 u258741365 o1009661839     4096 Sep  5 12:59 .
+drwx--x---   9 u258741365 48           4096 Aug  3 16:33 ..
+-rw-r--r--   1 u258741365 o1009661839      759 Sep  5 12:59 .ftp-deploy-sync-state.json
+-rw-r--r--   1 u258741365 o1009661839     1052 Sep  5 12:44 .htaccess
+-rw-r--r--   1 u258741365 o1009661839  1729832 Sep  5 12:44 index.html
+
+## Inhalt von domains (falls vorhanden)
+cd: Access failed: 550 /public_html/domains: No such file or directory
+drwxr-xr-x   2 u258741365 o1009661839     4096 Sep  5 12:59 .
+drwx--x---   9 u258741365 48           4096 Aug  3 16:33 ..
+-rw-r--r--   1 u258741365 o1009661839      759 Sep  5 12:59 .ftp-deploy-sync-state.json
+-rw-r--r--   1 u258741365 o1009661839     1052 Sep  5 12:44 .htaccess
+-rw-r--r--   1 u258741365 o1009661839  1729832 Sep  5 12:44 index.html
+
+## Wo liegt eine index.html mit ~90 KB?
+/public_html/index.html
