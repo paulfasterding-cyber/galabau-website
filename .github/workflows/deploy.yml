@@ -1,0 +1,30 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # erlaubt manuelles Ausloesen in der GitHub-Oberflaeche
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Kein Build noetig: die Seite ist eine fertige Einzeldatei.
+      # Die Aktion fuehrt auf dem Server eine Zustandsdatei und entfernt dabei
+      # alles, was nicht mehr im Repo liegt - also die alten Astro-Dateien.
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/README.md
+            **/.gitignore
