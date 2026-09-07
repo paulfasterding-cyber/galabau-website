@@ -473,12 +473,30 @@
   html.zu, body.zu{ overflow:hidden !important; overscroll-behavior:none }
   /* Deko-Animationen ruhen, solange ihr Abschnitt nicht im Bild ist. */
   .ruht, .ruht *{ animation-play-state:paused !important }
-  .drawer{ position:fixed; inset:0; background:#111311; z-index:70; display:flex; flex-direction:column; padding:20px 24px 40px; transform:translateY(-101%); transition:transform .38s cubic-bezier(.16,1,.3,1); }
-  .drawer.open{ transform:none }
-  .drawer .top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:56px }
-  .drawer ul{ display:flex; flex-direction:column; gap:6px; margin-bottom:auto }
-  .drawer ul a{ font-family:var(--f-serif); font-weight:400; font-size:34px; line-height:1.3; color:#fff; letter-spacing:-1px }
-  .drawer .close{ width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.08); border:none; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px }
+  /* Handy-Menue: faellt als Karte aus der Pille heraus, statt die ganze
+     Seite zu verdecken. Gleiches Verhalten wie auf der Bergunde-Seite. */
+  .nav-panel{ display:none; list-style:none }
+  .burger .ic-zu{ display:none }
+  .burger[aria-expanded="true"] .ic-zu{ display:block }
+  .burger[aria-expanded="true"] .ic-auf{ display:none }
+  @media (max-width:900px){
+    .nav-panel{ display:flex; flex-direction:column; gap:2px; margin:0; padding:10px;
+      position:absolute; top:calc(100% + 10px); left:0; right:0; z-index:5; border-radius:22px;
+      /* deckend, wie Bergundes Karte: bei 94 % schien der Hero-Text durch.
+         Ohne Transparenz braucht es auch keinen Weichzeichner mehr. */
+      background:linear-gradient(180deg,#1A1E1B,#0D100E);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.14), inset 0 0 0 1px rgba(255,255,255,.09),
+        0 22px 48px -18px rgba(0,0,0,.7);
+      opacity:0; visibility:hidden; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease, visibility .22s }
+    .nav-panel.offen{ opacity:1; visibility:visible; transform:none; pointer-events:auto }
+    .nav-panel li{ list-style:none }
+    .nav-panel a{ display:block; padding:13px 16px; border-radius:14px; font-size:16px;
+      font-weight:500; letter-spacing:-.3px; color:rgba(255,255,255,.82) }
+    .nav-panel a:hover, .nav-panel a:focus-visible, .nav-panel a.active{
+      background:rgba(255,255,255,.08); color:#fff }
+  }
+  @media (max-width:900px) and (prefers-reduced-motion: reduce){ .nav-panel{ transition:none } }
 
   /* ---------- HERO (gemessen: pad 120/80/0, h1 80/96/-4px) ---------- */
   .hero{ padding:120px var(--gutter) 0; background:var(--bg); overflow:hidden }
@@ -1576,24 +1594,22 @@
     </div>
     <div class="nav-right">
       <a href="#kontakt" class="btn btn-primary">Erstgespräch</a>
-      <button class="burger" id="burgerOpen" aria-label="Menü öffnen"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <button class="burger" id="burgerOpen" type="button"
+              aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
+        <svg class="ic-auf" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="ic-zu" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
+    <ul class="nav-panel" id="nav-menu">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#system">System</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+    </ul>
   </div>
-</div>
-
-<div class="drawer" id="drawer">
-  <div class="top">
-    <span class="nav-brand"><span class="logo-mark"></span></span>
-    <button class="close" id="burgerClose" aria-label="Menü schließen">✕</button>
-  </div>
-  <ul>
-    <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#system">System</a></li>
-    <li><a href="#fragen">Fragen</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#ueber-uns">Über uns</a></li>
-  </ul>
-  <a data-termin href="#kontakt" class="btn btn-primary" style="width:100%">Kostenloses Erstgespräch</a>
 </div>
 
 <!-- ===================== HERO ===================== -->
@@ -3442,20 +3458,37 @@ window.foSperre = (function(){
   };
 })();
 
+/* Handy-Menue wie auf der Bergunde-Seite: die Karte klappt aus der Pille
+   heraus und schliesst bei Linkklick, ESC, Klick daneben und sobald die
+   Desktop-Breite erreicht ist. Keine Scroll-Sperre - es verdeckt ja nichts. */
 (function(){
-  var o=document.getElementById('burgerOpen'), c=document.getElementById('burgerClose'), d=document.getElementById('drawer');
-  if(!o||!d) return;
-  var offen=false;
-  var auf=function(){ if(offen) return; offen=true;
-    d.classList.add('open'); window.foSperre.an();
-    if(c) c.focus({preventScroll:true}); };
-  var zu=function(){ if(!offen) return; offen=false;
-    d.classList.remove('open'); window.foSperre.aus();
-    o.focus({preventScroll:true}); };
-  o.addEventListener('click', auf);
-  if(c) c.addEventListener('click', zu);
-  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', zu); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') zu(); });
+  var knopf = document.getElementById('burgerOpen');
+  var menue = document.getElementById('nav-menu');
+  if(!knopf || !menue) return;
+
+  function setzen(offen){
+    menue.classList.toggle('offen', offen);
+    knopf.setAttribute('aria-expanded', String(offen));
+    knopf.setAttribute('aria-label', offen ? 'Menü schließen' : 'Menü öffnen');
+  }
+
+  knopf.addEventListener('click', function(e){
+    e.stopPropagation();
+    setzen(knopf.getAttribute('aria-expanded') !== 'true');
+  });
+  menue.addEventListener('click', function(e){
+    if(e.target.closest('a')) setzen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setzen(false);
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.nav-inner')) setzen(false);
+  });
+  var mq = window.matchMedia('(min-width: 901px)');
+  var wechsel = function(){ if(mq.matches) setzen(false); };
+  if(mq.addEventListener) mq.addEventListener('change', wechsel);
+  else if(mq.addListener) mq.addListener(wechsel);
 })();
 
 /* Was nicht im Bild ist, muss auch nicht animieren. Ohne das laufen
@@ -3493,7 +3526,7 @@ window.foSperre = (function(){
     Object.keys(views).forEach(function(k){
       if(views[k]) views[k].hidden = (views[k] !== target);
     });
-    document.querySelectorAll('.nav-links a, .drawer a').forEach(function(a){
+    document.querySelectorAll('.nav-links a, .nav-panel a').forEach(function(a){
       var href = a.getAttribute('href');
       a.classList.toggle('active', !!target && href === hash);
     });
