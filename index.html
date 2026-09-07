@@ -3341,18 +3341,42 @@
         <h2>3. Kontaktformular und Anfragen</h2>
         <p>Wenn du das Anfrageformular nutzt, verarbeiten wir die von dir angegebenen Daten:
         Name, Unternehmen (optional), E-Mail-Adresse, Telefonnummer, deine Angaben zu Ziel,
-        aktuellen Kanälen, Auftragswert und Zeitpunkt sowie deine Nachricht.</p>
+        aktuellen Kanälen, Auftragswert und Zeitpunkt sowie deine Nachricht. Technisch
+        erfassen wir zusätzlich die aufgerufene Seite, die verweisende Seite, eine grobe
+        Geräteangabe (Handy oder Desktop), etwaige Kampagnen-Parameter der Adresszeile
+        sowie IP-Adresse und Browserkennung.</p>
         <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf einen
         Vertragsabschluss zielt, im Übrigen Art. 6 Abs. 1 lit. f DSGVO (Beantwortung deiner Anfrage).
         Die Daten werden gelöscht, sobald sie für den Zweck nicht mehr erforderlich sind,
         soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+        <p>Zur Verarbeitung deiner Anfrage setzen wir folgende Dienstleister als
+        Auftragsverarbeiter nach Art. 28 DSGVO ein:</p>
+        <ul>
+          <li><strong>Hostinger</strong> — Bereitstellung dieser Website.</li>
+          <li><strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789, USA —
+            Betrieb der Schnittstelle, die deine Anfrage entgegennimmt.</li>
+          <li><strong>Supabase</strong> — Speicherung der Anfrage. Die Datenbank liegt in
+            der Region Irland (EU).</li>
+          <li><strong>Resend</strong> — Versand der internen Benachrichtigungs-E-Mail
+            über die eingegangene Anfrage.</li>
+        </ul>
+        <p>Bei Anbietern mit Sitz in den USA kann eine Übermittlung personenbezogener Daten
+        in ein Drittland stattfinden. Diese erfolgt auf Grundlage von Standardvertragsklauseln
+        nach Art. 46 Abs. 2 lit. c DSGVO. Ein angemessenes Datenschutzniveau kann trotz
+        dieser Garantien nicht in jedem Fall gewährleistet werden; insbesondere besteht die
+        Möglichkeit des Zugriffs durch US-Behörden.</p>
 
-        <h2>4. Terminbuchung</h2>
-        <p>Für die Buchung von Erstgesprächen setzen wir einen Terminbuchungsdienst ein.
-        Dabei werden dein Name, deine E-Mail-Adresse und der gewählte Termin verarbeitet.
-        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.</p>
-        <p class="hint">Ergänzen, sobald der Anbieter feststeht: Name, Sitz, ob eine
-        Übermittlung in ein Drittland stattfindet und auf welcher Grundlage.</p>
+        <h2>4. Terminbuchung (Calendly)</h2>
+        <p>Für die Vereinbarung von Erstgesprächen <strong>verlinken</strong> wir auf den Dienst
+        Calendly (Calendly LLC, 271 17th St NW, Atlanta, GA 30363, USA). Calendly ist
+        <strong>nicht</strong> in diese Seite eingebettet: Solange du den Link nicht anklickst,
+        wird keine Verbindung zu Calendly aufgebaut und es werden keine Daten dorthin übertragen.</p>
+        <p>Erst wenn du den Link aktiv anklickst, wirst du zu Calendly weitergeleitet. Dort
+        verarbeitet Calendly die von dir dort eingegebenen Angaben (etwa Name, E-Mail-Adresse
+        und Terminwunsch) sowie technische Verbindungsdaten in eigener Verantwortung. Es gilt
+        dann die Datenschutzerklärung von Calendly. Rechtsgrundlage für die Terminvereinbarung
+        ist Art. 6 Abs. 1 lit. b DSGVO. Da Calendly seinen Sitz in den USA hat, findet dabei
+        eine Übermittlung in ein Drittland statt.</p>
 
         <h2>5. Schriftarten</h2>
         <p>Die verwendeten Schriftarten (Fraunces und Geist) sind <strong>direkt in diese Seite
@@ -3608,11 +3632,38 @@ window.foSperre = (function(){
   next.addEventListener('click', function(){ if(valid(cur) && cur<total-1){ cur++; render(); } });
   back.addEventListener('click', function(){ if(cur>0){ cur--; render(); } });
 
-  /* Versand.
-     ANFRAGE_ZIEL: sobald der Make-/Tally-Webhook steht, hier eintragen.
-     Solange keiner hinterlegt ist, oeffnet sich eine vorausgefuellte E-Mail: so geht keine Anfrage verloren, auch nicht vor dem Livegang. */
-  var ANFRAGE_ZIEL = "";
+  /* Versand an die eigene Leads-API (Vercel -> Supabase).
+     Schlaegt der Aufruf fehl, oeffnet sich weiterhin eine vorausgefuellte
+     E-Mail: so geht keine Anfrage verloren, auch wenn die API gerade streikt. */
+  var ANFRAGE_ZIEL = "https://fastraone-admin.vercel.app/api/leads";
   var ANFRAGE_MAIL = "paul.web@outlook.de";
+
+  /* Die API kennt eigene Feldnamen und verwirft Unbekanntes stillschweigend.
+     Ohne diese Zuordnung gingen Unternehmen, Auftragswert, Zeitpunkt und
+     Kanal verloren, ohne dass es jemand merkt. */
+  function fuerApi(d){
+    var p = new URLSearchParams(location.search);
+    return {
+      name:             d.name || '',
+      email:            d.email || '',
+      telefon:          d.telefon || '',
+      betrieb:          d.firma || '',
+      ziel:             d.ziel || '',
+      anfragen:         d.kanal || '',
+      budget:           d.auftragswert || '',
+      zeitpunkt_wunsch: d.zeitpunkt || '',
+      nachricht:        d.nachricht || '',
+      seite:            location.href,
+      quelle:           'fastraone.de',
+      referrer:         document.referrer || '',
+      geraet:           window.matchMedia('(max-width:900px)').matches ? 'Handy' : 'Desktop',
+      utm_source:       p.get('utm_source') || '',
+      utm_medium:       p.get('utm_medium') || '',
+      utm_campaign:     p.get('utm_campaign') || '',
+      utm_term:         p.get('utm_term') || '',
+      utm_content:      p.get('utm_content') || ''
+    };
+  }
 
   function sammeln(){
     var d={};
@@ -3655,7 +3706,7 @@ window.foSperre = (function(){
     fetch(ANFRAGE_ZIEL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(daten)
+      body:JSON.stringify(fuerApi(daten))
     }).then(function(r){
       if(!r.ok) throw new Error(r.status);
       fertig();
@@ -3727,7 +3778,7 @@ window.foSperre = (function(){
 /* ---- Terminbuchung ----
    Sobald der Kalender-Link steht (Calendly/Cal.com), hier eintragen.
    Solange er leer ist, fuehren alle Termin-Buttons zum Anfrageformular. */
-var BUCHUNGS_LINK = "";
+var BUCHUNGS_LINK = "https://calendly.com/paul-web/30min";
 (function(){
   if(!BUCHUNGS_LINK) return;
   document.querySelectorAll('[data-termin]').forEach(function(a){
@@ -3811,7 +3862,7 @@ var BUCHUNGS_LINK = "";
   });
 
   /* Termin-Knopf im Overlay: erst zumachen, dann runter zum Formular. */
-  var termin = box.querySelector('a[href="#kontakt"]');
+  var termin = box.querySelector('a.btn');
   if(termin) termin.addEventListener('click', schliessen);
 })();
 </script>
