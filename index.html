@@ -1226,25 +1226,55 @@
   .cta-standbild{ width:100%; height:100%; object-fit:cover; display:block;
     transition:transform .5s cubic-bezier(.2,.7,.3,1), filter .35s ease }
   .cta-vorschau:hover .cta-standbild{ transform:scale(1.035); filter:brightness(1.06) }
+  /* Sanfter Lichtabfall: haelt die Pille auf jedem Standbild lesbar,
+     ohne das Motiv flachzudruecken. */
   .cta-vorschau::after{ content:""; position:absolute; inset:0; pointer-events:none;
-    background:linear-gradient(180deg,rgba(8,20,14,.10) 0%,rgba(8,20,14,0) 42%,rgba(8,20,14,.62) 100%) }
+    background:
+      radial-gradient(56% 46% at 50% 50%, rgba(6,14,10,.44) 0%, rgba(6,14,10,0) 100%),
+      linear-gradient(180deg,rgba(8,20,14,.12) 0%,rgba(8,20,14,0) 45%,rgba(8,20,14,.48) 100%) }
+
+  /* Ein Bedienelement statt Kreis in der Mitte und Text unten links:
+     dieselbe Glas-Pille wie Navileiste und Knoepfe. */
   .cta-play{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;
-    width:78px; height:78px; border-radius:50%; display:grid; place-items:center; color:#0E2A1B;
-    background:rgba(255,255,255,.94); box-shadow:0 10px 34px -8px rgba(0,0,0,.6);
-    transition:transform .28s cubic-bezier(.2,.7,.3,1), background .2s ease }
-  .cta-play svg{ margin-left:4px }
-  .cta-vorschau:hover .cta-play{ transform:translate(-50%,-50%) scale(1.09); background:#fff }
-  .cta-vorschau:active .cta-play{ transform:translate(-50%,-50%) scale(.97) }
+    display:inline-flex; align-items:center; gap:13px; padding:9px 22px 9px 9px;
+    border-radius:100px; color:#fff; white-space:nowrap;
+    background:linear-gradient(180deg, rgba(26,34,28,.60), rgba(10,16,12,.72));
+    -webkit-backdrop-filter:blur(14px) saturate(160%); backdrop-filter:blur(14px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 0 0 1px rgba(255,255,255,.14),
+      0 16px 38px -14px rgba(0,0,0,.75);
+    transition:transform .3s cubic-bezier(.2,.7,.3,1) }
+  .cta-play .knopf{ position:relative; width:44px; height:44px; border-radius:50%; flex:none;
+    display:grid; place-items:center; color:var(--accent-dark);
+    background:linear-gradient(180deg,#F2F7F3,#fff);
+    box-shadow:0 5px 14px -5px rgba(0,0,0,.55);
+    transition:transform .3s cubic-bezier(.2,.7,.3,1) }
+  .cta-play .knopf svg{ margin-left:3px }
+  /* Ring laeuft nach aussen aus und laedt zum Klick ein.
+     Nur Deckkraft und transform - das laeuft auf der GPU. */
+  .cta-play .knopf::after{ content:""; position:absolute; inset:-5px; border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.55); opacity:0; transform:scale(.86);
+    animation:einladen 3.4s ease-out infinite }
+  @keyframes einladen{ 0%{opacity:.5; transform:scale(.86)} 70%,100%{opacity:0; transform:scale(1.28)} }
+  .cta-play .txt{ font-size:15px; font-weight:500; letter-spacing:-.2px }
+  .cta-play .dauer{ font-size:13px; color:rgba(255,255,255,.62);
+    padding-left:12px; border-left:1px solid rgba(255,255,255,.2) }
+  .cta-vorschau:hover .cta-play{ transform:translate(-50%,-50%) translateY(-2px) }
+  .cta-vorschau:hover .cta-play .knopf{ transform:scale(1.08) }
+  .cta-vorschau:active .cta-play{ transform:translate(-50%,-50%) scale(.985) }
   .cta-vorschau:focus-visible{ outline:3px solid #fff; outline-offset:-4px }
-  .cta-label{ position:absolute; left:18px; bottom:16px; z-index:2; color:#fff;
-    font-size:14px; font-weight:500; letter-spacing:-.1px; text-shadow:0 2px 10px rgba(0,0,0,.55) }
   @media (max-width:900px){
-    .cta-play{ width:64px; height:64px }
-    .cta-play svg{ width:26px; height:26px }
-    .cta-label{ left:14px; bottom:12px; font-size:13px }
+    /* Die Flaeche ist hier nur 16:9 hoch - die Pille darf sie nicht dominieren */
+    .cta-play{ gap:9px; padding:6px 15px 6px 6px }
+    .cta-play .knopf{ width:34px; height:34px }
+    .cta-play .knopf svg{ width:15px; height:15px }
+    .cta-play .knopf::after{ inset:-4px }
+    .cta-play .txt{ font-size:13px }
+    .cta-play .dauer{ font-size:11.5px; padding-left:9px }
   }
+  @media (max-width:360px){ .cta-play .dauer{ display:none } }
   @media (prefers-reduced-motion: reduce){
-    .cta-standbild,.cta-play{ transition:none }
+    .cta-standbild,.cta-play,.cta-play .knopf{ transition:none }
+    .cta-play .knopf::after{ animation:none }
     .cta-vorschau:hover .cta-standbild{ transform:none }
   }
 
@@ -1867,9 +1897,12 @@
         <img class="cta-standbild" src="trailer-v4-poster.jpg" width="1280" height="720"
              alt="" decoding="async" loading="lazy">
         <span class="cta-play" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+          <span class="knopf">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+          </span>
+          <span class="txt">Trailer ansehen</span>
+          <span class="dauer">1:34</span>
         </span>
-        <span class="cta-label" aria-hidden="true">Trailer ansehen &middot; 1:34</span>
       </button>
     </div>
     <div class="copy">
