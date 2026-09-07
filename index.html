@@ -26,7 +26,6 @@
      ================================================================ */
   :root{
     --bg:#F5F8F6;              /* section background: gruenneutral, passend zu allen Flaechen */
-    --bg-trust:#F0F4F1;        /* logo/trust strip */
     --accent:#4A7C5C;
     --accent-dark:#1F3A2E;
     --greenlight:#E3E9E7;
@@ -239,9 +238,6 @@
   /* Der helle Grund verdichtet sich sanft zur Platte hin, statt flach zu bleiben */
   /* Keine Extra-Toenung pro Sektion: sonst hat der Hero einen anderen Weisston als alles darunter */
   .section{ background-image:none }
-  .trust{ position:relative }
-  .trust::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
-    background:linear-gradient(90deg, transparent, rgba(74,124,92,.18) 22%, rgba(74,124,92,.18) 78%, transparent) }
 
   /* ---------- ARTIKEL ---------- */
   .art-kopf{ max-width:760px; margin:0 auto 40px }
@@ -454,9 +450,29 @@
   @media (max-width:900px){
     .nav-links{display:none}
     .burger{display:flex}
-    .navbar{top:0; margin-top:0; max-width:none; padding:0}
-    .nav-inner{border-radius:0; box-shadow:none; padding:12px 16px 12px 20px}
+    /* Dieselbe schwebende Pille wie am Desktop, nur enger am Rand.
+       Vorher war sie hier flachgelegt: border-radius:0 und ohne Schatten. */
+    .navbar{ top:12px; margin-top:12px; max-width:none; padding:0 14px }
+    .nav-inner{ padding:7px 7px 7px 16px;
+      /* schwaecherer Weichzeichner: das Glas kostet auf dem Handy am meisten */
+      -webkit-backdrop-filter:blur(12px) saturate(150%); backdrop-filter:blur(12px) saturate(150%) }
+    .nav-right .btn-primary{ padding:12px 20px; font-size:15px }
+    .burger{ width:38px; height:38px }
   }
+  @media (max-width:380px){
+    .navbar{ padding:0 10px }
+    .nav-inner{ padding:6px 6px 6px 13px }
+    .nav-right .btn-primary{ padding:11px 15px; font-size:14px }
+    .logo-mark{ width:62px; height:32px }
+  }
+  /* Sperre fuers offene Menue und das Video-Overlay: body allein reicht nicht,
+     sonst scrollt auf dem Handy die Seite dahinter weiter. */
+  /* Platz fuer die Scrollleiste bleibt reserviert, sonst springt der Inhalt
+     seitlich, sobald Menue oder Overlay die Seite sperren. */
+  html{ scrollbar-gutter:stable }
+  html.zu, body.zu{ overflow:hidden !important; overscroll-behavior:none }
+  /* Deko-Animationen ruhen, solange ihr Abschnitt nicht im Bild ist. */
+  .ruht, .ruht *{ animation-play-state:paused !important }
   .drawer{ position:fixed; inset:0; background:#111311; z-index:70; display:flex; flex-direction:column; padding:20px 24px 40px; transform:translateY(-101%); transition:transform .38s cubic-bezier(.16,1,.3,1); }
   .drawer.open{ transform:none }
   .drawer .top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:56px }
@@ -630,23 +646,6 @@
     .hero-visual.is-visible .hv-float.badge99, .hero-visual.is-visible .hv-float.notif,
     .hv-float .pill::after, .hv-grid b.sel, .hv-slot.pick, .hv-confirm,
     .hero-visual.is-visible .hv-grid b.free{ animation:none } }
-
-  /* ---------- TRUST STRIP (gemessen: pad 60/80, bg #F0F4F1) ---------- */
-  .trust{ padding:60px 80px; background:var(--bg-trust); overflow:hidden }
-  @media (max-width:640px){ .trust{padding:40px 20px} }
-  .trust-inner{ max-width:var(--container); margin:0 auto; display:flex; align-items:center; gap:40px; flex-wrap:wrap; justify-content:space-between }
-  .trust-pill{ display:inline-flex; align-items:center; gap:10px; height:48px; padding:6px 22px 6px 8px; border-radius:100px; font-size:15px; color:var(--heading); flex:none;
-    background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.62));
-    -webkit-backdrop-filter:blur(14px) saturate(170%); backdrop-filter:blur(14px) saturate(170%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(74,124,92,.16), 0 6px 16px -10px rgba(31,58,46,.3); }
-  .trust-marquee{ flex:1; min-width:280px; overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
-  .trust-track{ display:flex; gap:56px; width:max-content; animation:marquee 30s linear infinite }
-  .trust:hover .trust-track{ animation-play-state:paused }
-  .trust-track span{ font-family:var(--f-serif); font-weight:400; font-size:21px; letter-spacing:-.5px; color:var(--text); opacity:.62; white-space:nowrap }
-  @keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  @media (prefers-reduced-motion: reduce){ .trust-track{animation:none} }
 
   /* ---------- CARDS (gemessen: 305px, gap 20, pad 20/20/32, r12, kein Rand/Schatten) ---------- */
   .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px }
@@ -1072,10 +1071,12 @@
     border-bottom-right-radius:14px }
   /* Langsamer Licht-Sweep ueber das Foto */
   .paul-portrait .pp-sweep{ position:absolute; top:-40%; left:-60%; width:55%; height:180%; z-index:3;
-    pointer-events:none; transform:rotate(18deg);
+    pointer-events:none; transform:translateX(0) rotate(18deg); will-change:transform;
     background:linear-gradient(90deg, transparent, rgba(255,255,255,.13) 45%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.13) 55%, transparent);
     animation:sweep 9s cubic-bezier(.5,0,.5,1) 2.5s infinite }
-  @keyframes sweep{ 0%{ left:-60% } 55%,100%{ left:130% } }
+  /* bewegt sich per transform statt per left - das spart das Neuzeichnen */
+  @keyframes sweep{ 0%{ transform:translateX(0) rotate(18deg) }
+    55%,100%{ transform:translateX(345%) rotate(18deg) } }
   /* Weicher Lichtkegel hinter der weissen Karte, hebt sie vom Verlauf ab */
   .pb-shell::before{ content:""; position:absolute; z-index:-1; inset:-70px -60px -90px -40px;
     border-radius:50%; pointer-events:none;
@@ -1468,6 +1469,12 @@
     .section,.dark,footer{ padding-left:16px; padding-right:16px }
   }
   /* Fingerfreundlich: Fusszeilen-Links waren 20px hoch, empfohlen sind 44px. */
+  /* Diese beiden pulsen ueber box-shadow, was jeden Frame neu zeichnet.
+     Auf dem Handy sind es Details von wenigen Pixeln - Aufwand lohnt nicht. */
+  @media (max-width:900px){
+    .hv-float .pill::after{ animation:none }
+    .pp-badge .live{ animation:none; box-shadow:0 0 0 4px rgba(123,213,154,.22) }
+  }
   @media (max-width:900px){
     .foot-cols{ gap:32px }
     .foot-cols a{ padding:11px 0; margin-bottom:0; line-height:22px }
@@ -1645,24 +1652,6 @@
     </div>
   </div>
 </header>
-
-<!-- ===================== TRUST STRIP ===================== -->
-<div class="trust">
-  <div class="trust-inner">
-    <span class="trust-pill">
-      <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(150deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:#fff;flex:none">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg>
-      </span>
-      1:1 betreut von Paul
-    </span>
-    <div class="trust-marquee">
-      <div class="trust-track">
-        <span>Framer</span><span>Tally</span><span>Make.com</span><span>Airtable</span><span>Google Ads</span><span>Meta Ads</span>
-        <span>Framer</span><span>Tally</span><span>Make.com</span><span>Airtable</span><span>Google Ads</span><span>Meta Ads</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ===================== PROBLEM (4er-Grid, wie Referenz) ===================== -->
 <section class="section">
@@ -3438,13 +3427,47 @@
   }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
   els.forEach(function(e){ io.observe(e); });
 })();
+/* Eine Sperre fuer alles, was die Seite ueberdeckt (Menue, Video-Overlay).
+   document.body allein genuegt nicht: gescrollt wird das html-Element,
+   deshalb bekommen beide die Klasse. */
+window.foSperre = (function(){
+  var tiefe = 0;
+  return {
+    an: function(){ if(++tiefe === 1){
+      document.documentElement.classList.add('zu');
+      document.body.classList.add('zu'); } },
+    aus: function(){ if(tiefe > 0 && --tiefe === 0){
+      document.documentElement.classList.remove('zu');
+      document.body.classList.remove('zu'); } }
+  };
+})();
+
 (function(){
   var o=document.getElementById('burgerOpen'), c=document.getElementById('burgerClose'), d=document.getElementById('drawer');
   if(!o||!d) return;
-  o.addEventListener('click', function(){ d.classList.add('open'); document.body.style.overflow='hidden'; });
-  var close=function(){ d.classList.remove('open'); document.body.style.overflow=''; };
-  c.addEventListener('click', close);
-  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  var offen=false;
+  var auf=function(){ if(offen) return; offen=true;
+    d.classList.add('open'); window.foSperre.an();
+    if(c) c.focus({preventScroll:true}); };
+  var zu=function(){ if(!offen) return; offen=false;
+    d.classList.remove('open'); window.foSperre.aus();
+    o.focus({preventScroll:true}); };
+  o.addEventListener('click', auf);
+  if(c) c.addEventListener('click', zu);
+  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', zu); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') zu(); });
+})();
+
+/* Was nicht im Bild ist, muss auch nicht animieren. Ohne das laufen
+   13 Dauer-Animationen gleichzeitig, auch weit ausserhalb des Sichtfelds. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var teile = document.querySelectorAll('section, .hero, footer');
+  if(!teile.length) return;
+  var io = new IntersectionObserver(function(eintraege){
+    eintraege.forEach(function(e){ e.target.classList.toggle('ruht', !e.isIntersecting); });
+  }, { rootMargin: '200px 0px' });
+  teile.forEach(function(t){ t.classList.add('ruht'); io.observe(t); });
 })();
 
 (function(){
@@ -3711,7 +3734,7 @@ var BUCHUNGS_LINK = "";
     vorherFokus = document.activeElement;
     if(!geladen){ film.src = quelle(); geladen = true; }
     box.hidden = false;
-    document.body.classList.add('vbox-offen');
+    if(window.foSperre) window.foSperre.an(); else document.body.classList.add('vbox-offen');
     requestAnimationFrame(function(){ box.classList.add('offen'); });
     film.muted = false;
     var p = film.play();
@@ -3725,7 +3748,7 @@ var BUCHUNGS_LINK = "";
     if(box.hidden) return;
     box.classList.remove('offen');
     film.pause();
-    document.body.classList.remove('vbox-offen');
+    if(window.foSperre) window.foSperre.aus(); else document.body.classList.remove('vbox-offen');
     window.setTimeout(function(){
       box.hidden = true;
       try { film.currentTime = 0; } catch(e){}
