@@ -1611,6 +1611,24 @@
 .zga-status.warn{color:#8A5A10}
 .zga-closing{font-size:13.5px;line-height:1.6;color:var(--text);display:flex;flex-direction:column;gap:8px}
 
+.zga-btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.zga-summary{display:flex;flex-direction:column;gap:0;border:1px solid var(--border-green);border-radius:12px;background:var(--bg);overflow:hidden}
+.zga-sum-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 17px;border-bottom:1px solid var(--border-green);background:var(--white)}
+.zga-sum-who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.zga-sum-firma{font-size:15.5px;font-weight:600;color:var(--heading);overflow-wrap:anywhere}
+.zga-sum-sub{font-family:var(--f-mono,ui-monospace,monospace);font-size:11.5px;color:var(--text);overflow-wrap:anywhere}
+.zga-badge{font-family:var(--f-mono,ui-monospace,monospace);font-size:11px;letter-spacing:.05em;padding:6px 12px;border-radius:100px;background:var(--greenlight);color:var(--accent-dark);white-space:nowrap;flex:none}
+.zga-badge.warn{background:#FBEEDC;color:#8A5A10}
+.zga-sum-body{max-height:440px;overflow-y:auto;padding:4px 17px 14px;display:flex;flex-direction:column;gap:0}
+.zga-sum-block{display:flex;flex-direction:column;gap:9px;padding-top:15px}
+.zga-sum-blocktitle{font-family:var(--f-mono,ui-monospace,monospace);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);position:sticky;top:0;background:var(--bg);padding:6px 0 5px}
+.zga-sum-item{display:grid;grid-template-columns:2.2em 1fr;gap:10px;padding-bottom:11px;border-bottom:1px solid var(--greenlight)}
+.zga-sum-item:last-child{border-bottom:none}
+.zga-sum-no{font-family:var(--f-mono,ui-monospace,monospace);font-size:11.5px;color:var(--text);padding-top:2px;font-variant-numeric:tabular-nums}
+.zga-sum-q{font-size:13.5px;line-height:1.5;color:var(--text)}
+.zga-sum-a{font-size:15px;line-height:1.55;color:var(--heading);white-space:pre-wrap;overflow-wrap:anywhere;margin-top:3px}
+.zga-sum-a.open{color:#8A5A10;font-style:italic}
+.zga-offscreen{position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0}
 .zga-progress{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(245,248,246,.92);backdrop-filter:blur(10px);border-top:1px solid var(--border-green)}
 .zga-progress-in{max-width:820px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:14px}
 @media(max-width:640px){.zga-progress-in{padding:10px 18px;gap:11px}}
@@ -1647,10 +1665,32 @@
 
   <div class="zga-finish">
     <h2 class="zga-h2">Fertig? Antworten abschicken</h2>
-    <p class="zga-lede">Ein Klick sammelt alles in einem Textfeld. Kopieren, in eine E-Mail an <b>paul.web@outlook.de</b> einfügen, abschicken. Solange Sie das nicht tun, sehen wir nichts davon.</p>
-    <a class="btn btn-primary" id="zga-collect" href="#zga-out" role="button">Antworten zusammenstellen</a>
-    <p class="zga-status" id="zga-status" hidden></p>
-    <textarea class="zga-out" id="zga-out" readonly hidden aria-label="Gesammelte Antworten"></textarea>
+    <p class="zga-lede">Stellen Sie Ihre Antworten zusammen, lesen Sie sie noch einmal durch, und schicken Sie sie dann mit einem Klick an uns.</p>
+
+    <div class="zga-btnrow">
+      <a class="btn btn-primary" id="zga-collect" href="#zga-summary" role="button">Antworten zusammenstellen</a>
+    </div>
+
+    <div id="zga-result" hidden>
+      <div class="zga-summary" id="zga-summary">
+        <div class="zga-sum-head">
+          <div class="zga-sum-who">
+            <span class="zga-sum-firma" id="zga-sum-firma">Ihre Antworten</span>
+            <span class="zga-sum-sub" id="zga-sum-sub"></span>
+          </div>
+          <span class="zga-badge" id="zga-badge">0 von 36</span>
+        </div>
+        <div class="zga-sum-body" id="zga-sum-body"></div>
+      </div>
+
+      <div class="zga-btnrow" style="margin-top:14px">
+        <a class="btn btn-primary" id="zga-copy" href="#zga-summary" role="button">Text kopieren</a>
+        <a class="btn btn-ghost" id="zga-mail" href="#zga-summary" role="button">E-Mail an Paul öffnen</a>
+      </div>
+
+      <p class="zga-status" id="zga-status" hidden></p>
+      <textarea class="zga-offscreen" id="zga-out" readonly tabindex="-1" aria-hidden="true"></textarea>
+    </div>
   </div>
 
   <div class="zga-closing">
@@ -1884,33 +1924,130 @@ function collect(){
   return lines.join("\n");
 }
 
+var MAIL = "paul.web@outlook.de";
+
+function setStatus(msg, warn){
+  var st = document.getElementById("zga-status");
+  st.textContent = msg;
+  st.className = warn ? "zga-status warn" : "zga-status";
+  st.hidden = false;
+}
+
+function renderSummary(){
+  var firma = (store.meta_firma || "").trim();
+  var name  = (store.meta_name  || "").trim();
+  var mail  = (store.meta_mail  || "").trim();
+
+  document.getElementById("zga-sum-firma").textContent = firma || name || "Ihre Antworten";
+  var sub = [];
+  if(firma && name) sub.push(name);
+  if(mail) sub.push(mail);
+  sub.push(new Date().toLocaleDateString("de-DE"));
+  document.getElementById("zga-sum-sub").textContent = sub.join("  ·  ");
+
+  var done = countFilled();
+  var badge = document.getElementById("zga-badge");
+  badge.textContent = done + " von " + TOTAL + " beantwortet";
+  badge.className = done < TOTAL ? "zga-badge warn" : "zga-badge";
+
+  var body = document.getElementById("zga-sum-body");
+  body.textContent = "";
+
+  BLOCKS.forEach(function(b){
+    var wrap = document.createElement("div");
+    wrap.className = "zga-sum-block";
+    var t = document.createElement("div");
+    t.className = "zga-sum-blocktitle"; t.textContent = b.title;
+    wrap.appendChild(t);
+
+    b.qs.forEach(function(item){
+      var v = (store["q" + item.n] || "").trim();
+      var row = document.createElement("div");
+      row.className = "zga-sum-item";
+
+      var no = document.createElement("span");
+      no.className = "zga-sum-no"; no.textContent = item.n + ".";
+
+      var col = document.createElement("div");
+      var q = document.createElement("div");
+      q.className = "zga-sum-q"; q.textContent = item.q;
+      var a = document.createElement("div");
+      a.className = "zga-sum-a" + (v ? "" : " open");
+      a.textContent = v || "nicht beantwortet";
+      col.appendChild(q); col.appendChild(a);
+
+      row.appendChild(no); row.appendChild(col);
+      wrap.appendChild(row);
+    });
+
+    body.appendChild(wrap);
+  });
+
+  document.getElementById("zga-out").value = collect();
+}
+
+function copyText(){
+  var out = document.getElementById("zga-out");
+  var text = out.value;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    return navigator.clipboard.writeText(text).then(function(){ return true; }).catch(function(){ return legacyCopy(out); });
+  }
+  return Promise.resolve(legacyCopy(out));
+}
+
+function legacyCopy(out){
+  try{
+    out.removeAttribute("aria-hidden");
+    out.focus(); out.select(); out.setSelectionRange(0, out.value.length);
+    var ok = document.execCommand("copy");
+    out.setAttribute("aria-hidden", "true");
+    return ok;
+  }catch(e){ return false; }
+}
+
 document.getElementById("zga-collect").addEventListener("click", function(ev){
   ev.preventDefault();
-  var text = collect();
-  var out = document.getElementById("zga-out");
-  var status = document.getElementById("zga-status");
-  out.value = text;
-  out.hidden = false;
-  status.hidden = false;
-  var missing = TOTAL - countFilled();
-  var tail = missing > 0 ? " Achtung, " + missing + " Fragen sind noch offen." : "";
+  renderSummary();
+  document.getElementById("zga-result").hidden = false;
+  var offen = TOTAL - countFilled();
+  setStatus(offen > 0
+    ? "Lesen Sie die Antworten kurz durch. " + offen + " von " + TOTAL + " Fragen sind noch offen, Sie können trotzdem abschicken."
+    : "Alle " + TOTAL + " Fragen beantwortet. Lesen Sie kurz durch und schicken Sie sie ab.", offen > 0);
+  document.getElementById("zga-summary").scrollIntoView({block:"start", behavior:"smooth"});
+});
 
-  function done(msg, warn){
-    status.textContent = msg;
-    status.className = warn ? "zga-status warn" : "zga-status";
-  }
+document.getElementById("zga-copy").addEventListener("click", function(ev){
+  ev.preventDefault();
+  renderSummary();
+  copyText().then(function(ok){
+    setStatus(ok
+      ? "Kopiert. Fügen Sie den Text jetzt in eine E-Mail an " + MAIL + " ein."
+      : "Kopieren hat nicht geklappt. Nutzen Sie den Knopf E-Mail an Paul öffnen.", !ok);
+  });
+});
 
-  out.focus(); out.select();
+document.getElementById("zga-mail").addEventListener("click", function(ev){
+  ev.preventDefault();
+  renderSummary();
+  var firma = (store.meta_firma || "").trim();
+  var betreff = "Zielgruppenanalyse" + (firma ? " " + firma : "");
+  var text = document.getElementById("zga-out").value;
+  var kurz = "Hallo Paul,\n\nhier sind meine Antworten zur Zielgruppenanalyse.\nDer Text ist kopiert, bitte hier einfügen:\n\n";
 
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){
-      done("Kopiert. Jetzt in eine E-Mail an paul.web@outlook.de einfügen und abschicken." + tail, missing > 0);
-    }).catch(function(){
-      done("Der Text unten ist markiert. Mit Strg+C oder Cmd+C kopieren und an paul.web@outlook.de mailen." + tail, missing > 0);
-    });
-  } else {
-    done("Der Text unten ist markiert. Mit Strg+C oder Cmd+C kopieren und an paul.web@outlook.de mailen." + tail, missing > 0);
-  }
+  copyText().then(function(ok){
+    var voll = encodeURIComponent(kurz + text);
+    var passt = voll.length < 1800;
+    var body = passt ? voll : encodeURIComponent(kurz);
+    window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(betreff) + "&body=" + body;
+
+    if(passt){
+      setStatus("E-Mail wird geöffnet, die Antworten stehen schon drin. Nur noch abschicken.", false);
+    } else if(ok){
+      setStatus("E-Mail wird geöffnet. Der Text ist zu lang für die Vorlage, er liegt aber in der Zwischenablage: im Mailfenster mit Strg+V oder Cmd+V einfügen, dann abschicken.", false);
+    } else {
+      setStatus("E-Mail wird geöffnet. Bitte den Text oben markieren, kopieren und in die Mail einfügen.", true);
+    }
+  });
 });
 
 load();
