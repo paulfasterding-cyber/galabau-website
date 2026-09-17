@@ -1590,7 +1590,14 @@
 .zga-note.mark{background:var(--greenlight);color:var(--accent-dark);border-radius:12px;padding:12px 15px;font-weight:500;max-width:none}
 
 .zga-qs{display:flex;flex-direction:column;gap:14px}
-.zga-q{background:var(--white);border:1px solid var(--border-green);border-radius:14px;padding:17px 19px 15px;display:flex;flex-direction:column;gap:10px}
+/* Scroll-Fix: html hat global scroll-behavior:smooth (fuer die Anker der Hauptnavigation).
+   Beim Tabben durch 50 Textfelder laesst das die Seite bei jedem Feldwechsel sichtbar
+   wegscrollen. Solange der Fokus im Formular ist, wird deshalb hart gesprungen.
+   Die Anker-Links auf #zga-summary bleiben weich, die scrollen per JS mit behavior:smooth. */
+html:has(#zga-form :focus){scroll-behavior:auto}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.zga-q{background:var(--white);border:1px solid var(--border-green);border-radius:14px;padding:17px 19px 15px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:110px;scroll-margin-bottom:96px}
 .zga-q.filled{border-left:3px solid var(--accent);padding-left:17px}
 .zga-q-top{display:flex;gap:12px;align-items:baseline}
 .zga-q-no{font-family:var(--f-mono,ui-monospace,monospace);font-size:12px;color:var(--accent);flex:none;padding-top:3px;font-variant-numeric:tabular-nums}
