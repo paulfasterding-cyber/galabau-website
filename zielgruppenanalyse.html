@@ -1735,7 +1735,16 @@ var BLOCKS = [
     {n:19, q:"Ist das Problem für ihn dringend oder nur ärgerlich? Woran merkt man das?"},
     {n:20, q:"Wer im Betrieb spürt den Schmerz am stärksten?"}
   ]},
-  {tag:"Teil 4", title:"Kaufkraft und Zahlen", note:"Hier geht es um Ihren typischen Kunden, nicht um Sie. Schätzungen sind erlaubt, schreiben Sie dann kurz dazu, dass es geschätzt ist.", qs:[
+  {tag:"Teil 4", title:"Das Traumziel", note:"Teil 3 sagt, wovon Ihr Kunde weg will. Hier geht es darum, wo er hin will. Achtung: Das Traumziel ist fast nie die Funktion Ihres Produkts. Wenn Ihr Produkt im Satz vorkommt, ist die Frage noch nicht beantwortet.", mark:true, qs:[
+    {n:44, q:"Wenn Ihr Produkt ein Jahr bei ihm läuft, was ist in seinem Alltag konkret anders?"},
+    {n:45, q:"Woran würde er selbst merken, dass es sich gelohnt hat?", h:"Welche Zahl, welche Situation?"},
+    {n:46, q:"Was würde er abends zu Hause erzählen, wenn es funktioniert hat?"},
+    {n:47, q:"Was will er beruflich eigentlich erreichen, ganz unabhängig von Ihrem Produkt?"},
+    {n:48, q:"Welchen Zustand will er um jeden Preis vermeiden?", h:"Das Gegenteil des Traumziels."},
+    {n:49, q:"Was davon spricht er offen aus, was nicht?", h:"Geld, Ruhe, Status, Kontrolle, wachsen ohne jemanden einzustellen."},
+    {n:50, q:"Wer merkt es außer ihm, wenn er das Ziel erreicht? Familie, Mitarbeiter, Wettbewerb?"}
+  ]},
+  {tag:"Teil 5", title:"Kaufkraft und Zahlen", note:"Hier geht es um Ihren typischen Kunden, nicht um Sie. Schätzungen sind erlaubt, schreiben Sie dann kurz dazu, dass es geschätzt ist.", qs:[
     {n:21, q:"Wie hoch ist der Jahresumsatz eines typischen Kunden?"},
     {n:22, q:"Wie viele Mitarbeiter hat er?"},
     {n:23, q:"Was ist bei ihm selbst ein durchschnittlicher Auftragswert?"},
@@ -1744,25 +1753,34 @@ var BLOCKS = [
     {n:26, q:"Wer unterschreibt, und braucht diese Person die Zustimmung von jemandem?"},
     {n:27, q:"Gibt es Zeiten im Jahr, in denen gar nichts entschieden wird?"}
   ]},
-  {tag:"Teil 5", title:"Gebiet und Kontakte", note:"", qs:[
+  {tag:"Teil 6", title:"Gebiet und Kontakte", note:"", qs:[
     {n:32, q:"Arbeiten Sie bundesweit oder regional? Wenn regional, welcher Radius?"},
     {n:34, q:"Haben Sie eine Kundenliste, E-Mails oder Telefonnummern? Wie viele Kontakte?", h:"Nur die Anzahl, bitte keine Daten eintragen."}
   ]},
-  {tag:"Teil 6", title:"Markt und Wettbewerb", note:"", qs:[
+  {tag:"Teil 7", title:"Markt und Wettbewerb", note:"", qs:[
     {n:35, q:"Wer sind Ihre drei stärksten Wettbewerber, und was kosten die?"},
     {n:36, q:"Liegt Ihr Preis darüber oder darunter? Womit begründen Sie den Unterschied?"},
     {n:39, q:"Gibt es eine Nische in der Zielgruppe, die von den Großen schlecht bedient wird?"}
   ]},
-  {tag:"Teil 7", title:"Einwände und Ausschluss", note:"", qs:[
+  {tag:"Teil 8", title:"Einwände und Ausschluss", note:"", qs:[
     {n:40, q:"Welche drei Einwände kommen im Gespräch am häufigsten?"},
     {n:41, q:"Warum haben die letzten drei Absager abgesagt?"},
     {n:42, q:"Welcher Interessententyp ist Zeitverschwendung und gehört ausgeschlossen?"},
     {n:43, q:"Was muss jemand mitbringen, damit Ihr Produkt bei ihm überhaupt wirkt?"}
+  ]},
+  {tag:"Teil 9", title:"Wie wir Ihre Kunden ansprechen", note:"Daraus wird der Ton der Anzeigen. Antworten Sie so, wie Ihre Kunden wirklich reden, nicht wie es in einer Broschüre stünde.", qs:[
+    {n:51, q:"Duzen oder siezen?", h:"Was in Ihrer Branche normal ist, nicht was höflicher klingt."},
+    {n:52, q:"Mit welchen Wörtern beschreibt Ihr Kunde sein Problem selbst?"},
+    {n:53, q:"Welche Wörter benutzt er nie, und welche verraten sofort den Außenstehenden?"},
+    {n:54, q:"Welche zwei bis drei Branchenwörter beweisen, dass man dazugehört?"},
+    {n:55, q:"Wer ist die Person konkret? Alter, Rolle im Betrieb, wie sieht ihr Dienstag aus?"},
+    {n:56, q:"Wann und wo schaut diese Person aufs Handy?", h:"Morgens im Auto, mittags in der Pause, abends auf dem Sofa?"},
+    {n:57, q:"Welcher Ton trifft sie?", h:"Kollege auf Augenhöhe, nüchterner Fachmann, oder jemand, der ihr Arbeit abnimmt?"}
   ]}
 ];
 
 var KEY = "fastraone-zielgruppenanalyse-v1";
-var TOTAL = 36;
+var TOTAL = 50;
 var META = ["meta_name","meta_firma","meta_mail"];
 var store = {};
 
