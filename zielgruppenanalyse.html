@@ -1577,6 +1577,10 @@
 .zga-fine{font-size:13.5px;border-top:1px solid var(--greenlight);padding-top:10px}
 
 .zga-meta{background:var(--white);border:1px solid var(--border-green);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.zga-later{align-self:flex-start;margin-top:5px;font-family:var(--f-mono,ui-monospace,monospace);font-size:10.5px;letter-spacing:.04em;color:var(--text);background:var(--bg);border:1px solid var(--border-green);border-radius:100px;padding:4px 11px;cursor:pointer}
+.zga-later:hover{color:var(--accent-dark);border-color:var(--accent)}
+.zga-later:focus-visible{outline:3px solid rgba(74,124,92,.5);outline-offset:2px}
+.zga-later.on{background:var(--greenlight);color:var(--accent-dark);border-color:var(--accent)}
 .zga-note{font-size:14px;line-height:1.55;color:var(--text);margin:-4px 0 2px}
 .zga-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .zga-field{display:flex;flex-direction:column;gap:5px}
@@ -1661,18 +1665,18 @@
       <div class="zga-field"><label for="meta_mail">E-Mail</label><input type="email" id="meta_mail" autocomplete="email"></div>
       <div class="zga-field"><label for="meta_tel">Telefon</label><input type="text" id="meta_tel" autocomplete="tel"></div>
       <div class="zga-field"><label for="meta_web">Website</label><input type="text" id="meta_web" autocomplete="url" placeholder="https://"></div>
-      <div class="zga-field"><label for="meta_dse">Link zur Datenschutzerklärung</label><input type="text" id="meta_dse" placeholder="https://"></div>
+      <div class="zga-field"><label for="meta_dse">Link zur Datenschutzerklärung</label><input type="text" id="meta_dse" placeholder="https://"><button type="button" class="zga-later" data-for="meta_dse">Im Call klären</button></div>
     </div>
   </div>
 
   <div class="zga-meta">
     <h2 class="zga-h2">Ihre Meta-Zugänge</h2>
-    <p class="zga-note">Falls etwas davon noch nicht existiert, einfach frei lassen. Das legen wir gemeinsam an, bevor die Kampagne startet.</p>
+    <p class="zga-note">Die meisten Betriebe haben das noch nicht. Wenn Sie etwas nicht finden oder nicht haben, klicken Sie einfach auf „Im Call klären". Wir richten das im Onboarding-Gespräch gemeinsam ein.</p>
     <div class="zga-grid">
-      <div class="zga-field"><label for="meta_fb">Facebook-Seite</label><input type="text" id="meta_fb" placeholder="Link oder Name"></div>
-      <div class="zga-field"><label for="meta_ig">Instagram-Konto</label><input type="text" id="meta_ig" placeholder="@name"></div>
-      <div class="zga-field"><label for="meta_bpid">Business-Portfolio-ID</label><input type="text" id="meta_bpid"></div>
-      <div class="zga-field"><label for="meta_adid">Werbekonto-ID</label><input type="text" id="meta_adid"></div>
+      <div class="zga-field"><label for="meta_fb">Facebook-Seite</label><input type="text" id="meta_fb" placeholder="Link oder Name"><button type="button" class="zga-later" data-for="meta_fb">Im Call klären</button></div>
+      <div class="zga-field"><label for="meta_ig">Instagram-Konto</label><input type="text" id="meta_ig" placeholder="@name"><button type="button" class="zga-later" data-for="meta_ig">Im Call klären</button></div>
+      <div class="zga-field"><label for="meta_bpid">Business-Portfolio-ID</label><input type="text" id="meta_bpid"><button type="button" class="zga-later" data-for="meta_bpid">Im Call klären</button></div>
+      <div class="zga-field"><label for="meta_adid">Werbekonto-ID</label><input type="text" id="meta_adid"><button type="button" class="zga-later" data-for="meta_adid">Im Call klären</button></div>
     </div>
   </div>
 
@@ -1813,16 +1817,43 @@ function updateProgress(){
   document.getElementById("zga-fill").style.width = Math.round(c / TOTAL * 100) + "%";
 }
 
+var IM_CALL = "Im Onboarding-Call klären";
+
 function bindMeta(){
   META.forEach(function(id){
     var el = document.getElementById(id);
     if(!el) return;
     el.value = store[id] || "";
     var t = null;
-    function commit(){ store[id] = el.value; save(); }
+    function commit(){ store[id] = el.value; save(); markLater(id); }
     el.addEventListener("input", function(){ clearTimeout(t); t = setTimeout(commit, 600); });
     el.addEventListener("blur", function(){ clearTimeout(t); commit(); });
+    markLater(id);
   });
+
+  var btns = document.querySelectorAll(".zga-later");
+  for(var i = 0; i < btns.length; i++){
+    (function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-for");
+        var el = document.getElementById(id);
+        if(!el) return;
+        el.value = (el.value.trim() === IM_CALL) ? "" : IM_CALL;
+        store[id] = el.value;
+        save();
+        markLater(id);
+      });
+    })(btns[i]);
+  }
+}
+
+function markLater(id){
+  var btn = document.querySelector('.zga-later[data-for="' + id + '"]');
+  if(!btn) return;
+  var el = document.getElementById(id);
+  var aktiv = el && el.value.trim() === IM_CALL;
+  btn.classList.toggle("on", !!aktiv);
+  btn.textContent = aktiv ? "wird im Call geklärt" : "Im Call klären";
 }
 
 function build(){
