@@ -23,6 +23,10 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           server-dir: /public_html/
+          # Hostinger laesst die Steuerverbindung fallen, waehrend grosse Dateien
+          # laufen ("Timeout (control socket)"). Der Standard von 30 Sekunden
+          # reicht dafuer nicht, sobald mehrere MB am Stueck hochgehen.
+          timeout: 600000
           exclude: |
             **/.git*
             **/.git*/**
