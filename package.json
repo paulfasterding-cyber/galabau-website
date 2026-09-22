@@ -4,6 +4,6 @@
   "version": "1.0.0",
   "description": "Statische Website von Fastra One. Hostinger fuehrt dieses build-Skript aus und veroeffentlicht nur, was in dist/ landet. Neue Seiten oder PDFs muessen also hier mitkopiert werden, sonst sind sie zwar auf dem Server, aber nicht erreichbar.",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp .htaccess *.html *.mp4 *.jpg dist/ && (cp *.pdf dist/ 2>/dev/null || true) && ls -la dist/"
+    "build": "rm -rf dist && mkdir -p dist && cp .htaccess *.html *.mp4 *.jpg dist/ && (cp *.pdf dist/ 2>/dev/null || true) && (cp *.webp dist/ 2>/dev/null || true) && ls -la dist/"
   }
 }

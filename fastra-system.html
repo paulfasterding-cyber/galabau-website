@@ -397,28 +397,57 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
 @media (prefers-reduced-motion: reduce){ .schluss-buch img{opacity:1; transform:rotate(-1.5deg)} }
 
 
-/* ================= Terminfenster nach dem Download ================= */
-.overlay{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:20px;
-  background:rgba(12,24,18,.55); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
-  animation:einblenden .25s ease}
-.overlay[hidden]{display:none}
-@keyframes einblenden{from{opacity:0}to{opacity:1}}
-.overlay-karte{position:relative; width:min(100%,470px); background:#fff; border-radius:24px;
-  padding:34px 32px 30px; text-align:center;
-  box-shadow:0 30px 70px rgba(6,16,11,.4); animation:hochkommen .35s cubic-bezier(.16,1,.3,1)}
-@keyframes hochkommen{from{opacity:0; transform:translateY(16px) scale(.97)}to{opacity:1; transform:none}}
-.overlay-zu{position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%;
-  border:1px solid var(--linie); background:#fff; cursor:pointer; color:var(--text);
-  display:grid; place-items:center; transition:.18s}
-.overlay-zu:hover{background:var(--greenlight); color:var(--accent-dark)}
-.overlay-zu svg{width:15px; height:15px}
-.overlay-karte .haken{width:58px; height:58px; margin:0 auto 16px}
-.overlay-karte .haken svg{width:28px; height:28px}
-.overlay-karte h3{font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.5rem;
+
+
+/* ================= Leser: das Playbook direkt auf der Seite ================= */
+.leser{position:fixed; inset:0; z-index:300; background:#0B1610; display:flex; flex-direction:column;
+  animation:leser-auf .3s ease}
+.leser[hidden]{display:none}
+@keyframes leser-auf{from{opacity:0}to{opacity:1}}
+.leser-kopf{flex:none; display:flex; align-items:center; gap:14px; padding:12px 18px;
+  background:rgba(11,22,16,.86); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08); color:#fff}
+.leser-kopf .marke{display:flex; align-items:center; gap:10px; min-width:0}
+.leser-kopf .zeichen{width:30px; height:30px; border-radius:9px; background:rgba(255,255,255,.08);
+  display:grid; place-items:center; flex:none}
+.leser-kopf .zeichen svg{width:15px; height:15px; color:#9FE0BC}
+.leser-kopf b{font-size:14.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.leser-kopf .zaehlwerk{font-size:12.5px; color:rgba(255,255,255,.55); white-space:nowrap}
+.leser-tasten{margin-left:auto; display:flex; align-items:center; gap:8px}
+.leser-taste{display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 15px;
+  border-radius:100px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.06);
+  color:#fff; font-family:inherit; font-size:13.5px; font-weight:500; text-decoration:none;
+  cursor:pointer; transition:.18s; white-space:nowrap}
+.leser-taste:hover{background:rgba(255,255,255,.14)}
+.leser-taste svg{width:15px; height:15px}
+.leser-taste.zu{width:38px; padding:0; justify-content:center}
+.leser-fortschritt{position:absolute; left:0; right:0; bottom:-1px; height:2px; background:transparent}
+.leser-fortschritt i{display:block; height:100%; width:0; background:linear-gradient(90deg,#4A7C5C,#9FE0BC);
+  transition:width .15s linear}
+
+.leser-bahn{flex:1; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch;
+  padding:26px 18px 40px; scroll-behavior:smooth}
+.leser-spalte{max-width:840px; margin:0 auto; display:flex; flex-direction:column; gap:20px}
+.leser-seite{width:100%; height:auto; border-radius:10px; display:block; background:#F6F8F6;
+  box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.leser-ende{background:#fff; border-radius:22px; padding:38px 32px; text-align:center;
+  opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .7s cubic-bezier(.16,1,.3,1)}
+.leser-ende.da{opacity:1; transform:none}
+.leser-ende .haken{width:62px; height:62px; margin:0 auto 16px}
+.leser-ende .haken svg{width:30px; height:30px}
+.leser-ende h3{font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.6rem;
   color:var(--accent-dark); line-height:1.2}
-.overlay-karte p{margin-top:10px; font-size:14.5px}
-.overlay-karte .btn{margin-top:18px}
-.overlay-karte .btn.hell{margin-top:9px}
+.leser-ende p{margin:12px auto 0; max-width:440px; font-size:15px; color:var(--text)}
+.leser-ende .btn{max-width:360px; margin-left:auto; margin-right:auto}
+.leser-ende .fine{margin-top:12px}
+@media (max-width:620px){
+  .leser-kopf{padding:10px 12px; gap:10px}
+  .leser-kopf .zaehlwerk, .leser-kopf .marke b{display:none}
+  .leser-taste{font-size:12.5px; height:36px; padding:0 12px}
+  .leser-bahn{padding:14px 10px 28px}
+  .leser-spalte{gap:12px}
+  .leser-ende{padding:28px 20px; border-radius:18px}
+}
 
 @media (max-width:1040px){
   .hero-grid{grid-template-columns:1fr; gap:34px; max-width:560px; margin-left:auto; margin-right:auto}
@@ -626,7 +655,7 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
               <p id="danke-text">Ein Klick auf den Knopf und das Playbook liegt auf deinem Rechner.</p>
               <a class="btn" id="download" href="#" download>
                 <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
-                <span class="label"><b>Playbook herunterladen</b><small>PDF, sofort verfügbar</small></span>
+                <span class="label"><b>Playbook öffnen und laden</b><small>fünf Seiten, PDF landet im Download</small></span>
               </a>
               <a class="btn hell" id="termin" href="#" target="_blank" rel="noopener">
                 <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>
@@ -900,26 +929,49 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
   <p class="f-copy">© <span id="jahr">2026</span> Fastra One</p>
 </footer>
 
-<!-- Terminfenster, erscheint nach dem Download -->
-<div class="overlay" id="terminfenster" hidden>
-  <div class="overlay-karte" role="dialog" aria-modal="true" aria-labelledby="terminTitel">
-    <button type="button" class="overlay-zu" id="terminZu" aria-label="Fenster schließen">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
-    <div class="haken">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+
+<!-- Leser: zeigt das Playbook direkt auf der Seite -->
+<div class="leser" id="leser" hidden>
+  <div class="leser-kopf">
+    <span class="marke">
+      <span class="zeichen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8.3 4.3 4 4.5v13c4.3-.2 6.5.5 8 2 1.5-1.5 3.7-2.2 8-2v-13c-4.3-.2-6.5.5-8 2Z"/><path d="M12 6.5v13"/></svg></span>
+      <b>Das Fastra System</b>
+    </span>
+    <span class="zaehlwerk" id="leserZaehler">Seite 1 von 5</span>
+    <div class="leser-tasten">
+      <a class="leser-taste" id="leserSpeichern" href="/fastra-system-playbook.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        PDF speichern
+      </a>
+      <button type="button" class="leser-taste zu" id="leserZu" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
     </div>
-    <h3 id="terminTitel">Das Playbook liegt bei dir</h3>
-    <p>Wenn du willst, machen wir die zwanzig Minuten direkt fest. Ich schaue mir dein Angebot
-      an und sage dir ehrlich, ob sich Anzeigen bei dir rechnen.</p>
-    <a class="btn" id="terminFensterLink" href="#" target="_blank" rel="noopener">
-      <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>
-      <span class="label"><b>Termin aussuchen</b><small>zwanzig Minuten, unverbindlich</small></span>
-    </a>
-    <button type="button" class="btn hell" id="terminSpaeter">
-      <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
-      <span class="label"><b>Erstmal lesen</b><small>du kannst dich später melden</small></span>
-    </button>
+    <span class="leser-fortschritt"><i id="leserBalken"></i></span>
+  </div>
+
+  <div class="leser-bahn" id="leserBahn">
+    <div class="leser-spalte" id="leserSpalte">
+      <img class="leser-seite" data-quelle="/playbook-1.webp" alt="Das Fastra System, Seite 1" width="1270" height="1797">
+      <img class="leser-seite" data-quelle="/playbook-2.webp" alt="Das Fastra System, Seite 2" width="1270" height="1797">
+      <img class="leser-seite" data-quelle="/playbook-3.webp" alt="Das Fastra System, Seite 3" width="1270" height="1797">
+      <img class="leser-seite" data-quelle="/playbook-4.webp" alt="Das Fastra System, Seite 4" width="1270" height="1797">
+      <img class="leser-seite" data-quelle="/playbook-5.webp" alt="Das Fastra System, Seite 5" width="1270" height="1797">
+
+      <div class="leser-ende" id="leserEnde">
+        <div class="haken">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Durch. Und jetzt?</h3>
+        <p>Wenn du wissen willst, an welchem der vier Schritte es bei dir konkret hakt, schauen
+          wir zwanzig Minuten gemeinsam drauf. Ich sage dir ehrlich, was ich sehe.</p>
+        <a class="btn" id="leserTermin" href="#" target="_blank" rel="noopener">
+          <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>
+          <span class="label"><b>Termin aussuchen</b><small>zwanzig Minuten, unverbindlich</small></span>
+        </a>
+        <p class="fine">Kein Verkaufsgespräch mit Skript. Wenn es nicht passt, sage ich das.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1103,29 +1155,72 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
     });
   });
 
-  /* Nach dem Download das Terminfenster zeigen. Der Download selbst laeuft normal
-     weiter, der Knopf wird nicht abgefangen. */
+  /* Leser: nach dem Klick auf Herunterladen laeuft die Datei normal in den
+     Download-Ordner, und gleichzeitig oeffnet sich das Playbook hier auf der Seite.
+     Die Seitenbilder werden erst dann geladen, vorher kostet der Leser nichts. */
   (function(){
-    var fenster = document.getElementById('terminfenster');
-    var download = document.getElementById('download');
-    if(!fenster || !download) return;
-    document.getElementById('terminFensterLink').setAttribute('href', BUCHUNGS_LINK);
+    var leser  = document.getElementById('leser');
+    var bahn   = document.getElementById('leserBahn');
+    var ende   = document.getElementById('leserEnde');
+    var balken = document.getElementById('leserBalken');
+    var zaehl  = document.getElementById('leserZaehler');
+    var knopf  = document.getElementById('download');
+    if(!leser || !knopf) return;
+    document.getElementById('leserTermin').setAttribute('href', BUCHUNGS_LINK);
+
+    var geladen = false;
+    function bilderLaden(){
+      if(geladen) return;
+      geladen = true;
+      leser.querySelectorAll('.leser-seite').forEach(function(b, i){
+        b.setAttribute('src', b.getAttribute('data-quelle'));
+        if(i > 0) b.setAttribute('loading','lazy');
+      });
+    }
 
     function auf(){
-      fenster.hidden = false;
+      bilderLaden();
+      leser.hidden = false;
       document.body.style.overflow = 'hidden';
-      var z = fenster.querySelector('#terminFensterLink');
-      if(z) z.focus({ preventScroll:true });
+      bahn.scrollTop = 0;
+      ende.classList.remove('da');
+      stand();
+      document.getElementById('leserZu').focus({ preventScroll:true });
     }
     function zu(){
-      fenster.hidden = true;
+      leser.hidden = true;
       document.body.style.overflow = '';
     }
-    download.addEventListener('click', function(){ setTimeout(auf, 700); });
-    document.getElementById('terminZu').addEventListener('click', zu);
-    document.getElementById('terminSpaeter').addEventListener('click', zu);
-    fenster.addEventListener('click', function(e){ if(e.target === fenster) zu(); });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !fenster.hidden) zu(); });
+
+    /* Fortschritt und Seitenzahl mitfuehren */
+    function stand(){
+      var hoehe = bahn.scrollHeight - bahn.clientHeight;
+      var anteil = hoehe > 0 ? bahn.scrollTop / hoehe : 0;
+      balken.style.width = Math.min(100, Math.round(anteil * 100)) + '%';
+      var seiten = leser.querySelectorAll('.leser-seite');
+      var mitte = bahn.scrollTop + bahn.clientHeight / 2;
+      var nr = 1;
+      seiten.forEach(function(b, i){
+        if(b.offsetTop <= mitte) nr = i + 1;
+      });
+      zaehl.textContent = 'Seite ' + nr + ' von ' + seiten.length;
+    }
+    bahn.addEventListener('scroll', stand, { passive:true });
+    window.addEventListener('resize', stand);
+
+    /* Die Terminkarte blendet ein, sobald sie beim Lesen erreicht wird */
+    if(window.IntersectionObserver){
+      var beobachter = new IntersectionObserver(function(e){
+        e.forEach(function(x){ if(x.isIntersecting) ende.classList.add('da'); });
+      }, { root: bahn, threshold:.25 });
+      beobachter.observe(ende);
+    } else {
+      ende.classList.add('da');
+    }
+
+    knopf.addEventListener('click', function(){ setTimeout(auf, 350); });
+    document.getElementById('leserZu').addEventListener('click', zu);
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !leser.hidden) zu(); });
   })();
 
   document.getElementById('hoch').addEventListener('click', function(){
