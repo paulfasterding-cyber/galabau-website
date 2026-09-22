@@ -396,6 +396,30 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
 .schluss-buch.sichtbar img{opacity:1; transform:rotate(-1.5deg)}
 @media (prefers-reduced-motion: reduce){ .schluss-buch img{opacity:1; transform:rotate(-1.5deg)} }
 
+
+/* ================= Terminfenster nach dem Download ================= */
+.overlay{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:20px;
+  background:rgba(12,24,18,.55); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  animation:einblenden .25s ease}
+.overlay[hidden]{display:none}
+@keyframes einblenden{from{opacity:0}to{opacity:1}}
+.overlay-karte{position:relative; width:min(100%,470px); background:#fff; border-radius:24px;
+  padding:34px 32px 30px; text-align:center;
+  box-shadow:0 30px 70px rgba(6,16,11,.4); animation:hochkommen .35s cubic-bezier(.16,1,.3,1)}
+@keyframes hochkommen{from{opacity:0; transform:translateY(16px) scale(.97)}to{opacity:1; transform:none}}
+.overlay-zu{position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--linie); background:#fff; cursor:pointer; color:var(--text);
+  display:grid; place-items:center; transition:.18s}
+.overlay-zu:hover{background:var(--greenlight); color:var(--accent-dark)}
+.overlay-zu svg{width:15px; height:15px}
+.overlay-karte .haken{width:58px; height:58px; margin:0 auto 16px}
+.overlay-karte .haken svg{width:28px; height:28px}
+.overlay-karte h3{font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.5rem;
+  color:var(--accent-dark); line-height:1.2}
+.overlay-karte p{margin-top:10px; font-size:14.5px}
+.overlay-karte .btn{margin-top:18px}
+.overlay-karte .btn.hell{margin-top:9px}
+
 @media (max-width:1040px){
   .hero-grid{grid-template-columns:1fr; gap:34px; max-width:560px; margin-left:auto; margin-right:auto}
   .box-col{order:2}
@@ -439,7 +463,7 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
   <div class="wrap">
     <span class="pill">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/></svg>
-      Kostenloses Playbook, ohne Newsletter
+      Kostenloses Playbook
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/></svg>
     </span>
     <h1>
@@ -589,7 +613,7 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
               <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
               <span class="label"><b>Playbook jetzt freischalten</b><small>Download startet direkt danach</small></span>
             </button>
-            <p class="fine">Kostenlos, kein Abo. <b>Es folgt kein Newsletter.</b></p>
+            <p class="fine">Kostenlos, kein Abo. <b>Der Download startet direkt danach.</b></p>
           </div>
 
           <!-- Danke -->
@@ -817,9 +841,9 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
         <summary>Werde ich danach zugespammt?
           <span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
-        <p>Nein. Das Playbook lädst du direkt hier herunter, es kommt keine automatische Mail
-          hinterher. Ich melde mich einmal persönlich und frage, ob es dir weitergeholfen hat.
-          Willst du danach nichts mehr hören, sagst du das in einem Satz und es ist erledigt.</p>
+        <p>Nein. Das Playbook lädst du direkt hier herunter, du musst auf nichts warten. Ich melde
+          mich einmal persönlich und frage, ob es dir weitergeholfen hat. Willst du danach nichts
+          mehr hören, sagst du das in einem Satz und es ist erledigt.</p>
       </details>
       <details>
         <summary>Für wen ist das nichts?
@@ -859,7 +883,7 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
       <div class="marker">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kostenlos</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kein Abo</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kein Newsletter</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sofort als PDF</span>
       </div>
       </div>
     </div>
@@ -875,6 +899,29 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
   </div>
   <p class="f-copy">© <span id="jahr">2026</span> Fastra One</p>
 </footer>
+
+<!-- Terminfenster, erscheint nach dem Download -->
+<div class="overlay" id="terminfenster" hidden>
+  <div class="overlay-karte" role="dialog" aria-modal="true" aria-labelledby="terminTitel">
+    <button type="button" class="overlay-zu" id="terminZu" aria-label="Fenster schließen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="haken">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h3 id="terminTitel">Das Playbook liegt bei dir</h3>
+    <p>Wenn du willst, machen wir die zwanzig Minuten direkt fest. Ich schaue mir dein Angebot
+      an und sage dir ehrlich, ob sich Anzeigen bei dir rechnen.</p>
+    <a class="btn" id="terminFensterLink" href="#" target="_blank" rel="noopener">
+      <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4m8-4v4M3 10h18"/></svg></span>
+      <span class="label"><b>Termin aussuchen</b><small>zwanzig Minuten, unverbindlich</small></span>
+    </a>
+    <button type="button" class="btn hell" id="terminSpaeter">
+      <span class="rund"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
+      <span class="label"><b>Erstmal lesen</b><small>du kannst dich später melden</small></span>
+    </button>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -1056,6 +1103,31 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
     });
   });
 
+  /* Nach dem Download das Terminfenster zeigen. Der Download selbst laeuft normal
+     weiter, der Knopf wird nicht abgefangen. */
+  (function(){
+    var fenster = document.getElementById('terminfenster');
+    var download = document.getElementById('download');
+    if(!fenster || !download) return;
+    document.getElementById('terminFensterLink').setAttribute('href', BUCHUNGS_LINK);
+
+    function auf(){
+      fenster.hidden = false;
+      document.body.style.overflow = 'hidden';
+      var z = fenster.querySelector('#terminFensterLink');
+      if(z) z.focus({ preventScroll:true });
+    }
+    function zu(){
+      fenster.hidden = true;
+      document.body.style.overflow = '';
+    }
+    download.addEventListener('click', function(){ setTimeout(auf, 700); });
+    document.getElementById('terminZu').addEventListener('click', zu);
+    document.getElementById('terminSpaeter').addEventListener('click', zu);
+    fenster.addEventListener('click', function(e){ if(e.target === fenster) zu(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !fenster.hidden) zu(); });
+  })();
+
   document.getElementById('hoch').addEventListener('click', function(){
     window.scrollTo({ top:0, behavior:'smooth' });
     setTimeout(function(){
@@ -1097,5 +1169,6 @@ footer{padding:46px 20px 40px; text-align:center; border-top:1px solid var(--lin
   window.addEventListener('load', hoehe);
 })();
 </script>
+
 </body>
 </html>
