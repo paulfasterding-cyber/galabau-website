@@ -333,6 +333,28 @@
     -webkit-tap-highlight-color:transparent;
     transition:transform .18s cubic-bezier(.34,1.4,.5,1), box-shadow .3s, background-image .3s, color .3s; }
   .btn:hover{ transform:translateY(-2px) }
+
+  /* ===== Erkennungszeichen 1: der gruene Punkt am Satzende ===== */
+  .punkt{ color:var(--accent); font-family:var(--f-sans) }
+  .on-dark .punkt, .section-heading.on-dark .punkt{ color:#9FE0BC }
+
+  /* ===== Erkennungszeichen 2: der Pfeilkreis am Hauptknopf ===== */
+  .btn-primary{ padding-right:.5rem }
+  .btn-primary::after{ content:""; width:1.9rem; height:1.9rem; border-radius:50%; flex:none;
+    background-color:rgba(255,255,255,.2); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14m-6-6 6 6-6 6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:center; background-size:.9rem;
+    transition:transform .3s cubic-bezier(.34,1.4,.5,1), background-color .3s }
+  .btn-primary:hover::after{ transform:translateX(3px); background-color:rgba(255,255,255,.32) }
+  .btn-primary:active::after{ transform:translateX(0) }
+  @media (max-width:640px){
+    .nav-right .btn-primary{ padding-right:.5rem }
+    .nav-right .btn-primary::after{ width:1.6rem; height:1.6rem; background-size:.8rem }
+  }
+  @media (max-width:420px){
+    .nav-right .btn-primary::after{ display:none }
+    .nav-right .btn-primary{ padding-right:15px }
+  }
+
   .btn:active{ transform:translateY(1px) scale(.985); transition-duration:.06s }
   /* Tastaturbedienung sichtbar machen. Maus loest den Ring nicht aus */
   .btn:focus-visible, .pcbtn:focus-visible, .chip:focus-visible, .faq summary:focus-visible,
@@ -1700,7 +1722,7 @@
         <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         Google Ads &amp; Meta Ads für lokale Betriebe
       </span>
-      <h1 class="hero-heading">Dein Betrieb braucht Anfragen. Nicht Zufall. <span class="brand-lockup"><span class="app-tile" aria-hidden="true"><span class="app-tile-logo"></span></span><span class="accent">Fastra&nbsp;One</span></span></h1>
+      <h1 class="hero-heading">Dein Betrieb braucht Anfragen. Nicht Zufall<span class="punkt">.</span> <span class="brand-lockup"><span class="app-tile" aria-hidden="true"><span class="app-tile-logo"></span></span><span class="accent">Fastra&nbsp;One</span></span></h1>
       <p class="subheading">Wir machen nicht alles Mögliche. Wir haben <b>ein System</b> für Neukundengewinnung: Angebot, Anzeigen, Landingpage, Nachfassen. Das passen wir an deinen Betrieb an. Aus Hannover, betreut von einer festen Person.</p>
       <div class="btn-row">
         <a data-termin href="#kontakt" class="btn btn-primary">Kostenloses Erstgespräch</a>
@@ -1753,7 +1775,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Das Problem</span>
-      <h2 class="section-heading">Du weißt nicht, wo dein nächster Kunde herkommt.</h2>
+      <h2 class="section-heading">Gerade entscheidet der <em>Zufall</em>, wie dein Monat läuft<span class="punkt">.</span></h2>
       <p class="subheading">Du siehst, dass Marketing bei der Konkurrenz funktioniert, doch bei dir bleiben die Ergebnisse aus.</p>
     </div>
 
@@ -1967,7 +1989,7 @@
   <div class="dark-grid">
     <div class="reveal">
       <span class="eyebrow is-accent">Das Fastra-System</span>
-      <h2 class="section-heading on-dark">Vier Teile. Immer dieselben. Immer angepasst.</h2>
+      <h2 class="section-heading on-dark">Vier Teile. Immer dieselben. Immer <em>angepasst</em><span class="punkt">.</span></h2>
       <p class="subheading">Ich fange bei keinem Kunden bei null an. Der Aufbau ist immer derselbe. Was sich ändert, ist die Umsetzung: dein Markt, deine Suchbegriffe, dein Angebot, deine Preise. Deshalb geht es schneller, und deshalb weiß ich vorher, wo es hakt.</p>
       <div class="btn-row">
         <a data-termin href="#kontakt" class="btn btn-primary">Kostenloses Erstgespräch</a>
@@ -2008,7 +2030,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Leistungen</span>
-      <h2 class="section-heading">So sieht das System bei dir aus.</h2>
+      <h2 class="section-heading">Wir drehen das um. Und zwar <em>komplett</em><span class="punkt">.</span></h2>
       <p class="subheading">Kein Baukasten, aus dem du dir etwas aussuchst. Die drei Teile gehören zusammen und werden zusammen gebaut. Auf einem Kanal richtig, statt auf allen gleichzeitig halb.</p>
     </div>
     <div class="grid3">
@@ -2107,7 +2129,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Der Prozess</span>
-      <h2 class="section-heading">So bringe ich das System in deinen Betrieb.</h2>
+      <h2 class="section-heading">Vom ersten Gespräch bis zur <em>ersten Anfrage</em><span class="punkt">.</span></h2>
       <p class="subheading">Fünf Schritte, die bei jedem Kunden gleich ablaufen. Du weißt jederzeit, woran gerade gearbeitet wird, und was ich von dir brauche.</p>
     </div>
     <div class="c-cloneable">
@@ -2298,7 +2320,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Das Ergebnis</span>
-      <h2 class="section-heading">Planbar neue Kunden gewinnen.</h2>
+      <h2 class="section-heading">Und plötzlich weißt du, <em>woher der nächste Kunde kommt</em><span class="punkt">.</span></h2>
       <p class="subheading">Was sich ändert, wenn das System einmal läuft.</p>
     </div>
     <div class="grid3">
@@ -2450,7 +2472,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Bewertungen</span>
-      <h2 class="section-heading">Was Kunden sagen.</h2>
+      <h2 class="section-heading">Was die sagen, <em>die schon drin sind</em><span class="punkt">.</span></h2>
       <p class="subheading">Zwei Kunden, zwei Ergebnisse. Weitere Stimmen kommen dazu, sobald die Freigaben vorliegen.</p>
     </div>
 
@@ -2526,7 +2548,7 @@
   <div class="stamp-glow" aria-hidden="true"></div>
   <div class="section-header reveal" style="position:relative;z-index:2">
     <span class="eyebrow on-dark">Über uns</span>
-    <h2 class="section-heading on-dark">Bei uns arbeitest du direkt mit deinem <em>Ansprechpartner</em>.</h2>
+    <h2 class="section-heading on-dark">Keine Weiterreiche-Kette. Nur <em>eine Person</em><span class="punkt">.</span></h2>
   </div>
   <div class="gruender-neu reveal d1">
     <div class="gr-portraet" role="img" aria-label="Paul Fasterding"></div>
@@ -2573,7 +2595,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Ehrliche Antworten</span>
-      <h2 class="section-heading">Was du dich gerade fragst.</h2>
+      <h2 class="section-heading">Was du dich gerade <em>fragst</em><span class="punkt">.</span></h2>
       <p class="subheading">Die Sätze, die in fast jedem Erstgespräch fallen. Hier stehen sie schon vorher.</p>
     </div>
     <div class="faq reveal d1">
