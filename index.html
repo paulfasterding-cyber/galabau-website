@@ -4028,7 +4028,7 @@ var BUCHUNGS_LINK = "https://calendly.com/paul-web/30min";
     var rest = ziel - ist;
     if(Math.abs(rest) < 0.4){ window.scrollTo(0, ziel); laeuft = false; eigen = false; return; }
     eigen = true;
-    window.scrollTo(0, ist + rest * 0.14);
+    window.scrollTo(0, ist + rest * 0.3);
     requestAnimationFrame(schritt);
   }
 
@@ -4036,7 +4036,7 @@ var BUCHUNGS_LINK = "https://calendly.com/paul-web/30min";
     if(e.ctrlKey) return;                     /* Zoom in Ruhe lassen */
     if(e.target.closest('.leser, .overlay, [data-kein-weich]')) return;
     e.preventDefault();
-    ziel = Math.min(grenze(), Math.max(0, ziel + e.deltaY * (e.deltaMode === 1 ? 33 : 1)));
+    ziel = Math.min(grenze(), Math.max(0, ziel + e.deltaY * (e.deltaMode === 1 ? 33 : 1.5)));
     if(!laeuft){ laeuft = true; requestAnimationFrame(schritt); }
   }, { passive:false });
 
