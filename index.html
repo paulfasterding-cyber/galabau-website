@@ -4010,42 +4010,6 @@ var BUCHUNGS_LINK = "https://calendly.com/paul-web/30min";
   zahlen.forEach(function(z){ beobachter.observe(z); });
 })();
 
-/* Weiches Scrollen, nachgebaut nach dem Prinzip von Lenis: das Rad setzt ein Ziel,
-   die Seite laeuft weich dorthin. Nur am Rechner, nur mit Maus oder Trackpad, und
-   nur wenn der Besucher Bewegung nicht abgestellt hat. Tastatur und Finger bleiben
-   unberuehrt, damit nichts kaputtgeht. */
-(function(){
-  var fein = window.matchMedia('(pointer:fine)').matches;
-  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!fein || ruhig || window.innerWidth < 900) return;
-
-  var ziel = window.scrollY, laeuft = false, eigen = false;
-
-  function grenze(){ return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
-
-  function schritt(){
-    var ist = window.scrollY;
-    var rest = ziel - ist;
-    if(Math.abs(rest) < 0.4){ window.scrollTo(0, ziel); laeuft = false; eigen = false; return; }
-    eigen = true;
-    window.scrollTo(0, ist + rest * 0.3);
-    requestAnimationFrame(schritt);
-  }
-
-  window.addEventListener('wheel', function(e){
-    if(e.ctrlKey) return;                     /* Zoom in Ruhe lassen */
-    if(e.target.closest('.leser, .overlay, [data-kein-weich]')) return;
-    e.preventDefault();
-    ziel = Math.min(grenze(), Math.max(0, ziel + e.deltaY * (e.deltaMode === 1 ? 33 : 1.5)));
-    if(!laeuft){ laeuft = true; requestAnimationFrame(schritt); }
-  }, { passive:false });
-
-  /* Springt die Seite anders (Anker, Tastatur, Suchfeld), Ziel nachziehen */
-  window.addEventListener('scroll', function(){
-    if(!eigen) ziel = window.scrollY;
-  }, { passive:true });
-  window.addEventListener('resize', function(){ ziel = window.scrollY; });
-})();
 
 </script>
 </body>
