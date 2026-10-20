@@ -3872,21 +3872,49 @@ window.foSperre = (function(){
   }, true);
 })();
 
-/* Anker weich anspringen und dabei die Navigationsleiste freihalten */
+/* Anker weich anspringen und dabei die Navigationsleiste freihalten.
+   Wichtig: das Ziel wird in jedem Bild neu ausgerechnet. Laedt waehrenddessen
+   ein Bild nach und die Seite rutscht, landen wir trotzdem richtig. Das
+   eingebaute weiche Scrollen des Browsers bricht in dem Fall einfach ab,
+   deshalb hier von Hand. */
 (function(){
-  var sanft=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LUFT = 104;
+
+  function hin(ziel){
+    function ende(){ return ziel.getBoundingClientRect().top + window.pageYOffset - LUFT; }
+    if(ruhig){ window.scrollTo(0, ende()); return; }
+    window.scrollTo({ top: ende(), behavior:'smooth' });
+    /* Sicherheitsnetz: rutscht die Seite waehrenddessen, weil ein Bild nachlaedt,
+       bricht der Browser das weiche Scrollen ab. Dann setzen wir hart nach. */
+    [500, 900].forEach(function(ms){
+      setTimeout(function(){
+        if(Math.abs(window.pageYOffset - ende()) > 10) window.scrollTo({ top: ende(), behavior:'instant' });
+      }, ms);
+    });
+  }
+
   document.addEventListener('click', function(e){
-    var a=e.target.closest('a[href^="#"]');
+    var a = e.target.closest('a[href^="#"]');
     if(!a) return;
-    var id=a.getAttribute('href').slice(1);
+    var id = a.getAttribute('href').slice(1);
     if(!id) return;
-    var ziel=document.getElementById(id);
-    // Unterseiten laeuft weiter ueber den Router
-    if(!ziel || ziel.id.indexOf('view-')===0 || document.getElementById('view-'+id)) return;
+    var ziel = document.getElementById(id);
+    /* Unterseiten laufen weiter ueber den Router */
+    if(!ziel || ziel.id.indexOf('view-') === 0 || document.getElementById('view-' + id)) return;
     e.preventDefault();
-    var y=ziel.getBoundingClientRect().top+window.pageYOffset-104;
-    window.scrollTo({top:y, behavior: sanft ? 'smooth' : 'auto'});
-    history.replaceState(null,'','#'+id);
+    hin(ziel);
+    history.replaceState(null, '', '#' + id);
+  });
+
+  /* Kommt jemand mit fertigem Anker auf die Seite, erst nach dem Laden springen */
+  window.addEventListener('load', function(){
+    var id = location.hash.slice(1);
+    if(!id) return;
+    var ziel = document.getElementById(id);
+    if(ziel && ziel.id.indexOf('view-') !== 0 && !document.getElementById('view-' + id)){
+      setTimeout(function(){ hin(ziel); }, 60);
+    }
   });
 })();
 
