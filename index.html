@@ -336,45 +336,6 @@
 
 
 
-  /* ===== Kundenstimmen: zwei Karten, beide sofort sichtbar ===== */
-  .stimmen{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:46px }
-  .stimme{ position:relative; display:flex; flex-direction:column; background:#fff;
-    border-radius:24px; padding:30px 30px 26px; margin:0;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(74,124,92,.08),
-      0 2px 4px rgba(20,42,30,.05), 0 26px 50px -30px rgba(20,42,30,.5);
-    transition:transform .35s cubic-bezier(.22,1,.3,1), box-shadow .35s cubic-bezier(.22,1,.3,1) }
-  .stimme:hover{ transform:translateY(-5px);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(74,124,92,.14),
-      0 4px 8px rgba(20,42,30,.06), 0 36px 64px -32px rgba(20,42,30,.6) }
-  .st-kopf{ display:flex; align-items:center; gap:14px }
-  .st-foto{ width:56px; height:56px; border-radius:50%; flex:none; background-size:cover;
-    background-position:center 18%; box-shadow:0 0 0 3px rgba(74,124,92,.12), 0 6px 14px -6px rgba(20,42,30,.5) }
-  .st-foto.lino{ background-image:var(--lino-foto-img); background-position:center 12% }
-  .st-foto.bergunde{ background-image:var(--bergunde-foto-img); background-position:center 20% }
-  .st-wer b{ display:block; font-size:16.5px; font-weight:600; color:var(--heading); letter-spacing:-.3px }
-  .st-wer span{ display:block; font-size:13.5px; color:var(--text); margin-top:2px }
-  .st-sterne{ margin-left:auto; font-size:13px; letter-spacing:1px; color:#D8A33A; white-space:nowrap }
-  .st-zitat{ margin:22px 0 0; font-family:var(--f-serif); font-style:italic; font-weight:400;
-    font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.32; letter-spacing:-.4px;
-    color:var(--heading); text-wrap:pretty; flex:1 }
-  .st-zitat em{ font-style:italic; color:var(--accent) }
-  .st-fuss{ display:flex; align-items:flex-end; gap:18px; margin-top:26px; padding-top:20px;
-    border-top:1px solid rgba(74,124,92,.14) }
-  .st-zahl{ display:flex; align-items:baseline; gap:12px }
-  .st-zahl b{ font-family:var(--f-sans); font-weight:600; font-size:38px; line-height:1;
-    letter-spacing:-2px; color:var(--accent-dark); font-variant-numeric:tabular-nums }
-  .st-zahl span{ font-size:13px; line-height:1.35; color:var(--text) }
-  .st-beleg{ margin-left:auto; width:84px; height:84px; flex:none; border-radius:12px;
-    background:var(--lino-chat-img) center top/cover no-repeat, var(--greenlight);
-    box-shadow:0 2px 4px rgba(20,42,30,.1), 0 14px 26px -14px rgba(20,42,30,.6);
-    transform:rotate(3deg); transition:transform .3s cubic-bezier(.22,1,.3,1) }
-  .stimme:hover .st-beleg{ transform:rotate(0) scale(1.04) }
-  .st-hinweis{ margin-top:22px; text-align:center; font-size:14px; color:var(--text) }
-  @media (max-width:900px){
-    .stimmen{ grid-template-columns:1fr; gap:16px }
-    .stimme{ padding:24px 22px 22px }
-    .st-zahl b{ font-size:32px }
-  }
 
   /* ===== Laufendes Band: die vier Schritte, endlos ===== */
   .band{ position:relative; margin-top:38px; overflow:hidden;
@@ -1083,31 +1044,31 @@
 
   /* ===== Ueber uns, freigestellt und mit Auftritt ===== */
   .gr-buehne{ position:relative; z-index:3; display:grid;
-    grid-template-columns:minmax(0,.92fr) minmax(0,1fr); gap:40px; align-items:end;
+    grid-template-columns:minmax(0,.62fr) minmax(0,1fr); gap:56px; align-items:center;
     max-width:1120px; margin:40px auto 0 }
-  .gr-figur{ position:relative; display:flex; justify-content:center; align-items:flex-end }
-  /* Lichtschein hinter dem Kopf, damit der Freisteller auf dem Gruen sitzt */
-  .gr-schein{ position:absolute; left:50%; top:4%; width:88%; height:88%; transform:translateX(-50%);
-    border-radius:50%; z-index:1;
-    background:radial-gradient(50% 50% at 50% 45%, rgba(159,224,188,.3), rgba(159,224,188,.08) 55%, transparent 72%);
-    filter:blur(26px);
-    opacity:0; transition:opacity 1s ease .1s }
+  .gr-figur{ position:relative; display:flex; justify-content:center; align-items:center }
+  /* Lichtschein hinter dem Kopf */
+  .gr-schein{ position:absolute; left:50%; top:46%; width:74%; height:74%;
+    transform:translate(-50%,-50%); border-radius:50%; z-index:1;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(159,224,188,.22), transparent 70%);
+    filter:blur(30px); opacity:0; transition:opacity 1s ease .1s }
   .reveal.is-visible .gr-schein{ opacity:1 }
-  .gr-figur img{ position:relative; z-index:2; width:min(100%,430px); height:auto; display:block;
-    -webkit-mask-image:linear-gradient(180deg, #000 76%, rgba(0,0,0,0) 99%);
-    mask-image:linear-gradient(180deg, #000 76%, rgba(0,0,0,0) 99%);
-    filter:drop-shadow(0 26px 40px rgba(0,0,0,.45));
-    opacity:0; transform:translateY(34px) scale(.975);
-    transition:opacity .9s cubic-bezier(.16,1,.3,1), transform 1.05s cubic-bezier(.16,1,.3,1) }
+  /* Das Bild laeuft an den Raendern in die Flaeche aus, dadurch kein Kasten
+     und keine ausgefransten Haare */
+  .gr-figur img{ position:relative; z-index:2; width:min(100%,300px); height:auto; display:block;
+    -webkit-mask-image:radial-gradient(68% 60% at 50% 42%, #000 56%, rgba(0,0,0,0) 92%);
+    mask-image:radial-gradient(68% 60% at 50% 42%, #000 56%, rgba(0,0,0,0) 92%);
+    opacity:0; transform:translateY(22px) scale(.98);
+    transition:opacity .9s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1) }
   .reveal.is-visible .gr-figur img{ opacity:1; transform:none }
   /* Kleines Schild auf der Flaeche, mit pulsierendem Punkt */
-  .gr-marke{ position:absolute; z-index:3; right:2%; bottom:14%; display:inline-flex; align-items:center;
-    gap:8px; padding:9px 15px; border-radius:100px; font-size:12.5px; font-weight:600;
+  .gr-marke{ position:absolute; z-index:3; left:50%; transform:translateX(-50%); bottom:2%; display:inline-flex; align-items:center;
+    gap:8px; padding:9px 15px; border-radius:100px; font-size:12.5px; font-weight:600; white-space:nowrap;
     color:var(--accent-dark); background:rgba(255,255,255,.92); border:1px solid rgba(74,124,92,.18);
     box-shadow:0 10px 24px -10px rgba(0,0,0,.6); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-    opacity:0; transform:translateY(10px);
-    transition:opacity .7s ease .5s, transform .7s cubic-bezier(.16,1,.3,1) .5s }
-  .reveal.is-visible .gr-marke{ opacity:1; transform:none }
+    opacity:0;
+    transition:opacity .7s ease .5s }
+  .reveal.is-visible .gr-marke{ opacity:1; transform:translateX(-50%) }
   .gr-marke .puls{ width:8px; height:8px; border-radius:50%; background:var(--accent); flex:none;
     animation:puls 2.4s ease-in-out infinite }
   @keyframes puls{ 0%,100%{ box-shadow:0 0 0 0 rgba(74,124,92,.5) } 50%{ box-shadow:0 0 0 6px rgba(74,124,92,0) } }
@@ -1125,15 +1086,15 @@
   .gr-zahlen div{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
     border-radius:18px; padding:20px 18px 17px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 18px 30px -22px rgba(0,0,0,.9) }
-  .gr-zahlen b{ display:block; font-family:var(--f-sans); font-weight:600; font-size:28px;
+  .gr-zahlen b{ display:block; font-family:var(--f-sans); font-weight:600; font-size:26px; white-space:nowrap;
     letter-spacing:-1.2px; color:#fff; margin-bottom:7px; font-variant-numeric:tabular-nums }
   .gr-zahlen span{ font-size:13.5px; line-height:1.45; color:rgba(255,255,255,.62) }
   .gr-knoepfe{ margin-top:30px; display:flex; flex-wrap:wrap; gap:12px }
   @media (max-width:940px){
     .gr-buehne{ grid-template-columns:1fr; gap:10px; margin-top:26px }
     .gr-figur{ order:2 }
-    .gr-figur img{ width:min(84%,340px) }
-    .gr-marke{ right:6%; bottom:16% }
+    .gr-figur img{ width:min(70%,260px) }
+    .gr-marke{ bottom:4% }
     .gr-wort{ order:1; padding-bottom:0; text-align:center }
     .gr-absatz{ margin-left:auto; margin-right:auto }
     .gr-zahlen{ grid-template-columns:1fr }
@@ -1626,6 +1587,29 @@
   .rev-slide{ animation:revIn .5s cubic-bezier(.22,1,.3,1) }
   @keyframes revIn{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
   @media (prefers-reduced-motion: reduce){ .rev-slide{animation:none} .rev-av{transition:none} }
+
+
+  /* ===== Bewertungen: Feinschliff ===== */
+  .rev-av.av-lino, .rev-av.av-bergunde{ background-size:cover; background-repeat:no-repeat }
+  .rev-av.av-lino{ background-image:var(--lino-foto-img); background-position:center 10% }
+  .rev-av.av-bergunde{ background-image:var(--bergunde-foto-img); background-position:center 18% }
+  .rev-av.av-lino svg, .rev-av.av-bergunde svg{ display:none }
+  .rev-av.av-offen{ background:linear-gradient(150deg,#E6ECE8,#CBD6CF) }
+  .rev-av.av-offen svg{ color:rgba(31,58,46,.42) }
+  .rev-av{ opacity:.62 }
+  .rev-av:hover{ opacity:.92 }
+
+  .rev-sterne{ display:block; font-size:15px; letter-spacing:3px; color:#E7B84B;
+    text-shadow:0 1px 2px rgba(0,0,0,.35) }
+  .rev-quote{ font-size:24.5px !important; line-height:1.34 !important; letter-spacing:-.7px !important }
+  @media (max-width:640px){ .rev-quote{ font-size:20px !important } }
+  .rev-who b{ font-family:var(--f-sans) !important; font-weight:600 !important;
+    font-size:19px !important; letter-spacing:-.5px !important }
+  .rev-who span{ letter-spacing:1.6px !important; font-size:11.5px !important }
+  .rev-stat b{ font-family:var(--f-sans) !important; font-weight:600 !important;
+    letter-spacing:-1.6px !important; font-variant-numeric:tabular-nums }
+  .rev-banner{ transition:transform .4s cubic-bezier(.22,1,.3,1), box-shadow .4s cubic-bezier(.22,1,.3,1) }
+  .rev-banner:hover{ transform:translateY(-4px) }
 
   /* ---------- BLOG ---------- */
   .blog-filter{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:40px }
@@ -2569,47 +2553,68 @@
       <p class="subheading">Zwei Kunden, zwei Ergebnisse. Weitere Stimmen kommen dazu, sobald die Freigaben vorliegen.</p>
     </div>
 
-    <div class="stimmen">
-      <figure class="stimme reveal">
-        <div class="st-kopf">
-          <span class="st-foto lino" role="img" aria-label="Lino Schaller"></span>
-          <div class="st-wer">
-            <b>Lino Schaller</b>
-            <span>Karton &amp; Kraft · Entrümpelung Hannover</span>
+    <div class="reveal">
+      <div class="rev-avatars" role="tablist" aria-label="Kundenstimmen">
+        <button class="rev-av av-lino on" role="tab" aria-selected="true" data-go="1" aria-label="Stimme von Lino Schaller anzeigen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
+        </button>
+        <button class="rev-av av-bergunde" role="tab" aria-selected="false" data-go="2" aria-label="Stimme von Roswitha Bergunde anzeigen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
+        </button>
+        <button class="rev-av av-offen" role="tab" aria-selected="false" data-go="3" aria-label="Platz für die nächste Stimme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
+        </button>
+      </div>
+
+      <div class="rev-slide" data-rev="1">
+        <div class="rev-banner">
+          <div class="rev-photo">
+            
+            <span class="lino-foto" role="img" aria-label="Lino Schaller, Inhaber von Karton &amp; Kraft"></span>
+            <span class="rev-chat" role="img" aria-label="WhatsApp-Nachricht von Lino Schaller: 19 qualifizierte Kaufanfragen in der ersten Woche"></span>
           </div>
-          <span class="st-sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
-        </div>
-
-        <blockquote class="st-zitat">Ich hätte am Anfang ehrlich gesagt nicht gedacht, dass das so
-          gut funktioniert. Aber du hast mich <em>vom Gegenteil überzeugt</em>.</blockquote>
-
-        <div class="st-fuss">
-          <div class="st-zahl"><b data-zahl="19">0</b><span>qualifizierte Anfragen<br>in der ersten Woche</span></div>
-          <span class="st-beleg" role="img" aria-label="Nachricht von Lino Schaller"></span>
-        </div>
-      </figure>
-
-      <figure class="stimme reveal d1">
-        <div class="st-kopf">
-          <span class="st-foto bergunde" role="img" aria-label="Roswitha Bergunde"></span>
-          <div class="st-wer">
-            <b>Roswitha Bergunde</b>
-            <span>Logopädie &amp; Lerntherapie Lehrte</span>
+          <div class="rev-body">
+            <span class="rev-sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+            <p class="rev-quote">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Aber du hast mich wirklich vom Gegenteil überzeugt. Wir konnten jetzt schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
+            <div class="rev-who"><b>Lino Schaller</b><span>Karton &amp; Kraft · Entrümpelung Hannover · Suchmaschinen-Rebuild</span></div>
+            <div class="rev-stat"><b>19</b><span>qualifizierte Anfragen in Woche 1</span></div>
           </div>
-          <span class="st-sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
         </div>
-
-        <blockquote class="st-zitat">Durch Paul haben wir es geschafft, in unserem Stadtteil schon
-          nach zwei Tagen <em>unter den Praxen auf Platz 1</em> zu stehen.</blockquote>
-
-        <div class="st-fuss">
-          <div class="st-zahl"><b>Platz 1</b><span>lokal in Lehrte,<br>nach zwei Tagen</span></div>
+      </div>
+      <div class="rev-slide" data-rev="2" hidden>
+        <div class="rev-banner">
+          <div class="rev-photo">
+            <span class="bergunde-foto" role="img" aria-label="Roswitha Bergunde, Inhaberin der Praxis für Logopädie und Lerntherapie in Lehrte"></span>
+          </div>
+          <div class="rev-body">
+            <span class="rev-sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+            <p class="rev-quote">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon
+              nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
+            <div class="rev-who"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie Lehrte · Website &amp; Sichtbarkeit</span></div>
+            <div class="rev-stat"><b>Platz 1</b><span>lokal in Lehrte, nach zwei Tagen</span></div>
+          </div>
         </div>
-      </figure>
+      </div>
+      <div class="rev-slide" data-rev="3" hidden>
+        <div class="rev-banner">
+          <div class="rev-photo">
+            <span class="ph" aria-hidden="true">
+              <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-3.8 3.4-6.5 7.5-6.5s7.5 2.7 7.5 6.5"/></svg>
+              <span>Coming soon</span>
+            </span>
+          </div>
+          <div class="rev-body">
+            <span class="rev-soon">Coming soon</span>
+            <p class="rev-quote">Hier steht die dritte Kundenstimme, sobald das Projekt
+              abgeschlossen ist.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <p class="st-hinweis reveal d2">Beide Stimmen liegen schriftlich vor. Weitere folgen, sobald die
-      laufenden Projekte abgeschlossen sind.</p>
+    <div class="btn-row center" style="margin-top:36px">
+      <a data-termin href="#kontakt" class="btn btn-primary">Kostenloses Erstgespräch</a>
+    </div>
   </div>
 </section>
 
@@ -2627,7 +2632,7 @@
   <div class="gr-buehne reveal d1">
     <div class="gr-figur">
       <span class="gr-schein" aria-hidden="true"></span>
-      <img src="paul-portraet.webp" alt="Paul Fasterding" width="760" height="698" loading="lazy" decoding="async">
+      <img src="paul-portraet.webp" alt="Paul Fasterding" width="600" height="750" loading="lazy" decoding="async">
       <span class="gr-marke" aria-hidden="true"><i class="puls"></i>Antwort meist am selben Tag</span>
     </div>
 
