@@ -1592,15 +1592,24 @@
   @media (prefers-reduced-motion: reduce){ .rev-slide{animation:none} .rev-av{transition:none} }
 
 
+
+  /* ===== Kundenstimmen: ruhige Punkte statt doppelter Fotos ===== */
+  .rev-punkte{ display:flex; justify-content:center; gap:10px; margin-bottom:34px }
+  .rev-pkt{ position:relative; width:34px; height:6px; padding:0; border:0; cursor:pointer;
+    border-radius:100px; background:rgba(31,58,46,.16); overflow:hidden;
+    transition:width .4s cubic-bezier(.22,1,.3,1), background .3s }
+  .rev-pkt:hover{ background:rgba(31,58,46,.26) }
+  .rev-pkt.on{ width:66px; background:rgba(31,58,46,.18) }
+  .rev-pkt-fuell{ position:absolute; inset:0; width:0; border-radius:100px; background:var(--accent) }
+  .rev-pkt.on .rev-pkt-fuell{ width:100%; transition:width 7s linear }
+  .rev-pkt.on.haelt .rev-pkt-fuell{ transition:none }
+  @media (prefers-reduced-motion: reduce){
+    .rev-pkt.on .rev-pkt-fuell{ transition:none; width:100% }
+  }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0 0 0 0); white-space:nowrap; border:0 }
+
   /* ===== Bewertungen: Feinschliff ===== */
-  .rev-av.av-lino, .rev-av.av-bergunde{ background-size:cover; background-repeat:no-repeat }
-  .rev-av.av-lino{ background-image:var(--lino-foto-img); background-position:center 10% }
-  .rev-av.av-bergunde{ background-image:var(--bergunde-foto-img); background-position:center 18% }
-  .rev-av.av-lino svg, .rev-av.av-bergunde svg{ display:none }
-  .rev-av.av-offen{ background:linear-gradient(150deg,#E6ECE8,#CBD6CF) }
-  .rev-av.av-offen svg{ color:rgba(31,58,46,.42) }
-  .rev-av{ opacity:.62 }
-  .rev-av:hover{ opacity:.92 }
 
   .rev-sterne{ display:block; font-size:15px; letter-spacing:3px; color:#E7B84B;
     text-shadow:0 1px 2px rgba(0,0,0,.35) }
@@ -2557,15 +2566,12 @@
     </div>
 
     <div class="reveal">
-      <div class="rev-avatars" role="tablist" aria-label="Kundenstimmen">
-        <button class="rev-av av-lino on" role="tab" aria-selected="true" data-go="1" aria-label="Stimme von Lino Schaller anzeigen">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
+      <div class="rev-punkte" role="tablist" aria-label="Kundenstimmen">
+        <button class="rev-pkt on" role="tab" aria-selected="true" data-go="1">
+          <span class="rev-pkt-fuell"></span><span class="sr-only">Stimme von Lino Schaller</span>
         </button>
-        <button class="rev-av av-bergunde" role="tab" aria-selected="false" data-go="2" aria-label="Stimme von Roswitha Bergunde anzeigen">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
-        </button>
-        <button class="rev-av av-offen" role="tab" aria-selected="false" data-go="3" aria-label="Platz für die nächste Stimme">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="3.4"/><path d="M5 20.5c0-3.6 3.2-6.2 7-6.2s7 2.6 7 6.2"/></svg>
+        <button class="rev-pkt" role="tab" aria-selected="false" data-go="2">
+          <span class="rev-pkt-fuell"></span><span class="sr-only">Stimme von Roswitha Bergunde</span>
         </button>
       </div>
 
@@ -2595,21 +2601,6 @@
               nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
             <div class="rev-who"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie Lehrte · Website &amp; Sichtbarkeit</span></div>
             <div class="rev-stat"><b>Platz 1</b><span>lokal in Lehrte, nach zwei Tagen</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="rev-slide" data-rev="3" hidden>
-        <div class="rev-banner">
-          <div class="rev-photo">
-            <span class="ph" aria-hidden="true">
-              <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-3.8 3.4-6.5 7.5-6.5s7.5 2.7 7.5 6.5"/></svg>
-              <span>Coming soon</span>
-            </span>
-          </div>
-          <div class="rev-body">
-            <span class="rev-soon">Coming soon</span>
-            <p class="rev-quote">Hier steht die dritte Kundenstimme, sobald das Projekt
-              abgeschlossen ist.</p>
           </div>
         </div>
       </div>
@@ -3863,19 +3854,70 @@ window.foSperre = (function(){
 
 
 /* Bewertungen: Avatar-Umschalter */
+/* Kundenstimmen wechseln von allein durch. Der aktive Punkt laeuft als
+   Fortschrittsbalken mit. Beim Darueberfahren haelt alles an, ein Klick
+   springt direkt zur gewuenschten Stimme und startet die Uhr neu. */
 (function(){
-  var avs=document.querySelectorAll('.rev-av');
-  if(!avs.length) return;
-  avs.forEach(function(b){
-    b.addEventListener('click', function(){
-      var go=b.getAttribute('data-go');
-      avs.forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-selected','false'); });
-      b.classList.add('on'); b.setAttribute('aria-selected','true');
-      document.querySelectorAll('.rev-slide').forEach(function(sl){
-        sl.hidden = sl.getAttribute('data-rev') !== go;
-      });
+  var punkte = [].slice.call(document.querySelectorAll('.rev-pkt'));
+  var folien = [].slice.call(document.querySelectorAll('.rev-slide'));
+  if(punkte.length < 2 || !folien.length) return;
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DAUER = 7000;
+  var jetzt = 0, uhr = null;
+
+  function zeige(n){
+    jetzt = (n + folien.length) % folien.length;
+    folien.forEach(function(f, i){ f.hidden = i !== jetzt; });
+    punkte.forEach(function(p, i){
+      var an = i === jetzt;
+      p.classList.toggle('on', an);
+      p.setAttribute('aria-selected', an ? 'true' : 'false');
+      /* Fuellung zuruecksetzen, damit sie neu laeuft */
+      var f = p.querySelector('.rev-pkt-fuell');
+      if(f){
+        p.classList.add('haelt');
+        f.style.width = '0';
+        void f.offsetWidth;
+        p.classList.remove('haelt');
+      }
     });
+  }
+
+  function start(){
+    if(ruhig) return;
+    stopp();
+    uhr = setTimeout(function(){ zeige(jetzt + 1); start(); }, DAUER);
+  }
+  function stopp(){ if(uhr){ clearTimeout(uhr); uhr = null; } }
+
+  punkte.forEach(function(p, i){
+    p.addEventListener('click', function(){ zeige(i); start(); });
   });
+
+  var feld = document.getElementById('bewertungen');
+  if(feld){
+    feld.addEventListener('mouseenter', function(){
+      stopp();
+      var f = document.querySelector('.rev-pkt.on .rev-pkt-fuell');
+      if(f){ var breit = getComputedStyle(f).width; document.querySelector('.rev-pkt.on').classList.add('haelt'); f.style.width = breit; }
+    });
+    feld.addEventListener('mouseleave', function(){
+      var p = document.querySelector('.rev-pkt.on');
+      if(p) p.classList.remove('haelt');
+      zeige(jetzt);
+      start();
+    });
+  }
+
+  /* Erst loslaufen, wenn der Abschnitt im Bild ist */
+  if(window.IntersectionObserver && feld){
+    var beob = new IntersectionObserver(function(e){
+      e.forEach(function(x){ if(x.isIntersecting){ zeige(0); start(); beob.disconnect(); } });
+    }, { threshold:.25 });
+    beob.observe(feld);
+  } else {
+    zeige(0); start();
+  }
 })();
 
 /* Druckwelle auf allen Knoepfen, vom Klickpunkt aus */
