@@ -1088,8 +1088,9 @@
     filter:blur(34px); opacity:0; transition:opacity 1s ease .1s }
   .reveal.is-visible .gr-schein{ opacity:1 }
   .gr-figur img{ position:relative; z-index:2; width:min(100%,330px); height:auto; display:block;
-    -webkit-mask-image:radial-gradient(70% 62% at 50% 42%, #000 58%, rgba(0,0,0,0) 94%);
-    mask-image:radial-gradient(70% 62% at 50% 42%, #000 58%, rgba(0,0,0,0) 94%);
+    -webkit-mask-image:linear-gradient(180deg, #000 88%, rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(180deg, #000 88%, rgba(0,0,0,0) 100%);
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.42));
     opacity:0; transform:translateY(24px) scale(.98);
     transition:opacity .9s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1) }
   .reveal.is-visible .gr-figur img{ opacity:1; transform:none }
@@ -2704,7 +2705,7 @@
   <div class="gr-buehne reveal d1">
     <div class="gr-figur">
       <span class="gr-schein" aria-hidden="true"></span>
-      <img src="paul-portraet.webp" alt="Paul Fasterding" width="600" height="750" loading="lazy" decoding="async">
+      <img src="paul-portraet-v2.webp" alt="Paul Fasterding" width="600" height="662" loading="lazy" decoding="async">
       <span class="gr-marke" aria-hidden="true"><i class="puls"></i>Antwort meist am selben Tag</span>
     </div>
 
