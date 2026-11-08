@@ -224,6 +224,7 @@
      Die dunklen Abschnitte sitzen als abgerundete Platte auf dem hellen Grund,
      statt als harte Bande quer durchs Bild zu schneiden. */
   .dark, .stamp-section{ position:relative; border-radius:44px; isolation:isolate;
+    box-shadow:0 40px 90px -50px rgba(20,42,30,.75);
     box-shadow:0 2px 6px rgba(11,13,10,.12), 0 48px 90px -56px rgba(11,13,10,.85) }
   @media (max-width:1000px){ .dark, .stamp-section{ border-radius:30px } }
   @media (max-width:640px){ .dark, .stamp-section{ border-radius:22px } }
@@ -337,20 +338,33 @@
 
 
 
-  /* ===== Laufendes Band: die vier Schritte, endlos ===== */
-  .band{ position:relative; margin-top:38px; overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent) }
-  .band-lauf{ display:flex; width:max-content; animation:band 34s linear infinite }
-  .band:hover .band-lauf{ animation-play-state:paused }
-  .band-satz{ display:flex; align-items:center; flex:none }
-  .band-satz span{ display:inline-flex; align-items:center; gap:13px; padding:0 20px;
-    font-size:15px; font-weight:500; color:rgba(14,14,12,.4); white-space:nowrap }
-  .band-satz span::after{ content:""; width:5px; height:5px; border-radius:50%; background:var(--accent); opacity:.45 }
-  .band-satz em{ font-family:var(--f-serif); font-style:italic; font-weight:400; color:var(--accent);
-    font-size:17px; letter-spacing:-.2px }
-  @keyframes band{ to{ transform:translateX(-50%) } }
-  @media (prefers-reduced-motion: reduce){ .band-lauf{ animation:none } }
+
+
+  /* ===== Sprachraum: vier Flaggen in runden Scheiben ===== */
+  .raum{ display:flex; align-items:center; gap:16px; margin-top:34px; flex-wrap:wrap }
+  .raum-kreise{ display:flex; align-items:center }
+  .flagge{ width:42px; height:42px; border-radius:50%; position:relative; display:block;
+    margin-left:-11px; overflow:hidden; background:#fff;
+    box-shadow:0 0 0 2.5px var(--bg), 0 0 0 3.5px rgba(74,124,92,.22),
+      0 2px 3px rgba(20,42,30,.18), 0 10px 20px -8px rgba(20,42,30,.5);
+    transition:transform .3s cubic-bezier(.22,1,.3,1), box-shadow .3s }
+  .flagge:first-child{ margin-left:0 }
+  .flagge svg{ width:100%; height:100%; display:block }
+  /* Lichtkante oben, Schatten unten: gibt der Scheibe Tiefe */
+  .flagge::after{ content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+    background:linear-gradient(170deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,0) 42%,
+      rgba(12,24,18,.18) 100%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.5), inset 0 -2px 4px rgba(12,24,18,.22) }
+  .flagge:hover{ transform:translateY(-3px) scale(1.06); z-index:2;
+    box-shadow:0 0 0 2.5px var(--bg), 0 0 0 3.5px rgba(74,124,92,.4),
+      0 4px 6px rgba(20,42,30,.2), 0 16px 28px -10px rgba(20,42,30,.6) }
+  .raum-text{ font-size:14.5px; line-height:1.4; color:var(--text) }
+  .raum-text b{ color:var(--heading); font-weight:600 }
+  @media (max-width:560px){
+    .raum{ gap:12px; margin-top:26px }
+    .flagge{ width:36px; height:36px; margin-left:-9px }
+    .raum-text{ font-size:13.5px }
+  }
 
   /* ===== Lichtstreifen ueber dem Hauptknopf ===== */
   .btn-primary::before{ content:""; position:absolute; inset:0; border-radius:inherit; z-index:-1;
@@ -1015,13 +1029,34 @@
     display:flex; align-items:center; justify-content:center; flex:none; font-size:10px; font-weight:800; margin-top:1px }
 
   /* ---------- BIO / STAMP ---------- */
-  .stamp-section{ position:relative; padding:92px 70px 96px; margin:24px 0; overflow:hidden;
+  /* Damit der dunkle Block nicht wie aufgeklebt wirkt: ein weicher gruener
+     Lichthof darunter und ein Hauch Farbe in der Flaeche davor und dahinter. */
+  .stamp-section{ position:relative; padding:92px 70px 96px; margin:70px 0 76px; overflow:hidden;
     background:linear-gradient(180deg,#4A7C5C 0%,#24422F 62%,#16291F 100%) }
   @media (max-width:1000px){ .stamp-section{padding:64px 28px 70px} }
   @media (max-width:640px){ .stamp-section{padding:52px 18px 58px} }
   .grain{ position:absolute; inset:0; opacity:.17; mix-blend-mode:color-burn; pointer-events:none; z-index:1 }
 
   /* Tiefenebenen hinter dem Inhalt: Spotlight, Punktraster, eingebrannter Schriftzug */
+
+  /* Lichthof um den gruenen Block */
+  #gruender{ position:relative }
+  #gruender::after{ content:""; position:absolute; z-index:-2; left:50%; top:-7%;
+    width:104%; height:114%; transform:translateX(-50%); pointer-events:none;
+    background:
+      radial-gradient(58% 48% at 50% 0%, rgba(74,124,92,.16), transparent 72%),
+      radial-gradient(58% 48% at 50% 100%, rgba(74,124,92,.14), transparent 72%);
+    filter:blur(28px) }
+  /* Die Flaeche vor und hinter dem Block bekommt einen Hauch Gruen,
+     dadurch sitzt die dunkle Platte in der Seite statt darauf */
+  #gruender::before{ content:""; position:absolute; z-index:-3; left:50%; top:-120px;
+    width:100vw; height:calc(100% + 240px); transform:translateX(-50%); pointer-events:none;
+    background:linear-gradient(180deg, rgba(74,124,92,0) 0%, rgba(74,124,92,.07) 22%,
+      rgba(74,124,92,.09) 50%, rgba(74,124,92,.07) 78%, rgba(74,124,92,0) 100%) }
+  @media (max-width:640px){
+    #gruender::before{ top:-70px; height:calc(100% + 140px) }
+  }
+
   .stamp-glow{ position:absolute; z-index:0; left:-6%; top:4%; width:min(820px,86%); aspect-ratio:1;
     background:radial-gradient(circle, rgba(170,222,190,.30) 0%, rgba(150,205,172,.11) 40%, transparent 68%);
     pointer-events:none }
@@ -1816,7 +1851,54 @@
         <a data-termin href="#kontakt" class="btn btn-primary">Kostenloses Erstgespräch</a>
         <a href="#bewertungen" class="btn btn-ghost">Bewertungen ansehen</a>
       </div>
-      <div class="band" aria-hidden="true"><div class="band-lauf"><div class="band-satz"><span>Angebot</span><span><em>Sichtbarkeit</em></span><span>Anfrage</span><span><em>Nachfassen</em></span><span>Planbar statt Zufall</span><span><em>Eine Person</em></span></div><div class="band-satz"><span>Angebot</span><span><em>Sichtbarkeit</em></span><span>Anfrage</span><span><em>Nachfassen</em></span><span>Planbar statt Zufall</span><span><em>Eine Person</em></span></div></div></div>
+      <div class="raum">
+        <div class="raum-kreise">
+          <span class="flagge" title="Deutschland">
+            <svg viewBox="0 0 36 36" aria-label="Deutschland">
+              <g clip-path="url(#k-de)">
+                <rect width="36" height="12" y="0" fill="#141414"/>
+                <rect width="36" height="12" y="12" fill="#D7141A"/>
+                <rect width="36" height="12" y="24" fill="#FFC930"/>
+              </g>
+              <defs><clipPath id="k-de"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+            </svg>
+          </span>
+          <span class="flagge" title="Österreich">
+            <svg viewBox="0 0 36 36" aria-label="Österreich">
+              <g clip-path="url(#k-at)">
+                <rect width="36" height="12" y="0" fill="#D7141A"/>
+                <rect width="36" height="12" y="12" fill="#FFFFFF"/>
+                <rect width="36" height="12" y="24" fill="#D7141A"/>
+              </g>
+              <defs><clipPath id="k-at"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+            </svg>
+          </span>
+          <span class="flagge" title="Schweiz">
+            <svg viewBox="0 0 36 36" aria-label="Schweiz">
+              <g clip-path="url(#k-ch)">
+                <rect width="36" height="36" fill="#D7141A"/>
+                <path d="M15.4 7.6h5.2v7.8h7.8v5.2h-7.8v7.8h-5.2v-7.8H7.6v-5.2h7.8z" fill="#fff"/>
+              </g>
+              <defs><clipPath id="k-ch"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+            </svg>
+          </span>
+          <span class="flagge" title="Liechtenstein">
+            <svg viewBox="0 0 36 36" aria-label="Liechtenstein">
+              <g clip-path="url(#k-li)">
+                <rect width="36" height="18" y="0" fill="#1C3C8C"/>
+                <rect width="36" height="18" y="18" fill="#D7141A"/>
+                <g fill="#F2C94C">
+                  <path d="M7.2 9.3h9.2v2.3H7.2z"/>
+                  <path d="M7.9 6.4l1.9 1.6 2-2.2 1.9 2.2 1.9-1.6-.5 2.5H8.4z"/>
+                  <circle cx="7.9" cy="5.6" r="1"/><circle cx="15.6" cy="5.6" r="1"/><circle cx="11.8" cy="4.4" r="1.1"/>
+                </g>
+              </g>
+              <defs><clipPath id="k-li"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+            </svg>
+          </span>
+        </div>
+        <span class="raum-text">Betreut wird im gesamten <b>deutschsprachigen Raum</b></span>
+      </div>
     </div>
 
     <div class="hero-visual reveal">
