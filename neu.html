@@ -863,6 +863,130 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .pf-marke:hover{ transform:translateY(-2px); border-color:var(--line-2) }
 .pf-marke svg{ width:22px; height:22px; flex:0 0 auto }
 
+
+/* ===== Dashboard, zweite Fassung ===== */
+.dash-buehne .dash{ transform:rotateX(var(--kipp,-22deg)) scale(var(--zoom,.92));
+  transform-origin:50% 100% }
+.dash-hinweis{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.3);
+  padding:4px 9px; border-radius:100px; border:1px solid var(--line) }
+@media (max-width:720px){ .dash-hinweis{ display:none } }
+.dash-koerper{ grid-template-columns:minmax(0,1.62fr) minmax(0,1fr) }
+.dash-links{ padding:20px 20px 20px }
+
+.chart-kopf{ align-items:flex-start }
+.ck-label{ display:block; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.38) }
+.ck-zeile{ display:flex; align-items:baseline; gap:12px; margin-top:8px }
+.ck-zahl{ font-size:clamp(30px,3.6vw,42px); font-weight:600; letter-spacing:-.045em; line-height:1;
+  color:#fff; font-variant-numeric:tabular-nums }
+.ck-delta{ display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:500;
+  padding:5px 10px; border-radius:100px; color:#1B2A05;
+  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 6px rgba(0,0,0,.45) }
+.ck-delta svg{ width:11px; height:11px }
+.ck-unter{ display:block; margin-top:7px; font-size:11.5px; color:rgba(255,255,255,.32) }
+
+.chart-flaeche{ position:relative; margin-top:16px; border-radius:16px; overflow:hidden;
+  border:1px solid var(--line); padding:4px 54px 4px 4px;
+  background:radial-gradient(110% 80% at 50% 0%, rgba(198,247,81,.06), transparent 60%),
+    linear-gradient(180deg,#121610,#090B06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09), inset 0 -22px 36px -26px rgba(0,0,0,.95) }
+.chart{ width:100%; height:auto; display:block; overflow:visible }
+.chart-achse{ position:absolute; right:0; top:4px; bottom:4px; width:52px;
+  display:flex; flex-direction:column; justify-content:space-between; padding:14px 0 76px;
+  border-left:1px solid var(--line); font-size:10.5px; color:rgba(255,255,255,.3);
+  text-align:right; padding-right:10px }
+.chart-blase{ position:absolute; right:6px; top:7.5%; font-size:11px; font-weight:500; color:#1B2A05;
+  padding:4px 9px; border-radius:6px; background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 7px rgba(0,0,0,.6) }
+.chart-fahne{ position:absolute; left:4px; bottom:8px; font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:rgba(255,255,255,.28); padding:0 8px }
+/* Kurve zeichnet sich */
+.kurve-linie{ stroke-dasharray:1400; stroke-dashoffset:1400;
+  filter:drop-shadow(0 0 10px rgba(198,247,81,.5)) }
+.da .kurve-linie{ animation:kurve-zeichnen 2.2s cubic-bezier(.3,0,.2,1) .2s forwards }
+@keyframes kurve-zeichnen{ to{ stroke-dashoffset:0 } }
+.kurve-fuell{ opacity:0 }
+.da .kurve-fuell{ animation:einblenden 1.2s ease 1.1s forwards }
+@keyframes einblenden{ to{ opacity:1 } }
+.vol{ transform-box:fill-box; transform-origin:50% 100%; transform:scaleY(.05); opacity:0 }
+.da .vol{ animation:vol-hoch .5s cubic-bezier(.16,1,.3,1) forwards; animation-delay:calc(.012s * var(--i)) }
+@keyframes vol-hoch{ to{ transform:scaleY(1); opacity:1 } }
+.punkt,.punkt-ring,.niveau,.kreuz,.chart-blase{ opacity:0 }
+.da .punkt,.da .niveau,.da .kreuz,.da .chart-blase{ animation:einblenden .6s ease 2.1s forwards }
+.da .punkt-ring{ animation:einblenden .6s ease 2.1s forwards, ring-puls 2.6s ease-in-out 2.7s infinite }
+@keyframes ring-puls{ 0%,100%{ transform:scale(1); opacity:1 } 60%{ transform:scale(1.5); opacity:0 } }
+.punkt-ring{ transform-box:fill-box; transform-origin:50% 50% }
+
+.dash-unten{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px }
+@media (max-width:620px){ .dash-unten{ grid-template-columns:1fr } }
+.du-feld{ padding:12px 14px; border-radius:13px; border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.35) }
+.du-feld span{ display:block; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+  color:rgba(255,255,255,.34) }
+.du-feld b{ display:block; margin-top:5px; font-size:15px; font-weight:500; color:#fff; letter-spacing:-.02em }
+
+.kpi-spalte{ display:grid; gap:10px }
+.kpi-spalte .kpi-zahl{ font-size:clamp(24px,2.6vw,30px) }
+
+/* ===== Plattformzeichen in Lime ===== */
+.pf-marke svg{ width:20px; height:20px; fill:#C6F751;
+  filter:drop-shadow(0 0 8px rgba(198,247,81,.5)) }
+
+
+/* ===== Fallbeispiel im Vordergrund ===== */
+.st-karte{ cursor:pointer }
+.st-mehr{ display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:11.5px;
+  letter-spacing:.06em; color:rgba(198,247,81,.8) }
+.st-mehr svg{ width:11px; height:11px }
+.st-karte:hover .st-mehr{ color:#E4FFA0 }
+.fall-huelle{ position:fixed; inset:0; z-index:90; display:grid; place-items:center; padding:24px }
+.fall-huelle[hidden]{ display:none }
+.fall-schatten{ position:absolute; inset:0; background:rgba(4,5,3,.78);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); animation:einblenden .3s ease forwards }
+.fall-feld{ position:relative; z-index:2; width:min(820px,100%); max-height:88vh; overflow:auto;
+  border-radius:clamp(18px,2vw,26px); border:1px solid var(--line-2); padding:clamp(26px,3.4vw,40px);
+  background:radial-gradient(110% 80% at 50% 0%, rgba(198,247,81,.1), transparent 56%),
+    linear-gradient(180deg,#171B10,#0B0D07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 40px 90px -30px rgba(0,0,0,1);
+  animation:fall-rein .45s cubic-bezier(.22,1,.3,1) forwards }
+@keyframes fall-rein{ from{ opacity:0; transform:translateY(22px) scale(.97) } to{ opacity:1; transform:none } }
+.fall-zu{ position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%;
+  display:grid; place-items:center; color:#fff; z-index:3;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 2px 5px rgba(0,0,0,.5) }
+.fall-zu:hover{ background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07)) }
+.fall-zu svg{ width:15px; height:15px }
+.fall-kopf{ display:grid; grid-template-columns:150px minmax(0,1fr); gap:26px; align-items:center }
+@media (max-width:620px){ .fall-kopf{ grid-template-columns:1fr } }
+.fall-bild{ position:relative; height:190px; border-radius:var(--r-s); overflow:hidden;
+  background:radial-gradient(90% 80% at 50% 0%, rgba(198,247,81,.18), transparent 64%),
+    linear-gradient(180deg,#1A2012,#0C0F08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12) }
+.fall-bild .foto-lino{ position:absolute; left:-8%; bottom:0; width:116%; height:96%;
+  background:var(--lino-foto-img) center bottom/contain no-repeat }
+.fall-bild .foto-bergunde{ position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  width:104%; height:96%; background:var(--bergunde-foto-img) center bottom/contain no-repeat }
+.fall-titel{ margin:14px 0 2px; font-size:clamp(22px,2.6vw,30px) }
+.fall-unter{ margin:0; font-size:13.5px; color:var(--text-2) }
+.fall-zahl{ margin-top:18px; display:flex; align-items:center; gap:14px }
+.fall-zahl b{ font-size:clamp(28px,3.4vw,40px); font-weight:600; letter-spacing:-.045em; line-height:1;
+  background:linear-gradient(170deg,#EEFFC0,#C6F751 55%,#8FC520);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 18px rgba(198,247,81,.4)) }
+.fall-zahl span{ font-size:12px; line-height:1.4; color:var(--text-2) }
+.fall-zitat{ margin:26px 0 0; font-size:clamp(16px,1.7vw,19px); line-height:1.5; color:#fff;
+  letter-spacing:-.018em }
+.fall-raster{ margin-top:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:var(--r-s); overflow:hidden }
+@media (max-width:620px){ .fall-raster{ grid-template-columns:1fr } }
+.fall-raster > div{ background:#0D1009; padding:18px 18px 20px }
+.fall-raster span{ display:block; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--text-2); margin-bottom:8px }
+.fall-raster p{ margin:0; font-size:13.8px; line-height:1.52; color:rgba(255,255,255,.58) }
+.fall-fuss{ margin:20px 0 0; font-size:13px; color:var(--text-2) }
+
 </style>
 </head>
 
@@ -911,6 +1035,16 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     <stop offset="0" stop-color="#C6F751" stop-opacity=".34"/><stop offset="1" stop-color="#C6F751" stop-opacity="0"/></linearGradient>
   <linearGradient id="funkeG2" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#8FC520" stop-opacity=".3"/><stop offset="1" stop-color="#8FC520" stop-opacity="0"/></linearGradient>
+  <linearGradient id="chartLinie" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8FC520"/><stop offset=".55" stop-color="#C6F751"/><stop offset="1" stop-color="#EAFFB8"/></linearGradient>
+  <linearGradient id="chartFuell" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#C6F751" stop-opacity=".34"/>
+    <stop offset=".55" stop-color="#C6F751" stop-opacity=".09"/>
+    <stop offset="1" stop-color="#C6F751" stop-opacity="0"/></linearGradient>
+  <linearGradient id="volA" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#6E9C18"/><stop offset="1" stop-color="#2F4509"/></linearGradient>
+  <linearGradient id="volB" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#D6FF78"/><stop offset="1" stop-color="#7FB517"/></linearGradient>
   <linearGradient id="saeuleA" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#EAFFB8"/><stop offset=".45" stop-color="#C6F751"/><stop offset="1" stop-color="#6E9C18"/></linearGradient>
   <linearGradient id="saeuleB" x1="0" y1="0" x2="0" y2="1">
@@ -999,12 +1133,129 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       <div class="dash-leiste">
         <span class="ampel"><i></i><i></i><i></i></span>
         <span class="fenster-titel">Dein Dashboard</span>
-        <span class="dash-tabs"><b class="an">Diese Woche</b><b>Monat</b></span>
+        <span class="dash-hinweis">Beispielansicht</span>
+        <span class="dash-tabs"><b class="an">7 Tage</b><b>30 Tage</b><b>90 Tage</b></span>
         <span class="fenster-rechts"><b></b>Live</span>
       </div>
       <div class="dash-koerper">
         <div class="dash-links">
-          <div class="kpi-reihe">
+          <div class="chart-kopf">
+            <div>
+              <span class="ck-label">Anfragen und Bewerbungen</span>
+              <div class="ck-zeile">
+                <b class="ck-zahl" data-zahl="214">0</b>
+                <span class="ck-delta">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5v-7M3 5.5 6 2.5l3 3"/></svg>
+                  42&nbsp;%
+                </span>
+              </div>
+              <span class="ck-unter">gegenüber den 90 Tagen davor</span>
+            </div>
+            <span class="chart-legende"><i class="la"></i>Verlauf<i class="lb"></i>Volumen</span>
+          </div>
+
+          <div class="chart-flaeche">
+            <svg class="chart" viewBox="0 0 640 280" fill="none" aria-hidden="true">
+              <line x1="12" y1="18.0" x2="572" y2="18.0" stroke="rgba(255,255,255,.055)"/>
+            <line x1="12" y1="65.0" x2="572" y2="65.0" stroke="rgba(255,255,255,.055)"/>
+            <line x1="12" y1="112.0" x2="572" y2="112.0" stroke="rgba(255,255,255,.055)"/>
+            <line x1="12" y1="159.0" x2="572" y2="159.0" stroke="rgba(255,255,255,.055)"/>
+            <line x1="12" y1="206.0" x2="572" y2="206.0" stroke="rgba(255,255,255,.055)"/>
+            <line x1="12.0" y1="18" x2="12.0" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="105.3" y1="18" x2="105.3" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="198.7" y1="18" x2="198.7" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="292.0" y1="18" x2="292.0" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="385.3" y1="18" x2="385.3" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="478.7" y1="18" x2="478.7" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <line x1="572.0" y1="18" x2="572.0" y2="206" stroke="rgba(255,255,255,.035)"/>
+            <path class="kurve-fuell" d="M12.0,200.0 L20.9,196.9 L29.8,190.8 L38.7,188.2 L47.6,185.1 L56.4,181.2 L65.3,180.4 L74.2,177.0 L83.1,172.5 L92.0,166.7 L100.9,166.4 L109.8,164.5 L118.7,164.2 L127.6,158.2 L136.4,153.3 L145.3,153.6 L154.2,146.5 L163.1,139.6 L172.0,135.4 L180.9,131.6 L189.8,131.5 L198.7,132.7 L207.6,130.1 L216.4,131.2 L225.3,131.5 L234.2,131.6 L243.1,133.4 L252.0,131.9 L260.9,130.8 L269.8,126.5 L278.7,124.9 L287.6,122.3 L296.4,120.9 L305.3,118.2 L314.2,117.2 L323.1,117.5 L332.0,112.1 L340.9,106.6 L349.8,102.2 L358.7,98.8 L367.6,98.4 L376.4,98.5 L385.3,98.0 L394.2,99.1 L403.1,94.6 L412.0,92.7 L420.9,87.2 L429.8,85.2 L438.7,78.6 L447.6,72.7 L456.4,73.3 L465.3,72.3 L474.2,65.6 L483.1,62.4 L492.0,55.0 L500.9,52.3 L509.8,52.2 L518.7,47.7 L527.6,42.0 L536.4,40.5 L545.3,40.5 L554.2,38.7 L563.1,32.0 L572.0,27.0 L572.0,206 L12.0,206 Z" fill="url(#chartFuell)"/>
+            <path class="kurve-linie" d="M12.0,200.0 L20.9,196.9 L29.8,190.8 L38.7,188.2 L47.6,185.1 L56.4,181.2 L65.3,180.4 L74.2,177.0 L83.1,172.5 L92.0,166.7 L100.9,166.4 L109.8,164.5 L118.7,164.2 L127.6,158.2 L136.4,153.3 L145.3,153.6 L154.2,146.5 L163.1,139.6 L172.0,135.4 L180.9,131.6 L189.8,131.5 L198.7,132.7 L207.6,130.1 L216.4,131.2 L225.3,131.5 L234.2,131.6 L243.1,133.4 L252.0,131.9 L260.9,130.8 L269.8,126.5 L278.7,124.9 L287.6,122.3 L296.4,120.9 L305.3,118.2 L314.2,117.2 L323.1,117.5 L332.0,112.1 L340.9,106.6 L349.8,102.2 L358.7,98.8 L367.6,98.4 L376.4,98.5 L385.3,98.0 L394.2,99.1 L403.1,94.6 L412.0,92.7 L420.9,87.2 L429.8,85.2 L438.7,78.6 L447.6,72.7 L456.4,73.3 L465.3,72.3 L474.2,65.6 L483.1,62.4 L492.0,55.0 L500.9,52.3 L509.8,52.2 L518.7,47.7 L527.6,42.0 L536.4,40.5 L545.3,40.5 L554.2,38.7 L563.1,32.0 L572.0,27.0" stroke="url(#chartLinie)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <rect class="vol" style="--i:0" x="9.6" y="252.5" width="4.8" height="9.5" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:1" x="18.5" y="247.2" width="4.8" height="14.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:2" x="27.4" y="243.6" width="4.8" height="18.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:3" x="36.3" y="240.6" width="4.8" height="21.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:4" x="45.2" y="228.5" width="4.8" height="33.5" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:5" x="54.0" y="235.7" width="4.8" height="26.3" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:6" x="62.9" y="231.0" width="4.8" height="31.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:7" x="71.8" y="234.9" width="4.8" height="27.1" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:8" x="80.7" y="241.3" width="4.8" height="20.7" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:9" x="89.6" y="242.6" width="4.8" height="19.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:10" x="98.5" y="250.7" width="4.8" height="11.3" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:11" x="107.4" y="248.0" width="4.8" height="14.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:12" x="116.3" y="244.9" width="4.8" height="17.1" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:13" x="125.2" y="238.0" width="4.8" height="24.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:14" x="134.0" y="237.1" width="4.8" height="24.9" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:15" x="142.9" y="234.7" width="4.8" height="27.3" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:16" x="151.8" y="224.7" width="4.8" height="37.3" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:17" x="160.7" y="229.2" width="4.8" height="32.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:18" x="169.6" y="238.8" width="4.8" height="23.2" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:19" x="178.5" y="239.0" width="4.8" height="23.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:20" x="187.4" y="248.7" width="4.8" height="13.3" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:21" x="196.3" y="250.9" width="4.8" height="11.1" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:22" x="205.2" y="242.6" width="4.8" height="19.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:23" x="214.0" y="237.7" width="4.8" height="24.3" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:24" x="222.9" y="239.4" width="4.8" height="22.6" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:25" x="231.8" y="225.2" width="4.8" height="36.8" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:26" x="240.7" y="235.2" width="4.8" height="26.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:27" x="249.6" y="235.5" width="4.8" height="26.5" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:28" x="258.5" y="232.1" width="4.8" height="29.9" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:29" x="267.4" y="241.2" width="4.8" height="20.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:30" x="276.3" y="246.4" width="4.8" height="15.6" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:31" x="285.2" y="252.0" width="4.8" height="10.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:32" x="294.0" y="248.3" width="4.8" height="13.7" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:33" x="302.9" y="240.2" width="4.8" height="21.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:34" x="311.8" y="238.9" width="4.8" height="23.1" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:35" x="320.7" y="231.4" width="4.8" height="30.6" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:36" x="329.6" y="233.0" width="4.8" height="29.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:37" x="338.5" y="232.3" width="4.8" height="29.7" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:38" x="347.4" y="228.3" width="4.8" height="33.7" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:39" x="356.3" y="238.1" width="4.8" height="23.9" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:40" x="365.2" y="242.8" width="4.8" height="19.2" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:41" x="374.0" y="248.7" width="4.8" height="13.3" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:42" x="382.9" y="249.8" width="4.8" height="12.2" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:43" x="391.8" y="245.1" width="4.8" height="16.9" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:44" x="400.7" y="233.6" width="4.8" height="28.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:45" x="409.6" y="229.8" width="4.8" height="32.2" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:46" x="418.5" y="235.0" width="4.8" height="27.0" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:47" x="427.4" y="235.6" width="4.8" height="26.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:48" x="436.3" y="229.8" width="4.8" height="32.2" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:49" x="445.2" y="231.6" width="4.8" height="30.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:50" x="454.0" y="243.5" width="4.8" height="18.5" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:51" x="462.9" y="245.5" width="4.8" height="16.5" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:52" x="471.8" y="251.2" width="4.8" height="10.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:53" x="480.7" y="244.6" width="4.8" height="17.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:54" x="489.6" y="240.2" width="4.8" height="21.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:55" x="498.5" y="239.6" width="4.8" height="22.4" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:56" x="507.4" y="238.4" width="4.8" height="23.6" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:57" x="516.3" y="224.5" width="4.8" height="37.5" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:58" x="525.2" y="235.6" width="4.8" height="26.4" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:59" x="534.0" y="232.5" width="4.8" height="29.5" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:60" x="542.9" y="241.4" width="4.8" height="20.6" rx="1.6" fill="url(#volB)"/>
+            <rect class="vol" style="--i:61" x="551.8" y="243.2" width="4.8" height="18.8" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:62" x="560.7" y="251.1" width="4.8" height="10.9" rx="1.6" fill="url(#volA)"/>
+            <rect class="vol" style="--i:63" x="569.6" y="248.1" width="4.8" height="13.9" rx="1.6" fill="url(#volA)"/>
+            <line class="niveau" x1="12" y1="27.0" x2="578.0" y2="27.0" stroke="rgba(198,247,81,.45)" stroke-width="1" stroke-dasharray="4 5"/>
+            <circle class="punkt" cx="572.0" cy="27.0" r="4.6" fill="#E4FFA0"/>
+            <circle class="punkt-ring" cx="572.0" cy="27.0" r="10" fill="none" stroke="rgba(198,247,81,.4)"/>
+            <line class="kreuz" x1="367.6" y1="18" x2="367.6" y2="262" stroke="rgba(255,255,255,.16)" stroke-dasharray="3 4"/>
+            <circle class="kreuz" cx="367.6" cy="98.4" r="3.6" fill="#fff"/>
+            </svg>
+            <div class="chart-achse">
+              <span>240</span><span>180</span><span>120</span><span>60</span><span>0</span>
+            </div>
+            <span class="chart-blase">214</span>
+            <span class="chart-fahne">Heute</span>
+          </div>
+
+          <div class="dash-unten">
+            <div class="du-feld"><span>Antwortzeit</span><b>&lt; 24 h</b></div>
+            <div class="du-feld"><span>Vorqualifiziert</span><b>72 %</b></div>
+            <div class="du-feld"><span>Kanäle</span><b>Meta · Google</b></div>
+          </div>
+        </div>
+
+        <div class="dash-rechts">
+          <div class="kpi-spalte">
             <div class="kpi">
               <span class="kpi-kopf">Neue Anfragen <i class="trend">+18&nbsp;%</i></span>
               <b class="kpi-zahl" data-zahl="34">0</b>
@@ -1021,54 +1272,8 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
                 <path d="M2 30C16 28 22 24 34 24s16-6 26-4 16-6 26-6 18 2 30 0V34H2z" fill="url(#funkeG2)"/>
               </svg>
             </div>
-            <div class="kpi">
-              <span class="kpi-kopf">Termine im Kalender <i class="trend">+6</i></span>
-              <b class="kpi-zahl" data-zahl="9">0</b>
-              <svg class="funke" viewBox="0 0 120 34" fill="none" preserveAspectRatio="none">
-                <path d="M2 30C18 30 22 20 34 20s14 2 26-2 18-8 28-8 18 4 30 2" stroke="#C6F751" stroke-width="2" stroke-linecap="round"/>
-                <path d="M2 30C18 30 22 20 34 20s14 2 26-2 18-8 28-8 18 4 30 2V34H2z" fill="url(#funkeG)"/>
-              </svg>
-            </div>
           </div>
 
-          <div class="dash-chart">
-            <div class="chart-kopf">
-              <b>Eingang pro Tag</b>
-              <span class="chart-legende"><i class="la"></i>Anfragen<i class="lb"></i>Bewerbungen</span>
-            </div>
-            <svg class="saeulen-neu" viewBox="0 0 560 200" fill="none" aria-hidden="true">
-              <line x1="10" y1="18.0" x2="550" y2="18.0" stroke="rgba(255,255,255,.055)" stroke-width="1"/>
-              <line x1="10" y1="68.2" x2="550" y2="68.2" stroke="rgba(255,255,255,.055)" stroke-width="1"/>
-              <line x1="10" y1="118.3" x2="550" y2="118.3" stroke="rgba(255,255,255,.055)" stroke-width="1"/>
-              <line x1="10" y1="170.0" x2="550" y2="170.0" stroke="rgba(255,255,255,.055)" stroke-width="1"/>
-              <g class="saeule sa" style="--i:0"><rect x="31.1" y="106.2" width="15" height="63.8" rx="7.5" fill="url(#saeuleA)"/><rect x="31.1" y="106.2" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:0"><rect x="51.1" y="136.6" width="15" height="33.4" rx="7.5" fill="url(#saeuleB)"/><rect x="51.1" y="136.6" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="48.6" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Mo</text>
-              <g class="saeule sa" style="--i:1"><rect x="108.2" y="81.8" width="15" height="88.2" rx="7.5" fill="url(#saeuleA)"/><rect x="108.2" y="81.8" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:1"><rect x="128.2" y="122.9" width="15" height="47.1" rx="7.5" fill="url(#saeuleB)"/><rect x="128.2" y="122.9" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="125.7" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Di</text>
-              <g class="saeule sa" style="--i:2"><rect x="185.4" y="92.5" width="15" height="77.5" rx="7.5" fill="url(#saeuleA)"/><rect x="185.4" y="92.5" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:2"><rect x="205.4" y="129.0" width="15" height="41.0" rx="7.5" fill="url(#saeuleB)"/><rect x="205.4" y="129.0" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="202.9" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Mi</text>
-              <g class="saeule sa" style="--i:3"><rect x="262.5" y="57.5" width="15" height="112.5" rx="7.5" fill="url(#saeuleA)"/><rect x="262.5" y="57.5" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:3"><rect x="282.5" y="112.2" width="15" height="57.8" rx="7.5" fill="url(#saeuleB)"/><rect x="282.5" y="112.2" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="280.0" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Do</text>
-              <g class="saeule sa hoch" style="--i:4"><rect x="339.6" y="36.2" width="15" height="133.8" rx="7.5" fill="url(#saeuleA)"/><rect x="339.6" y="36.2" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:4"><rect x="359.6" y="98.6" width="15" height="71.4" rx="7.5" fill="url(#saeuleB)"/><rect x="359.6" y="98.6" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="357.1" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Fr</text>
-              <g class="saeule sa" style="--i:5"><rect x="416.8" y="115.3" width="15" height="54.7" rx="7.5" fill="url(#saeuleA)"/><rect x="416.8" y="115.3" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:5"><rect x="436.8" y="142.6" width="15" height="27.4" rx="7.5" fill="url(#saeuleB)"/><rect x="436.8" y="142.6" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="434.3" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">Sa</text>
-              <g class="saeule sa" style="--i:6"><rect x="493.9" y="75.8" width="15" height="94.2" rx="7.5" fill="url(#saeuleA)"/><rect x="493.9" y="75.8" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <g class="saeule sb" style="--i:6"><rect x="513.9" y="118.3" width="15" height="51.7" rx="7.5" fill="url(#saeuleB)"/><rect x="513.9" y="118.3" width="15" height="15.0" rx="7.5" fill="url(#saeuleGlanz)" opacity=".55"/></g>
-              <text x="511.4" y="191" text-anchor="middle" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.34)">So</text>
-              <line x1="10" y1="170" x2="550" y2="170" stroke="url(#achseG)" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-            <span class="chart-spitze">Bester Tag</span>
-          </div>
-        </div>
-
-        <div class="dash-rechts">
           <div class="dash-kopf2"><b>Eingang</b><span>heute</span></div>
           <div class="eintrag an">
             <span class="ik"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
@@ -1092,7 +1297,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
         </div>
       </div>
     </div>
-  </div>
+    </div>
   </div>
 </section>
 
@@ -1187,19 +1392,11 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       <div class="plattformen">
         <span class="pf-titel">Geschaltet auf</span>
         <span class="pf-marke">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9.4 2.6 3.2 13.3a3.1 3.1 0 1 0 5.4 3.1L14.8 5.7A3.1 3.1 0 0 0 9.4 2.6z" fill="#FBBC04"/>
-            <path d="M14.6 2.6a3.1 3.1 0 0 0-1.1 4.2l6.2 10.7a3.1 3.1 0 0 0 5.4-3.1L18.9 3.7a3.1 3.1 0 0 0-4.3-1.1z" fill="#4285F4" transform="translate(-2.2 0)"/>
-            <circle cx="6" cy="18.4" r="3.1" fill="#34A853"/>
-          </svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg>
           Google Ads
         </span>
         <span class="pf-marke">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <defs><linearGradient id="metaG" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#0081FB"/><stop offset="1" stop-color="#0064E0"/></linearGradient></defs>
-            <path d="M3 14.4c0-3.6 1.8-7.4 4.3-7.4 1.4 0 2.5 1 3.9 3.2.9 1.4 1.8 3 2.6 4.4.6 1.1 1.1 1.8 1.7 1.8.9 0 1.7-1.6 1.7-3.9 0-2.6-1-4.5-2.5-4.5-.8 0-1.6.6-2.4 1.7l-1.4-2C12.2 5.9 13.6 5 15 5c2.9 0 4.9 3 4.9 7.3 0 4-1.7 6.4-4.2 6.4-1.6 0-2.8-.9-4-3-.9-1.5-1.8-3.2-2.5-4.5-.6-1.1-1.1-1.7-1.7-1.7-1 0-1.9 1.8-1.9 4.5 0 1.9.5 3.3 1.3 3.3.5 0 .9-.3 1.4-1l1.3 2c-.9 1.2-1.9 1.8-3 1.8C4.4 20.1 3 17.9 3 14.4z" fill="url(#metaG)"/>
-          </svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
           Meta Ads
         </span>
       </div>
@@ -1224,21 +1421,66 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
         <h3>Neukundengewinnung</h3>
         <p style="color:rgba(255,255,255,.56);max-width:40ch">Anfragen von Leuten, die kaufen wollen, nicht von Leuten, die nur geklickt haben.</p>
         <div class="bild-rahmen">
-            <svg class="saeulen-neu" viewBox="0 0 440 170" fill="none" aria-hidden="true">
-                <line x1="8" y1="26.0" x2="432" y2="26.0" stroke="rgba(255,255,255,.05)"/>
-                <line x1="8" y1="66.1" x2="432" y2="66.1" stroke="rgba(255,255,255,.05)"/>
-                <line x1="8" y1="105.1" x2="432" y2="105.1" stroke="rgba(255,255,255,.05)"/>
-                <line x1="8" y1="144.0" x2="432" y2="144.0" stroke="rgba(255,255,255,.05)"/>
-                <g class="saeule" style="--i:0"><rect x="23.3" y="108.6" width="30" height="35.4" rx="15.0" fill="url(#saeuleB)"/><rect x="23.3" y="108.6" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule" style="--i:1"><rect x="83.9" y="99.2" width="30" height="44.8" rx="15.0" fill="url(#saeuleB)"/><rect x="83.9" y="99.2" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule" style="--i:2"><rect x="144.4" y="103.9" width="30" height="40.1" rx="15.0" fill="url(#saeuleB)"/><rect x="144.4" y="103.9" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule" style="--i:3"><rect x="205.0" y="82.6" width="30" height="61.4" rx="15.0" fill="url(#saeuleB)"/><rect x="205.0" y="82.6" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule" style="--i:4"><rect x="265.6" y="72.0" width="30" height="72.0" rx="15.0" fill="url(#saeuleB)"/><rect x="265.6" y="72.0" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule" style="--i:5"><rect x="326.1" y="61.4" width="30" height="82.6" rx="15.0" fill="url(#saeuleB)"/><rect x="326.1" y="61.4" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <g class="saeule hoch" style="--i:6"><rect x="386.7" y="44.9" width="30" height="99.1" rx="15.0" fill="url(#saeuleA)"/><rect x="386.7" y="44.9" width="30" height="30.0" rx="15.0" fill="url(#saeuleGlanz)" opacity=".5"/></g>
-                <line x1="8" y1="144" x2="432" y2="144" stroke="url(#achseG)" stroke-width="1.6" stroke-linecap="round"/>
-                <text x="12" y="162" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.3)">Monat 1</text>
-                <text x="428" y="162" text-anchor="end" font-family="Geist,sans-serif" font-size="10.5" fill="rgba(255,255,255,.3)">Monat 7</text>
+            <svg class="chart" viewBox="0 0 440 210" fill="none" aria-hidden="true">
+                <line x1="10" y1="14.0" x2="392" y2="14.0" stroke="rgba(255,255,255,.05)"/>
+                <line x1="10" y1="60.7" x2="392" y2="60.7" stroke="rgba(255,255,255,.05)"/>
+                <line x1="10" y1="107.3" x2="392" y2="107.3" stroke="rgba(255,255,255,.05)"/>
+                <line x1="10" y1="154.0" x2="392" y2="154.0" stroke="rgba(255,255,255,.05)"/>
+                <path class="kurve-fuell" d="M10.0,148.0 L18.1,143.8 L26.3,139.2 L34.4,133.4 L42.5,128.8 L50.6,122.9 L58.8,122.7 L66.9,119.5 L75.0,113.3 L83.1,108.9 L91.3,102.8 L99.4,102.0 L107.5,98.8 L115.7,97.2 L123.8,93.7 L131.9,90.2 L140.0,90.5 L148.2,89.6 L156.3,88.5 L164.4,83.4 L172.6,79.4 L180.7,79.5 L188.8,75.7 L196.9,76.3 L205.1,73.8 L213.2,74.7 L221.3,76.4 L229.4,72.6 L237.6,73.1 L245.7,73.5 L253.8,68.9 L262.0,65.0 L270.1,64.7 L278.2,60.0 L286.3,57.9 L294.5,54.8 L302.6,54.6 L310.7,49.4 L318.9,45.7 L327.0,40.0 L335.1,34.7 L343.2,33.0 L351.4,30.9 L359.5,29.8 L367.6,28.8 L375.7,28.2 L383.9,26.1 L392.0,22.0 L392.0,154 L10.0,154 Z" fill="url(#chartFuell)"/>
+                <path class="kurve-linie" d="M10.0,148.0 L18.1,143.8 L26.3,139.2 L34.4,133.4 L42.5,128.8 L50.6,122.9 L58.8,122.7 L66.9,119.5 L75.0,113.3 L83.1,108.9 L91.3,102.8 L99.4,102.0 L107.5,98.8 L115.7,97.2 L123.8,93.7 L131.9,90.2 L140.0,90.5 L148.2,89.6 L156.3,88.5 L164.4,83.4 L172.6,79.4 L180.7,79.5 L188.8,75.7 L196.9,76.3 L205.1,73.8 L213.2,74.7 L221.3,76.4 L229.4,72.6 L237.6,73.1 L245.7,73.5 L253.8,68.9 L262.0,65.0 L270.1,64.7 L278.2,60.0 L286.3,57.9 L294.5,54.8 L302.6,54.6 L310.7,49.4 L318.9,45.7 L327.0,40.0 L335.1,34.7 L343.2,33.0 L351.4,30.9 L359.5,29.8 L367.6,28.8 L375.7,28.2 L383.9,26.1 L392.0,22.0" stroke="url(#chartLinie)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <rect class="vol" style="--i:0" x="7.8" y="185.5" width="4.4" height="6.5" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:1" x="15.9" y="180.3" width="4.4" height="11.7" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:2" x="24.1" y="177.7" width="4.4" height="14.3" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:3" x="32.2" y="175.0" width="4.4" height="17.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:4" x="40.3" y="168.5" width="4.4" height="23.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:5" x="48.4" y="171.1" width="4.4" height="20.9" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:6" x="56.6" y="173.5" width="4.4" height="18.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:7" x="64.7" y="174.3" width="4.4" height="17.7" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:8" x="72.8" y="176.7" width="4.4" height="15.3" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:9" x="80.9" y="183.1" width="4.4" height="8.9" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:10" x="89.1" y="183.9" width="4.4" height="8.1" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:11" x="97.2" y="181.6" width="4.4" height="10.4" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:12" x="105.3" y="174.1" width="4.4" height="17.9" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:13" x="113.5" y="169.9" width="4.4" height="22.1" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:14" x="121.6" y="175.8" width="4.4" height="16.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:15" x="129.7" y="168.2" width="4.4" height="23.8" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:16" x="137.8" y="173.5" width="4.4" height="18.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:17" x="146.0" y="174.5" width="4.4" height="17.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:18" x="154.1" y="181.0" width="4.4" height="11.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:19" x="162.2" y="183.9" width="4.4" height="8.1" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:20" x="170.4" y="183.6" width="4.4" height="8.4" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:21" x="178.5" y="176.5" width="4.4" height="15.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:22" x="186.6" y="177.0" width="4.4" height="15.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:23" x="194.7" y="170.0" width="4.4" height="22.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:24" x="202.9" y="166.8" width="4.4" height="25.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:25" x="211.0" y="167.0" width="4.4" height="25.0" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:26" x="219.1" y="174.2" width="4.4" height="17.8" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:27" x="227.2" y="176.8" width="4.4" height="15.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:28" x="235.4" y="179.8" width="4.4" height="12.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:29" x="243.5" y="184.3" width="4.4" height="7.7" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:30" x="251.6" y="182.8" width="4.4" height="9.2" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:31" x="259.8" y="176.2" width="4.4" height="15.8" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:32" x="267.9" y="171.8" width="4.4" height="20.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:33" x="276.0" y="168.5" width="4.4" height="23.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:34" x="284.1" y="175.4" width="4.4" height="16.6" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:35" x="292.3" y="167.3" width="4.4" height="24.7" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:36" x="300.4" y="176.8" width="4.4" height="15.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:37" x="308.5" y="177.8" width="4.4" height="14.2" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:38" x="316.7" y="180.7" width="4.4" height="11.3" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:39" x="324.8" y="185.2" width="4.4" height="6.8" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:40" x="332.9" y="181.2" width="4.4" height="10.8" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:41" x="341.0" y="174.0" width="4.4" height="18.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:42" x="349.2" y="173.0" width="4.4" height="19.0" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:43" x="357.3" y="173.2" width="4.4" height="18.8" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:44" x="365.4" y="172.7" width="4.4" height="19.3" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:45" x="373.5" y="174.8" width="4.4" height="17.2" rx="1.5" fill="url(#volB)"/>
+                <rect class="vol" style="--i:46" x="381.7" y="177.5" width="4.4" height="14.5" rx="1.5" fill="url(#volA)"/>
+                <rect class="vol" style="--i:47" x="389.8" y="179.7" width="4.4" height="12.3" rx="1.5" fill="url(#volA)"/>
+                <line class="niveau" x1="10" y1="22.0" x2="398.0" y2="22.0" stroke="rgba(198,247,81,.45)" stroke-dasharray="4 5"/>
+                <circle class="punkt" cx="392.0" cy="22.0" r="4.2" fill="#E4FFA0"/>
+                <circle class="punkt-ring" cx="392.0" cy="22.0" r="9" fill="none" stroke="rgba(198,247,81,.4)"/>
+                <text x="402" y="26.0" font-family="Geist,sans-serif" font-size="11" font-weight="500" fill="#C6F751">hoch</text>
+                <text x="12" y="204" font-family="Geist,sans-serif" font-size="10" letter-spacing="1.2" fill="rgba(255,255,255,.3)">ANFRAGEN JE WOCHE</text>
               </svg>
           </div>
         <ul class="liste">
@@ -1309,68 +1551,68 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   </div>
   <div class="stimmen-band auf">
     <div class="stimmen-spur">
-      <article class="st-karte">
+      <article class="st-karte" data-fall="lino">
         <div class="st-bild"><span class="foto-lino"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
           </div>
         </div>
       </article>
-      <article class="st-karte">
+      <article class="st-karte" data-fall="bergunde">
         <div class="st-bild"><span class="foto-bergunde"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
           </div>
         </div>
       </article>
-      <article class="st-karte">
+      <article class="st-karte" data-fall="lino">
         <div class="st-bild"><span class="foto-lino"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
           </div>
         </div>
       </article>
-      <article class="st-karte">
+      <article class="st-karte" data-fall="bergunde">
         <div class="st-bild"><span class="foto-bergunde"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
           </div>
         </div>
       </article>
-      <article class="st-karte">
+      <article class="st-karte" data-fall="lino">
         <div class="st-bild"><span class="foto-lino"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
           </div>
         </div>
       </article>
-      <article class="st-karte">
+      <article class="st-karte" data-fall="bergunde">
         <div class="st-bild"><span class="foto-bergunde"></span></div>
         <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
           <div class="st-fuss">
-            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span><span class="st-mehr">Fall ansehen<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span></div>
             <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
           </div>
         </div>
@@ -1599,6 +1841,56 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   </div>
 </footer>
 
+<div class="fall-huelle" id="fallHuelle" hidden>
+  <div class="fall-schatten" data-zu></div>
+  <div class="fall-feld" role="dialog" aria-modal="true" aria-label="Fallbeispiel">
+    <button class="fall-zu" type="button" data-zu aria-label="Schließen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="fall-inhalt"></div>
+  </div>
+</div>
+
+<div hidden>
+  <div id="fall-lino">
+    <div class="fall-kopf">
+      <div class="fall-bild"><span class="foto-lino"></span></div>
+      <div>
+        <span class="chip"><i></i>Fallbeispiel</span>
+        <h3 class="fall-titel">Karton &amp; Kraft</h3>
+        <p class="fall-unter">Entrümpelung · Hannover</p>
+        <div class="fall-zahl"><b>19</b><span>qualifizierte Kaufanfragen<br>in der ersten Woche</span></div>
+      </div>
+    </div>
+    <p class="fall-zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Aber du hast mich wirklich vom Gegenteil überzeugt. Wir konnten jetzt schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
+    <div class="fall-raster">
+      <div><span>Ausgangslage</span><p>Der Betrieb war da, die Anfragen kamen über Empfehlungen. Planbar war daran nichts.</p></div>
+      <div><span>Was gebaut wurde</span><p>Rebuild für die Suchmaschinen, geschärftes Angebot und eine Anfragestrecke, die Anfragen nicht liegen lässt.</p></div>
+      <div><span>Ergebnis</span><p>19 qualifizierte Kaufanfragen in der ersten Woche nach dem Start.</p></div>
+    </div>
+    <p class="fall-fuss">Lino Schaller, Inhaber</p>
+  </div>
+
+  <div id="fall-bergunde">
+    <div class="fall-kopf">
+      <div class="fall-bild"><span class="foto-bergunde"></span></div>
+      <div>
+        <span class="chip"><i></i>Fallbeispiel</span>
+        <h3 class="fall-titel">Logopädie &amp; Lerntherapie</h3>
+        <p class="fall-unter">Praxis · Lehrte</p>
+        <div class="fall-zahl"><b>Platz 1</b><span>lokal in Lehrte,<br>nach zwei Tagen</span></div>
+      </div>
+    </div>
+    <p class="fall-zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
+    <div class="fall-raster">
+      <div><span>Ausgangslage</span><p>Eine Praxis, die gute Arbeit macht, aber im Stadtteil kaum gefunden wurde.</p></div>
+      <div><span>Was gebaut wurde</span><p>Website und lokale Sichtbarkeit, aufgebaut auf das, wonach Eltern tatsächlich suchen.</p></div>
+      <div><span>Ergebnis</span><p>Nach zwei Tagen Platz 1 unter den Praxen im Stadtteil.</p></div>
+    </div>
+    <p class="fall-fuss">Roswitha Bergunde, Inhaberin</p>
+  </div>
+</div>
+
 <script>
 /* ===== Einblenden beim Scrollen ===== */
 (function(){
@@ -1628,43 +1920,20 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   var ctx = cv.getContext('2d');
   var W = cv.width, H = cv.height;
 
-  var AFRIKA=[[-17,21],[-17,14],[-13,9],[-8,5],[-2,5],[6,4],[9,2],[10,-2],[12,-6],[13,-17],[15,-26],[18,-34],[26,-34],[33,-26],[35,-20],[40,-15],[41,-3],[43,5],[51,12],[48,13],[43,12],[38,16],[35,23],[33,31],[25,32],[16,31],[10,34],[0,32],[-6,35],[-10,30]];
-  var IBERIEN=[[-9.5,43.8],[-9,41],[-9.4,38.7],[-7,37],[-5.6,36],[-2,36.8],[0.8,38.9],[3.3,41.9],[0.7,42.9],[-1.8,43.4]];
-  var MITTELEUROPA=[[-4.8,48.5],[-1.5,46.2],[-1.8,43.4],[3,42.5],[7.5,43.8],[9.5,44.5],[12.5,46.5],[16,46.8],[19,46],[22.5,47.5],[24,49.5],[23.5,52.5],[21.5,54.5],[18.5,54.7],[14.5,54],[12.5,54.5],[9,54],[8.5,53.6],[6,53.5],[4,52],[2.5,51],[1.5,50.9],[-1.5,49.8]];
-  var ITALIEN=[[7.5,43.9],[10.3,44],[12.4,41.9],[14,40.8],[15.6,40],[18.5,40.1],[16.2,38.9],[15.6,38],[12.5,41.3],[10,42.9],[8.8,44.4]];
-  var BALKAN=[[13.5,46],[19,46],[22.5,44.2],[25.5,43.7],[28,43.4],[26.5,41.5],[23,40.5],[21,39.5],[23,37],[20,38.5],[18.5,42],[15.5,44]];
-  var SKANDINAVIEN=[[5,58.5],[4.8,61.5],[8,63.5],[12,66],[15,68.5],[21,70],[26,71],[30,70],[31,66],[28,62],[24.5,60.5],[22,59.5],[18.5,58.5],[16.5,56.5],[13,55.3],[11,57.5],[8.5,58]];
-  var OSTEUROPA=[[23.5,52.5],[28,51.5],[33,52],[38,52],[44,52],[47,50],[44,47],[40,46],[37,46.5],[33.5,46],[30.5,45.5],[28.5,45.5],[26.5,45],[24,47.5],[23.5,49.5]];
-  var ANATOLIEN=[[26,40],[29,41],[35,42],[41,41],[44,39],[46,38],[44,36],[42,37],[38,37],[36,36],[36,33],[34,31],[32,31],[30,31],[26,38]];
-  var ARABIEN=[[35,29],[39,31],[44,30],[48,30],[52,25],[56,25],[59,22],[55,17],[49,13],[45,13],[43,13],[39,21],[36,25]];
-  var ASIEN=[[44,52],[55,55],[65,58],[75,62],[85,66],[95,69],[105,71],[115,73],[128,73],[140,71],[155,68],[170,66],[172,62],[162,60],[155,55],[148,50],[142,46],[135,43],[130,40],[124,36],[122,31],[118,24],[110,20],[106,12],[100,6],[98,9],[94,16],[90,21],[86,22],[82,16],[79,9],[76,8],[73,18],[70,22],[66,25],[62,25],[58,28],[54,32],[50,37],[46,40],[44,44]];
-  var NORDAM=[[-168,65],[-165,60],[-155,58],[-148,60],[-140,60],[-132,55],[-125,49],[-124,42],[-121,36],[-117,32],[-110,28],[-105,22],[-97,18],[-91,16],[-88,21],[-90,29],[-84,30],[-81,25],[-80,32],[-76,35],[-70,42],[-66,45],[-60,47],[-56,52],[-64,60],[-78,62],[-85,67],[-95,70],[-110,70],[-125,70],[-140,70],[-156,71]];
-  var GROENLAND=[[-58,64],[-48,60],[-42,62],[-30,68],[-22,70],[-20,76],[-28,83],[-45,83],[-58,78],[-62,70]];
-  var SUEDAM=[[-81,6],[-77,9],[-72,11],[-64,11],[-60,8],[-52,5],[-50,0],[-44,-2],[-38,-5],[-35,-8],[-38,-13],[-39,-18],[-45,-23],[-48,-26],[-53,-33],[-57,-38],[-62,-40],[-65,-45],[-68,-52],[-73,-54],[-75,-48],[-73,-42],[-72,-35],[-71,-25],[-70,-18],[-74,-14],[-78,-7],[-80,-2]];
-  var AUSTRALIEN=[[113,-22],[114,-28],[117,-34],[123,-33],[130,-32],[137,-35],[141,-38],[146,-39],[150,-37],[153,-31],[153,-25],[148,-20],[142,-11],[136,-12],[131,-11],[126,-14],[122,-18]];
-  var POLYGONE=[AFRIKA,IBERIEN,MITTELEUROPA,ITALIEN,BALKAN,SKANDINAVIEN,OSTEUROPA,
-    ANATOLIEN,ARABIEN,ASIEN,NORDAM,GROENLAND,SUEDAM,AUSTRALIEN];
-  /* Inseln als Kreise: Laenge, Breite, Radius in Grad */
-  var INSELN=[[-2,53,3.4],[-4,57,2],[-8,53,2],[138,37,3.4],[141,43,2.4],[131,33,2],[172,-42,3],[174,-37,2],
-    [47,-19,4],[-19,65,2.6],[81,7,1.6],[122,12,3],[101,0,4],[110,-7,2.6],[114,0,4.2],[121,-2,3.4],[140,-5,5],
-    [-78,21,2.4],[-70,19,2],[13,43,2.4],[9,40,1.6],[15,37,1.6],[22,39,2.4],[-15,28,1.2],[105,-2,3],[-61,15,1.4]];
-
-  function imPolygon(x,y,p){
-    var d=false;
-    for(var i=0,j=p.length-1;i<p.length;j=i++){
-      var xi=p[i][0], yi=p[i][1], xj=p[j][0], yj=p[j][1];
-      if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) d=!d;
-    }
-    return d;
-  }
+  /* Landmaske aus Natural Earth 110m, gemeinfrei, auf ein halbes Grad gerastert */
+  var MASKE="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//////gAAAAD////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////////gAAB8P/////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////+Af////////////8A/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////+A/////////////3//+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf8P//////g////////////////+AAAAAAAAAAAAAAAAAAAAHvAAAAAAAAAAAAAB/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//+AP///8H///////////////+AAAAAAAAAAAB//+AAAAAAHwAAAAAAAAAAAAAD//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///f////AAf//////////////+AAAAAAAAAD4/D/+AAAAAAAAAAAAAAAAAAAAAA//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAB//z//8AAD///////////////8AAAAAAAAAD//8AAAAAAAAAAAAAAAAAAAAAAAAP/xwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAf4eD/8///8AH////////////////4AAAAAAAAAB//8AAAAAAAAAAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8fgHA///8D/////////////////4AAAAAAAAAAf/w8AAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfwAAAB8ADn//AAf////////////////4AAAAAAAAAAB/A/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAD//4AAB////////////////8AAAAAAAAAAD+AAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/gAEAAAD/4f///AAH////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAA+AAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfwPgPAB/4B8AAAwAAA////////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAP/8AAAAAAAAAD////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+H8B/4A/gAcAAAAAAAf////////////4AAAAAAAAAAAAAAAAAAAAAAAAAH/4AAAAAAAAB///////AAAAAAAB//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB///8APx8f///wAAAAAAH////////////4AAAAAAAAAAAAAAAAAAAAAAAAB/4AAAAAAAAH///////+AAAAAAAD//z8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfgAAAA8H///wAAAAAAB////////////wAAAAAAAAAAAAAAAAAAAAAAAAD/AAAAAAAAB////////gAAAAAAAAcAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAAAAAAAAAAA////////////AAAAAAAAAAAAAAAAAAAAAAAAAP4AAAAAAAAB///////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAEAf+AQAQAAAAAAAP///////////gAAAAAAAAAAAAAAAAAAAAAAAB/gAAAAAAAf/////////8AAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//kAAHgf4/4Pj+fwAAAAAAH//////////gAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAAAAB////////////8A/8AAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/5+8Y+B38/A/3/gAAAAAAAD//////////4AAAAAAAAAAAAAAAAAAAAAAAAH8AAAA/hgB////////////////AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/n//+/Af+cA///n+AAAAAAD/////////+AAAAAAAAAAAAAAAAAAAAAAAAAH4AAAA/wh8////////////////AAAH//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAf+P//+/AD+cA/////wAAAAAH//////////4AAAAAAAAAAAAAAAAAAAAAAAAf4AAAD/Dv/////////////////AgAH///AAAAAAAAAA+AAAAAADAAAAAAAAAAB4Af///gAB/A//////gAAAAAP////////78AAAAAAAAAAAAAAAAAAAAAAAAD+AAAP/H3/////////////////h//////4AAAAAAAADAAAAAAB/7wAAAAAAAAAAD////4AB/wf/////8AAAABz////////88AAAAAAAAAAAAAAA//AAAAAAAA/gAAf/j////////////////////////////AAAAAAAAAAAAA////8AAAAAAMAAAAf///AB/4A//////wAAAB/////////gAAAAAAAAAAAAAAAD//gAAAAAAAAAAAP/z////////////////////////////wAAAAAAAAAAAD//////+AAA/+I4A/////w8fgAHhAf//4AAAB+/////////gAAAAAAAAAAAAAP///2AAAAAAAAAYAP/n////////////////////////////gAAD/+AAAAAAH///////+D/////wL///+B/H+AH+AH//8AAAAA////////8AAAAAAAAAAAAAA/////4AAAAAAAAf8D/j///////////////////////////////h//8gAAAH////////////////8f4EAAAH+4H/AD//gAAAAB////////AAAAAAAAAAAAAAD//////4AAAABgEP/g/w///////////////////////////////7///+AAAH////////////////+AB/AAfH/8P8AAP/8AAAAP///////gAAAAAAAAAAAAAAf///////AD4A+P///9/5////////////////////////////////////gAAAf////////////////D4//H///8f+APD//4AAAf//////AAAAAAAAAAAAAAAB////////4D8P///////w////////////////////////////////////8AAAP//////////////////////////+AOB//8AAA//////+AAAAAAAAAAAAAAAD////////8Dg////////j////////////////////////////////////9+AAB//////////////////////////4AAH///wAAf/////8AAAAAAAAAAAAAAAH////////8Bz////////D//////////////////////////////////////gD4/////////////////////////wAAAP/x/wAAf/////gAAAcAPgAAAAAAAAP//////wPx7/////////f///////////////////////////////////P//g///////////////////////////gAAAP/wfAAAP////wAAAA///gAAAAAAAA///4f//8AH//////////////////////////////////////////////gP4AP//////////////////////////PAA///4GAAAH///8AAAAAD//wAAAAAAAB///gH//8AP//////////////////////////////////////////////AD4AH/v///////////////////////+P4B////AAAAD///4AAAAAf//gAAAAAAAD///gf//8eH/////////////////////////////////////////////+AAAAAAP///////////////////////8f+AgH//wAAAD///4AAAAAD/+AAAAAAAAP///B///+P//////////////////////////////////////////////wAAAAAAP//////////////////////+A/HwAA//wAAAB///wAAAAAA/gAAAAAAAA///8H///////////////////////////////////////////////////4AAAeAB///////////////////////+AEAAAA/z4AAAA///gAAAAAAAAAAAAAAAD///wf///////////////////////////////////////////////////8AAAAA////////////////////////wAAcAAAH8QAAAAf/+AAAAAAAAAAAAAAAAf///A////////////////////////////////////////////////////+AAAAB////////////////////////AAAwI+YAeAAAAAP/+AAAAAAAAAAAAAAAB///+Af//////////////////////////////////////////////x///+AAAAAD///////////////////////+AAAAI//AAAAAAAH/+AAAAAAAAAAAAAAAD///+Af/////////////////////////////////////////////fj///gAAAAAB///////////////////////8AAAAA//gAAAAAAD/8AAAAAAAAAAAAAAAD///8Af////////////////////////////////////////////gfH//8AAAAAAB////38f////////////////4AAAAA//+AAAAAAAD8AAAAAAAAAAAAAAAD///+Af///////////////////////////////////////////+AIP//gAAAAAAOf///n8D////////////////4AAAAAf/+AAAAAAAA4AAAAAAAAAAAAAAAD////gH4H/////////////////////////////////////////8AB//GAAAAAAAAA///PgAA///////////////4AAAAAf/+AcAAAAAAAAAAAAAAAAAAAAAAB////gAAH/////////////////////////////////////////wAD5AAAAAAAAAAA//8EAAAH//////////////4AAAAA//+A+AAAAAAAAAAAAAAAAAAAAAAB/3//AB////////////////////////////////////////g8H8APwAAAAAAAAAAAx7+AAAAB///////////////AAAAB///g/AAAAAAAAAAAAAAAAAAAAAAB/D/8AB///////////////////////////////////////gAAAAAfgAAAAAAAAAAAAH8AAAAAP//////////////AAAAAf////gAAAAAAAAAAAAAAAAAAeAAAcB/4AAf//////////////////////////////////////AAAAAB/AAAAAAAAAAAAAHjgAAAAAP/////////////gAAAAP////wAAAAAAAAAAAAAAAAAA8AAAAB/4AAf/////////////////////////////////////8AAAAAP/gAAAAAAAAAAAAeHAAAAAAH/////////////iAAAAH////4AAAAAAAAAAAAAAAAAA/wAAAY/4Ac//////////////////////////////////////wAAAAAf/wAAAAAAAAAAAB4AAAAAAAD//////////////wAAAH////4AAAAAAAAAAAAAAAAAA/gAAD4f4A///////////////////////////////////////gAAAAA//wAAAAAAAAAAAHgAAAAAAAA//////////////+AAAP////4AAAAAAAAAAAAAAAAAAfAAAD8fwA//////////////////////////////////////+AAAAAB//wAAAAAAAAAAA/AAAAAAAAA///////////////wAAP////+AAAAAAAAAAAAAAAAAAfwAADzuAA//////////////////////////////////////8AAAAAB//AAAAAAAAAAADgAAAAAAAAAf///////////////gA//////gAAAAAAAAAAAAAAAAAP4AABxgAAf/////////////////////////////////////wAAAAAB/+AAAAAAAAAAAcAAAAAAAAAAH///////////////4H//////+AAAAAAAAAAAAAAAAPH8AABwADD//////////////////////////////////////AAAAAAB//AAAAAAAAAAAAAAAAAAAAAAH///////////////4H///////AAAAAAAAAAAAAAAA/A+AAB8wf///////////////////////////////////////8AAAAAB/4AAAAAAAAAAAAAAAAAAAAADB///////////////4D///////AAAAAAAAAAAAAAAB/A/AAB///////////////////////////////////////////+EAAAA/wAAAAAAAAAAAAAAAAAAAAADA///////////////8D///////wAAAAAAAAAAAAAAB/H/AD/////////////////////////////////////////////cAAAA/wAAAAAAAAAAAAAAAAAAAAABA///////////////8B///////4AAAAAAAAAAAAAAB+H/4H/////////////////////////////////////////////+AAAA+AAAAAAAAAAAAAAAAAAAAAAAAP//////////////+D///////4AAAAAAAAAAAAAAB8H/4P/////////////////////////////////////////////8AAAAeAAAAAAAAAAAAAAAAAAAAAAAAP///////////////D///////gAAAAAAAAAAAAAABgP/wP/////////////////////////////////////////////cAAAAcAAAAAAAAAAAAAAAAAAAAAAAAH//////////////////////84AAAAAAAAAAAAAAAAD/4/////////////////////////////////////////////+OAAAAQAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////////hwAAAAAAAAAAAAAAAAP8H/////////////////////////////////////////////+OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////////////B/BgAAAAAAAAAAAAAAAAaAH/////////////////////////////////////////////+PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD3//////////////////8HAD4AAAAAAAAAAAAAAAAAA//////////////////////////////////////////////+PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5//////////////////wAwH/gAAAAAAAAAAAAAAAAP//////////////////////////////////////////////+NgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAef/////////////////H8AP/gAAAAAAAAAAAAAAADn//////////////////////////////////////////////8MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEf////////////////+fwAP/wAAAAAAAAAAAAAAAH///////////////////////////////////////////////8IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHf////////////////9/wAf/wAAAAAAAAAAAAAAAB///////////////////////////////////////////////4IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////7/wAAEwAAAAAAAAAAAAAAAAf//////////////////////////////////////////////wMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////8AAAwAAAAAAAAAAAAAAAAP////////////z///+D////////////////////////////gOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////5yAAAAAAAAAAAAAAAAAAAH//////////h8D///wD////////////////////////////AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////////AAAAAAAAAAAAAAAAAAAD//////////AcH///gD///////////////////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////H8AAAAAAAAAAAAAAAAAAAH////n////+B////+Af///////////////////////////8AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////8fAAAAAAAAAAAAAAAAAAAAH////g////8AcH//8Af///////////////////////////4AcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////g4AAAAAAAAAAAAAAAAAAAAH//+/g////4AAB//8B////////////////////////////wAeIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////8AwAAAAAAAAAAAAAAAAAAAAH//8Hwf///4AAAf/+A////////////////////////////gAf4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////////////4AAAAAAAAAAAAAAAAAAAA////xgH4D///wAAAP/+Af//////////////////////////eAB/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////////////wAAAAAAAAAAAAAAAAAAAA////AAn8A///wAAAB/+AH/////////////////////////+AAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////////////wAAAAAAAAAAAAAAAAAAAA////ABh+AP//wAAAB//AH/////////////////////////8AADmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////8AAAAAAAAAAAAAAAAAAAA////ABg/wH//wB/AB//gE/////////////////////////wAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////////+AAAAAAAAAAAAAAAAAAAAA///8AAAP4H//8H/wD//wAf////////////////////////gAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////////8AAAAAAAAAAAAAAAAAAAAA///gADgD+H/Dj//////4C//////////////////////z//gAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////////wAAAAAAAAAAAAAAAAAAAAA///AABwA4n7g///////+D//////////////////////D/+AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////////wAAAAAAAAAAAAAAAAAAAAA///AABgAYD8B///////4B/////////////////////+Hn4AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////+gAAAAAAAAAAAAAAAAAAAAB///AABgAMB+B///////4D/////////////////////8GB4AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////////////////AAAAAAAAAAAAAAAAAAAAAB///AAAAAIB8B///////wA/////////////////////gAD8AAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////7AAAAAAAAAAAAAAAAAAAAAA//+AAAAAYA/B///////wA/////////////////////wAD+AAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////////////6AAAAAAAAAAAAAAAAAAAAAA//+AAAAfgAdA///////wA/////////////////////8QA/AAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////////////4AAAAAAAAAAAAAAAAAAAAAA//4AAAwHgAcAf//////+A/////////////////////++AfgAE/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////8AAAAAAAAAAAAAAAAAAAAAAB/wA9/8AAAMAf/7/////3//////////////////////4A/gAH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////8AAAAAAAAAAAAAAAAAAAAAAAwAf//4AAAAABhw////////////////////////////wAfgAP+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//////////////8AAAAAAAAAAAAAAAAAAAAAAAwD///8AAAAAAAA////////////////////////////AAfgAP+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////8AAAAAAAAAAAAAAAAAAAAAAA/P///8AAAB+AAw///////////////////////////+AAfAf/+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//////////////4AAAAAAAAAAAAAAAAAAAAAAB/////4AAAAAABg///////////////////////////+AAcA//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////////////gAAAAAAAAAAAAAAAAAAAAAAD/////wAAAAAAAB////////////////////////////gAADy8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////+AAAAAAAAAAAAAAAAAAAAAAAH/////8AAAAAAAB////////////////////////////gAAEeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////////////8AAAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAD////////////////////////////gAAfYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////wAAAAAAAAAAAAAAAAAAAAAAA///////4AAwAAAD////////////////////////////wAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////gAAAAAAAAAAAAAAAAAAAAAAB////////gD8AAAD////////////////////////////4AAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9///////////AAAAAAAAAAAAAAAAAAAAAAAB////////gD/wAAH////////////////////////////8AAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcf/////////+AAAAAAAAAAAAAAAAAAAAAAAD////////4D//g8H////////////////////////////8AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOP/////////+AAAAAAAAAAAAAAAAAAAAAAAB/////////D/////////////////////////////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOP///////gP+AAAAAAAAAAAAAAAAAAAAAAAB///////////////////////////////////////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGH/////+/gEfAAAAAAAAAAAAAAAAAAAAAAAB///////////////////B///////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADH/////wDAAPAAAAAAAAAAAAAAAAAAAAAAAD//////////////7////B///////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABj/////gAAAPgAAAAAAAAAAAAAAAAAAAAAAP/////////////+7////g///////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAx////+AAAAHgAAAAAAAAAAAAAAAAAAAAAAf//////////////f////gf//////////////////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4f///8AAAAPgAAAAAAAAAAAAAAAAAAAAAD///////////////h////wP//////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4f///4AAAAHwAAAAAAAAAAAAAAAAAAAAAH///////////////h////4D//////////////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeP///4AAAAHzAAAAAAAAAAAAAAAAAAAAAH///////////////w////8B4/////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGH///4AAAADwQAAAAAAAAAAAAAAAAAAAAf///////////////wf///8AC/////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH///8AAAABwAAAAAAAAAAAAAAAAAAAAAf///////////////4f///8gCf///////////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADB///4AAAAAgAAAAAAAAAAAAAAAAAAAAA////////////////4P///+gOAf4f////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg///4AAAAABgAAAAAAAAAAAAAAAAAAAA////////////////8P////geAAAP////////////////8MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwf//4AAAAAAgAAAAAAAAAAAAAAAAAAAB////////////////+H////w/AAAH////////////////wYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYP//4AAAAAAgAAAAAAAAAAAAAAAAAAAD////////////////+B//////wAAD////////////////g4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIH//wAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////////+B//////8AAA///////////////+A4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAA/4AAAAAAAAAAAAAAAAAAAAH/////////////////A//////+AAAf//////n///////4AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//wAAABj/AAAAAAAAAAAAAAAAAAAAH/////////////////g///////AAAf//////j//////+AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//4AAAAAPgAAAAAAAAAAAAAAAAAAAP/////////////////w//////+AAAf/////8D//////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//4AAfAAB4AAAAAAAAAAAAAAAAAAAP/////////////////w//////8AAAP/////AD////+CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAB//8AB/AAA+AAAAAAAAAAAAAAAAAAAP/////////////////wf/////4AAAAP////AB////8GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//8AB+AAAfwAAAAAAAAAAAAAAAAAAH/////////////////wP/////wAAAAP///+AB////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAB//+AB+AAAAHYAAAAAAAAAAAAAAAAAH/////////////////wH/////gAAAAP///4AAf///wPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAA///AD+AAAAD/AAAAAAAAAAAAAAAAAH/////////////////4D/////wAAAAP///wAAf///geAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//gP+AAAAB/gAAAAAAAAAAAAAAAAD/////////////////4D/////AAAAAP///gAAP///weAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//7/8AAB4f0jgAAAAAAAAAAAAAAAD/////////////////8B////+AAAAAP///AAAH///wAAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////8AAAQAAAAAAAAAAAAAAAAAAAD/////////////////+A////4AAAAAP//+AAAH///4AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///4AAAAAAAAAAAAAAAAAAAAAAAH//////////////////Af///4AAAAAH//4AAAH///8AAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///4AAAAAAAAAAAAAAAAAAAAAAAH//////////////////Af//+AAAAAAH//wAAAH3//+AAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//4AAAAAAAAAAAAAAAAAAAAAAAH//////////////////AP//4AAAAAAH//gAAAPH///AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADB/7/AAAAAAAAAAAAAAAAAAAAAAH//////////////////gf//wAAAAAAH/+AAAACH///gAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///gAAAAAAAAAAAAAAAAAAAAAP//////////////////wP//gAAAAAAD/8AAAAAH///wAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//gAAAAAAAAAAAAAAAAAAAAAf//////////////////8P/4AAAAAAAB/8AAAAAD///wAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//wAAAAAAAAAAAAAAAAAAAAAP//////////////////+P/wAAAAAAAB/8AAAAAD///wAAAdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gAAAAAAAAAAAAAAAAAAAAAP///////////////////H+AAAAAAAAB/8AAAAAD///4AAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN/gAAAAAAAAAAAAAAAAAAAAAP///////////////////vgAAAAAAAAA/+AAAAABz//4AAAYwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/gAAAAAAAAAAAAAAAAAAAAAP///////////////////3AAAAAAAAAA/8AAAAABz//4AAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAgAAAAAAAAAAAAAAAAAH///////////////////4AAAAAAAAAA/8AAAAABwf/wAAAIGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfgAABmAAAAAAAAAAAAAAAAAH///////////////////gABAAAAAAAAf8AAAAABwP/wAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAPHgAAAAAAAAAAAAAAAAB///////////////////4A/AAAAAAAAP8AAAAABgP/gAAADGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAB//wAEAAAAAAAAAAAAAAA///////////////////8P/AAAAAAAAP8AAAAABgH/AAACCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgAB/f/nsAAAAAAAAAAAAAAAf/////////////////////AAAAAAAAP4AAAAABgB8AAACAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF4AB/P//4AAAAAAAAAAAAAAAP////////////////////+AAAAAAAAHwAAAAABAA4AAAEBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8PD/P//8AAAAAAAAAAAAAAAH////////////////////+AAAAAAAAHzAAAAABAAwAAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf5n////+AAAAAAAAAAAAAAAD////////////////////+AAAAAAAAHDAAAAADwAgAAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHg//////gAAAAAAAAAAAAAAD////////////////////8AAAAAAAABHgAAAAD4AAAAAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABx//////wAAAAAAAAAAAAAAD////////////////////8AAAAAAAAADgAAAAA4AAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg//////4AAAAAAAAAAAAAAB////////////////////4AAAAAAAAADgAAAAAYAAAAAACPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAf///////////////////4AAAAAAAAADgAAAAAOAAAABgAOgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////+AAAAAAAAAAAAAAAP///+H//////////////wAAAAAAAAADgAAAAAPAAAABgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///////AAAAAAAAAAAAAAD///gD//////////////wAAAAAAAAAAAAAAAAHgAAAD4ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///////4AAAAAAAAAAAAAB//+AD//////////////gAAAAAAAAAAAAAAB4PwAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///////8AAAAAAAAAAAAAA+AAAB//////////////AAAAAAAAAAAAAAAB8H4AAAf4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///////+AAAAAAAAAAAAAAAAAAAA/////////////AAAAAAAAAAAAAAAA+H4AAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////AAAAAAAAAAAAAAAAAAAAf///////////+AAAAAAAAAAAAAAAAfD4AAB/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////////AAAAAAAAAAAAAAAAAAAAf///////////8AAAAAAAAAAAAAAAAPh4AAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////////AAAAAAAAAAAAAAAAAAAAf///////////4AAAAAAAAAAAAAAAAHx4AAf/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/////////gAAAAAAAAAAAAAAAAAAAf///////////wAAAAAAAAAAAAAAAAD48AAf/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/////////wAAAAAAAAAAAAAAAAAAAf///////////AAAAAAAAAAAAAAAAAB/MAE//wAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////wAAAAAAAAAAAAAAAAAAAf//////////+AAAAAAAAAAAAAAAAAA/kAP//4AEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/////////wAAAAAAAAAAAAAAAAAAAf//////////4AAAAAAAAAAAAAAAAAA/wAP//w/4GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/////////gAAAAAAAAAAAAAAAAAAAf//////////wAAAAAAAAAAAAAAAAAA/4AP//ggAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////////+AAAAAAAAAAAAAAAAAAA///////////gAAAAAAAAAAAAAAAAAAf4AP//hAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////////+wAAAAAAAAAAAAAAAAAA///////////AAAAAAAAAAAAAAAAAAAP4AH//hhgCB8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////+AAAAAAAAAAAAAAAAAA///////////AAAAAAAAAAAAAAAAAAAH+AH//B+AAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////gAAAAAAAAAAAAAAAAA//////////+AAAAAAAAAAAAAAAAAAAH+AD/+B8AAA8BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////gAAAAAAAAAAAAAAAAAf/////////8AAAAAAAAAAAAAAAAAAAD/AD/+D8AAAGH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////AAAAAAAAAAAAAAAAAP/////////wAAAAAAAAAAAAAAAAAAAB/wD/+DsAAA+P/gAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////+AAAAAAAAAAAAAAAAH/////////wAAAAAAAAAAAAAAAAAAAA/wAN+DuAz4f//4AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////////////gAAAAAAAAAAAAAAAD/////////wAAAAAAAAAAAAAAAAAAAAfwAAcBuAQEL///AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////wAAAAAAAAAAAAAAAB/////////gAAAAAAAAAAAAAAAAAAAAfwAAABnAAAA///wAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//////////////4AAAAAAAAAAAAAAAB/////////AAAAAAAAAAAAAAAAAAAAAHwAAABlAAAAH//4AGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////gAAAAAAAAAAAAAAA/////////AAAAAAAAAAAAAAAAAAAAADwAAABhAAAAB//8AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////wAAAAAAAAAAAAAAA/////////AAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAA//+H4EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////////wAAAAAAAAAAAAAAA/////////AAAAAAAAAAAAAAAAAAAAAAPAAAAAAAACAf//hgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////////////wAAAAAAAAAAAAAAAf////////gAAAAAAAAAAAAAAAAAAAAAfhwAAAAAACAf//AABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//////////////wAAAAAAAAAAAAAAAP////////gAAAAAAAAAAAAAAAAAAAAAH/8AAAAAAAAf//AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//////////////wAAAAAAAAAAAAAAAP////////AAAAAAAAAAAAAAAAAAAAAAAn/gAAAAAAA//vgAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////wAAAAAAAAAAAAAAAP////////AAAAAAAAAAAAAAAAAAAAAAAAf4ABAAAABz+DwAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////wAAAAAAAAAAAAAAAP////////gAAAAAAAAAAAAAAAAAAAAAAAAA88DwAAAB+B4AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//////////////gAAAAAAAAAAAAAAAP////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAEA+AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//////////////gAAAAAAAAAAAAAAAP////////wAAAAAAAAAAAAAAAAAAAAAAAAABgcAAAAAAAfAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////AAAAAAAAAAAAAAAAH////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////////////8AAAAAAAAAAAAAAAAH////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////////////8AAAAAAAAAAAAAAAAH////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////////////4AAAAAAAAAAAAAAAAH////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////wAAAAAAAAAAAAAAAAH////////4AAIAAAAAAAAAAAAAAAAAAAAAAAAAAC/8AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////wAAAAAAAAAAAAAAAAP////////4AAIAAAAAAAAAAAAAAAAAAAAAAAAAAH/8AOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////gAAAAAAAAAAAAAAAAf////////4AAcAAAAAAAAAAAAAAAAAAAAAAAAAAH/4AeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////AAAAAAAAAAAAAAAAAf////////4AAcAAAAAAAAAAAAAAAAAAAAAAAAAAP/wAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////AAAAAAAAAAAAAAAAA/////////4AA8AAAAAAAAAAAAAAAAAAAAAAAAB8f/wAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////AAAAAAAAAAAAAAAAA/////////8AB8AAAAAAAAAAAAAAAAAAAAAAAAD8f/gAfwAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////////////AAAAAAAAAAAAAAAAA/////////4AD+AAAAAAAAAAAAAAAAAAAAAAAAH///wAf4AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///////////AAAAAAAAAAAAAAAAA/////////4AH6AAAAAAAAAAAAAAAAAAAAAAAAH///8Af4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////////AAAAAAAAAAAAAAAAB/////////wB/8AAAAAAAAAAAAAAAAAAAAAAAAX///+Af4AAAAAACAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB///////////AAAAAAAAAAAAAAAAB/////////gB/8AAAAAAAAAAAAAAAAAAAAAAABf////A/4AAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////////AAAAAAAAAAAAAAAAB////////8AD/4AAAAAAAAAAAAAAAAAAAAAAAB/////w/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////////AAAAAAAAAAAAAAAAA////////wAD/4AAAAAAAAAAAAAAAAAAAAAAAB///////8AAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////+AAAAAAAAAAAAAAAAA////////gAD/4AAAAAAAAAAAAAAAAAAAAAAAD///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////+AAAAAAAAAAAAAAAAAf///////AAD/wAAAAAAAAAAAAAAAAAAAAAAAH///////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////+AAAAAAAAAAAAAAAAAf//////+AAB/wAAAAAAAAAAAAAAAAAAAAAAAH////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////8AAAAAAAAAAAAAAAAAP//////8AAB/wAAAAAAAAAAAAAAAAAAAAAAAf////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////4AAAAAAAAAAAAAAAAAP//////4AAB/gAAAAAAAAAAAAAAAAAAAAAAD/////////4AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////4AAAAAAAAAAAAAAAAAH//////8AAD/gAAAAAAAAAAAAAAAAAAAAAB//////////8AAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////wAAAAAAAAAAAAAAAAAH//////8AAH/gAAAAAAAAAAAAAAAAAAAAAH//////////+AAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////wAAAAAAAAAAAAAAAAAD//////+AAH/AAAAAAAAAAAAAAAAAAAAAAP//////////+AAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////gAAAAAAAAAAAAAAAAAB//////+AAH/AAAAAAAAAAAAAAAAAAAAAAf//////////+AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////////AAAAAAAAAAAAAAAAAAB//////+AAH/AAAAAAAAAAAAAAAAAAAAAA////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////wAAAAAAAAAAAAAAAAAAB//////+AAH+AAAAAAAAAAAAAAAAAAAAAA////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////+AAAAAAAAAAAAAAAAAAAB//////+AAH+AAAAAAAAAAAAAAAAAAAAAB////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////4AAAAAAAAAAAAAAAAAAAB//////+AAH+AAAAAAAAAAAAAAAAAAAAAB////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAAAAAAAAAAAAAAB//////4AAD8AAAAAAAAAAAAAAAAAAAAAB////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///////AAAAAAAAAAAAAAAAAAAAB//////gAABwAAAAAAAAAAAAAAAAAAAAAA/////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//////+AAAAAAAAAAAAAAAAAAAAA/////+AAAAAAAAAAAAAAAAAAAAAAAAAAA/////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////+AAAAAAAAAAAAAAAAAAAAA//////AAAAAAAAAAAAAAAAAAAAAAAAAAB/////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////+AAAAAAAAAAAAAAAAAAAAA//////AAAAAAAAAAAAAAAAAAAAAAAAAAB/////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////+AAAAAAAAAAAAAAAAAAAAAf////+AAAAAAAAAAAAAAAAAAAAAAAAAAA/////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////+AAAAAAAAAAAAAAAAAAAAAf////+AAAAAAAAAAAAAAAAAAAAAAAAAAA/////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////+AAAAAAAAAAAAAAAAAAAAAP////+AAAAAAAAAAAAAAAAAAAAAAAAAAAf////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////8AAAAAAAAAAAAAAAAAAAAAH////8AAAAAAAAAAAAAAAAAAAAAAAAAAAf////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////4AAAAAAAAAAAAAAAAAAAAAH////4AAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////wAAAAAAAAAAAAAAAAAAAAAD////wAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////wAAAAAAAAAAAAAAAAAAAAAB////gAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////gAAAAAAAAAAAAAAAAAAAAAB////gAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//////AAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAH////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////+AAAAAAAAAAAAAAAAAAAAAAA///+AAAAAAAAAAAAAAAAAAAAAAAAAAAAH////A///////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAD///QAH/////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//8AAD/////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////wAAAAAAAAAAAAAAAAAAAAAAA///gAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//wAAB+////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////gAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//wAAA8////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////7/gAAAAAAAAAAAAAAAAAAAAAAAfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAAAA5////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////8eAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAARf///wAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///gAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///gAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///AAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//+AAAAAAAAeIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfvgAAAAAAAAf4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAfwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH///gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP4AAAAAAANcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP4AAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL//6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAAAAA+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB///AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//AAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAAAAB/AAfgAAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gAAAAAAAAAYAAAH/wD//AD/+//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//4AAAAAAAEf//+f//////+////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////wfAAAAA/////////////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////AAAH//////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAB/////////gAAf///////////////////////4MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAef/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4P/////////gAA//////////////////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAef/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/+//////////gAf///////////////////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAff/gAAAAAAAAAAAAAAAAAAAAAAPwff/gAD////////////8AH////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/v/wAAAAAAAAAAAAAAAAAAAAAH/5///////////////////AP/////////////////////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/n/4AAAAAAAAAAAAAAAAAHgeP/////////////////////+A////////////////////////////////4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA//j/4AAAAAAAAAAAAAAAAP/////////////////////////8B/////////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+AAAAAAAc+D/8AAAAAAAAAAAAAAAA///////////////////////////v/////////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAP/8AAAAAAAAAAAAAAAH////////////////////////////////////////////////////////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAH/wBw/4AQAAf//+AAAAAAAAAAAAAAB/////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAAAAAAYfwAAAAD//////9/4f///8AAAAAAAAAAAAAAH/////////////////////////////////////////////////////////////gAAAAAAAAAAAAAAAAAAAAAAAP/wAAAP////////////4AAAAAAAAAAAAAAB////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAAAf////////wAAH///////////+AAAAAAAAAAAAAAAH////////////////////////////////////////////////////////////gAAAAAAAAAAAAAAAAH/////////////3///////////4AAAAAAAAAAAAAAA////////////////////////////////////////////////////////////+AAAAAAAAAAAAAAAAf/////////////////////////8AAAAAAAAAAAAAAAf////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAP////////////////////////8AAAAAAAAAAAAAAA//////////////////////////////////////////////////////////////4AAAAAAAAAAAAAAAD///////////////////////wAAAAAAAAAAAAAAAP///////////////////////////////////////////////////////////////4AAAAAAAAAAAAc+B////////////////////////+AAAAAAAAAAAAAAB////////////////////////////////////////////////////////////////8AAAAAAAAAAAAP///////////////////////////wAAAAAAAAAAAAA/////////////////////////////////////////////////////////////////8AAAAAAAAAAAAH//////////////////////////wAAAAAAAAD/gAAf//////////////////////////////////////////////////////////////////gAAAAAAAAAH8A//////////////////////////AAAAAAAAAP/4AA///////////////////////////////////////////////////////////////////8AAAAAAAAAB+AAP////////////////////////AAAAAAAAAf/4AA/////////////////////////////////////////////////////////////////+AAAAAAAAAAAAAAAAB///////////////////////4AAAACAAB//4AAAAf//////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAAf//////////////////////+AAAAHgA///gAAAAH//////////////////////////////////////////////////////////////4AAAAAAAAAAAAAAAAB/////////////////////////wAP/AAf/AAAAAP///////////////////////////////////////////////////////////////wAAAAAAAAAAAAAA/8///////////////////////////gAAAAAAAAAH/////////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAH//////////////////////////////AAAAP4B////////////////////////////////////////////////////////////////////AAAAAAAAAAAAAAA//////////////////////////////+AAf///////////////////////////////////////////////////////////////////////wAAAAAAAAAAAAAA///////////////////////////////wf/////////////////////////////////////////////////////////////////////////gAAAAAAAAAAAAB///////////////////////////////////////////////////////////////////////////////////////////////////////////gAAAAAAAAAAAA///////////////////////////////////////////////////////////////////////////////////////////////////////////4AAAIYf+AAAAAA///////////////////////////////////////////////////////////////////////////////////////////////////////////8OA/////AAAAAAAP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////8D/wAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////";
+  var MB=720, MH=360, MS=0.5;
+  var maske=(function(){
+    var roh=atob(MASKE), arr=new Uint8Array(roh.length);
+    for(var i=0;i<roh.length;i++) arr[i]=roh.charCodeAt(i);
+    return arr;
+  })();
   function istLand(lon,lat){
-    if(lat < -63) return true;                       /* Antarktis */
-    for(var i=0;i<POLYGONE.length;i++) if(imPolygon(lon,lat,POLYGONE[i])) return true;
-    for(var k=0;k<INSELN.length;k++){
-      var dx=(lon-INSELN[k][0])*Math.cos(lat*Math.PI/180), dy=lat-INSELN[k][1];
-      if(dx*dx+dy*dy < INSELN[k][2]*INSELN[k][2]) return true;
-    }
-    return false;
+    var ix=Math.floor((lon+180)/MS), iy=Math.floor((90-lat)/MS);
+    if(ix<0) ix=0; else if(ix>=MB) ix=MB-1;
+    if(iy<0) iy=0; else if(iy>=MH) iy=MH-1;
+    var n=iy*MB+ix;
+    return (maske[n>>3] >> (7-(n&7))) & 1;
   }
 
   /* Punkte in Breitenringen, wie ein Rasterdruck auf der Kugel */
@@ -1676,7 +1945,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     for(var k = 0; k < n; k++){
       var lon = -180 + k*(360/n);
       var land = istLand(lon,lat);
-      if(!land && (k % 3 !== 0 || ring % 2 !== 0)) continue;   /* Meer nur angedeutet */
+      if(!land && (k % 4 !== 0 || ring % 3 !== 0)) continue;   /* Meer nur angedeutet */
       var la = lat*Math.PI/180, lo = lon*Math.PI/180;
       punkte.push({
         x: Math.cos(la)*Math.cos(lo),
@@ -1725,17 +1994,17 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       if(sy < -20 || sy > H+20) continue;
       var licht = Math.max(0, x*LX + y*LY + z*LZ);
       var tiefe = 0.35 + 0.65*z;
-      var rad = (p.land ? 2.5 : 1.7) * tiefe;
+      var rad = (p.land ? 2.9 : 1.5) * tiefe;
       if(p.dach){
         ctx.fillStyle = 'rgba(214,255,110,' + (0.68 + 0.32*licht).toFixed(3) + ')';
         ctx.shadowColor = 'rgba(198,247,81,.85)'; ctx.shadowBlur = 9;
         rad *= 1.35;
       } else if(p.land){
         ctx.shadowBlur = 0;
-        ctx.fillStyle = 'rgba(236,244,220,' + (0.3 + 0.7*licht*tiefe).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(240,248,224,' + (0.42 + 0.58*licht*tiefe).toFixed(3) + ')';
       } else {
         ctx.shadowBlur = 0;
-        ctx.fillStyle = 'rgba(176,198,146,' + (0.07 + 0.2*licht*tiefe).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(150,176,120,' + (0.035 + 0.075*licht*tiefe).toFixed(3) + ')';
       }
       ctx.beginPath(); ctx.arc(sx,sy,rad,0,Math.PI*2); ctx.fill();
       ctx.shadowBlur = 0;
@@ -1796,6 +2065,30 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   rechne();
   window.addEventListener('scroll', anstossen, {passive:true});
   window.addEventListener('resize', anstossen);
+})();
+
+/* ===== Fallbeispiel oeffnen ===== */
+(function(){
+  var huelle = document.getElementById('fallHuelle');
+  if(!huelle) return;
+  var feld = huelle.querySelector('.fall-inhalt');
+  function oeffne(name){
+    var quelle = document.getElementById('fall-' + name);
+    if(!quelle) return;
+    feld.innerHTML = quelle.innerHTML;
+    huelle.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function schliesse(){
+    huelle.hidden = true; feld.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('click', function(e){
+    var karte = e.target.closest ? e.target.closest('.st-karte') : null;
+    if(karte && karte.getAttribute('data-fall')){ oeffne(karte.getAttribute('data-fall')); return; }
+    if(e.target.closest && e.target.closest('[data-zu]')) schliesse();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') schliesse(); });
 })();
 
 /* ===== Aktiver Menuepunkt ===== */
