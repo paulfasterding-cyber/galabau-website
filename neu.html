@@ -272,12 +272,16 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .lk h3{ margin-top:18px; font-size:clamp(22px,2.3vw,27px); position:relative; z-index:2 }
 .lk > p, .lk > ul, .lk > svg, .lk > .bild-rahmen{ position:relative; z-index:2 }
 .liste{ list-style:none; margin:24px 0 0; padding:0; display:grid; gap:12px }
-.liste li{ position:relative; padding-left:28px; font-size:14.8px; color:rgba(255,255,255,.64) }
-.liste li::before{ content:""; position:absolute; left:0; top:.44em; width:16px; height:16px; border-radius:50%;
-  background:linear-gradient(180deg,rgba(198,247,81,.22),rgba(198,247,81,.06));
-  box-shadow:inset 0 0 0 1px rgba(198,247,81,.38), inset 0 1px 0 rgba(255,255,255,.2) }
-.liste li::after{ content:""; position:absolute; left:5.6px; top:calc(.44em + 5px);
-  width:5px; height:5px; border-radius:50%; background:var(--lime); box-shadow:0 0 7px rgba(198,247,81,.9) }
+.liste li{ position:relative; padding-left:34px; padding-top:1px; padding-bottom:1px;
+  font-size:14.8px; line-height:1.5; color:rgba(255,255,255,.68) }
+.liste li::before{ content:""; position:absolute; left:0; top:.1em; width:22px; height:22px; border-radius:8px;
+  background:linear-gradient(180deg,rgba(198,247,81,.2),rgba(198,247,81,.05));
+  box-shadow:inset 0 0 0 1px rgba(198,247,81,.3), inset 0 1px 0 rgba(255,255,255,.22),
+    0 2px 4px rgba(0,0,0,.4) }
+.liste li::after{ content:""; position:absolute; left:6.6px; top:calc(.1em + 7px);
+  width:9px; height:5px; border-left:1.8px solid #C6F751; border-bottom:1.8px solid #C6F751;
+  transform:rotate(-45deg); border-radius:1px }
+.liste li:hover::before{ background:linear-gradient(180deg,rgba(198,247,81,.34),rgba(198,247,81,.1)) }
 .lk-fuss{ margin:28px -30px 0; padding:19px 30px; border-top:1px solid var(--line);
   background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
@@ -645,7 +649,12 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 1px 3px rgba(0,0,0,.4) }
 .kpi-zahl{ display:block; margin:8px 0 4px; font-size:clamp(28px,3.2vw,38px); font-weight:600;
   letter-spacing:-.045em; line-height:1; color:#fff; font-variant-numeric:tabular-nums }
-.funke{ width:calc(100% + 28px); height:34px; margin:0 -14px -1px; display:block }
+.funke{ width:calc(100% + 28px); height:auto; margin:6px -14px -1px; display:block; overflow:visible }
+.fk-linie{ stroke-dasharray:200; stroke-dashoffset:200; filter:drop-shadow(0 0 7px rgba(198,247,81,.45)) }
+.da .fk-linie{ animation:kurve-zeichnen 1.6s cubic-bezier(.3,0,.2,1) .4s forwards }
+.fk-flaeche,.fk-punkt{ opacity:0 }
+.da .fk-flaeche{ animation:einblenden 1s ease 1.1s forwards }
+.da .fk-punkt{ animation:einblenden .5s ease 1.7s forwards }
 
 /* Diagramm */
 .dash-chart{ position:relative; margin-top:14px; padding:16px 16px 10px; border-radius:16px;
@@ -787,12 +796,12 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .stimmen-band{ margin-top:48px; overflow:hidden; padding:10px 0 18px;
   mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent) }
-.stimmen-spur{ display:flex; gap:20px; width:max-content;
+.stimmen-spur{ display:flex; gap:26px; width:max-content;
   animation:stimmen-lauf 54s linear infinite }
 .stimmen-band:hover .stimmen-spur{ animation-play-state:paused }
 @keyframes stimmen-lauf{ to{ transform:translateX(calc(-100% / 3)) } }
 @media (prefers-reduced-motion:reduce){ .stimmen-spur{ animation:none } }
-.st-karte{ flex:0 0 auto; width:min(88vw,540px); display:grid; grid-template-columns:150px minmax(0,1fr);
+.st-karte{ flex:0 0 auto; width:min(90vw,660px); display:grid; grid-template-columns:190px minmax(0,1fr);
   border-radius:var(--r); overflow:hidden; border:1px solid var(--line); text-align:left;
   background:
     radial-gradient(120% 90% at 0% 0%, rgba(198,247,81,.09), transparent 56%),
@@ -1057,6 +1066,176 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   color:var(--text-2) }
 @media (max-width:560px){ .gf-rechts{ display:none } }
 
+
+/* ===== Kanäle ===== */
+.kanal-raster{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+  gap:clamp(26px,3.4vw,52px); align-items:center; margin-top:52px }
+@media (max-width:900px){ .kanal-raster{ grid-template-columns:1fr } }
+.kanal-spalte{ display:grid; gap:20px }
+.kanal{ position:relative; border-radius:var(--r); border:1px solid var(--line); overflow:hidden;
+  padding:26px 26px 28px;
+  background:radial-gradient(120% 80% at 0% 0%, rgba(198,247,81,.08), transparent 54%),
+    linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.012)), var(--karte);
+  box-shadow:var(--kante), var(--stapel);
+  transition:transform .45s var(--e), border-color .45s, box-shadow .45s }
+.kanal:hover{ transform:translateY(-4px); border-color:var(--line-2); box-shadow:var(--kante), var(--stapel-hoch) }
+.kanal-kopf{ display:flex; align-items:center; gap:15px; margin-bottom:16px }
+.kanal-logo{ width:54px; height:54px; border-radius:16px; flex:0 0 auto; display:grid; place-items:center;
+  background:linear-gradient(180deg,#FFFFFF,#E9EDE6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1), inset 0 -2px 3px rgba(60,70,50,.25),
+    0 2px 5px rgba(0,0,0,.5), 0 14px 26px -14px rgba(0,0,0,.95) }
+.kanal-logo svg{ width:30px; height:30px }
+.kanal-kopf b{ display:block; font-size:19px; font-weight:600; color:#fff; letter-spacing:-.03em }
+.kanal-kopf > div span{ display:block; font-size:12.5px; color:var(--text-2); margin-top:3px }
+.kanal-nr{ margin-left:auto; font-size:12px; letter-spacing:.16em; color:rgba(255,255,255,.22) }
+.kanal > p{ margin:0; font-size:14.8px; line-height:1.6 }
+.kanal .liste{ margin-top:18px }
+.kanal .liste li{ font-size:14px }
+
+/* ===== Handy mit Beispielanzeige ===== */
+.handy-feld{ position:relative; display:grid; place-items:center; padding:10px 0 }
+.handy{ position:relative; z-index:2; width:min(100%,328px); border-radius:42px; padding:11px;
+  background:linear-gradient(170deg,#30372A 0%,#161A12 36%,#0A0C07 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3), inset 0 0 0 1px rgba(255,255,255,.07),
+    0 4px 10px rgba(0,0,0,.6), 0 26px 50px -18px rgba(0,0,0,.95),
+    0 60px 90px -40px rgba(0,0,0,1), 0 0 90px -30px rgba(198,247,81,.4);
+  transform:rotate(-1.6deg); transition:transform .6s var(--e) }
+.handy:hover{ transform:rotate(0deg) translateY(-4px) }
+.handy-insel{ position:absolute; z-index:3; top:20px; left:50%; transform:translateX(-50%);
+  width:84px; height:22px; border-radius:100px; background:#05070300;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06); background:#060804 }
+.handy-schirm{ position:relative; border-radius:33px; overflow:hidden; background:#0A0D07;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08) }
+.hs-leiste{ display:flex; align-items:center; justify-content:space-between; padding:14px 22px 8px;
+  font-size:12.5px; font-weight:600; color:#fff; letter-spacing:-.01em }
+.hs-zeichen{ display:flex; align-items:center; gap:6px; color:#fff }
+.hs-zeichen svg{ height:11px; width:auto }
+.handy .az-kopf{ padding:14px 14px 8px }
+.handy .az-text{ font-size:13px }
+.handy .az-bild{ height:230px }
+.handy .az-bild b{ font-size:23px }
+.hs-hinweis{ padding:8px 14px 14px; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(255,255,255,.26); text-align:center }
+.handy-balken{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+  width:116px; height:4px; border-radius:100px; background:rgba(255,255,255,.4) }
+.az-fuss span{ display:inline-flex; align-items:center; gap:6px }
+.az-fuss svg{ width:13px; height:13px; stroke-linecap:round; stroke-linejoin:round }
+
+
+/* ===== Abschluss mit Terminkarte ===== */
+.cta-feld{ text-align:left; padding:clamp(38px,4.6vw,62px) clamp(26px,3.4vw,54px) }
+.cta-raster{ display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+  gap:clamp(28px,4vw,62px); align-items:center }
+@media (max-width:860px){ .cta-raster{ grid-template-columns:1fr } }
+.cta-text h2{ max-width:16ch }
+.cta-text .lead{ max-width:46ch }
+.termin{ border-radius:20px; overflow:hidden; border:1px solid var(--line-2);
+  background:linear-gradient(180deg,#191E12,#0C0F08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 3px 8px rgba(0,0,0,.55),
+    0 30px 60px -26px rgba(0,0,0,1) }
+.termin-kopf{ display:flex; align-items:center; gap:13px; padding:17px 18px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)) }
+.termin-marke{ width:38px; height:38px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center;
+  background:#0E1109; border:1px solid var(--line); overflow:hidden }
+.termin-marke svg{ width:28px; height:28px }
+.termin-kopf b{ display:block; font-size:14.5px; font-weight:600; color:#fff; letter-spacing:-.02em }
+.termin-kopf span{ display:block; font-size:12px; color:var(--text-2); margin-top:2px }
+.termin-tage{ display:grid; grid-template-columns:repeat(5,1fr); gap:7px; padding:16px 16px 8px }
+.termin-tage span{ display:grid; justify-items:center; gap:4px; padding:9px 0 10px; border-radius:12px;
+  border:1px solid var(--line); background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08) }
+.termin-tage i{ font-style:normal; font-size:10.5px; color:rgba(255,255,255,.36) }
+.termin-tage b{ font-size:15px; font-weight:500; color:#fff; letter-spacing:-.02em }
+.termin-tage .an{ border-color:rgba(198,247,81,.5);
+  background:linear-gradient(180deg,rgba(198,247,81,.2),rgba(198,247,81,.05));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 0 18px -6px rgba(198,247,81,.6) }
+.termin-tage .an i{ color:rgba(255,255,255,.6) }
+.termin-zeiten{ display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:8px 16px 16px }
+.termin-zeiten span{ display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:11px 0; border-radius:12px; font-size:13.5px; color:rgba(255,255,255,.62);
+  border:1px solid var(--line); background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08) }
+.termin-zeiten .gewaehlt{ color:#15200A; font-weight:500; border-color:transparent;
+  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 3px 10px -2px rgba(174,232,60,.5) }
+.termin-zeiten .gewaehlt svg{ width:13px; height:13px }
+.termin-fuss{ display:flex; align-items:center; gap:9px; padding:13px 18px;
+  border-top:1px solid var(--line); font-size:12.5px; color:var(--text-2);
+  background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.45)) }
+.termin-punkt{ width:7px; height:7px; border-radius:50%; background:var(--lime);
+  box-shadow:0 0 10px rgba(198,247,81,.9); animation:pochen 2.4s ease-in-out infinite }
+
+
+/* ===== Gründe als Zeilen ===== */
+.gruende{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:46px }
+@media (max-width:900px){ .gruende{ grid-template-columns:1fr } }
+.grund{ display:flex; gap:15px; align-items:flex-start; padding:20px 20px 22px;
+  border-radius:var(--r-s); border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.35),
+    0 16px 28px -20px rgba(0,0,0,.9) }
+.grund-ik{ width:42px; height:42px; border-radius:13px; flex:0 0 auto; display:grid; place-items:center;
+  color:#1C2A05; background:linear-gradient(168deg,#EAFFB8,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1.5px 2px rgba(60,90,10,.35),
+    0 2px 4px rgba(0,0,0,.5), 0 0 20px -4px rgba(198,247,81,.5) }
+.grund-ik svg{ width:21px; height:21px }
+.grund b{ display:block; font-size:15.5px; font-weight:600; color:#fff; letter-spacing:-.022em;
+  margin-bottom:6px }
+.grund p{ margin:0; font-size:13.8px; line-height:1.52; color:rgba(255,255,255,.5) }
+
+/* ===== Stufen ===== */
+.stufen{ margin-top:60px; display:grid; gap:clamp(26px,3.4vw,46px) }
+.stufe{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);
+  gap:clamp(24px,3.4vw,54px); align-items:center;
+  border-radius:var(--r); border:1px solid var(--line); overflow:hidden;
+  padding:clamp(28px,3.4vw,44px);
+  background:radial-gradient(110% 90% at 0% 0%, rgba(198,247,81,.07), transparent 56%),
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01)), var(--karte);
+  box-shadow:var(--kante), var(--stapel) }
+.stufe.umgekehrt .stufe-text{ order:2 }
+.stufe.umgekehrt .stufe-bild{ order:1 }
+@media (max-width:860px){ .stufe{ grid-template-columns:1fr }
+  .stufe.umgekehrt .stufe-text{ order:1 } .stufe.umgekehrt .stufe-bild{ order:2 } }
+.stufe-nr{ display:inline-flex; align-items:baseline; gap:9px; font-size:34px; font-weight:600;
+  letter-spacing:-.05em; line-height:1;
+  background:linear-gradient(180deg,#EEFFC0,rgba(143,197,32,.35));
+  -webkit-background-clip:text; background-clip:text; color:transparent }
+.stufe-nr i{ font-style:normal; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.3); -webkit-text-fill-color:rgba(255,255,255,.3) }
+.stufe h3{ margin:16px 0 10px; font-size:clamp(22px,2.4vw,28px) }
+.stufe-text > p{ margin:0; font-size:15px; line-height:1.6; max-width:44ch }
+.stufe-marke{ display:inline-flex; align-items:center; margin-top:20px; padding:6px 13px;
+  border-radius:100px; font-size:11.5px; letter-spacing:.06em; color:#1B2A05;
+  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 6px rgba(0,0,0,.45) }
+.stufe-bild{ border-radius:var(--r-s); overflow:hidden; border:1px solid var(--line); padding:10px;
+  background:radial-gradient(110% 80% at 50% 0%, rgba(198,247,81,.07), transparent 62%),
+    linear-gradient(180deg,#131710,#0A0C06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), inset 0 -22px 36px -26px rgba(0,0,0,.95) }
+.stufe-bild svg{ width:100%; height:auto; display:block }
+
+
+/* ===== Gründerband, zweite Fassung ===== */
+.gr-band{ grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); position:relative; overflow:hidden }
+.gr-band > .licht{ position:absolute; z-index:0 }
+.gr-links{ position:relative; z-index:2 }
+.gr-zeichen{ display:grid; place-items:center; width:62px; height:62px; border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 2px 5px rgba(0,0,0,.5),
+    0 16px 28px -16px rgba(0,0,0,.95) }
+.gr-zeichen svg{ width:38px; height:38px }
+.gr-absatz{ margin:16px 0 0; font-size:15px; line-height:1.6; max-width:48ch; color:var(--text) }
+.gr-zahlen{ position:relative; z-index:2; display:grid; gap:1px; background:var(--line);
+  border:1px solid var(--line); border-radius:var(--r-s); overflow:hidden }
+.gr-zahlen > div{ background:#0D1009; padding:20px 20px 22px }
+.gr-zahlen b{ display:block; font-size:clamp(24px,2.8vw,32px); font-weight:600; letter-spacing:-.045em;
+  line-height:1; margin-bottom:9px;
+  background:linear-gradient(170deg,#EEFFC0,#C6F751 55%,#8FC520);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 16px rgba(198,247,81,.3)) }
+.gr-zahlen span{ font-size:12.8px; line-height:1.45; color:rgba(255,255,255,.5) }
 </style>
 </head>
 
@@ -1105,6 +1284,10 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     <stop offset="0" stop-color="#C6F751" stop-opacity=".34"/><stop offset="1" stop-color="#C6F751" stop-opacity="0"/></linearGradient>
   <linearGradient id="funkeG2" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#8FC520" stop-opacity=".3"/><stop offset="1" stop-color="#8FC520" stop-opacity="0"/></linearGradient>
+  <linearGradient id="stufeHell" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#EAFFB8"/><stop offset="1" stop-color="#A9DE33"/></linearGradient>
+  <linearGradient id="metaBlau2" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0081FB"/><stop offset="1" stop-color="#0064E0"/></linearGradient>
   <linearGradient id="chartLinie" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="#8FC520"/><stop offset=".55" stop-color="#C6F751"/><stop offset="1" stop-color="#EAFFB8"/></linearGradient>
   <linearGradient id="chartFuell" x1="0" y1="0" x2="0" y2="1">
@@ -1187,15 +1370,6 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       <a href="#leistungen" class="btn btn-glas">Was wir machen
         <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5v7M3 6l3 3 3-3"/></svg></span>
       </a>
-    </div>
-    <div class="raum auf" style="justify-content:center">
-      <div class="raum-kreise">
-        <span class="flagge" title="Deutschland"><svg viewBox="0 0 36 36" aria-label="Deutschland"><g clip-path="url(#k-de)"><rect width="36" height="12" y="0" fill="#141414"/><rect width="36" height="12" y="12" fill="#D7141A"/><rect width="36" height="12" y="24" fill="#FFC930"/></g><defs><clipPath id="k-de"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span>
-        <span class="flagge" title="Österreich"><svg viewBox="0 0 36 36" aria-label="Österreich"><g clip-path="url(#k-at)"><rect width="36" height="12" y="0" fill="#D7141A"/><rect width="36" height="12" y="12" fill="#FFFFFF"/><rect width="36" height="12" y="24" fill="#D7141A"/></g><defs><clipPath id="k-at"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span>
-        <span class="flagge" title="Schweiz"><svg viewBox="0 0 36 36" aria-label="Schweiz"><g clip-path="url(#k-ch)"><rect width="36" height="36" fill="#D7141A"/><path d="M15.4 7.6h5.2v7.8h7.8v5.2h-7.8v7.8h-5.2v-7.8H7.6v-5.2h7.8z" fill="#fff"/></g><defs><clipPath id="k-ch"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span>
-        <span class="flagge" title="Liechtenstein"><svg viewBox="0 0 36 36" aria-label="Liechtenstein"><g clip-path="url(#k-li)"><rect width="36" height="18" y="0" fill="#1C3C8C"/><rect width="36" height="18" y="18" fill="#D7141A"/><g fill="#F2C94C"><path d="M7.2 9.3h9.2v2.3H7.2z"/><path d="M7.9 6.4l1.9 1.6 2-2.2 1.9 2.2 1.9-1.6-.5 2.5H8.4z"/><circle cx="7.9" cy="5.6" r="1"/><circle cx="15.6" cy="5.6" r="1"/><circle cx="11.8" cy="4.4" r="1.1"/></g></g><defs><clipPath id="k-li"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span>
-      </div>
-      <span class="raum-text">Betreut wird im gesamten <b>deutschsprachigen Raum</b></span>
     </div>
 
     <!-- ===== Dashboard ===== -->
@@ -1330,17 +1504,23 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
             <div class="kpi">
               <span class="kpi-kopf">Neue Anfragen <i class="trend">+18&nbsp;%</i></span>
               <b class="kpi-zahl" data-zahl="34">0</b>
-              <svg class="funke" viewBox="0 0 120 34" fill="none" preserveAspectRatio="none">
-                <path d="M2 28C14 26 20 22 32 18s18 4 28-6 16 2 26-8 14-2 32-2" stroke="#C6F751" stroke-width="2" stroke-linecap="round"/>
-                <path d="M2 28C14 26 20 22 32 18s18 4 28-6 16 2 26-8 14-2 32-2V34H2z" fill="url(#funkeG)"/>
+              <svg class="funke" viewBox="0 0 120 46" fill="none">
+                <line x1="0" y1="14" x2="120" y2="14" stroke="rgba(255,255,255,.05)"/>
+                <line x1="0" y1="28" x2="120" y2="28" stroke="rgba(255,255,255,.05)"/>
+                <path class="fk-flaeche" d="M2 40C14 37 20 32 32 27s18 3 28-9 16 1 26-9 14-3 32-4V46H2z" fill="url(#funkeG)"/>
+                <path class="fk-linie" d="M2 40C14 37 20 32 32 27s18 3 28-9 16 1 26-9 14-3 32-4" stroke="url(#chartLinie)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle class="fk-punkt" cx="118" cy="5" r="3.4" fill="#E4FFA0"/>
               </svg>
             </div>
             <div class="kpi">
               <span class="kpi-kopf">Neue Bewerbungen <i class="trend">+9&nbsp;%</i></span>
               <b class="kpi-zahl" data-zahl="12">0</b>
-              <svg class="funke" viewBox="0 0 120 34" fill="none" preserveAspectRatio="none">
-                <path d="M2 30C16 28 22 24 34 24s16-6 26-4 16-6 26-6 18 2 30 0" stroke="#8FC520" stroke-width="2" stroke-linecap="round"/>
-                <path d="M2 30C16 28 22 24 34 24s16-6 26-4 16-6 26-6 18 2 30 0V34H2z" fill="url(#funkeG2)"/>
+              <svg class="funke" viewBox="0 0 120 46" fill="none">
+                <line x1="0" y1="14" x2="120" y2="14" stroke="rgba(255,255,255,.05)"/>
+                <line x1="0" y1="28" x2="120" y2="28" stroke="rgba(255,255,255,.05)"/>
+                <path class="fk-flaeche" d="M2 42C16 39 22 33 34 32s16-8 26-6 16-9 26-9 18 3 30 1V46H2z" fill="url(#funkeG2)"/>
+                <path class="fk-linie" d="M2 42C16 39 22 33 34 32s16-8 26-6 16-9 26-9 18 3 30 1" stroke="#9FD92C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle class="fk-punkt" cx="118" cy="10" r="3.4" fill="#C6F751"/>
               </svg>
             </div>
           </div>
@@ -1590,162 +1770,249 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 </section>
 
 <section class="sec" id="plattformen" style="padding-top:0">
-  <span class="licht licht-lime" style="left:50%;top:4%;width:min(820px,92vw);height:min(820px,92vw);transform:translateX(-50%);filter:blur(130px);opacity:.14" aria-hidden="true"></span>
+  <span class="licht licht-lime" style="left:68%;top:2%;width:min(820px,92vw);height:min(820px,92vw);transform:translateX(-50%);filter:blur(130px);opacity:.16" aria-hidden="true"></span>
   <div class="wrap">
     <div class="mitte">
-      <span class="chip auf"><i></i>Plattformen</span>
+      <span class="chip auf"><i></i>Kanäle</span>
       <h2 class="auf verlauf" style="margin-top:20px">Wir schalten da, <span class="still">wo deine Leute</span> <em class="ak">schon sind</em>.</h2>
       <p class="lead auf">Zwei Kanäle, zwei Aufgaben. Der eine greift Nachfrage ab, die es schon gibt. Der andere erzeugt sie bei Leuten, die gerade nicht suchen.</p>
     </div>
 
-    <div class="zwei">
-      <article class="karte pf-gross auf">
-        <div class="pf-kopf">
-          <span class="pf-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg></span>
-          <div><b>Google Ads</b><span>Nachfrage, die schon da ist</span></div>
-        </div>
-        <p>Wer bei Google sucht, hat das Problem heute. Da kaufst du keine Aufmerksamkeit, sondern stellst dich in den Weg, kurz bevor entschieden wird.</p>
-        <ul class="liste">
-          <li>Suchbegriffe, bei denen jemand kaufen will, nicht nur stöbert</li>
-          <li>Anzeigentexte, die zur Suche passen, nicht zur Branche</li>
-          <li>Landingpage, die genau das einlöst, wonach gesucht wurde</li>
-        </ul>
-        <div class="pf-fuss">Stark, wenn es dich und dein Problem schon gibt.</div>
-      </article>
+    <div class="kanal-raster">
+      <div class="kanal-spalte">
+        <article class="kanal auf">
+          <div class="kanal-kopf">
+            <span class="kanal-logo">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#FBBC04" transform="rotate(30 12 12)"/>
+                <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#4285F4" transform="rotate(-30 12 12)"/>
+                <circle cx="7" cy="20.3" r="3.3" fill="#34A853"/>
+              </svg>
+            </span>
+            <div><b>Google Ads</b><span>Nachfrage, die schon da ist</span></div>
+            <span class="kanal-nr">01</span>
+          </div>
+          <p>Wer bei Google sucht, hat das Problem heute. Da kaufst du keine Aufmerksamkeit, du stellst dich in den Weg, kurz bevor entschieden wird.</p>
+          <ul class="liste">
+            <li>Suchbegriffe, bei denen jemand kaufen will, nicht nur stöbert</li>
+            <li>Anzeigentexte, die zur Suche passen, nicht zur Branche</li>
+            <li>Landingpage, die genau das einlöst, wonach gesucht wurde</li>
+          </ul>
+        </article>
 
-      <article class="karte pf-gross auf">
-        <div class="pf-kopf">
-          <span class="pf-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></span>
-          <div><b>Meta Ads</b><span>Nachfrage, die erst entsteht</span></div>
-        </div>
-        <p>Auf Instagram und Facebook sucht niemand nach dir. Deshalb muss die Anzeige selbst den Bedarf wecken, in den ersten zwei Sekunden.</p>
+        <article class="kanal auf">
+          <div class="kanal-kopf">
+            <span class="kanal-logo">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <defs><linearGradient id="metaBlau" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#0081FB"/><stop offset="1" stop-color="#0064E0"/></linearGradient></defs>
+                <path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="url(#metaBlau)"/>
+              </svg>
+            </span>
+            <div><b>Meta Ads</b><span>Nachfrage, die erst entsteht</span></div>
+            <span class="kanal-nr">02</span>
+          </div>
+          <p>Auf Instagram und Facebook sucht niemand nach dir. Deshalb muss die Anzeige selbst den Bedarf wecken, in den ersten zwei Sekunden.</p>
+          <ul class="liste">
+            <li>Aufhänger, der beim Wischen stoppt, nicht der schönste Film</li>
+            <li>Mehrere Varianten gegeneinander, jede Woche neue dazu</li>
+            <li>Formular direkt in der App, ohne Umweg über die Website</li>
+          </ul>
+        </article>
+      </div>
 
-        <div class="anzeige">
-          <div class="az-kopf">
-            <span class="az-marke"><svg viewBox="-135 -112 270 224" aria-hidden="true"><use href="#lim-ganz"/></svg></span>
-            <div class="az-wer"><b>Dein Betrieb</b><span>Gesponsert · <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg> Hannover</span></div>
-            <span class="az-punkte">•••</span>
+      <div class="handy-feld auf">
+        <span class="licht licht-lime" style="left:50%;top:18%;width:120%;aspect-ratio:1;transform:translateX(-50%);filter:blur(90px);opacity:.3" aria-hidden="true"></span>
+        <div class="handy">
+          <span class="handy-insel" aria-hidden="true"></span>
+          <div class="handy-schirm">
+            <div class="hs-leiste">
+              <span>9:41</span>
+              <span class="hs-zeichen">
+                <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".4"/></svg>
+                <svg viewBox="0 0 24 12" fill="currentColor"><rect x="0" y="1" width="19" height="10" rx="3" opacity=".45"/><rect x="1.6" y="2.6" width="13" height="6.8" rx="1.8"/><rect x="20.6" y="4" width="2" height="4" rx="1" opacity=".45"/></svg>
+              </span>
+            </div>
+            <div class="az-kopf">
+              <span class="az-marke"><svg viewBox="-135 -112 270 224" aria-hidden="true"><use href="#lim-ganz"/></svg></span>
+              <div class="az-wer"><b>Dein Betrieb</b><span>Gesponsert · Hannover</span></div>
+              <span class="az-punkte">•••</span>
+            </div>
+            <p class="az-text">Du brauchst keine zehn Angebote. Du brauchst eins, das passt.</p>
+            <div class="az-bild">
+              <span class="az-glanz"></span>
+              <b>In 60 Sekunden<br>zur Anfrage</b>
+              <span class="az-tag">Ohne Lebenslauf</span>
+            </div>
+            <div class="az-leiste">
+              <div><b>deinbetrieb.de</b><span>Jetzt unverbindlich anfragen</span></div>
+              <span class="az-knopf">Mehr dazu</span>
+            </div>
+            <div class="az-fuss">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 10v11H3V10zM7 10l5-7a2 2 0 0 1 3 2l-1 5h5a2 2 0 0 1 2 2.4l-1.5 7A2 2 0 0 1 17 21H7"/></svg>Gefällt mir</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>Kommentieren</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>Senden</span>
+            </div>
+            <div class="hs-hinweis">Beispielanzeige</div>
           </div>
-          <p class="az-text">Du brauchst keine zehn Angebote. Du brauchst eins, das passt.</p>
-          <div class="az-bild">
-            <span class="az-glanz"></span>
-            <b>In 60 Sekunden<br>zur Anfrage</b>
-            <span class="az-tag">Ohne Lebenslauf</span>
-          </div>
-          <div class="az-leiste">
-            <div><b>deinbetrieb.de</b><span>Jetzt unverbindlich anfragen</span></div>
-            <span class="az-knopf">Mehr dazu</span>
-          </div>
-          <div class="az-fuss">
-            <span>Gefällt mir</span><span>Kommentieren</span><span>Senden</span>
-          </div>
+          <span class="handy-balken" aria-hidden="true"></span>
         </div>
-
-        <div class="pf-fuss">Stark, wenn noch niemand nach dir sucht.</div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PROBLEM ===================== -->
 <section class="sec" id="problem">
-  <div class="wrap mitte">
-    <span class="chip auf"><i></i>Woran es liegt</span>
-    <h2 class="auf verlauf" style="margin-top:20px">Es liegt fast nie <span class="still">an der Anzeige.</span></h2>
-    <p class="lead auf">Drei Gründe sehen wir in fast jedem Betrieb, bevor überhaupt Geld für Werbung ausgegeben wird.</p>
+  <span class="licht licht-gruen" style="left:-8%;top:16%;width:min(620px,70vw);height:min(620px,70vw);filter:blur(130px);opacity:.3" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="mitte">
+      <span class="chip auf"><i></i>Woran es liegt</span>
+      <h2 class="auf verlauf" style="margin-top:20px">Es liegt fast nie <span class="still">an der Anzeige</span>.</h2>
+      <p class="lead auf">Drei Dinge sehen wir in fast jedem Betrieb, bevor überhaupt Geld für Werbung ausgegeben wird.</p>
+    </div>
 
-    <div class="drei" style="text-align:left">
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
-            <rect x="26" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <rect x="122" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <rect x="218" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <g fill="rgba(255,255,255,.17)">
-              <rect x="40" y="70" width="48" height="6" rx="3"/><rect x="40" y="84" width="34" height="6" rx="3"/>
-              <rect x="136" y="70" width="48" height="6" rx="3"/><rect x="136" y="84" width="34" height="6" rx="3"/>
-              <rect x="232" y="70" width="48" height="6" rx="3"/><rect x="232" y="84" width="34" height="6" rx="3"/>
-            </g>
-            <rect x="40" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-            <rect x="136" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-            <rect x="232" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-          </svg>
+    <div class="gruende">
+      <div class="grund auf">
+        <span class="grund-ik">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 10h10M7 14h5"/></svg>
+        </span>
+        <div><b>Dein Angebot klingt wie alle</b><p>Drei Anbieter, drei Mal dasselbe Versprechen. Dann entscheidet nur noch der Preis.</p></div>
+      </div>
+      <div class="grund auf">
+        <span class="grund-ik">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <div><b>Anfragen bleiben liegen</b><p>Wer sich meldet, will jetzt eine Antwort. Zwei Tage später hat er woanders unterschrieben.</p></div>
+      </div>
+      <div class="grund auf">
+        <span class="grund-ik">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        <div><b>Die Guten bewerben sich nicht</b><p>Wer gut ist, sitzt in einem Job und liest keine Stellenbörse.</p></div>
+      </div>
+    </div>
+
+    <div class="stufen">
+      <article class="stufe auf">
+        <div class="stufe-text">
+          <span class="stufe-nr">01<i>von 03</i></span>
+          <h3>Das Angebot</h3>
+          <p>Bevor eine Anzeige läuft, bauen wir das Angebot um: was genau jemand bekommt, warum bei dir und warum jetzt. Ohne das wird jede Anzeige nur teurer Lärm.</p>
+          <ul class="liste">
+            <li>Ein Satz, den dein Kunde ohne Rückfrage versteht</li>
+            <li>Ein Grund, der nicht der Preis ist</li>
+            <li>Ein Anlass, warum jetzt und nicht irgendwann</li>
+          </ul>
+          <span class="stufe-marke">Der wichtigste Teil</span>
         </div>
-        <div class="karte-inhalt">
-          <h3>Dein Angebot klingt wie alle</h3>
-          <p>Drei Anbieter, drei Mal dasselbe Versprechen. Dann entscheidet nur noch der Preis, und den willst du nicht gewinnen.</p>
+        <div class="stufe-bild">
+          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
+            <rect x="24" y="52" width="104" height="136" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
+            <rect x="148" y="52" width="104" height="136" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
+            <rect x="272" y="36" width="104" height="168" rx="16" fill="url(#stufeHell)" stroke="rgba(198,247,81,.5)"/>
+            <g fill="rgba(255,255,255,.14)">
+              <rect x="42" y="74" width="60" height="8" rx="4"/><rect x="42" y="92" width="42" height="8" rx="4"/>
+              <rect x="42" y="120" width="68" height="6" rx="3"/><rect x="42" y="134" width="52" height="6" rx="3"/>
+              <rect x="166" y="74" width="60" height="8" rx="4"/><rect x="166" y="92" width="42" height="8" rx="4"/>
+              <rect x="166" y="120" width="68" height="6" rx="3"/><rect x="166" y="134" width="52" height="6" rx="3"/>
+            </g>
+            <g fill="rgba(20,32,6,.75)">
+              <rect x="290" y="62" width="64" height="9" rx="4.5"/><rect x="290" y="82" width="46" height="9" rx="4.5"/>
+              <rect x="290" y="112" width="70" height="6" rx="3"/><rect x="290" y="126" width="56" height="6" rx="3"/>
+              <rect x="290" y="140" width="62" height="6" rx="3"/>
+            </g>
+            <rect x="290" y="162" width="52" height="18" rx="9" fill="#14200A"/>
+            <circle cx="366" cy="26" r="13" fill="#0D1206" stroke="rgba(198,247,81,.55)"/>
+            <path class="haken-pfad" d="M360 26l4 4 8-9" stroke="#C6F751" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
       </article>
 
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
+      <article class="stufe umgekehrt auf">
+        <div class="stufe-text">
+          <span class="stufe-nr">02<i>von 03</i></span>
+          <h3>Der Funnel</h3>
+          <p>Die Strecke von der Anzeige bis zum Termin: Landingpage oder Formular, Vorqualifizierung, Weiterleitung, Nachfassen. Jeder Schritt hat genau eine Aufgabe.</p>
+          <ul class="liste">
+            <li>Formular, das am Handy zu Ende ausgefüllt wird</li>
+            <li>Fragen, die Zeitverschwender vorher aussortieren</li>
+            <li>Jede Anfrage landet da, wo du sie siehst</li>
+          </ul>
+          <span class="stufe-marke">Hier geht das Geld verloren</span>
+        </div>
+        <div class="stufe-bild">
+          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
+            <g stroke="rgba(255,255,255,.1)" stroke-dasharray="5 7">
+              <path d="M30 46h340M70 102h260M110 158h180M160 206h80"/>
+            </g>
+            <g fill="rgba(255,255,255,.22)">
+              <circle cx="46" cy="46" r="6"/><circle cx="92" cy="46" r="6"/><circle cx="138" cy="46" r="6"/><circle cx="184" cy="46" r="6"/>
+              <circle cx="230" cy="46" r="6"/><circle cx="276" cy="46" r="6"/><circle cx="322" cy="46" r="6"/><circle cx="354" cy="46" r="6"/>
+            </g>
+            <g fill="rgba(255,255,255,.34)">
+              <circle cx="92" cy="102" r="7"/><circle cx="150" cy="102" r="7"/><circle cx="208" cy="102" r="7"/><circle cx="266" cy="102" r="7"/><circle cx="312" cy="102" r="7"/>
+            </g>
+            <g fill="url(#stufeHell)">
+              <circle cx="136" cy="158" r="8.5"/><circle cx="200" cy="158" r="8.5"/><circle cx="264" cy="158" r="8.5"/>
+            </g>
+            <circle cx="200" cy="206" r="14" fill="url(#stufeHell)"/>
+            <circle cx="200" cy="206" r="23" stroke="rgba(198,247,81,.3)"/>
+            <text x="200" y="232" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,.4)">EIN TERMIN</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="stufe auf">
+        <div class="stufe-text">
+          <span class="stufe-nr">03<i>von 03</i></span>
+          <h3>Das Copywriting</h3>
+          <p>Die Worte, die darüber entscheiden, ob jemand liest oder weiterwischt. Überschrift, Einstieg, Einwände, Aufforderung. Jede Variante wird gegen die nächste getestet.</p>
+          <ul class="liste">
+            <li>Aufhänger, der in zwei Sekunden sitzt</li>
+            <li>Einwände vorweggenommen, statt sie auszusitzen</li>
+            <li>Jede Woche neue Varianten gegen die alten</li>
+          </ul>
+          <span class="stufe-marke">Wird laufend getestet</span>
+        </div>
+        <div class="stufe-bild">
+          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
+            <rect x="22" y="36" width="168" height="168" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
+            <rect x="210" y="36" width="168" height="168" rx="16" fill="#12170C" stroke="rgba(198,247,81,.45)"/>
+            <g fill="rgba(255,255,255,.16)">
+              <rect x="42" y="60" width="118" height="10" rx="5"/><rect x="42" y="78" width="86" height="10" rx="5"/>
+              <rect x="42" y="108" width="128" height="6" rx="3"/><rect x="42" y="122" width="108" height="6" rx="3"/>
+              <rect x="42" y="136" width="118" height="6" rx="3"/>
+              <rect x="42" y="166" width="62" height="16" rx="8"/>
+            </g>
             <g>
-              <rect x="40" y="38" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-              <circle cx="58" cy="53" r="5" fill="#C6F751"/>
-              <rect x="74" y="48" width="120" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
-              <rect x="40" y="76" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.08)" opacity=".75"/>
-              <circle cx="58" cy="91" r="5" fill="#C6F751" opacity=".6"/>
-              <rect x="74" y="86" width="96" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
-              <rect x="40" y="114" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.06)" opacity=".45"/>
-              <circle cx="58" cy="129" r="5" fill="#C6F751" opacity=".3"/>
-              <rect x="74" y="124" width="76" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+              <rect x="230" y="60" width="128" height="10" rx="5" fill="url(#stufeHell)"/>
+              <rect x="230" y="78" width="92" height="10" rx="5" fill="rgba(198,247,81,.45)"/>
+              <rect x="230" y="108" width="128" height="6" rx="3" fill="rgba(255,255,255,.4)"/>
+              <rect x="230" y="122" width="112" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
+              <rect x="230" y="136" width="122" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
+              <rect x="230" y="166" width="74" height="16" rx="8" fill="url(#stufeHell)"/>
             </g>
+            <text x="106" y="224" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.4" fill="rgba(255,255,255,.3)">VARIANTE A</text>
+            <text x="294" y="224" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.4" fill="rgba(198,247,81,.75)">VARIANTE B</text>
           </svg>
-        </div>
-        <div class="karte-inhalt">
-          <h3>Anfragen bleiben liegen</h3>
-          <p>Wer sich meldet, will jetzt eine Antwort. Zwei Tage später hat er beim Nächsten unterschrieben.</p>
-        </div>
-      </article>
-
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
-            <circle cx="160" cy="90" r="54" stroke="rgba(255,255,255,.12)" stroke-dasharray="5 7"/>
-            <circle cx="160" cy="90" r="34" stroke="rgba(255,255,255,.08)" stroke-dasharray="4 6"/>
-            <circle cx="160" cy="76" r="12" fill="rgba(255,255,255,.1)"/>
-            <path d="M140 110c0-11 9-18 20-18s20 7 20 18" fill="rgba(255,255,255,.1)"/>
-            <circle cx="228" cy="52" r="4" fill="#C6F751" opacity=".8"/>
-            <circle cx="96" cy="128" r="3" fill="#C6F751" opacity=".5"/>
-          </svg>
-        </div>
-        <div class="karte-inhalt">
-          <h3>Die Guten bewerben sich nicht</h3>
-          <p>Wer gut ist, sitzt in einem Job und liest keine Stellenbörse. Den erreichst du nur dort, wo er sowieso ist.</p>
         </div>
       </article>
     </div>
-    <div class="loesung auf">
-      <div class="loesung-koerper">
-        <div class="lo-feld">
-          <span class="lo-nr">01</span>
-          <h4>Das Angebot</h4>
-          <p>Bevor eine Anzeige läuft, bauen wir das Angebot um: was genau jemand bekommt, warum bei dir und warum jetzt. Ohne das wird jede Anzeige nur teurer Lärm.</p>
-          <span class="lo-marke">Der wichtigste Teil</span>
-        </div>
-        <div class="lo-feld">
-          <span class="lo-nr">02</span>
-          <h4>Der Funnel</h4>
-          <p>Die Strecke von der Anzeige bis zum Termin: Landingpage oder Formular, Vorqualifizierung, Weiterleitung, Nachfassen. Jeder Schritt hat genau eine Aufgabe.</p>
-        </div>
-        <div class="lo-feld">
-          <span class="lo-nr">03</span>
-          <h4>Das Copywriting</h4>
-          <p>Die Worte, die darüber entscheiden, ob jemand liest oder weiterwischt. Überschrift, Einstieg, Einwände, Aufforderung. Jede Variante wird gegen die nächste getestet.</p>
-        </div>
-      </div>
-      <div class="plattformen">
-        <span class="pf-titel">Geschaltet auf</span>
-        <span class="pf-marke">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg>
-          Google Ads
-        </span>
-        <span class="pf-marke">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
-          Meta Ads
-        </span>
-      </div>
+
+    <div class="plattformen auf">
+      <span class="pf-titel">Geschaltet auf</span>
+      <span class="pf-marke">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#FBBC04" transform="rotate(30 12 12)"/>
+          <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#4285F4" transform="rotate(-30 12 12)"/>
+          <circle cx="7" cy="20.3" r="3.3" fill="#34A853"/>
+        </svg>
+        Google Ads
+      </span>
+      <span class="pf-marke">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="url(#metaBlau2)"/></svg>
+        Meta Ads
+      </span>
     </div>
   </div>
 </section>
@@ -1873,15 +2140,18 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 <section class="sec" id="wer" style="padding-top:0">
   <div class="wrap">
     <div class="gr-band auf">
-      <div>
-        <span class="chip"><i></i>Wer dahinter steckt</span>
-        <p class="gr-zitat" style="margin-top:22px">Die meisten Betriebe haben kein Werbeproblem. Sie haben ein Angebot, das niemand versteht, und einen Prozess, in dem Anfragen liegen bleiben. Deshalb fangen wir nicht bei der Anzeige an.</p>
+      <span class="licht licht-lime" style="left:-6%;top:-30%;width:min(560px,70%);aspect-ratio:1;filter:blur(110px);opacity:.3" aria-hidden="true"></span>
+      <div class="gr-links">
+        <span class="gr-zeichen"><svg viewBox="-135 -112 270 224" aria-hidden="true"><use href="#lim-ganz"/></svg></span>
+        <span class="chip" style="margin-top:22px"><i></i>Wer dahinter steckt</span>
+        <p class="gr-zitat" style="margin-top:20px">Die meisten Betriebe haben kein <em class="ak">Werbeproblem</em>. Sie haben ein Angebot, das niemand versteht, und einen Prozess, in dem Anfragen liegen bleiben.</p>
+        <p class="gr-absatz">Deshalb fangen wir nicht bei der Anzeige an, sondern bei dem, was du anbietest und wie es bei dir ankommt. Erst danach wird Geld ausgegeben.</p>
         <div class="gr-sig"><b>Paul Fasterding</b><em></em>Gründer</div>
       </div>
-      <div class="gr-fakten">
-        <div class="gr-fakt"><b>Eine feste Person</b>Vom ersten Gespräch bis zur laufenden Betreuung, ohne Weiterreiche-Kette.</div>
-        <div class="gr-fakt"><b>Sitz in Hannover</b>Betreut wird im gesamten deutschsprachigen Raum.</div>
-        <div class="gr-fakt"><b>Erst das Angebot, dann Werbung</b>Vorher wird kein Geld ausgegeben.</div>
+      <div class="gr-zahlen">
+        <div><b>1</b><span>feste Person, vom ersten Gespräch bis zur laufenden Betreuung</span></div>
+        <div><b>&lt; 24 h</b><span>Reaktionszeit auf Nachrichten an Werktagen</span></div>
+        <div><b>Hannover</b><span>Sitz in Niedersachsen, Betreuung im DACH-Raum</span></div>
       </div>
     </div>
   </div>
@@ -1918,21 +2188,50 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   <span class="licht licht-lime" style="left:50%;bottom:-12%;width:min(820px,96vw);height:min(820px,96vw);transform:translateX(-50%);filter:blur(120px);opacity:.22" aria-hidden="true"></span>
   <div class="wrap">
     <div class="cta-feld auf">
-      <span class="chip"><i></i>Kontakt</span>
-      <h2 class="verlauf" style="margin-top:22px;max-width:19ch;margin-left:auto;margin-right:auto">Zwanzig Minuten, <span class="still">und du weißt, ob es</span> <em class="ak">passt</em>.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Kein Pitch, keine Präsentation. Wir sehen uns an, wo deine Anfragen heute herkommen und was als Erstes fehlt. Wenn wir nicht helfen können, sagen wir das im Gespräch.</p>
-      <div class="chip-reihe" style="justify-content:center;margin-top:28px">
-        <span class="chip" style="letter-spacing:.08em;text-transform:none;font-size:13px"><i></i>20 Minuten</span>
-        <span class="chip" style="letter-spacing:.08em;text-transform:none;font-size:13px"><i></i>Ohne Verpflichtung</span>
-        <span class="chip" style="letter-spacing:.08em;text-transform:none;font-size:13px"><i></i>Direkt mit dem Gründer</span>
-      </div>
-      <div class="btn-reihe" style="justify-content:center">
-        <a href="https://calendly.com/paul-web/30min" class="btn btn-lime" rel="noopener">Termin aussuchen
-          <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span>
-        </a>
-        <a href="mailto:paul.web@outlook.de" class="btn btn-glas">Lieber schreiben
-          <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span>
-        </a>
+      <span class="licht licht-lime" style="left:50%;bottom:-30%;width:min(900px,110%);aspect-ratio:1;transform:translateX(-50%);filter:blur(110px);opacity:.3" aria-hidden="true"></span>
+      <div class="cta-raster">
+        <div class="cta-text">
+          <span class="chip"><i></i>Kontakt</span>
+          <h2 class="verlauf" style="margin-top:22px">Zwanzig Minuten, <span class="still">und du weißt, ob es</span> <em class="ak">passt</em>.</h2>
+          <p class="lead">Kein Pitch, keine Präsentation. Wir sehen uns an, wo deine Anfragen heute herkommen und was als Erstes fehlt. Wenn wir nicht helfen können, sagen wir das im Gespräch.</p>
+          <div class="chip-reihe" style="margin-top:26px">
+            <span class="chip" style="text-transform:none;letter-spacing:.02em;font-size:12.5px"><i></i>20 Minuten</span>
+            <span class="chip" style="text-transform:none;letter-spacing:.02em;font-size:12.5px"><i></i>Ohne Verpflichtung</span>
+            <span class="chip" style="text-transform:none;letter-spacing:.02em;font-size:12.5px"><i></i>Direkt mit dem Gründer</span>
+          </div>
+          <div class="btn-reihe">
+            <a href="https://calendly.com/paul-web/30min" class="btn btn-lime" rel="noopener">Termin aussuchen
+              <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span>
+            </a>
+            <a href="mailto:paul.web@outlook.de" class="btn btn-glas">Lieber schreiben
+              <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="termin">
+          <div class="termin-kopf">
+            <span class="termin-marke"><svg viewBox="-135 -112 270 224" aria-hidden="true"><use href="#lim-ganz"/></svg></span>
+            <div><b>Erstgespräch</b><span>20 Minuten · Video oder Telefon</span></div>
+          </div>
+          <div class="termin-tage">
+            <span><i>Mo</i><b>17</b></span>
+            <span><i>Di</i><b>18</b></span>
+            <span class="an"><i>Mi</i><b>19</b></span>
+            <span><i>Do</i><b>20</b></span>
+            <span><i>Fr</i><b>21</b></span>
+          </div>
+          <div class="termin-zeiten">
+            <span>09:00</span>
+            <span>11:30</span>
+            <span class="gewaehlt">14:00<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <span>16:30</span>
+          </div>
+          <div class="termin-fuss">
+            <span class="termin-punkt"></span>
+            Antwort meist am selben Tag
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2106,12 +2405,6 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     g.addColorStop(1,'rgba(5,6,3,.9)');
     ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
 
-    /* Umlaufbahn als feine Ellipse, gibt der Kugel Raum */
-    ctx.save();
-    ctx.translate(cx,cy); ctx.rotate(-0.22); ctx.scale(1,0.26);
-    ctx.strokeStyle='rgba(198,247,81,.16)'; ctx.lineWidth=2.4;
-    ctx.beginPath(); ctx.arc(0,0,R*1.1,0,Math.PI*2); ctx.stroke();
-    ctx.restore();
 
     var co=Math.cos(winkel), si=Math.sin(winkel);
     for(var i=0;i<punkte.length;i++){
