@@ -782,6 +782,87 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   margin-bottom:8px }
 .str-knoten p{ margin:0; font-size:14px; line-height:1.55; color:rgba(255,255,255,.5) }
 
+
+/* ===== Kundenstimmen laufen durch ===== */
+.stimmen-band{ margin-top:48px; overflow:hidden; padding:10px 0 18px;
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent) }
+.stimmen-spur{ display:flex; gap:20px; width:max-content;
+  animation:stimmen-lauf 54s linear infinite }
+.stimmen-band:hover .stimmen-spur{ animation-play-state:paused }
+@keyframes stimmen-lauf{ to{ transform:translateX(calc(-100% / 3)) } }
+@media (prefers-reduced-motion:reduce){ .stimmen-spur{ animation:none } }
+.st-karte{ flex:0 0 auto; width:min(88vw,540px); display:grid; grid-template-columns:150px minmax(0,1fr);
+  border-radius:var(--r); overflow:hidden; border:1px solid var(--line); text-align:left;
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(198,247,81,.09), transparent 56%),
+    linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.012)), var(--karte);
+  box-shadow:var(--kante), var(--stapel);
+  transition:transform .4s var(--e), box-shadow .4s var(--e), border-color .4s }
+.st-karte:hover{ transform:translateY(-4px); border-color:var(--line-2); box-shadow:var(--kante), var(--stapel-hoch) }
+@media (max-width:560px){ .st-karte{ grid-template-columns:110px minmax(0,1fr) } }
+.st-bild{ position:relative; overflow:hidden;
+  background:radial-gradient(90% 80% at 50% 0%, rgba(198,247,81,.16), transparent 64%),
+    linear-gradient(180deg,#1A2012,#0C0F08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1), inset -14px 0 26px -22px rgba(0,0,0,.95) }
+.st-bild::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,transparent 58%,rgba(9,10,7,.8) 100%) }
+.st-bild .foto-lino{ position:absolute; left:-10%; bottom:0; width:116%; height:94%;
+  background:var(--lino-foto-img) center bottom/contain no-repeat;
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.75)) }
+.st-bild .foto-bergunde{ position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  width:104%; height:96%; background:var(--bergunde-foto-img) center bottom/contain no-repeat;
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.75)) }
+.st-text{ padding:24px 24px 22px; display:flex; flex-direction:column }
+.st-text .sterne{ font-size:13px; letter-spacing:2.6px; margin-bottom:12px }
+.st-text .zitat{ font-size:15.5px; line-height:1.5; letter-spacing:-.015em }
+.st-fuss{ margin-top:auto; padding-top:18px; display:flex; align-items:flex-end; justify-content:space-between;
+  gap:16px; border-top:1px solid var(--line); margin-top:20px }
+.st-fuss .wer{ margin:0; font-size:12.5px; color:var(--text-2) }
+.st-fuss .wer b{ display:block; color:#fff; font-weight:500; font-size:14px; margin-bottom:1px }
+.st-stat{ text-align:right; display:flex; align-items:center; gap:9px }
+.st-stat b{ font-size:clamp(20px,2.4vw,27px); font-weight:600; letter-spacing:-.04em; line-height:1;
+  white-space:nowrap;
+  background:linear-gradient(170deg,#EEFFC0,#C6F751 55%,#8FC520);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 16px rgba(198,247,81,.35)) }
+.st-stat span{ font-size:10.5px; line-height:1.3; color:var(--text-2); text-align:left }
+
+/* ===== Dashboard: Perspektive ===== */
+.dash-buehne{ perspective:2000px; perspective-origin:50% 0%; margin-top:clamp(42px,5.4vw,76px) }
+.dash-buehne .dash{ margin-top:0; transform-origin:50% 0%;
+  transform:rotateX(var(--kipp,26deg)) scale(var(--zoom,.9));
+  opacity:var(--sicht,.55); will-change:transform }
+@media (prefers-reduced-motion:reduce){
+  .dash-buehne .dash{ transform:none; opacity:1 } }
+
+/* ===== Erklaerblock unter dem Problem ===== */
+.loesung{ margin-top:34px; border-radius:var(--r); border:1px solid var(--line); overflow:hidden;
+  background:
+    radial-gradient(110% 90% at 50% 0%, rgba(198,247,81,.08), transparent 58%),
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012)), var(--karte);
+  box-shadow:var(--kante), var(--stapel); text-align:left }
+.loesung-koerper{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line) }
+@media (max-width:820px){ .loesung-koerper{ grid-template-columns:1fr } }
+.lo-feld{ background:#0D1009; padding:28px 26px 30px }
+.lo-nr{ font-size:11.5px; letter-spacing:.16em; color:var(--text-2); margin-bottom:14px; display:block }
+.lo-feld h4{ font-size:17.5px; margin:0 0 9px; color:#fff; letter-spacing:-.025em }
+.lo-feld p{ margin:0; font-size:14.2px; line-height:1.56; color:rgba(255,255,255,.52) }
+.lo-feld .lo-marke{ display:inline-flex; align-items:center; gap:7px; margin-top:14px; padding:5px 11px;
+  border-radius:100px; font-size:11px; letter-spacing:.06em; color:#1B2A05;
+  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 5px rgba(0,0,0,.45) }
+.plattformen{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; padding:22px 26px;
+  border-top:1px solid var(--line); background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5)) }
+.plattformen .pf-titel{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-2) }
+.pf-marke{ display:inline-flex; align-items:center; gap:11px; padding:9px 16px 9px 11px; border-radius:100px;
+  border:1px solid var(--line); font-size:14px; color:#fff; letter-spacing:-.01em;
+  background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.02));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 2px 4px rgba(0,0,0,.4), 0 10px 18px -12px rgba(0,0,0,.9);
+  transition:transform .3s var(--e), border-color .3s }
+.pf-marke:hover{ transform:translateY(-2px); border-color:var(--line-2) }
+.pf-marke svg{ width:22px; height:22px; flex:0 0 auto }
+
 </style>
 </head>
 
@@ -913,7 +994,8 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     </div>
 
     <!-- ===== Dashboard ===== -->
-    <div class="dash auf">
+    <div class="dash-buehne">
+    <div class="dash">
       <div class="dash-leiste">
         <span class="ampel"><i></i><i></i><i></i></span>
         <span class="fenster-titel">Dein Dashboard</span>
@@ -1011,6 +1093,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ===================== PROBLEM ===================== -->
@@ -1081,6 +1164,45 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
           <p>Wer gut ist, sitzt in einem Job und liest keine Stellenbörse. Den erreichst du nur dort, wo er sowieso ist.</p>
         </div>
       </article>
+    </div>
+    <div class="loesung auf">
+      <div class="loesung-koerper">
+        <div class="lo-feld">
+          <span class="lo-nr">01</span>
+          <h4>Das Angebot</h4>
+          <p>Bevor eine Anzeige läuft, bauen wir das Angebot um: was genau jemand bekommt, warum bei dir und warum jetzt. Ohne das wird jede Anzeige nur teurer Lärm.</p>
+          <span class="lo-marke">Der wichtigste Teil</span>
+        </div>
+        <div class="lo-feld">
+          <span class="lo-nr">02</span>
+          <h4>Der Funnel</h4>
+          <p>Die Strecke von der Anzeige bis zum Termin: Landingpage oder Formular, Vorqualifizierung, Weiterleitung, Nachfassen. Jeder Schritt hat genau eine Aufgabe.</p>
+        </div>
+        <div class="lo-feld">
+          <span class="lo-nr">03</span>
+          <h4>Das Copywriting</h4>
+          <p>Die Worte, die darüber entscheiden, ob jemand liest oder weiterwischt. Überschrift, Einstieg, Einwände, Aufforderung. Jede Variante wird gegen die nächste getestet.</p>
+        </div>
+      </div>
+      <div class="plattformen">
+        <span class="pf-titel">Geschaltet auf</span>
+        <span class="pf-marke">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9.4 2.6 3.2 13.3a3.1 3.1 0 1 0 5.4 3.1L14.8 5.7A3.1 3.1 0 0 0 9.4 2.6z" fill="#FBBC04"/>
+            <path d="M14.6 2.6a3.1 3.1 0 0 0-1.1 4.2l6.2 10.7a3.1 3.1 0 0 0 5.4-3.1L18.9 3.7a3.1 3.1 0 0 0-4.3-1.1z" fill="#4285F4" transform="translate(-2.2 0)"/>
+            <circle cx="6" cy="18.4" r="3.1" fill="#34A853"/>
+          </svg>
+          Google Ads
+        </span>
+        <span class="pf-marke">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <defs><linearGradient id="metaG" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0081FB"/><stop offset="1" stop-color="#0064E0"/></linearGradient></defs>
+            <path d="M3 14.4c0-3.6 1.8-7.4 4.3-7.4 1.4 0 2.5 1 3.9 3.2.9 1.4 1.8 3 2.6 4.4.6 1.1 1.1 1.8 1.7 1.8.9 0 1.7-1.6 1.7-3.9 0-2.6-1-4.5-2.5-4.5-.8 0-1.6.6-2.4 1.7l-1.4-2C12.2 5.9 13.6 5 15 5c2.9 0 4.9 3 4.9 7.3 0 4-1.7 6.4-4.2 6.4-1.6 0-2.8-.9-4-3-.9-1.5-1.8-3.2-2.5-4.5-.6-1.1-1.1-1.7-1.7-1.7-1 0-1.9 1.8-1.9 4.5 0 1.9.5 3.3 1.3 3.3.5 0 .9-.3 1.4-1l1.3 2c-.9 1.2-1.9 1.8-3 1.8C4.4 20.1 3 17.9 3 14.4z" fill="url(#metaG)"/>
+          </svg>
+          Meta Ads
+        </span>
+      </div>
     </div>
   </div>
 </section>
@@ -1179,40 +1301,78 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 </section>
 
 <section class="sec" id="kunden" style="padding-top:0">
-  <span class="licht licht-lime" style="left:50%;top:10%;width:min(760px,88vw);height:min(760px,88vw);transform:translateX(-50%);filter:blur(130px);opacity:.14" aria-hidden="true"></span>
+  <span class="licht licht-lime" style="left:50%;top:6%;width:min(760px,88vw);height:min(760px,88vw);transform:translateX(-50%);filter:blur(130px);opacity:.14" aria-hidden="true"></span>
   <div class="wrap mitte">
     <span class="chip auf"><i></i>Kunden</span>
     <h2 class="auf verlauf" style="margin-top:20px">Was die sagen, <em class="ak">die schon drin sind</em>.</h2>
     <p class="lead auf">Zwei Kunden, zwei Ergebnisse. Weitere Stimmen kommen dazu, sobald die Freigaben vorliegen.</p>
-
-    <div class="stimmen auf">
-      <div class="stimme-punkte" role="tablist" aria-label="Kundenstimmen">
-        <button class="st-pkt an" type="button" data-go="1" role="tab" aria-selected="true"><span></span></button>
-        <button class="st-pkt" type="button" data-go="2" role="tab" aria-selected="false"><span></span></button>
-      </div>
-
-      <article class="stimme" data-s="1">
-        <div class="stimme-bild">
-          <span class="foto-lino" role="img" aria-label="Lino Schaller, Inhaber von Karton und Kraft"></span>
-          <span class="chat-lino" role="img" aria-label="Nachricht von Lino Schaller über 19 qualifizierte Kaufanfragen in der ersten Woche"></span>
-        </div>
-        <div class="stimme-text">
+  </div>
+  <div class="stimmen-band auf">
+    <div class="stimmen-spur">
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-lino"></span></div>
+        <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
-          <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Aber du hast mich wirklich vom Gegenteil überzeugt. Wir konnten jetzt schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
-          <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Entrümpelung Hannover</span></div>
-          <div class="stat"><b>19</b><span>qualifizierte Anfragen<br>in der ersten Woche</span></div>
+          <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
+          <div class="st-fuss">
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
+          </div>
         </div>
       </article>
-
-      <article class="stimme" data-s="2" hidden>
-        <div class="stimme-bild">
-          <span class="foto-bergunde" role="img" aria-label="Roswitha Bergunde, Inhaberin der Praxis für Logopädie und Lerntherapie in Lehrte"></span>
-        </div>
-        <div class="stimme-text">
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-bergunde"></span></div>
+        <div class="st-text">
           <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
           <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
-          <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie Lehrte</span></div>
-          <div class="stat"><b>Platz 1</b><span>lokal in Lehrte,<br>nach zwei Tagen</span></div>
+          <div class="st-fuss">
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-lino"></span></div>
+        <div class="st-text">
+          <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+          <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
+          <div class="st-fuss">
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-bergunde"></span></div>
+        <div class="st-text">
+          <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+          <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
+          <div class="st-fuss">
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-lino"></span></div>
+        <div class="st-text">
+          <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+          <p class="zitat">„Ich hätte am Anfang ehrlich gesagt echt nicht gedacht, dass das so gut funktioniert. Wir konnten schon in der ersten Woche 19 qualifizierte Kaufanfragen generieren.“</p>
+          <div class="st-fuss">
+            <div class="wer"><b>Lino Schaller</b><span>Karton &amp; Kraft · Hannover</span></div>
+            <div class="st-stat"><b>19</b><span>Anfragen<br>Woche 1</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="st-karte">
+        <div class="st-bild"><span class="foto-bergunde"></span></div>
+        <div class="st-text">
+          <span class="sterne" aria-label="fünf von fünf Sternen">★★★★★</span>
+          <p class="zitat">„Durch Paul haben wir es geschafft, in unserem Stadtteil schon nach zwei Tagen unter den Praxen auf Platz 1 zu stehen.“</p>
+          <div class="st-fuss">
+            <div class="wer"><b>Roswitha Bergunde</b><span>Logopädie &amp; Lerntherapie · Lehrte</span></div>
+            <div class="st-stat"><b>Platz 1</b><span>lokal,<br>nach 2 Tagen</span></div>
+          </div>
         </div>
       </article>
     </div>
@@ -1613,26 +1773,29 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   zahlen.forEach(function(z){ b.observe(z); });
 })();
 
-/* ===== Kundenstimmen wechseln von allein ===== */
+/* ===== Dashboard klappt beim Scrollen auf ===== */
 (function(){
-  var punkte = [].slice.call(document.querySelectorAll('.st-pkt'));
-  var folien = [].slice.call(document.querySelectorAll('.stimme'));
-  if(punkte.length < 2) return;
-  var jetzt = 0, uhr;
-  function zeige(i){
-    jetzt = i;
-    folien.forEach(function(f,k){ f.hidden = (k !== i) });
-    punkte.forEach(function(p,k){
-      p.classList.toggle('an', k === i);
-      p.setAttribute('aria-selected', k === i ? 'true' : 'false');
-      var f = p.querySelector('span');
-      f.style.animation = 'none'; void f.offsetWidth; f.style.animation = '';
-    });
+  var dash = document.querySelector('.dash-buehne .dash');
+  if(!dash) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    dash.classList.add('da'); return;
   }
-  function weiter(){ zeige((jetzt+1) % folien.length) }
-  function starte(){ clearInterval(uhr); uhr = setInterval(weiter, 7000) }
-  punkte.forEach(function(p,k){ p.addEventListener('click', function(){ zeige(k); starte(); }) });
-  starte();
+  var laeuft = false;
+  function rechne(){
+    laeuft = false;
+    var r = dash.getBoundingClientRect(), vh = window.innerHeight || 800;
+    var p = (vh*0.92 - r.top) / (vh*0.55);
+    p = Math.max(0, Math.min(1, p));
+    var e = 1 - Math.pow(1-p, 3);
+    dash.style.setProperty('--kipp', (26*(1-e)).toFixed(2) + 'deg');
+    dash.style.setProperty('--zoom', (0.9 + 0.1*e).toFixed(4));
+    dash.style.setProperty('--sicht', (0.5 + 0.5*e).toFixed(3));
+    if(e > 0.28) dash.classList.add('da');
+  }
+  function anstossen(){ if(!laeuft){ laeuft = true; requestAnimationFrame(rechne); } }
+  rechne();
+  window.addEventListener('scroll', anstossen, {passive:true});
+  window.addEventListener('resize', anstossen);
 })();
 
 /* ===== Aktiver Menuepunkt ===== */
