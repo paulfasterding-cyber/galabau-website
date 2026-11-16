@@ -567,8 +567,8 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 @media (max-width:900px){ .reihe{ grid-template-columns:1fr } }
 .reihe-rechts{ display:grid; gap:20px; align-content:stretch }
 /* im Raster darf die Kachel nicht per auto-Rand zusammenschrumpfen */
-.reihe .fenster{ margin:0; max-width:none; width:100% }
-.reihe .fenster-innen{ height:100%; min-height:clamp(300px,26vw,420px) }
+.reihe .fenster{ margin:0; max-width:none; width:100%; display:flex; flex-direction:column }
+.reihe .fenster-innen{ height:auto; flex:1 1 auto; min-height:clamp(250px,23vw,350px) }
 
 
 /* ===== Markenzeichen: halbierte Limette ===== */
@@ -987,6 +987,76 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .fall-raster p{ margin:0; font-size:13.8px; line-height:1.52; color:rgba(255,255,255,.58) }
 .fall-fuss{ margin:20px 0 0; font-size:13px; color:var(--text-2) }
 
+
+/* ===== Plattformen ===== */
+.pf-gross{ padding:30px 28px 0; display:flex; flex-direction:column }
+.pf-gross > *{ position:relative; z-index:2 }
+.pf-kopf{ display:flex; align-items:center; gap:16px; margin-bottom:20px }
+.pf-logo{ width:58px; height:58px; border-radius:17px; display:grid; place-items:center; flex:0 0 auto;
+  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 2px 5px rgba(0,0,0,.45),
+    0 14px 26px -14px rgba(0,0,0,.9) }
+.pf-logo svg{ width:30px; height:30px; fill:#C6F751;
+  filter:drop-shadow(0 0 12px rgba(198,247,81,.65)) }
+.pf-kopf b{ display:block; font-size:21px; font-weight:600; color:#fff; letter-spacing:-.03em }
+.pf-kopf span{ display:block; font-size:13px; color:var(--text-2); margin-top:3px }
+.pf-gross > p{ margin:0; font-size:15.2px; line-height:1.6; max-width:46ch }
+.pf-fuss{ margin:26px -28px 0; padding:18px 28px; border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  font-size:13.5px; color:var(--text-2) }
+.pf-gross .liste{ margin-top:22px }
+
+/* Werbeanzeige als Beispiel */
+.anzeige{ margin-top:24px; border-radius:16px; overflow:hidden; border:1px solid var(--line);
+  background:linear-gradient(180deg,#14180F,#0A0C07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 3px 7px rgba(0,0,0,.5),
+    0 22px 40px -22px rgba(0,0,0,1) }
+.az-kopf{ display:flex; align-items:center; gap:11px; padding:12px 14px 8px }
+.az-marke{ width:34px; height:34px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center;
+  background:#0E1109; border:1px solid var(--line); overflow:hidden }
+.az-marke svg{ width:26px; height:26px }
+.az-wer b{ display:block; font-size:13px; font-weight:500; color:#fff }
+.az-wer span{ display:flex; align-items:center; gap:4px; font-size:11px; color:rgba(255,255,255,.4); margin-top:1px }
+.az-punkte{ margin-left:auto; color:rgba(255,255,255,.35); letter-spacing:1px; font-size:12px }
+.az-text{ margin:4px 0 10px; padding:0 14px; font-size:13.5px; line-height:1.45; color:rgba(255,255,255,.75) }
+.az-bild{ position:relative; height:150px; display:grid; place-items:center; overflow:hidden;
+  background:radial-gradient(120% 110% at 20% 0%, #D6FF78 0%, #8FC520 42%, #3E5C0C 100%) }
+.az-bild b{ position:relative; z-index:2; font-size:21px; font-weight:600; color:#15200A;
+  letter-spacing:-.03em; line-height:1.14; text-align:center }
+.az-glanz{ position:absolute; inset:-30% -10% auto -10%; height:90%;
+  background:radial-gradient(60% 70% at 40% 20%, rgba(255,255,255,.65), transparent 70%) }
+.az-tag{ position:absolute; z-index:2; right:12px; bottom:12px; font-size:10.5px; letter-spacing:.06em;
+  padding:5px 10px; border-radius:100px; color:#E9FFC0; background:rgba(16,22,8,.78);
+  border:1px solid rgba(255,255,255,.14) }
+.az-leiste{ display:flex; align-items:center; gap:12px; padding:11px 14px;
+  background:rgba(255,255,255,.035); border-top:1px solid var(--line) }
+.az-leiste b{ display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:rgba(255,255,255,.4) }
+.az-leiste span{ display:block; font-size:13px; color:#fff; margin-top:2px; font-weight:500 }
+.az-knopf{ margin-left:auto; flex:0 0 auto; font-size:12.5px; font-weight:500; color:#15200A;
+  padding:8px 14px; border-radius:9px;
+  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 6px rgba(0,0,0,.45) }
+.az-fuss{ display:flex; gap:22px; padding:10px 14px 12px; border-top:1px solid var(--line);
+  font-size:11.5px; color:rgba(255,255,255,.34) }
+
+/* ===== Flaggenleiste unter dem Globus ===== */
+.globus-fuss{ display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  padding:14px 18px; border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(0,0,0,.35));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08) }
+.globus-fuss .raum-kreise{ display:flex; align-items:center }
+.globus-fuss .flagge{ width:30px; height:30px; margin-left:-9px; opacity:1;
+  box-shadow:0 0 0 2px #0E110A, 0 0 0 3px rgba(198,247,81,.22), 0 2px 4px rgba(0,0,0,.6) }
+.globus-fuss .flagge:first-child{ margin-left:0 }
+.gf-text{ font-size:13px; color:var(--text) }
+.gf-text b{ color:#fff; font-weight:500 }
+.gf-rechts{ margin-left:auto; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-2) }
+@media (max-width:560px){ .gf-rechts{ display:none } }
+
 </style>
 </head>
 
@@ -1085,6 +1155,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       <a href="#oben" class="an">Start</a>
       <a href="#leistungen">Leistungen</a>
       <a href="#kunden">Kunden</a>
+      <a href="#plattformen">Kanäle</a>
       <a href="#raum">Raum</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#fragen">Fragen</a>
@@ -1297,109 +1368,6 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
         </div>
       </div>
     </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PROBLEM ===================== -->
-<section class="sec" id="problem">
-  <div class="wrap mitte">
-    <span class="chip auf"><i></i>Woran es liegt</span>
-    <h2 class="auf verlauf" style="margin-top:20px">Es liegt fast nie <span class="still">an der Anzeige.</span></h2>
-    <p class="lead auf">Drei Gründe sehen wir in fast jedem Betrieb, bevor überhaupt Geld für Werbung ausgegeben wird.</p>
-
-    <div class="drei" style="text-align:left">
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
-            <rect x="26" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <rect x="122" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <rect x="218" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-            <g fill="rgba(255,255,255,.17)">
-              <rect x="40" y="70" width="48" height="6" rx="3"/><rect x="40" y="84" width="34" height="6" rx="3"/>
-              <rect x="136" y="70" width="48" height="6" rx="3"/><rect x="136" y="84" width="34" height="6" rx="3"/>
-              <rect x="232" y="70" width="48" height="6" rx="3"/><rect x="232" y="84" width="34" height="6" rx="3"/>
-            </g>
-            <rect x="40" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-            <rect x="136" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-            <rect x="232" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
-          </svg>
-        </div>
-        <div class="karte-inhalt">
-          <h3>Dein Angebot klingt wie alle</h3>
-          <p>Drei Anbieter, drei Mal dasselbe Versprechen. Dann entscheidet nur noch der Preis, und den willst du nicht gewinnen.</p>
-        </div>
-      </article>
-
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
-            <g>
-              <rect x="40" y="38" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
-              <circle cx="58" cy="53" r="5" fill="#C6F751"/>
-              <rect x="74" y="48" width="120" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
-              <rect x="40" y="76" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.08)" opacity=".75"/>
-              <circle cx="58" cy="91" r="5" fill="#C6F751" opacity=".6"/>
-              <rect x="74" y="86" width="96" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
-              <rect x="40" y="114" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.06)" opacity=".45"/>
-              <circle cx="58" cy="129" r="5" fill="#C6F751" opacity=".3"/>
-              <rect x="74" y="124" width="76" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
-            </g>
-          </svg>
-        </div>
-        <div class="karte-inhalt">
-          <h3>Anfragen bleiben liegen</h3>
-          <p>Wer sich meldet, will jetzt eine Antwort. Zwei Tage später hat er beim Nächsten unterschrieben.</p>
-        </div>
-      </article>
-
-      <article class="karte auf">
-        <div class="karte-bild">
-          <svg viewBox="0 0 320 180" fill="none">
-            <circle cx="160" cy="90" r="54" stroke="rgba(255,255,255,.12)" stroke-dasharray="5 7"/>
-            <circle cx="160" cy="90" r="34" stroke="rgba(255,255,255,.08)" stroke-dasharray="4 6"/>
-            <circle cx="160" cy="76" r="12" fill="rgba(255,255,255,.1)"/>
-            <path d="M140 110c0-11 9-18 20-18s20 7 20 18" fill="rgba(255,255,255,.1)"/>
-            <circle cx="228" cy="52" r="4" fill="#C6F751" opacity=".8"/>
-            <circle cx="96" cy="128" r="3" fill="#C6F751" opacity=".5"/>
-          </svg>
-        </div>
-        <div class="karte-inhalt">
-          <h3>Die Guten bewerben sich nicht</h3>
-          <p>Wer gut ist, sitzt in einem Job und liest keine Stellenbörse. Den erreichst du nur dort, wo er sowieso ist.</p>
-        </div>
-      </article>
-    </div>
-    <div class="loesung auf">
-      <div class="loesung-koerper">
-        <div class="lo-feld">
-          <span class="lo-nr">01</span>
-          <h4>Das Angebot</h4>
-          <p>Bevor eine Anzeige läuft, bauen wir das Angebot um: was genau jemand bekommt, warum bei dir und warum jetzt. Ohne das wird jede Anzeige nur teurer Lärm.</p>
-          <span class="lo-marke">Der wichtigste Teil</span>
-        </div>
-        <div class="lo-feld">
-          <span class="lo-nr">02</span>
-          <h4>Der Funnel</h4>
-          <p>Die Strecke von der Anzeige bis zum Termin: Landingpage oder Formular, Vorqualifizierung, Weiterleitung, Nachfassen. Jeder Schritt hat genau eine Aufgabe.</p>
-        </div>
-        <div class="lo-feld">
-          <span class="lo-nr">03</span>
-          <h4>Das Copywriting</h4>
-          <p>Die Worte, die darüber entscheiden, ob jemand liest oder weiterwischt. Überschrift, Einstieg, Einwände, Aufforderung. Jede Variante wird gegen die nächste getestet.</p>
-        </div>
-      </div>
-      <div class="plattformen">
-        <span class="pf-titel">Geschaltet auf</span>
-        <span class="pf-marke">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg>
-          Google Ads
-        </span>
-        <span class="pf-marke">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
-          Meta Ads
-        </span>
-      </div>
     </div>
   </div>
 </section>
@@ -1621,6 +1589,167 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   </div>
 </section>
 
+<section class="sec" id="plattformen" style="padding-top:0">
+  <span class="licht licht-lime" style="left:50%;top:4%;width:min(820px,92vw);height:min(820px,92vw);transform:translateX(-50%);filter:blur(130px);opacity:.14" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="mitte">
+      <span class="chip auf"><i></i>Plattformen</span>
+      <h2 class="auf verlauf" style="margin-top:20px">Wir schalten da, <span class="still">wo deine Leute</span> <em class="ak">schon sind</em>.</h2>
+      <p class="lead auf">Zwei Kanäle, zwei Aufgaben. Der eine greift Nachfrage ab, die es schon gibt. Der andere erzeugt sie bei Leuten, die gerade nicht suchen.</p>
+    </div>
+
+    <div class="zwei">
+      <article class="karte pf-gross auf">
+        <div class="pf-kopf">
+          <span class="pf-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg></span>
+          <div><b>Google Ads</b><span>Nachfrage, die schon da ist</span></div>
+        </div>
+        <p>Wer bei Google sucht, hat das Problem heute. Da kaufst du keine Aufmerksamkeit, sondern stellst dich in den Weg, kurz bevor entschieden wird.</p>
+        <ul class="liste">
+          <li>Suchbegriffe, bei denen jemand kaufen will, nicht nur stöbert</li>
+          <li>Anzeigentexte, die zur Suche passen, nicht zur Branche</li>
+          <li>Landingpage, die genau das einlöst, wonach gesucht wurde</li>
+        </ul>
+        <div class="pf-fuss">Stark, wenn es dich und dein Problem schon gibt.</div>
+      </article>
+
+      <article class="karte pf-gross auf">
+        <div class="pf-kopf">
+          <span class="pf-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></span>
+          <div><b>Meta Ads</b><span>Nachfrage, die erst entsteht</span></div>
+        </div>
+        <p>Auf Instagram und Facebook sucht niemand nach dir. Deshalb muss die Anzeige selbst den Bedarf wecken, in den ersten zwei Sekunden.</p>
+
+        <div class="anzeige">
+          <div class="az-kopf">
+            <span class="az-marke"><svg viewBox="-135 -112 270 224" aria-hidden="true"><use href="#lim-ganz"/></svg></span>
+            <div class="az-wer"><b>Dein Betrieb</b><span>Gesponsert · <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg> Hannover</span></div>
+            <span class="az-punkte">•••</span>
+          </div>
+          <p class="az-text">Du brauchst keine zehn Angebote. Du brauchst eins, das passt.</p>
+          <div class="az-bild">
+            <span class="az-glanz"></span>
+            <b>In 60 Sekunden<br>zur Anfrage</b>
+            <span class="az-tag">Ohne Lebenslauf</span>
+          </div>
+          <div class="az-leiste">
+            <div><b>deinbetrieb.de</b><span>Jetzt unverbindlich anfragen</span></div>
+            <span class="az-knopf">Mehr dazu</span>
+          </div>
+          <div class="az-fuss">
+            <span>Gefällt mir</span><span>Kommentieren</span><span>Senden</span>
+          </div>
+        </div>
+
+        <div class="pf-fuss">Stark, wenn noch niemand nach dir sucht.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="sec" id="problem">
+  <div class="wrap mitte">
+    <span class="chip auf"><i></i>Woran es liegt</span>
+    <h2 class="auf verlauf" style="margin-top:20px">Es liegt fast nie <span class="still">an der Anzeige.</span></h2>
+    <p class="lead auf">Drei Gründe sehen wir in fast jedem Betrieb, bevor überhaupt Geld für Werbung ausgegeben wird.</p>
+
+    <div class="drei" style="text-align:left">
+      <article class="karte auf">
+        <div class="karte-bild">
+          <svg viewBox="0 0 320 180" fill="none">
+            <rect x="26" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
+            <rect x="122" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
+            <rect x="218" y="52" width="76" height="76" rx="12" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
+            <g fill="rgba(255,255,255,.17)">
+              <rect x="40" y="70" width="48" height="6" rx="3"/><rect x="40" y="84" width="34" height="6" rx="3"/>
+              <rect x="136" y="70" width="48" height="6" rx="3"/><rect x="136" y="84" width="34" height="6" rx="3"/>
+              <rect x="232" y="70" width="48" height="6" rx="3"/><rect x="232" y="84" width="34" height="6" rx="3"/>
+            </g>
+            <rect x="40" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
+            <rect x="136" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
+            <rect x="232" y="104" width="30" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
+          </svg>
+        </div>
+        <div class="karte-inhalt">
+          <h3>Dein Angebot klingt wie alle</h3>
+          <p>Drei Anbieter, drei Mal dasselbe Versprechen. Dann entscheidet nur noch der Preis, und den willst du nicht gewinnen.</p>
+        </div>
+      </article>
+
+      <article class="karte auf">
+        <div class="karte-bild">
+          <svg viewBox="0 0 320 180" fill="none">
+            <g>
+              <rect x="40" y="38" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.1)"/>
+              <circle cx="58" cy="53" r="5" fill="#C6F751"/>
+              <rect x="74" y="48" width="120" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
+              <rect x="40" y="76" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.08)" opacity=".75"/>
+              <circle cx="58" cy="91" r="5" fill="#C6F751" opacity=".6"/>
+              <rect x="74" y="86" width="96" height="6" rx="3" fill="rgba(255,255,255,.2)"/>
+              <rect x="40" y="114" width="240" height="30" rx="9" fill="#1C2116" stroke="rgba(255,255,255,.06)" opacity=".45"/>
+              <circle cx="58" cy="129" r="5" fill="#C6F751" opacity=".3"/>
+              <rect x="74" y="124" width="76" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="karte-inhalt">
+          <h3>Anfragen bleiben liegen</h3>
+          <p>Wer sich meldet, will jetzt eine Antwort. Zwei Tage später hat er beim Nächsten unterschrieben.</p>
+        </div>
+      </article>
+
+      <article class="karte auf">
+        <div class="karte-bild">
+          <svg viewBox="0 0 320 180" fill="none">
+            <circle cx="160" cy="90" r="54" stroke="rgba(255,255,255,.12)" stroke-dasharray="5 7"/>
+            <circle cx="160" cy="90" r="34" stroke="rgba(255,255,255,.08)" stroke-dasharray="4 6"/>
+            <circle cx="160" cy="76" r="12" fill="rgba(255,255,255,.1)"/>
+            <path d="M140 110c0-11 9-18 20-18s20 7 20 18" fill="rgba(255,255,255,.1)"/>
+            <circle cx="228" cy="52" r="4" fill="#C6F751" opacity=".8"/>
+            <circle cx="96" cy="128" r="3" fill="#C6F751" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="karte-inhalt">
+          <h3>Die Guten bewerben sich nicht</h3>
+          <p>Wer gut ist, sitzt in einem Job und liest keine Stellenbörse. Den erreichst du nur dort, wo er sowieso ist.</p>
+        </div>
+      </article>
+    </div>
+    <div class="loesung auf">
+      <div class="loesung-koerper">
+        <div class="lo-feld">
+          <span class="lo-nr">01</span>
+          <h4>Das Angebot</h4>
+          <p>Bevor eine Anzeige läuft, bauen wir das Angebot um: was genau jemand bekommt, warum bei dir und warum jetzt. Ohne das wird jede Anzeige nur teurer Lärm.</p>
+          <span class="lo-marke">Der wichtigste Teil</span>
+        </div>
+        <div class="lo-feld">
+          <span class="lo-nr">02</span>
+          <h4>Der Funnel</h4>
+          <p>Die Strecke von der Anzeige bis zum Termin: Landingpage oder Formular, Vorqualifizierung, Weiterleitung, Nachfassen. Jeder Schritt hat genau eine Aufgabe.</p>
+        </div>
+        <div class="lo-feld">
+          <span class="lo-nr">03</span>
+          <h4>Das Copywriting</h4>
+          <p>Die Worte, die darüber entscheiden, ob jemand liest oder weiterwischt. Überschrift, Einstieg, Einwände, Aufforderung. Jede Variante wird gegen die nächste getestet.</p>
+        </div>
+      </div>
+      <div class="plattformen">
+        <span class="pf-titel">Geschaltet auf</span>
+        <span class="pf-marke">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg>
+          Google Ads
+        </span>
+        <span class="pf-marke">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+          Meta Ads
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="raum" style="padding-top:0">
   <div class="wrap">
     <div class="mitte">
@@ -1637,9 +1766,11 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
         <div class="fenster-innen">
           <span class="licht licht-lime" style="left:50%;top:12%;width:min(620px,78%);height:min(620px,78%);transform:translateX(-50%);filter:blur(80px);opacity:.3" aria-hidden="true"></span>
           <canvas id="globus" width="1800" height="900" aria-label="Punktglobus mit hervorgehobenem deutschsprachigem Raum"></canvas>
-          <span class="globus-chip gc-1"><i></i>Deutschland</span>
-          <span class="globus-chip gc-2"><i></i>Österreich</span>
-          <span class="globus-chip gc-3"><i></i>Schweiz</span>
+        </div>
+        <div class="globus-fuss">
+          <div class="raum-kreise"><span class="flagge" title="Deutschland"><svg viewBox="0 0 36 36" aria-label="Deutschland"><g clip-path="url(#g-de)"><rect width="36" height="12" y="0" fill="#141414"/><rect width="36" height="12" y="12" fill="#D7141A"/><rect width="36" height="12" y="24" fill="#FFC930"/></g><defs><clipPath id="g-de"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span><span class="flagge" title="Österreich"><svg viewBox="0 0 36 36" aria-label="Österreich"><g clip-path="url(#g-at)"><rect width="36" height="12" y="0" fill="#D7141A"/><rect width="36" height="12" y="12" fill="#FFFFFF"/><rect width="36" height="12" y="24" fill="#D7141A"/></g><defs><clipPath id="g-at"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span><span class="flagge" title="Schweiz"><svg viewBox="0 0 36 36" aria-label="Schweiz"><g clip-path="url(#g-ch)"><rect width="36" height="36" fill="#D7141A"/><path d="M15.4 7.6h5.2v7.8h7.8v5.2h-7.8v7.8h-5.2v-7.8H7.6v-5.2h7.8z" fill="#fff"/></g><defs><clipPath id="g-ch"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span><span class="flagge" title="Liechtenstein"><svg viewBox="0 0 36 36" aria-label="Liechtenstein"><g clip-path="url(#g-li)"><rect width="36" height="18" y="0" fill="#1C3C8C"/><rect width="36" height="18" y="18" fill="#D7141A"/><g fill="#F2C94C"><path d="M7.2 9.3h9.2v2.3H7.2z"/><path d="M7.9 6.4l1.9 1.6 2-2.2 1.9 2.2 1.9-1.6-.5 2.5H8.4z"/><circle cx="7.9" cy="5.6" r="1"/><circle cx="15.6" cy="5.6" r="1"/><circle cx="11.8" cy="4.4" r="1.1"/></g></g><defs><clipPath id="g-li"><circle cx="18" cy="18" r="18"/></clipPath></defs></svg></span></div>
+          <span class="gf-text">Betreut wird im gesamten <b>deutschsprachigen Raum</b></span>
+          <span class="gf-rechts">Sitz in Hannover</span>
         </div>
       </div>
       <div class="reihe-rechts">
