@@ -198,10 +198,10 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12) }
 .ampel{ display:flex; gap:7px }
 .ampel i{ width:10px; height:10px; border-radius:50%; display:block;
-  background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.07));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 1px 2px rgba(0,0,0,.5) }
-.ampel i:first-child{ background:linear-gradient(180deg,var(--lime-hell),var(--lime-tief));
-  box-shadow:0 0 10px rgba(198,247,81,.7), inset 0 1px 0 rgba(255,255,255,.7) }
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.5) }
+.ampel i:nth-child(1){ background:linear-gradient(180deg,#FF7B72,#E0443B) }
+.ampel i:nth-child(2){ background:linear-gradient(180deg,#FFD05C,#E0A118) }
+.ampel i:nth-child(3){ background:linear-gradient(180deg,#5BE07A,#1EA93C) }
 .fenster-titel{ font-size:12.5px; letter-spacing:.06em; color:rgba(255,255,255,.55) }
 .fenster-rechts{ margin-left:auto; display:flex; align-items:center; gap:8px;
   font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4) }
@@ -275,13 +275,12 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .liste li{ position:relative; padding-left:34px; padding-top:1px; padding-bottom:1px;
   font-size:14.8px; line-height:1.5; color:rgba(255,255,255,.68) }
 .liste li::before{ content:""; position:absolute; left:0; top:.1em; width:22px; height:22px; border-radius:8px;
-  background:linear-gradient(180deg,rgba(198,247,81,.2),rgba(198,247,81,.05));
-  box-shadow:inset 0 0 0 1px rgba(198,247,81,.3), inset 0 1px 0 rgba(255,255,255,.22),
-    0 2px 4px rgba(0,0,0,.4) }
+  background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14), inset 0 1px 0 rgba(255,255,255,.18) }
 .liste li::after{ content:""; position:absolute; left:6.6px; top:calc(.1em + 7px);
-  width:9px; height:5px; border-left:1.8px solid #C6F751; border-bottom:1.8px solid #C6F751;
+  width:9px; height:5px; border-left:1.8px solid rgba(255,255,255,.8); border-bottom:1.8px solid rgba(255,255,255,.8);
   transform:rotate(-45deg); border-radius:1px }
-.liste li:hover::before{ background:linear-gradient(180deg,rgba(198,247,81,.34),rgba(198,247,81,.1)) }
+.liste li:hover::before{ background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05)) }
 .lk-fuss{ margin:28px -30px 0; padding:19px 30px; border-top:1px solid var(--line);
   background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
@@ -374,7 +373,7 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .cta-feld{ position:relative; border-radius:clamp(22px,2.6vw,32px); overflow:hidden;
   border:1px solid var(--line-2); padding:clamp(52px,7vw,92px) 26px; text-align:center;
   background:
-    radial-gradient(120% 110% at 50% 118%, rgba(198,247,81,.12) 0%, transparent 56%),
+    radial-gradient(120% 110% at 50% 118%, rgba(198,247,81,.16) 0%, transparent 56%),
     linear-gradient(180deg,#14180E 0%,#0A0C07 72%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.7), var(--stapel-hoch) }
 .cta-feld::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.45;
@@ -618,7 +617,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   background:linear-gradient(180deg,#171B10 0%,#0E110A 54%,#090B06 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.75),
     0 3px 8px rgba(0,0,0,.5), 0 18px 34px rgba(0,0,0,.42),
-    0 46px 70px -30px rgba(0,0,0,.95), 0 0 120px -50px rgba(255,255,255,.18) }
+    0 46px 70px -30px rgba(0,0,0,.95) }
 .dash::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
   background:linear-gradient(150deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,0) 32%) }
 .dash-leiste{ display:flex; align-items:center; gap:14px; padding:12px 16px; border-bottom:1px solid var(--line);
@@ -761,7 +760,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   background:linear-gradient(180deg,#171B10 0%,#0E110A 54%,#090B06 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.75),
     0 3px 8px rgba(0,0,0,.5), 0 18px 34px rgba(0,0,0,.4),
-    0 46px 70px -30px rgba(0,0,0,.95), 0 0 110px -52px rgba(255,255,255,.16) }
+    0 46px 70px -30px rgba(0,0,0,.95) }
 .str-fenster::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
   background:linear-gradient(150deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 34%) }
 .str-koerper{ position:relative; display:grid; grid-template-columns:repeat(4,1fr);
@@ -1019,7 +1018,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     0 22px 40px -22px rgba(0,0,0,1) }
 .az-kopf{ display:flex; align-items:center; gap:11px; padding:12px 14px 8px }
 .az-marke{ width:34px; height:34px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center;
-  background:#0E1109; border:1px solid var(--line); overflow:hidden }
+  background:#0B1119; border:1px solid rgba(255,255,255,.12); overflow:hidden }
 .az-marke svg{ width:26px; height:26px }
 .az-wer b{ display:block; font-size:13px; font-weight:500; color:#fff }
 .az-wer span{ display:flex; align-items:center; gap:4px; font-size:11px; color:rgba(255,255,255,.4); margin-top:1px }
@@ -1039,10 +1038,10 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .az-leiste b{ display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
   color:rgba(255,255,255,.4) }
 .az-leiste span{ display:block; font-size:13px; color:#fff; margin-top:2px; font-weight:500 }
-.az-knopf{ margin-left:auto; flex:0 0 auto; font-size:12.5px; font-weight:500; color:#15200A;
+.az-knopf{ margin-left:auto; flex:0 0 auto; font-size:12.5px; font-weight:500; color:#06101E;
   padding:8px 14px; border-radius:9px;
-  background:linear-gradient(180deg,#E4FFA0,#A9DE33);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 2px 6px rgba(0,0,0,.45) }
+  background:linear-gradient(180deg,#B7D6FF,#4C86E8);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 2px 6px rgba(0,0,0,.45) }
 .az-fuss{ display:flex; gap:22px; padding:10px 14px 12px; border-top:1px solid var(--line);
   font-size:11.5px; color:rgba(255,255,255,.34) }
 
@@ -1346,7 +1345,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .chip-blau{ color:#B7D6FF; border-color:rgba(106,168,255,.34);
   background:linear-gradient(180deg,rgba(106,168,255,.18),rgba(106,168,255,.05));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 2px 4px rgba(0,0,0,.35) }
-.chip-blau i{ background:linear-gradient(180deg,#CFE4FF,#2F6BD8); box-shadow:0 0 10px rgba(106,168,255,.8) }
+.chip-blau i{ background:linear-gradient(180deg,#CFE4FF,#2F6BD8) }
 .chip-orange{ color:rgba(255,255,255,.78); border-color:rgba(255,255,255,.16);
   background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03)) }
 .chip-orange i{ background:rgba(255,255,255,.6); box-shadow:none }
@@ -1393,7 +1392,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .handy .az-bild .az-schlag{ position:absolute; z-index:4; left:16px; bottom:48px; max-width:80%;
   font-size:27px; font-weight:600; line-height:1.06; letter-spacing:-.042em; color:#fff;
   text-align:left; text-shadow:0 2px 14px rgba(0,0,0,.85) }
-.handy .az-bild .az-schlag span{ background:linear-gradient(170deg,#EEFFC0,#C6F751 55%,#8FC520);
+.handy .az-bild .az-schlag span{ background:linear-gradient(170deg,#DCEBFF,#8FC0FF 55%,#4C86E8);
   -webkit-background-clip:text; background-clip:text; color:transparent }
 .az-unter{ position:absolute; z-index:4; left:17px; bottom:30px; font-size:11.5px;
   color:rgba(255,255,255,.62) }
@@ -1408,6 +1407,17 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 .az-fortschritt i{ display:block; height:100%; width:38%; border-radius:100px;
   background:linear-gradient(90deg,#2F6BD8,#8FC0FF); box-shadow:0 0 10px rgba(106,168,255,.8) }
 
+
+/* ===== Angebot und Copywriting ===== */
+.ang-hinten{ opacity:0; transform:translateY(8px); transform-box:fill-box; transform-origin:50% 50% }
+.ang-vorne{ opacity:0; transform:translateY(14px); transform-box:fill-box; transform-origin:50% 50% }
+.da .ang-hinten{ animation:kug-rein .7s var(--e) forwards }
+.da .ang-vorne{ animation:kug-rein .7s var(--e) .14s forwards }
+.cw-zeile{ opacity:0; transform:translateX(-10px); transform-box:fill-box; transform-origin:0 50% }
+.da .cw-zeile{ animation:cw-rein .6s var(--e) forwards }
+.da .cw-zeile.c2{ animation-delay:.12s }
+.da .cw-zeile.c3{ animation-delay:.26s }
+@keyframes cw-rein{ to{ opacity:1; transform:none } }
 </style>
 </head>
 
@@ -1458,6 +1468,10 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     <stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
   <linearGradient id="azFuell" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#6AA8FF" stop-opacity=".5"/><stop offset="1" stop-color="#6AA8FF" stop-opacity="0"/></linearGradient>
+  <linearGradient id="angKnopf" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8FC0FF"/><stop offset="1" stop-color="#2F6BD8"/></linearGradient>
+  <linearGradient id="cwBalken" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#2F6BD8"/><stop offset="1" stop-color="#A9CEFF"/></linearGradient>
   <linearGradient id="stufeHell" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#EAFFB8"/><stop offset="1" stop-color="#A9DE33"/></linearGradient>
   <linearGradient id="metaBlau2" x1="0" y1="0" x2="1" y2="1">
@@ -1527,7 +1541,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 <!-- ===================== BÜHNE ===================== -->
 <section class="buehne mitte" id="oben">
   <div class="raster-bg"></div>
-  <span class="licht licht-lime" style="left:50%;top:-16%;width:min(900px,104vw);height:min(900px,104vw);transform:translateX(-50%);filter:blur(110px);opacity:.2" aria-hidden="true"></span>
+  <span class="licht" style="left:50%;top:-14%;width:min(900px,104vw);height:min(900px,104vw);transform:translateX(-50%);filter:blur(120px);opacity:.16;background:radial-gradient(50% 50% at 50% 50%, rgba(140,180,235,.4), transparent 70%)" aria-hidden="true"></span>
   <div class="wrap">
     <span class="abzeichen auf">
       <span class="pf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -2044,25 +2058,25 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
           <span class="stufe-marke">Der wichtigste Teil</span>
         </div>
         <div class="stufe-bild">
-          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
-            <rect x="24" y="52" width="104" height="136" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
-            <rect x="148" y="52" width="104" height="136" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
-            <rect x="272" y="36" width="104" height="168" rx="16" fill="url(#stufeHell)" stroke="rgba(198,247,81,.5)"/>
-            <g fill="rgba(255,255,255,.14)">
-              <rect x="42" y="74" width="60" height="8" rx="4"/><rect x="42" y="92" width="42" height="8" rx="4"/>
-              <rect x="42" y="120" width="68" height="6" rx="3"/><rect x="42" y="134" width="52" height="6" rx="3"/>
-              <rect x="166" y="74" width="60" height="8" rx="4"/><rect x="166" y="92" width="42" height="8" rx="4"/>
-              <rect x="166" y="120" width="68" height="6" rx="3"/><rect x="166" y="134" width="52" height="6" rx="3"/>
-            </g>
-            <g fill="rgba(20,32,6,.75)">
-              <rect x="290" y="62" width="64" height="9" rx="4.5"/><rect x="290" y="82" width="46" height="9" rx="4.5"/>
-              <rect x="290" y="112" width="70" height="6" rx="3"/><rect x="290" y="126" width="56" height="6" rx="3"/>
-              <rect x="290" y="140" width="62" height="6" rx="3"/>
-            </g>
-            <rect x="290" y="162" width="52" height="18" rx="9" fill="#14200A"/>
-            <circle cx="366" cy="26" r="13" fill="#0D1206" stroke="rgba(198,247,81,.55)"/>
-            <path class="haken-pfad" d="M360 26l4 4 8-9" stroke="#C6F751" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg viewBox="0 0 400 250" fill="none" aria-hidden="true">
+              <g class="ang-hinten">
+                <rect x="58" y="36" width="284" height="150" rx="18" fill="#141821" stroke="rgba(255,255,255,.07)" transform="rotate(-4 200 110)"/>
+                <rect x="48" y="44" width="304" height="158" rx="18" fill="#171C26" stroke="rgba(255,255,255,.09)" transform="rotate(2.4 200 120)"/>
+              </g>
+              <g class="ang-vorne">
+                <rect x="42" y="52" width="316" height="166" rx="20" fill="#1C2230" stroke="rgba(255,255,255,.16)"/>
+                <rect x="64" y="76" width="150" height="11" rx="5.5" fill="#FFFFFF"/>
+                <rect x="64" y="96" width="98" height="11" rx="5.5" fill="rgba(255,255,255,.55)"/>
+                <rect x="64" y="128" width="230" height="7" rx="3.5" fill="rgba(255,255,255,.22)"/>
+                <rect x="64" y="144" width="196" height="7" rx="3.5" fill="rgba(255,255,255,.22)"/>
+                <rect x="64" y="176" width="104" height="22" rx="11" fill="url(#angKnopf)"/>
+                <rect x="284" y="72" width="56" height="20" rx="10" fill="rgba(106,168,255,.16)" stroke="rgba(106,168,255,.4)"/>
+                <circle cx="296" cy="82" r="3" fill="#8FC0FF"/>
+                <rect x="304" y="79" width="26" height="6" rx="3" fill="rgba(143,192,255,.8)"/>
+              </g>
+              <text x="200" y="238" text-anchor="middle" font-family="Geist,sans-serif" font-size="11"
+                letter-spacing="1.4" fill="rgba(255,255,255,.3)">EIN ANGEBOT, NICHT DREI</text>
+            </svg>
         </div>
       </article>
 
@@ -2116,11 +2130,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
                 <circle cx="200" cy="228" r="4.5" fill="#FFFFFF"/>
                 <circle cx="200" cy="228" r="10" stroke="rgba(255,255,255,.3)"/>
               </g>
-              <g stroke="rgba(255,255,255,.1)" stroke-dasharray="3 5">
-                <path d="M34 22v-6M366 22v-6"/>
-              </g>
-              <text x="372" y="48" text-anchor="end" font-family="Geist,sans-serif" font-size="10.5" letter-spacing="1.2" fill="rgba(255,255,255,.26)">VIELE</text>
-              <text x="372" y="206" text-anchor="end" font-family="Geist,sans-serif" font-size="10.5" letter-spacing="1.2" fill="rgba(255,255,255,.55)">DIE RICHTIGEN</text>
+
             </svg>
         </div>
       </article>
@@ -2138,26 +2148,35 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
           <span class="stufe-marke">Wird laufend getestet</span>
         </div>
         <div class="stufe-bild">
-          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
-            <rect x="22" y="36" width="168" height="168" rx="16" fill="#171B10" stroke="rgba(255,255,255,.08)"/>
-            <rect x="210" y="36" width="168" height="168" rx="16" fill="#12170C" stroke="rgba(198,247,81,.45)"/>
-            <g fill="rgba(255,255,255,.16)">
-              <rect x="42" y="60" width="118" height="10" rx="5"/><rect x="42" y="78" width="86" height="10" rx="5"/>
-              <rect x="42" y="108" width="128" height="6" rx="3"/><rect x="42" y="122" width="108" height="6" rx="3"/>
-              <rect x="42" y="136" width="118" height="6" rx="3"/>
-              <rect x="42" y="166" width="62" height="16" rx="8"/>
-            </g>
-            <g>
-              <rect x="230" y="60" width="128" height="10" rx="5" fill="url(#stufeHell)"/>
-              <rect x="230" y="78" width="92" height="10" rx="5" fill="rgba(198,247,81,.45)"/>
-              <rect x="230" y="108" width="128" height="6" rx="3" fill="rgba(255,255,255,.4)"/>
-              <rect x="230" y="122" width="112" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
-              <rect x="230" y="136" width="122" height="6" rx="3" fill="rgba(255,255,255,.3)"/>
-              <rect x="230" y="166" width="74" height="16" rx="8" fill="url(#stufeHell)"/>
-            </g>
-            <text x="106" y="224" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.4" fill="rgba(255,255,255,.3)">VARIANTE A</text>
-            <text x="294" y="224" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.4" fill="rgba(198,247,81,.75)">VARIANTE B</text>
-          </svg>
+          <svg viewBox="0 0 400 250" fill="none" aria-hidden="true">
+              <g class="cw-zeile c1">
+                <rect x="28" y="30" width="344" height="52" rx="14" fill="#141821" stroke="rgba(255,255,255,.08)"/>
+                <rect x="46" y="44" width="150" height="8" rx="4" fill="rgba(255,255,255,.4)"/>
+                <rect x="46" y="60" width="96" height="6" rx="3" fill="rgba(255,255,255,.18)"/>
+                <rect x="232" y="50" width="88" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+                <rect x="232" y="50" width="30" height="6" rx="3" fill="rgba(255,255,255,.4)"/>
+                <text x="344" y="59" text-anchor="end" font-family="Geist,sans-serif" font-size="11" fill="rgba(255,255,255,.35)">A</text>
+              </g>
+              <g class="cw-zeile c2">
+                <rect x="28" y="96" width="344" height="52" rx="14" fill="#141821" stroke="rgba(255,255,255,.08)"/>
+                <rect x="46" y="110" width="172" height="8" rx="4" fill="rgba(255,255,255,.4)"/>
+                <rect x="46" y="126" width="110" height="6" rx="3" fill="rgba(255,255,255,.18)"/>
+                <rect x="232" y="116" width="88" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+                <rect x="232" y="116" width="48" height="6" rx="3" fill="rgba(255,255,255,.4)"/>
+                <text x="344" y="125" text-anchor="end" font-family="Geist,sans-serif" font-size="11" fill="rgba(255,255,255,.35)">B</text>
+              </g>
+              <g class="cw-zeile c3">
+                <rect x="20" y="162" width="360" height="58" rx="16" fill="#18202E" stroke="rgba(106,168,255,.45)"/>
+                <rect x="40" y="178" width="194" height="9" rx="4.5" fill="#FFFFFF"/>
+                <rect x="40" y="196" width="128" height="6" rx="3" fill="rgba(255,255,255,.4)"/>
+                <rect x="248" y="186" width="88" height="7" rx="3.5" fill="rgba(106,168,255,.18)"/>
+                <rect x="248" y="186" width="80" height="7" rx="3.5" fill="url(#cwBalken)"/>
+                <circle cx="356" cy="190" r="10" fill="rgba(106,168,255,.18)"/>
+                <path d="M351 190l3.4 3.4L361 186" stroke="#8FC0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <text x="200" y="242" text-anchor="middle" font-family="Geist,sans-serif" font-size="11"
+                letter-spacing="1.4" fill="rgba(255,255,255,.3)">JEDE WOCHE EINE NEUE VARIANTE</text>
+            </svg>
         </div>
       </article>
     </div>
@@ -2334,7 +2353,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 <section class="sec" id="kontakt" style="padding-top:0">
   <div class="wrap">
     <div class="cta-feld auf">
-      <span class="licht licht-lime" style="left:50%;bottom:-26%;width:min(820px,100%);aspect-ratio:1;transform:translateX(-50%);filter:blur(110px);opacity:.2" aria-hidden="true"></span>
+      <span class="licht" style="left:50%;bottom:-26%;width:min(820px,100%);aspect-ratio:1;transform:translateX(-50%);filter:blur(110px);opacity:.22;background:radial-gradient(50% 50% at 50% 50%, rgba(198,247,81,.5), transparent 70%)" aria-hidden="true"></span>
       <div class="cta-raster">
         <div class="cta-text">
           <span class="chip"><i></i>Kontakt</span>
