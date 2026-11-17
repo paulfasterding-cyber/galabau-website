@@ -814,8 +814,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   background:radial-gradient(90% 80% at 50% 0%, rgba(198,247,81,.16), transparent 64%),
     linear-gradient(180deg,#1A2012,#0C0F08);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.1), inset -14px 0 26px -22px rgba(0,0,0,.95) }
-.st-bild::after{ content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(180deg,transparent 58%,rgba(9,10,7,.8) 100%) }
+
 .st-bild .foto-lino{ position:absolute; left:-10%; bottom:0; width:116%; height:94%;
   background:var(--lino-foto-img) center bottom/contain no-repeat;
   filter:drop-shadow(0 14px 24px rgba(0,0,0,.75)) }
@@ -1229,15 +1228,20 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     0 16px 28px -16px rgba(0,0,0,.95) }
 .gr-zeichen svg{ width:38px; height:38px }
 .gr-absatz{ margin:16px 0 0; font-size:15px; line-height:1.6; max-width:48ch; color:var(--text) }
-.gr-zahlen{ position:relative; z-index:2; display:grid; gap:1px; background:var(--line);
-  border:1px solid var(--line); border-radius:var(--r-s); overflow:hidden }
-.gr-zahlen > div{ background:#0D1009; padding:20px 20px 22px }
-.gr-zahlen b{ display:block; font-size:clamp(24px,2.8vw,32px); font-weight:600; letter-spacing:-.045em;
-  line-height:1; margin-bottom:9px;
+.gr-zahlen{ position:relative; z-index:2; border:1px solid var(--line); border-radius:var(--r-s);
+  overflow:hidden; background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 2px 4px rgba(0,0,0,.35) }
+.gr-zahlen-kopf{ display:block; padding:14px 20px 12px; border-bottom:1px solid var(--line);
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-2);
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent) }
+.gr-zahlen > div{ display:flex; align-items:baseline; gap:16px; padding:17px 20px 18px }
+.gr-zahlen > div + div{ border-top:1px solid var(--line) }
+.gr-zahlen b{ display:block; flex:0 0 auto; min-width:92px; font-size:clamp(21px,2.3vw,26px);
+  font-weight:600; letter-spacing:-.045em; line-height:1;
   background:linear-gradient(170deg,#EEFFC0,#C6F751 55%,#8FC520);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   filter:drop-shadow(0 0 16px rgba(198,247,81,.3)) }
-.gr-zahlen span{ font-size:12.8px; line-height:1.45; color:rgba(255,255,255,.5) }
+.gr-zahlen > div span{ font-size:12.6px; line-height:1.45; color:rgba(255,255,255,.5) }
 
 /* ===== Anzeigenmotiv im Handy ===== */
 .handy .az-bild{ position:relative; height:300px; display:block; overflow:hidden;
@@ -1295,6 +1299,55 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   border-radius:100px; background:rgba(255,255,255,.22); overflow:hidden }
 .az-fortschritt i{ display:block; height:100%; width:38%; border-radius:100px;
   background:linear-gradient(90deg,#9FD92C,#EAFFB8); box-shadow:0 0 10px rgba(198,247,81,.8) }
+
+
+/* ===== Handy als echtes Gerät im Raum ===== */
+.handy-feld{ perspective:1600px; perspective-origin:50% 40% }
+.handy{ transform:rotateY(-15deg) rotateX(5deg) rotateZ(-1.2deg); transform-style:preserve-3d;
+  border-radius:46px; padding:12px;
+  background:linear-gradient(118deg,#6E7A62 0%,#39412F 10%,#1A1F13 26%,#0E1209 52%,#252C1C 78%,#434C38 92%,#11150C 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.45), inset 0 0 0 1px rgba(255,255,255,.1),
+    inset 0 -2px 3px rgba(0,0,0,.8),
+    0 2px 4px rgba(0,0,0,.5), 0 14px 26px rgba(0,0,0,.55),
+    0 44px 70px -24px rgba(0,0,0,.95), 0 90px 120px -50px rgba(0,0,0,1),
+    0 0 110px -34px rgba(198,247,81,.5);
+  transition:transform .8s var(--e) }
+.handy:hover{ transform:rotateY(-6deg) rotateX(2deg) rotateZ(0deg) translateY(-6px) }
+/* Seitenkante, damit das Gerät Dicke bekommt */
+.handy::before{ content:""; position:absolute; top:26px; bottom:26px; right:-9px; width:11px;
+  border-radius:0 8px 8px 0; transform:translateZ(-8px);
+  background:linear-gradient(90deg,#2A3122,#0A0D06 60%,#151A0F) }
+/* Tasten */
+.handy::after{ content:""; position:absolute; left:-3px; top:132px; width:3px; height:58px;
+  border-radius:3px 0 0 3px;
+  background:linear-gradient(180deg,#59634C,#262C1D);
+  box-shadow:-1px 0 2px rgba(0,0,0,.6) }
+.handy-schirm{ position:relative; transform:translateZ(1px) }
+/* Spiegelung auf dem Glas */
+.handy-schirm::after{ content:""; position:absolute; inset:0; pointer-events:none; z-index:9;
+  border-radius:33px;
+  background:linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 18%,
+    rgba(255,255,255,0) 36%, rgba(255,255,255,0) 72%, rgba(255,255,255,.06) 100%) }
+/* Schatten auf dem Boden */
+.handy-feld::after{ content:""; position:absolute; z-index:0; left:50%; bottom:-6px;
+  width:76%; height:42px; transform:translateX(-52%) rotateX(72deg);
+  background:radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,.85), transparent 70%);
+  filter:blur(16px); pointer-events:none }
+@media (max-width:900px){ .handy{ transform:none } .handy:hover{ transform:translateY(-4px) } }
+@media (prefers-reduced-motion:reduce){ .handy{ transition:none } }
+
+/* ===== Trichter ===== */
+.tr-stufe{ opacity:0; transform:translateY(-10px); transform-box:fill-box; transform-origin:50% 0 }
+.da .tr-stufe{ animation:tr-rein .6s var(--e) forwards }
+.da .tr-stufe.t2{ animation-delay:.14s }
+.da .tr-stufe.t3{ animation-delay:.28s }
+.da .tr-stufe.t4{ animation-delay:.42s }
+@keyframes tr-rein{ to{ opacity:1; transform:none } }
+.tr-tropfen{ opacity:0 }
+.da .tr-tropfen{ animation:einblenden .5s ease .8s forwards, tropfen-puls 2.4s ease-in-out 1.4s infinite }
+@keyframes tropfen-puls{ 0%,100%{ filter:drop-shadow(0 0 3px rgba(198,247,81,.5)) }
+  50%{ filter:drop-shadow(0 0 14px rgba(198,247,81,.95)) } }
 
 </style>
 </head>
@@ -1846,9 +1899,9 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
           <div class="kanal-kopf">
             <span class="kanal-logo">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#EAFFB8" transform="rotate(30 12 12)"/>
-                <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#9FD92C" transform="rotate(-30 12 12)"/>
-                <circle cx="7" cy="20.3" r="3.3" fill="#C6F751"/>
+                <rect x="9.4" y="2.6" width="5.2" height="18.4" rx="2.6" fill="#9FD92C" transform="rotate(-27 12 4.2)"/>
+                <rect x="9.4" y="2.6" width="5.2" height="18.4" rx="2.6" fill="#EAFFB8" transform="rotate(27 12 4.2)"/>
+                <circle cx="4.5" cy="19.6" r="3.3" fill="#C6F751"/>
               </svg>
             </span>
             <div><b>Google Ads</b><span>Nachfrage, die schon da ist</span></div>
@@ -2033,24 +2086,49 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
           <span class="stufe-marke">Hier geht das Geld verloren</span>
         </div>
         <div class="stufe-bild">
-          <svg viewBox="0 0 400 240" fill="none" aria-hidden="true">
-            <g stroke="rgba(255,255,255,.1)" stroke-dasharray="5 7">
-              <path d="M30 46h340M70 102h260M110 158h180M160 206h80"/>
-            </g>
-            <g fill="rgba(255,255,255,.22)">
-              <circle cx="46" cy="46" r="6"/><circle cx="92" cy="46" r="6"/><circle cx="138" cy="46" r="6"/><circle cx="184" cy="46" r="6"/>
-              <circle cx="230" cy="46" r="6"/><circle cx="276" cy="46" r="6"/><circle cx="322" cy="46" r="6"/><circle cx="354" cy="46" r="6"/>
-            </g>
-            <g fill="rgba(255,255,255,.34)">
-              <circle cx="92" cy="102" r="7"/><circle cx="150" cy="102" r="7"/><circle cx="208" cy="102" r="7"/><circle cx="266" cy="102" r="7"/><circle cx="312" cy="102" r="7"/>
-            </g>
-            <g fill="url(#stufeHell)">
-              <circle cx="136" cy="158" r="8.5"/><circle cx="200" cy="158" r="8.5"/><circle cx="264" cy="158" r="8.5"/>
-            </g>
-            <circle cx="200" cy="206" r="14" fill="url(#stufeHell)"/>
-            <circle cx="200" cy="206" r="23" stroke="rgba(198,247,81,.3)"/>
-            <text x="200" y="232" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,.4)">EIN TERMIN</text>
-          </svg>
+          <svg viewBox="0 0 400 250" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="tr1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#5A6B40" stop-opacity=".55"/><stop offset="1" stop-color="#3C4A2A" stop-opacity=".55"/></linearGradient>
+                <linearGradient id="tr2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#7FA23A" stop-opacity=".7"/><stop offset="1" stop-color="#5E7D28" stop-opacity=".7"/></linearGradient>
+                <linearGradient id="tr3" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#A9DE33"/><stop offset="1" stop-color="#7FB517"/></linearGradient>
+                <linearGradient id="tr4" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#EAFFB8"/><stop offset="1" stop-color="#A9DE33"/></linearGradient>
+              </defs>
+
+              <g class="tr-stufe t1">
+                <path d="M34 22h332l-30 44H64z" fill="url(#tr1)"/>
+                <path d="M34 22h332l-3 4H37z" fill="rgba(255,255,255,.14)"/>
+                <text x="200" y="50" text-anchor="middle" font-family="Geist,sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,.62)">Anzeige gesehen</text>
+              </g>
+              <g class="tr-stufe t2">
+                <path d="M68 74h264l-26 44H94z" fill="url(#tr2)"/>
+                <path d="M68 74h264l-2.4 4H70.4z" fill="rgba(255,255,255,.2)"/>
+                <text x="200" y="102" text-anchor="middle" font-family="Geist,sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,.8)">Formular geöffnet</text>
+              </g>
+              <g class="tr-stufe t3">
+                <path d="M98 126h204l-22 44H120z" fill="url(#tr3)"/>
+                <path d="M98 126h204l-2 4H100z" fill="rgba(255,255,255,.4)"/>
+                <text x="200" y="154" text-anchor="middle" font-family="Geist,sans-serif" font-size="13" font-weight="600" fill="#1B2A05">Vorqualifiziert</text>
+              </g>
+              <g class="tr-stufe t4">
+                <path d="M124 178h152l-16 40H140z" fill="url(#tr4)"/>
+                <path d="M124 178h152l-1.6 4H125.6z" fill="rgba(255,255,255,.75)"/>
+                <text x="200" y="204" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#15200A">Termin</text>
+              </g>
+
+              <g class="tr-tropfen">
+                <circle cx="200" cy="228" r="4.5" fill="#E4FFA0"/>
+                <circle cx="200" cy="228" r="10" stroke="rgba(198,247,81,.35)"/>
+              </g>
+              <g stroke="rgba(255,255,255,.1)" stroke-dasharray="3 5">
+                <path d="M34 22v-6M366 22v-6"/>
+              </g>
+              <text x="372" y="48" text-anchor="end" font-family="Geist,sans-serif" font-size="10.5" letter-spacing="1.2" fill="rgba(255,255,255,.26)">VIELE</text>
+              <text x="372" y="206" text-anchor="end" font-family="Geist,sans-serif" font-size="10.5" letter-spacing="1.2" fill="rgba(198,247,81,.6)">DIE RICHTIGEN</text>
+            </svg>
         </div>
       </article>
 
@@ -2091,21 +2169,6 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       </article>
     </div>
 
-    <div class="plattformen auf">
-      <span class="pf-titel">Geschaltet auf</span>
-      <span class="pf-marke">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#FBBC04" transform="rotate(30 12 12)"/>
-          <rect x="9.3" y="2" width="5.4" height="20" rx="2.7" fill="#4285F4" transform="rotate(-30 12 12)"/>
-          <circle cx="7" cy="20.3" r="3.3" fill="#34A853"/>
-        </svg>
-        Google Ads
-      </span>
-      <span class="pf-marke">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="url(#metaBlau2)"/></svg>
-        Meta Ads
-      </span>
-    </div>
   </div>
 </section>
 
@@ -2241,9 +2304,10 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
         <div class="gr-sig"><b>Paul Fasterding</b><em></em>Gründer</div>
       </div>
       <div class="gr-zahlen">
-        <div><b>1</b><span>feste Person, vom ersten Gespräch bis zur laufenden Betreuung</span></div>
-        <div><b>&lt; 24 h</b><span>Reaktionszeit auf Nachrichten an Werktagen</span></div>
-        <div><b>Hannover</b><span>Sitz in Niedersachsen, Betreuung im DACH-Raum</span></div>
+        <span class="gr-zahlen-kopf">Auf einen Blick</span>
+        <div><b>1</b><span>feste Person, vom ersten Gespräch<br>bis zur laufenden Betreuung</span></div>
+        <div><b>&lt; 24 h</b><span>Reaktionszeit auf Nachrichten<br>an Werktagen</span></div>
+        <div><b>Hannover</b><span>Sitz in Niedersachsen,<br>Betreuung im DACH-Raum</span></div>
       </div>
     </div>
   </div>
