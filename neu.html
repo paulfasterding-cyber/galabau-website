@@ -6,7 +6,7 @@
 <title>LimeReach · Neukundengewinnung</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#08090C">
-<meta name="description" content="Entwurf des neuen Markenauftritts: Neukundengewinnung fuer Betriebe.">
+<meta name="description" content="Neukundengewinnung fuer Betriebe: Angebot, Anzeigen, Formular und Nachfassen aus einer Hand. Aus Hannover.">
 <style>
 /* Schriften lokal eingebettet, keine Verbindung nach aussen.
    Fraunces und Geist stehen unter der SIL Open Font License. */
@@ -316,6 +316,51 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .zwei .lk:nth-child(2){ background:
   radial-gradient(130% 80% at 50% 0%, rgba(255,162,77,.06), transparent 58%),
   linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012)), var(--karte) }
+
+/* ===== Leistung, in einem Stueck erklaert ===== */
+.erkl{ margin-top:52px; padding:0;
+  background:
+    radial-gradient(130% 80% at 50% 0%, rgba(103,214,81,.055), transparent 58%),
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012)), var(--karte) }
+.erkl:hover{ transform:none }
+.erkl-innen{ position:relative; z-index:2; display:grid; grid-template-columns:1.04fr .96fr;
+  gap:clamp(26px,4vw,56px); padding:clamp(30px,3.4vw,44px) clamp(26px,3vw,40px) clamp(28px,3vw,36px) }
+.erkl-marke{ display:inline-flex; align-items:center; gap:9px; font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:rgba(255,255,255,.42) }
+.erkl-marke i{ width:7px; height:7px; border-radius:2px;
+  background:linear-gradient(180deg,var(--lime-hell),var(--lime-tief)) }
+.erkl h3{ margin:18px 0 0; font-size:clamp(23px,2.5vw,30px); line-height:1.2; max-width:24ch }
+.erkl-text p{ margin:17px 0 0; font-size:15.2px; line-height:1.74; color:rgba(255,255,255,.58); max-width:47ch }
+.erkl-tafel{ align-self:stretch; display:flex; flex-direction:column; border-radius:var(--r-s); border:1px solid var(--line); padding:24px 24px 26px;
+  background:radial-gradient(110% 80% at 50% 0%, rgba(103,214,81,.07), transparent 62%),
+    linear-gradient(180deg,#12161A,#0A0C0E);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09), inset 0 -18px 30px -22px rgba(0,0,0,.95),
+    0 10px 24px -14px rgba(0,0,0,.9) }
+.et-titel{ display:flex; align-items:center; gap:10px; font-size:10.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(255,255,255,.44) }
+.et-titel i{ width:7px; height:7px; border-radius:2px; flex:0 0 auto;
+  background:linear-gradient(180deg,var(--lime-hell),var(--lime-tief)) }
+.et-titel.et-grau i{ background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.1)) }
+.et-liste{ list-style:none; margin:16px 0 0; padding:0; display:grid; gap:11px }
+.et-liste li{ position:relative; padding-left:31px; font-size:14.4px; line-height:1.5; color:rgba(255,255,255,.72) }
+.et-liste li::before{ content:""; position:absolute; left:0; top:.14em; width:20px; height:20px; border-radius:7px;
+  background:linear-gradient(180deg,rgba(103,214,81,.28),rgba(103,214,81,.07));
+  box-shadow:inset 0 0 0 1px rgba(103,214,81,.36), inset 0 1px 0 rgba(255,255,255,.16) }
+.et-liste li::after{ content:""; position:absolute; left:5.8px; top:calc(.14em + 6.6px);
+  width:8.4px; height:4.6px; border-left:1.8px solid var(--lime-hell); border-bottom:1.8px solid var(--lime-hell);
+  transform:rotate(-45deg); border-radius:1px }
+.et-offen li{ color:rgba(255,255,255,.58) }
+.et-offen li::before{ background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12) }
+.et-offen li::after{ left:7.5px; top:calc(.14em + 7.5px); width:5px; height:5px;
+  border:0; border-radius:50%; background:rgba(255,255,255,.42); transform:none }
+.et-trenn{ height:1px; margin:24px -24px; margin-top:auto; background:var(--line) }
+.erkl-fuss{ position:relative; z-index:2; padding:19px clamp(26px,3vw,40px); border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06); font-size:13.5px; color:var(--text-2) }
+@media (max-width:860px){ .erkl-innen{ grid-template-columns:1fr; gap:30px }
+  .et-trenn{ margin-top:24px }
+  .erkl h3{ max-width:none } .erkl-text p{ max-width:none } }
 
 /* ===== Bento ===== */
 .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:20px; margin-top:52px }
@@ -1814,7 +1859,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
 
 <header id="kopfzeile">
   <div class="kopf">
-    <a href="#oben" class="marke"><img class="marke-bild" src="limereach-logo.png" width="900" height="149" alt="LimeReach"><small>Entwurf</small></a>
+    <a href="#oben" class="marke"><img class="marke-bild" src="limereach-logo.png" width="900" height="149" alt="LimeReach"></a>
     <nav class="nav">
       <a href="#oben" class="an">Start</a>
       <a href="#leistungen">Leistungen</a>
@@ -2002,134 +2047,38 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
       <p class="lead auf">Dahinter steckt immer dieselbe Mechanik: ein Angebot, das jemanden interessiert, eine Anzeige, die ihn erreicht, und ein Formular, das er auch ausfüllt.</p>
     </div>
 
-    <div class="zwei">
-      <article class="karte lk auf">
-        <div class="lk-kopf"><span class="lk-nr">01</span><span class="chip chip-blau" style="letter-spacing:.1em">Menge</span></div>
-        <h3>Mehr Anfragen</h3>
-        <p style="color:rgba(255,255,255,.56);max-width:40ch">Anzeigen, die laufend getestet werden, bis genug hereinkommt. Nicht einmal aufgesetzt und dann vergessen.</p>
-        <div class="bild-rahmen">
-            <div class="br-kopf"><span>Anfragen je Woche</span><b class="br-wert blau">+42 %</b></div>
-            <svg class="chart" viewBox="0 0 440 210" fill="none" aria-hidden="true">
-                <line x1="10" y1="14.0" x2="392" y2="14.0" stroke="rgba(255,255,255,.05)"/>
-                <line x1="10" y1="60.7" x2="392" y2="60.7" stroke="rgba(255,255,255,.05)"/>
-                <line x1="10" y1="107.3" x2="392" y2="107.3" stroke="rgba(255,255,255,.05)"/>
-                <line x1="10" y1="154.0" x2="392" y2="154.0" stroke="rgba(255,255,255,.05)"/>
-                <path class="kurve-fuell" d="M10.0,148.0 L18.1,143.8 L26.3,139.2 L34.4,133.4 L42.5,128.8 L50.6,122.9 L58.8,122.7 L66.9,119.5 L75.0,113.3 L83.1,108.9 L91.3,102.8 L99.4,102.0 L107.5,98.8 L115.7,97.2 L123.8,93.7 L131.9,90.2 L140.0,90.5 L148.2,89.6 L156.3,88.5 L164.4,83.4 L172.6,79.4 L180.7,79.5 L188.8,75.7 L196.9,76.3 L205.1,73.8 L213.2,74.7 L221.3,76.4 L229.4,72.6 L237.6,73.1 L245.7,73.5 L253.8,68.9 L262.0,65.0 L270.1,64.7 L278.2,60.0 L286.3,57.9 L294.5,54.8 L302.6,54.6 L310.7,49.4 L318.9,45.7 L327.0,40.0 L335.1,34.7 L343.2,33.0 L351.4,30.9 L359.5,29.8 L367.6,28.8 L375.7,28.2 L383.9,26.1 L392.0,22.0 L392.0,154 L10.0,154 Z" fill="url(#chartFuell)"/>
-                <path class="kurve-linie" d="M10.0,148.0 L18.1,143.8 L26.3,139.2 L34.4,133.4 L42.5,128.8 L50.6,122.9 L58.8,122.7 L66.9,119.5 L75.0,113.3 L83.1,108.9 L91.3,102.8 L99.4,102.0 L107.5,98.8 L115.7,97.2 L123.8,93.7 L131.9,90.2 L140.0,90.5 L148.2,89.6 L156.3,88.5 L164.4,83.4 L172.6,79.4 L180.7,79.5 L188.8,75.7 L196.9,76.3 L205.1,73.8 L213.2,74.7 L221.3,76.4 L229.4,72.6 L237.6,73.1 L245.7,73.5 L253.8,68.9 L262.0,65.0 L270.1,64.7 L278.2,60.0 L286.3,57.9 L294.5,54.8 L302.6,54.6 L310.7,49.4 L318.9,45.7 L327.0,40.0 L335.1,34.7 L343.2,33.0 L351.4,30.9 L359.5,29.8 L367.6,28.8 L375.7,28.2 L383.9,26.1 L392.0,22.0" stroke="url(#chartLinie)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <rect class="vol" style="--i:0" x="7.8" y="185.5" width="4.4" height="6.5" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:1" x="15.9" y="180.3" width="4.4" height="11.7" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:2" x="24.1" y="177.7" width="4.4" height="14.3" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:3" x="32.2" y="175.0" width="4.4" height="17.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:4" x="40.3" y="168.5" width="4.4" height="23.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:5" x="48.4" y="171.1" width="4.4" height="20.9" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:6" x="56.6" y="173.5" width="4.4" height="18.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:7" x="64.7" y="174.3" width="4.4" height="17.7" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:8" x="72.8" y="176.7" width="4.4" height="15.3" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:9" x="80.9" y="183.1" width="4.4" height="8.9" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:10" x="89.1" y="183.9" width="4.4" height="8.1" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:11" x="97.2" y="181.6" width="4.4" height="10.4" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:12" x="105.3" y="174.1" width="4.4" height="17.9" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:13" x="113.5" y="169.9" width="4.4" height="22.1" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:14" x="121.6" y="175.8" width="4.4" height="16.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:15" x="129.7" y="168.2" width="4.4" height="23.8" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:16" x="137.8" y="173.5" width="4.4" height="18.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:17" x="146.0" y="174.5" width="4.4" height="17.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:18" x="154.1" y="181.0" width="4.4" height="11.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:19" x="162.2" y="183.9" width="4.4" height="8.1" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:20" x="170.4" y="183.6" width="4.4" height="8.4" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:21" x="178.5" y="176.5" width="4.4" height="15.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:22" x="186.6" y="177.0" width="4.4" height="15.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:23" x="194.7" y="170.0" width="4.4" height="22.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:24" x="202.9" y="166.8" width="4.4" height="25.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:25" x="211.0" y="167.0" width="4.4" height="25.0" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:26" x="219.1" y="174.2" width="4.4" height="17.8" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:27" x="227.2" y="176.8" width="4.4" height="15.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:28" x="235.4" y="179.8" width="4.4" height="12.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:29" x="243.5" y="184.3" width="4.4" height="7.7" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:30" x="251.6" y="182.8" width="4.4" height="9.2" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:31" x="259.8" y="176.2" width="4.4" height="15.8" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:32" x="267.9" y="171.8" width="4.4" height="20.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:33" x="276.0" y="168.5" width="4.4" height="23.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:34" x="284.1" y="175.4" width="4.4" height="16.6" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:35" x="292.3" y="167.3" width="4.4" height="24.7" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:36" x="300.4" y="176.8" width="4.4" height="15.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:37" x="308.5" y="177.8" width="4.4" height="14.2" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:38" x="316.7" y="180.7" width="4.4" height="11.3" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:39" x="324.8" y="185.2" width="4.4" height="6.8" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:40" x="332.9" y="181.2" width="4.4" height="10.8" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:41" x="341.0" y="174.0" width="4.4" height="18.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:42" x="349.2" y="173.0" width="4.4" height="19.0" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:43" x="357.3" y="173.2" width="4.4" height="18.8" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:44" x="365.4" y="172.7" width="4.4" height="19.3" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:45" x="373.5" y="174.8" width="4.4" height="17.2" rx="1.5" fill="url(#volB)"/>
-                <rect class="vol" style="--i:46" x="381.7" y="177.5" width="4.4" height="14.5" rx="1.5" fill="url(#volA)"/>
-                <rect class="vol" style="--i:47" x="389.8" y="179.7" width="4.4" height="12.3" rx="1.5" fill="url(#volA)"/>
-                <line class="niveau" x1="10" y1="22.0" x2="398.0" y2="22.0" stroke="rgba(143,192,255,.45)" stroke-dasharray="4 5"/>
-                <circle class="punkt" cx="392.0" cy="22.0" r="4.2" fill="#CFE4FF"/>
-                <circle class="punkt-ring" cx="392.0" cy="22.0" r="9" fill="none" stroke="rgba(143,192,255,.4)"/>
-                <text x="402" y="26.0" font-family="Geist,sans-serif" font-size="11" font-weight="500" fill="#8FC0FF">hoch</text>
-                <line x1="10" y1="162" x2="392" y2="162" stroke="rgba(255,255,255,.07)"/>
-                <text x="10" y="206" font-family="Geist,sans-serif" font-size="9.5" letter-spacing="1.1" fill="rgba(255,255,255,.24)">VOR 12 MONATEN</text>
-                <text x="392" y="206" text-anchor="end" font-family="Geist,sans-serif" font-size="9.5" letter-spacing="1.1" fill="rgba(255,255,255,.4)">HEUTE</text>
-              </svg>
-          </div>
-        <ul class="liste">
-          <li>Angebot so geschärft, dass es ohne Erklärung verständlich ist</li>
-          <li>Anzeigen bei Meta und Google, laufend gegen neue Varianten getestet</li>
-          <li>Formular oder Landingpage, je nachdem was besser trägt</li>
-          <li>Budget geht dahin, wo die Anfragen herkommen, nicht gleichmäßig verteilt</li>
-        </ul>
-        <div class="lk-fuss">Für Betriebe, die Aufträge brauchen, nicht Sichtbarkeit.</div>
-      </article>
-
-      <article class="karte lk auf">
-        <div class="lk-kopf"><span class="lk-nr">02</span><span class="chip chip-orange" style="letter-spacing:.1em">Qualität</span></div>
-        <h3>Vorqualifizierte Anfragen</h3>
-        <p style="color:rgba(255,255,255,.56);max-width:40ch">Nicht jeder, der klickt, will kaufen. Du sprichst nur mit denen, die es ernst meinen.</p>
-        <div class="bild-rahmen">
-            <div class="br-kopf"><span>Jede Anfrage</span><b class="br-wert orange">vorqualifiziert</b></div>
-            <svg class="kandidaten" viewBox="0 0 400 150" fill="none" aria-hidden="true">
-              <path d="M34 96h332" stroke="rgba(255,162,77,.2)" stroke-width="2" stroke-dasharray="5 8" stroke-linecap="round"/>
-              <g class="kug k1">
-                <circle cx="52" cy="96" r="17" fill="url(#kugGrau)" filter="url(#kugSchatten)"/>
-                <ellipse cx="46" cy="88" rx="8" ry="6" fill="url(#glanz)" opacity=".5"/>
-                <g fill="rgba(226,232,240,.5)"><circle cx="52" cy="92" r="4"/><path d="M45 104c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4z"/></g>
-              </g>
-              <g class="kug k2">
-                <circle cx="113" cy="96" r="17" fill="url(#kugGrau)" filter="url(#kugSchatten)"/>
-                <ellipse cx="107" cy="88" rx="8" ry="6" fill="url(#glanz)" opacity=".5"/>
-                <g fill="rgba(226,232,240,.5)"><circle cx="113" cy="92" r="4"/><path d="M106 104c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4z"/></g>
-              </g>
-              <g class="treffer kug">
-                <circle cx="200" cy="90" r="27" fill="url(#kugLime)" filter="url(#kugSchatten)"/>
-                <ellipse cx="190" cy="78" rx="13" ry="9" fill="url(#glanz)" opacity=".75"/>
-                <g fill="#2A1403"><circle cx="200" cy="84" r="6.4"/><path d="M189 103c0-6.2 4.9-10.2 11-10.2s11 4 11 10.2z"/></g>
-                <circle cx="222" cy="68" r="11" fill="#1A0E03" stroke="rgba(255,162,77,.6)"/>
-                <path class="haken-pfad" d="M217 68l3.4 3.4L227 64" stroke="#FFB166" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <g class="kug k4">
-                <circle cx="287" cy="96" r="17" fill="url(#kugGrau)" filter="url(#kugSchatten)"/>
-                <ellipse cx="281" cy="88" rx="8" ry="6" fill="url(#glanz)" opacity=".5"/>
-                <g fill="rgba(226,232,240,.5)"><circle cx="287" cy="92" r="4"/><path d="M280 104c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4z"/></g>
-              </g>
-              <g class="kug k5">
-                <circle cx="348" cy="96" r="17" fill="url(#kugGrau)" filter="url(#kugSchatten)"/>
-                <ellipse cx="342" cy="88" rx="8" ry="6" fill="url(#glanz)" opacity=".5"/>
-                <g fill="rgba(226,232,240,.5)"><circle cx="348" cy="92" r="4"/><path d="M341 104c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4z"/></g>
-              </g>
-              <text x="200" y="138" text-anchor="middle" font-family="Geist, sans-serif" font-size="10"
-                letter-spacing="1.4" fill="rgba(255,255,255,.3)">AUS VIELEN WIRD DER RICHTIGE</text>
-            </svg>
-          </div>
-        <ul class="liste">
-          <li>Fragen im Formular, die Zeitverschwender vorher aussortieren</li>
-          <li>Budget und Zeitrahmen stehen vor dem ersten Telefonat</li>
-          <li>Jede Anfrage landet dort, wo du sie siehst, in unter einer Minute</li>
-          <li>Nachfassen, wenn sich jemand nicht mehr meldet</li>
-        </ul>
-        <div class="lk-fuss">Für Betriebe, die keine Zeit für zehn Telefonate am Tag haben.</div>
-      </article>
-    </div>
+    <article class="karte erkl auf">
+      <div class="erkl-innen">
+        <div class="erkl-text">
+          <span class="erkl-marke"><i></i>Die Leistung</span>
+          <h3>Eine Strecke, über die Anfragen hereinkommen. Gebaut und betrieben von uns.</h3>
+          <p>Wir fangen beim Angebot an. Das meiste, was Betriebe schalten, scheitert nicht an der Anzeige, sondern daran, dass niemand versteht, warum er ausgerechnet hier anfragen soll. Also steht zuerst der eine Satz, der das klärt.</p>
+          <p>Darauf bauen wir die Anzeigen. Bei Meta und bei Google, je nachdem wo deine Kunden wirklich sind. Mehrere Varianten laufen gegeneinander, damit wir sehen, was zieht, statt es zu raten.</p>
+          <p>Wer klickt, landet auf einem Formular, das aufs Handy passt und trotzdem die Fragen stellt, die dich sonst das erste Telefonat kosten. Die fertige Anfrage liegt in unter einer Minute bei dir, mit allem, was du für den Rückruf brauchst. Meldet sich jemand nicht mehr, fassen wir nach.</p>
+          <p>Und dann hört es nicht auf. Jede Woche fliegt raus, was nicht trägt, und bekommt mehr Budget, was Anfragen bringt.</p>
+        </div>
+        <aside class="erkl-tafel">
+          <div class="et-titel"><i></i>Das übernehmen wir</div>
+          <ul class="et-liste">
+            <li>Angebot schärfen, bis es ohne dich daneben verständlich ist</li>
+            <li>Anzeigen schreiben, gestalten und schalten</li>
+            <li>Meta und Google, dort wo deine Kunden sind</li>
+            <li>Formular, das Zeitverschwender vorher aussortiert</li>
+            <li>Anfragen direkt zu dir, nicht in einen Bericht</li>
+            <li>Nachfassen bei allen, die sich nicht mehr melden</li>
+            <li>Jede Woche nachschärfen statt einmal aufsetzen</li>
+          </ul>
+          <div class="et-trenn"></div>
+          <div class="et-titel et-grau"><i></i>Das bleibt bei dir</div>
+          <ul class="et-liste et-offen">
+            <li>Zurückrufen, solange die Anfrage frisch ist</li>
+            <li>Dein Angebot machen</li>
+            <li>Die Arbeit, die du ohnehin am besten kannst</li>
+          </ul>
+        </aside>
+      </div>
+      <div class="erkl-fuss">Am Ende steht ein Telefonat mit jemandem, der schon weiß, was er will. Alles davor machen wir.</div>
+    </article>
   </div>
 </section>
 
@@ -2646,7 +2595,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
   <div class="wrap">
     <div class="fuss">
       <div>
-        <a href="#oben" class="marke marke-gross"><img class="marke-bild" src="limereach-logo.png" width="900" height="149" alt="LimeReach"><small>Entwurf</small></a>
+        <a href="#oben" class="marke marke-gross"><img class="marke-bild" src="limereach-logo.png" width="900" height="149" alt="LimeReach"></a>
         <p class="fuss-text">Neukundengewinnung für Betriebe im deutschsprachigen Raum. Sitz in Hannover.</p>
       </div>
       <div>
@@ -2670,7 +2619,7 @@ footer{ border-top:1px solid var(--line); padding:54px 0 0; overflow:hidden;
     </div>
     <div class="wasserzeichen" aria-hidden="true">LIMEREACH</div>
     <div class="fuss-zeile">
-      <span>Entwurf des neuen Auftritts. Noch nicht veröffentlicht.</span>
+      <span>© 2026 LimeReach</span>
       <span>Hannover · DACH</span>
     </div>
   </div>
