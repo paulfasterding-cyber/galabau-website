@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LimeReach · Neukundengewinnung</title>
+<title>Neukundengewinnung für Betriebe</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0A0A0A">
 <meta name="description" content="Neukundengewinnung fuer Betriebe: Angebot, Anzeigen, Formular und Nachfassen aus einer Hand. Aus Hannover.">
@@ -371,8 +371,7 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .schau-innen{ position:absolute; top:6px; left:clamp(14px,6vw,104px); width:min(1380px,118vw);
   transform:perspective(2400px) rotateX(12deg) rotateY(-13deg) rotateZ(4deg); transform-origin:0 0 }
 .schau .dash{ margin:0; max-width:none; width:100% }
-.schau::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:190px; z-index:3;
-  background:linear-gradient(180deg, rgba(15,15,15,0) 0%, var(--ink) 88%); pointer-events:none }
+.schau::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:230px; z-index:3; background:linear-gradient(180deg, rgba(251,249,245,0) 0%, rgba(251,249,245,.72) 55%, #FBF9F5 92%); pointer-events:none }
 @media (max-width:860px){
   .schau{ height:clamp(220px,56vw,340px) }
   .schau-innen{ left:10px; width:165vw;
@@ -395,6 +394,26 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .zs-karte:hover{ transform:none; background:#F4F1EB; border-color:rgba(17,17,17,.18) }.erkl-tafel{ background:#F4F1EB; box-shadow:none }
 .kpi{ background:#242424; box-shadow:none }
 
+/* ===== Platzhalter-Marke, solange der Name offen ist ===== */
+.mk-zeichen{ width:30px; height:30px; border-radius:9px; flex:0 0 auto; display:grid; place-items:center;
+  color:#FFFFFF; background:#2FB87A }
+.marke-gross .mk-zeichen{ width:34px; height:34px; border-radius:10px }
+.mk-zeichen svg{ width:16px; height:16px }
+.mk-wort{ font-size:15px; font-weight:600; letter-spacing:-.02em; color:#141414 }
+.marke-gross .mk-wort{ font-size:17px }
+@media (max-width:620px){ .mk-wort{ display:none } }
+
+/* ===== helle Flaechen im Wechsel, weiche Uebergaenge ===== */
+.sec{ position:relative }
+#leistungen, #plattformen, #raum, #ablauf, #fragen{ background:#F4F1EB }
+#leistungen::before, #plattformen::before, #raum::before, #ablauf::before, #fragen::before,
+#leistungen::after, #plattformen::after, #raum::after, #ablauf::after, #fragen::after{
+  content:""; position:absolute; left:0; right:0; height:90px; pointer-events:none }
+#leistungen::before, #plattformen::before, #raum::before, #ablauf::before, #fragen::before{
+  top:0; background:linear-gradient(180deg,#FBF9F5,rgba(251,249,245,0)) }
+#leistungen::after, #plattformen::after, #raum::after, #ablauf::after, #fragen::after{
+  bottom:0; background:linear-gradient(0deg,#FBF9F5,rgba(251,249,245,0)) }
+#leistungen > *, #plattformen > *, #raum > *, #ablauf > *, #fragen > *{ position:relative; z-index:1 }
 /* ===== Bento ===== */
 .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:20px; margin-top:52px }
 .bento .karte{ grid-column:span 2 }
@@ -1886,7 +1905,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 
 <header id="kopfzeile">
   <div class="kopf">
-    <a href="#oben" class="marke"><img class="marke-bild" src="limereach-logo-dunkel.png" width="900" height="149" alt="LimeReach"></a>
+    <a href="#oben" class="marke"><span class="mk-zeichen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5 10 9l4.4 4.4L20 7.5"/></svg></span><span class="mk-wort">Arbeitstitel</span></a>
     <nav class="nav">
       <a href="#oben" class="an">Start</a>
       <a href="#leistungen">Leistungen</a>
@@ -2643,7 +2662,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   <div class="wrap">
     <div class="fuss">
       <div>
-        <a href="#oben" class="marke marke-gross"><img class="marke-bild" src="limereach-logo-dunkel.png" width="900" height="149" alt="LimeReach"></a>
+        <a href="#oben" class="marke marke-gross"><span class="mk-zeichen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5 10 9l4.4 4.4L20 7.5"/></svg></span><span class="mk-wort">Arbeitstitel</span></a>
         <p class="fuss-text">Neukundengewinnung für Betriebe im deutschsprachigen Raum. Sitz in Hannover.</p>
       </div>
       <div>
@@ -2665,9 +2684,9 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
         </ul>
       </div>
     </div>
-    <div class="wasserzeichen" aria-hidden="true">LIMEREACH</div>
+    <div class="wasserzeichen" aria-hidden="true">ANFRAGEN</div>
     <div class="fuss-zeile">
-      <span>© 2026 LimeReach</span>
+      <span>© 2026</span>
       <span>Hannover · DACH</span>
     </div>
   </div>
