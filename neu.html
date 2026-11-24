@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neukundengewinnung für Betriebe</title>
+<title>NKA · Neukundengewinnung für Betriebe</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0A0A0A">
 <meta name="description" content="Neukundengewinnung fuer Betriebe: Angebot, Anzeigen, Formular und Nachfassen aus einer Hand. Aus Hannover.">
@@ -35,9 +35,9 @@
   --karte-2:#242424;
   --line:rgba(255,255,255,.09);
   --line-2:rgba(255,255,255,.17);
-  --lime:#3ECF8E;
-  --lime-hell:#6EE7B0;
-  --lime-tief:#249B63;
+  --lime:#F0600C;
+  --lime-hell:#FF8A3D;
+  --lime-tief:#B8450A;
   --blau:#A3A3A3;
   --blau-tief:#525252;
   --orange:#D4D4D4;
@@ -79,7 +79,7 @@ section{ position:relative }
 
 /* ===== Licht: weichgezeichnete Flaechen statt flacher Verlaeufe ===== */
 .licht{ position:absolute; border-radius:50%; pointer-events:none; z-index:0 }
-.licht-lime{ background:radial-gradient(50% 50% at 50% 50%, rgba(196,231,216,.34), rgba(196,231,216,0) 72%) }
+.licht-lime{ background:radial-gradient(50% 50% at 50% 50%, rgba(234,211,193,.34), rgba(234,211,193,0) 72%) }
 .licht-gruen{ background:radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.2), rgba(255,255,255,0) 72%) }
 
 /* ===== Typografie ===== */
@@ -104,8 +104,8 @@ em.ak{ font-family:var(--f-serif); font-style:italic; font-weight:300; letter-sp
   font-size:11.5px; font-weight:500; letter-spacing:.15em; text-transform:uppercase;
   color:rgba(17,17,17,0.72) }
 .chip i{ width:7px; height:7px; border-radius:2px; flex:0 0 auto;
-  background:linear-gradient(180deg,#1C8F5E,#136B45);
-  box-shadow:0 0 10px rgba(40,166,109,0.9), inset 0 .5px 0 rgba(17,17,17,0.72) }
+  background:linear-gradient(180deg,#964415,#6F320F);
+  box-shadow:0 0 10px rgba(180,82,26,0.9), inset 0 .5px 0 rgba(17,17,17,0.72) }
 .chip-reihe{ display:flex; flex-wrap:wrap; gap:10px }
 
 /* ===== Knoepfe mit Facette ===== */
@@ -119,17 +119,17 @@ em.ak{ font-family:var(--f-serif); font-style:italic; font-weight:300; letter-sp
 .btn:hover .kr{ transform:translateX(3px) }
 .btn:active{ transform:translateY(1px) }
 
-.btn-lime{ color:#EAF2EF;
-  background:linear-gradient(180deg,#259261 0%,#37AE78 45%,#4FD699 100%);
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.81), inset 0 -1.5px 0 rgba(166,228,201,0.55),
+.btn-lime{ color:#F6EDE6;
+  background:linear-gradient(180deg,#A04917 0%,#C85C1D 45%,#DE8347 100%);
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.81), inset 0 -1.5px 0 rgba(238,189,156,0.55),
     0 2px 4px rgba(17,17,17,0.136), 0 8px 10px rgba(17,17,17,0.088), 0 18px 16px rgba(17,17,17,0.048),
-    0 34px 24px rgba(17,17,17,0.02), 0 14px 30px -12px rgba(52,193,130,0.3) }
-.btn-lime .kr{ background:linear-gradient(180deg,#DFEBE6,#EFF7F4); color:#2FB87A;
+    0 34px 24px rgba(17,17,17,0.02), 0 14px 30px -12px rgba(208,105,37,0.3) }
+.btn-lime .kr{ background:linear-gradient(180deg,#F2E3D8,#F9F2ED); color:#C46323;
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.126), 0 1px 2px rgba(17,17,17,0.17) }
 .btn-lime:hover{ transform:translateY(-2px);
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.855), inset 0 -1.5px 0 rgba(166,228,201,0.55),
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.855), inset 0 -1.5px 0 rgba(238,189,156,0.55),
     0 3px 6px rgba(17,17,17,0.143), 0 12px 16px rgba(17,17,17,0.102), 0 26px 26px rgba(17,17,17,0.061),
-    0 48px 36px rgba(17,17,17,0.027), 0 20px 40px -14px rgba(52,193,130,0.42) }
+    0 48px 36px rgba(17,17,17,0.027), 0 20px 40px -14px rgba(208,105,37,0.42) }
 /* Lichtstreifen */
 .btn-lime::after{ content:""; position:absolute; inset:0; border-radius:inherit; z-index:1;
   overflow:hidden; background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);
@@ -157,8 +157,8 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .marke{ display:flex; align-items:center; gap:10px; font-size:18px; font-weight:600;
   letter-spacing:-.035em; color:#141414 }
 .marke .pkt{ width:11px; height:11px; border-radius:3.5px;
-  background:linear-gradient(170deg,#1C8F5E,#136B45);
-  box-shadow:0 0 16px rgba(40,166,109,0.85), inset 0 1px 0 rgba(17,17,17,0.72),
+  background:linear-gradient(170deg,#964415,#6F320F);
+  box-shadow:0 0 16px rgba(180,82,26,0.85), inset 0 1px 0 rgba(17,17,17,0.72),
     0 2px 4px rgba(17,17,17,0.17) }
 .marke small{ font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#8D8D8D }
 .marke-bild{ display:block; height:26px; width:auto; flex:0 0 auto }
@@ -193,7 +193,7 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 /* ===== Fenster fuer den Globus ===== */
 .fenster{ position:relative; z-index:2; margin:clamp(36px,5vw,64px) auto 0; max-width:1000px;
   border-radius:clamp(18px,2vw,26px); border:1px solid var(--line-2); overflow:hidden;
-  background:linear-gradient(180deg,#1A1A1A 0%,#0B0B0B 58%,#060807 100%);
+  background:linear-gradient(180deg,#1A1A1A 0%,#0B0B0B 58%,#080706 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.7), var(--stapel-hoch) }
 .fenster-leiste{ display:flex; align-items:center; gap:14px; padding:12px 16px;
   border-bottom:1px solid var(--line);
@@ -209,7 +209,7 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .fenster-rechts{ margin-left:auto; display:flex; align-items:center; gap:8px;
   font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4) }
 .fenster-rechts b{ width:6px; height:6px; border-radius:50%; background:var(--lime);
-  box-shadow:0 0 8px rgba(89,215,158,.9); animation:pochen 2.4s ease-in-out infinite }
+  box-shadow:0 0 8px rgba(224,138,80,.9); animation:pochen 2.4s ease-in-out infinite }
 @keyframes pochen{ 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
 .fenster-innen{ position:relative; height:clamp(290px,31vw,420px); overflow:hidden }
 #globus{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:min(900px,132%); height:auto }
@@ -221,7 +221,7 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
   animation:schweben 7s ease-in-out infinite }
 .globus-chip i{ width:7px; height:7px; border-radius:50%;
   background:linear-gradient(180deg,var(--lime-hell),var(--lime-tief));
-  box-shadow:0 0 10px rgba(89,215,158,.9) }
+  box-shadow:0 0 10px rgba(224,138,80,.9) }
 .gc-1{ left:5%; top:26% } .gc-2{ right:6%; top:17% } .gc-3{ right:11%; bottom:21% } .gc-4{ left:11%; bottom:14% }
 .gc-2{ animation-delay:-1.8s } .gc-3{ animation-delay:-3.4s } .gc-4{ animation-delay:-5s }
 @keyframes schweben{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-7px) } }
@@ -304,23 +304,23 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .br-wert{ font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:100px; white-space:nowrap }
 .br-wert.blau{ color:#DBDBDB; background:rgba(180,180,180,.13);
   box-shadow:inset 0 0 0 1px rgba(180,180,180,.3) }
-.br-wert.orange{ color:#A0E8C8; background:rgba(111,221,171,.13);
-  box-shadow:inset 0 0 0 1px rgba(111,221,171,.3) }
+.br-wert.orange{ color:#EDBC9B; background:rgba(228,154,104,.13);
+  box-shadow:inset 0 0 0 1px rgba(228,154,104,.3) }
 /* jede Karte bleibt in ihrer eigenen Farbe */
 .zwei .lk:nth-child(2) .bild-rahmen{
-  background:radial-gradient(110% 80% at 50% 0%, rgba(111,221,171,.08), transparent 62%),
+  background:radial-gradient(110% 80% at 50% 0%, rgba(228,154,104,.08), transparent 62%),
     linear-gradient(180deg,#181818,#0B0B0B) }
 .zwei .lk:nth-child(1){ background:
   radial-gradient(130% 80% at 50% 0%, rgba(77,75,73,0.07), transparent 58%),
   linear-gradient(180deg,rgba(17,17,17,0.05),rgba(17,17,17,0.011)), #FFFFFF }
 .zwei .lk:nth-child(2){ background:
-  radial-gradient(130% 80% at 50% 0%, rgba(34,144,94,0.06), transparent 58%),
+  radial-gradient(130% 80% at 50% 0%, rgba(156,71,22,0.06), transparent 58%),
   linear-gradient(180deg,rgba(17,17,17,0.05),rgba(17,17,17,0.011)), #FFFFFF }
 
 /* ===== Leistung, in einem Stueck erklaert ===== */
 .erkl{ margin-top:52px; padding:0;
   background:
-    radial-gradient(130% 80% at 50% 0%, rgba(50,165,113,0.055), transparent 58%),
+    radial-gradient(130% 80% at 50% 0%, rgba(188,86,27,0.055), transparent 58%),
     linear-gradient(180deg,rgba(17,17,17,0.05),rgba(17,17,17,0.011)), #FFFFFF }
 .erkl:hover{ transform:none }
 .erkl-innen{ position:relative; z-index:2; display:grid; grid-template-columns:1.04fr .96fr;
@@ -328,25 +328,25 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .erkl-marke{ display:inline-flex; align-items:center; gap:9px; font-size:11px; letter-spacing:.16em;
   text-transform:uppercase; color:rgba(17,17,17,0.378) }
 .erkl-marke i{ width:7px; height:7px; border-radius:2px;
-  background:linear-gradient(180deg,#1C8F5E,#136B45) }
+  background:linear-gradient(180deg,#964415,#6F320F) }
 .erkl h3{ margin:18px 0 0; font-size:clamp(23px,2.5vw,30px); line-height:1.2; max-width:24ch }
 .erkl-text p{ margin:17px 0 0; font-size:15.2px; line-height:1.74; color:rgba(17,17,17,0.522); max-width:47ch }.erkl-tafel{ align-self:stretch; display:flex; flex-direction:column; border-radius:var(--r-s); border:1px solid rgba(17,17,17,.1); padding:24px 24px 26px;
-  background:radial-gradient(110% 80% at 50% 0%, rgba(50,165,113,0.07), transparent 62%),
+  background:radial-gradient(110% 80% at 50% 0%, rgba(188,86,27,0.07), transparent 62%),
     linear-gradient(180deg,#F4F1EB,#FBF9F5);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.081), inset 0 -18px 30px -22px rgba(17,17,17,0.323),
     0 10px 24px -14px rgba(17,17,17,0.306) }
 .et-titel{ display:flex; align-items:center; gap:10px; font-size:10.5px; letter-spacing:.14em;
   text-transform:uppercase; color:rgba(17,17,17,0.396) }
 .et-titel i{ width:7px; height:7px; border-radius:2px; flex:0 0 auto;
-  background:linear-gradient(180deg,#1C8F5E,#136B45) }
+  background:linear-gradient(180deg,#964415,#6F320F) }
 .et-titel.et-grau i{ background:linear-gradient(180deg,rgba(17,17,17,0.36),rgba(17,17,17,0.09)) }
 .et-liste{ list-style:none; margin:16px 0 0; padding:0; display:grid; gap:11px }
 .et-liste li{ position:relative; padding-left:31px; font-size:14.4px; line-height:1.5; color:rgba(17,17,17,0.648) }
 .et-liste li::before{ content:""; position:absolute; left:0; top:.14em; width:20px; height:20px; border-radius:7px;
-  background:linear-gradient(180deg,rgba(50,165,113,0.28),rgba(50,165,113,0.07));
-  box-shadow:inset 0 0 0 1px rgba(50,165,113,0.36), inset 0 1px 0 rgba(17,17,17,0.144) }
+  background:linear-gradient(180deg,rgba(188,86,27,0.28),rgba(188,86,27,0.07));
+  box-shadow:inset 0 0 0 1px rgba(188,86,27,0.36), inset 0 1px 0 rgba(17,17,17,0.144) }
 .et-liste li::after{ content:""; position:absolute; left:5.8px; top:calc(.14em + 6.6px);
-  width:8.4px; height:4.6px; border-left:1.8px solid #1C8F5E; border-bottom:1.8px solid #1C8F5E;
+  width:8.4px; height:4.6px; border-left:1.8px solid #964415; border-bottom:1.8px solid #964415;
   transform:rotate(-45deg); border-radius:1px }
 .et-offen li{ color:rgba(17,17,17,0.522) }
 .et-offen li::before{ background:linear-gradient(180deg,rgba(17,17,17,0.068),rgba(17,17,17,0.018));
@@ -398,9 +398,9 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .karte{ background:#FFFFFF; box-shadow:none }
 .karte::after{ display:none }
 .karte:hover{ transform:none; background:#F4F1EB; border-color:rgba(17,17,17,.18); box-shadow:none }
-.btn-lime{ color:#D9F8EC; background:#2FB87A; border-color:#2FB87A; box-shadow:none }
-.btn-lime:hover{ background:#23B574; transform:translateY(-1px); box-shadow:none }
-.btn-lime .kr{ background:rgba(17,17,17,0.054); color:#D9F8EC; box-shadow:none }
+.btn-lime{ color:#F6E7DB; background:#C46323; border-color:#C46323; box-shadow:none }
+.btn-lime:hover{ background:#BD561B; transform:translateY(-1px); box-shadow:none }
+.btn-lime .kr{ background:rgba(17,17,17,0.054); color:#F6E7DB; box-shadow:none }
 .btn-glas{ background:#DCDBDA; border-color:rgba(17,17,17,0.108); box-shadow:none;
   -webkit-backdrop-filter:none; backdrop-filter:none }
 .btn-glas:hover{ background:#D3D2D1; transform:translateY(-1px); box-shadow:none }
@@ -412,8 +412,11 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .kpi{ background:#242424; box-shadow:none }
 
 /* ===== Platzhalter-Marke, solange der Name offen ist ===== */
+.nka-bild{ display:block; height:30px; width:auto; flex:0 0 auto }
+.marke-gross .nka-bild{ height:36px }
+@media (max-width:620px){ .nka-bild{ height:25px } }
 .mk-zeichen{ width:30px; height:30px; border-radius:9px; flex:0 0 auto; display:grid; place-items:center;
-  color:#FFFFFF; background:#2FB87A }
+  color:#FFFFFF; background:#C46323 }
 .marke-gross .mk-zeichen{ width:34px; height:34px; border-radius:10px }
 .mk-zeichen svg{ width:16px; height:16px }
 .mk-wort{ font-size:15px; font-weight:600; letter-spacing:-.02em; color:#141414 }
@@ -456,9 +459,9 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
   background:linear-gradient(180deg,#1E1E1E,#0E0E0E);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.14), 0 0 0 7px var(--ink), 0 8px 18px -10px #000;
   transition:color .6s var(--e), background .6s var(--e), box-shadow .6s var(--e) }
-.zs-schritt.da .zs-knoten{ color:#0D2219;
+.zs-schritt.da .zs-knoten{ color:#22150D;
   background:linear-gradient(180deg,var(--lime-hell),var(--lime-tief));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.65), 0 0 0 7px var(--ink), 0 0 20px -4px rgba(90,205,153,.45) }
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.65), 0 0 0 7px var(--ink), 0 0 20px -4px rgba(223,132,72,.45) }
 .zs-karte{ grid-column:1; grid-row:1; position:relative; border-radius:var(--r-s); border:1px solid rgba(17,17,17,.1);
   padding:26px 28px 26px;
   background:radial-gradient(130% 90% at 50% -12%, rgba(17,17,17,0.054), transparent 60%),
@@ -473,17 +476,17 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .zs-schritt:nth-child(even) .zs-karte::after{ left:-23px }
 .zs-kopf{ display:flex; align-items:center; gap:13px }
 .zs-sym{ width:38px; height:38px; border-radius:12px; display:grid; place-items:center; flex:0 0 auto;
-  color:#1C8F5E;
-  background:linear-gradient(180deg,rgba(50,165,113,0.17),rgba(50,165,113,0.04));
-  box-shadow:inset 0 0 0 1px rgba(50,165,113,0.26), inset 0 1px 0 rgba(17,17,17,0.108) }
+  color:#964415;
+  background:linear-gradient(180deg,rgba(188,86,27,0.17),rgba(188,86,27,0.04));
+  box-shadow:inset 0 0 0 1px rgba(188,86,27,0.26), inset 0 1px 0 rgba(17,17,17,0.108) }
 .zs-sym svg{ width:19px; height:19px }
 .zs-marke{ font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:rgba(17,17,17,0.36) }
 .zs-karte h3{ margin:17px 0 0; font-size:clamp(19px,1.9vw,22.5px); line-height:1.26 }
 .zs-karte p{ margin:11px 0 0; font-size:14.8px; line-height:1.66; color:rgba(17,17,17,0.522) }
 .zs-meta{ margin-top:19px; padding-top:15px; border-top:1px solid rgba(17,17,17,.1);
   display:flex; align-items:center; gap:9px; font-size:12.5px; color:#8D8D8D }
-.zs-meta i{ width:6px; height:6px; border-radius:50%; flex:0 0 auto; background:#2FB87A;
-  box-shadow:0 0 9px rgba(50,165,113,0.5) }
+.zs-meta i{ width:6px; height:6px; border-radius:50%; flex:0 0 auto; background:#C46323;
+  box-shadow:0 0 9px rgba(188,86,27,0.5) }
 @media (max-width:820px){
   .zeitstrahl::before{ left:24px; margin-left:0 }
   .zs-schritt{ grid-template-columns:48px minmax(0,1fr); gap:20px }
@@ -531,9 +534,9 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
   transform:translate(-50%,-50%); transition:opacity .25s, background .25s }
 .fq summary i::before{ width:11px; height:1.5px } .fq summary i::after{ width:1.5px; height:11px }
 .fq[open] summary i{ transform:rotate(180deg);
-  background:linear-gradient(180deg,#1C8F5E,#136B45);
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.72), 0 0 14px rgba(40,166,109,0.5) }
-.fq[open] summary i::before,.fq[open] summary i::after{ background:#EDF6F2 }
+  background:linear-gradient(180deg,#964415,#6F320F);
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.72), 0 0 14px rgba(180,82,26,0.5) }
+.fq[open] summary i::before,.fq[open] summary i::after{ background:#F8F1EB }
 .fq[open] summary i::after{ opacity:0 }
 .fq-inhalt{ padding:0 22px 20px; font-size:15px; max-width:70ch }
 
@@ -557,7 +560,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .fuss h5{ margin:0 0 14px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
   color:#8D8D8D; font-weight:500 }
 .fuss ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px; font-size:14.5px }
-.fuss a:hover{ color:#2FB87A }
+.fuss a:hover{ color:#C46323 }
 .fuss-text{ font-size:14.5px; max-width:34ch; margin:14px 0 0 }
 .wasserzeichen{ margin-top:40px; font-size:clamp(70px,17vw,228px); font-weight:600; letter-spacing:-.06em;
   line-height:.78; text-align:center; user-select:none; pointer-events:none;
@@ -578,10 +581,10 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 /* Markenkachel im Fliesstext */
 .lockup{ display:inline-flex; align-items:center; gap:12px; vertical-align:-.12em }
 .kachel{ width:.92em; height:.92em; border-radius:.24em; flex:0 0 auto; position:relative;
-  background:linear-gradient(158deg,#9DE8C6 0%,#59D79E 44%,#29A36E 100%);
-  box-shadow:inset 0 .04em 0 rgba(255,255,255,.9), inset 0 -.04em .06em rgba(23,77,54,.5),
+  background:linear-gradient(158deg,#EDBA98 0%,#E08A50 44%,#B25219 100%);
+  box-shadow:inset 0 .04em 0 rgba(255,255,255,.9), inset 0 -.04em .06em rgba(77,43,23,.5),
     0 .04em .08em rgba(0,0,0,.5), 0 .16em .3em -.08em rgba(0,0,0,.7),
-    0 0 1.4em rgba(89,215,158,.4) }
+    0 0 1.4em rgba(224,138,80,.4) }
 .kachel::after{ content:""; position:absolute; inset:18%;
   background:#0E0E0E; border-radius:.1em;
   -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 60%);
@@ -594,7 +597,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.162), inset 0 -1px 0 rgba(17,17,17,0.136),
     0 2px 4px rgba(17,17,17,0.119), 0 10px 18px -10px rgba(17,17,17,0.238) }
 .abzeichen .pf{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center; flex:0 0 auto;
-  color:#EAF4F0; background:linear-gradient(180deg,#176240,#3ECC8C);
+  color:#F7EEE7; background:linear-gradient(180deg,#6A300F,#DA7430);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.81), 0 2px 5px rgba(17,17,17,0.17) }
 .abzeichen .pf svg{ width:13px; height:13px }
 
@@ -616,18 +619,18 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .hv{ position:relative; min-height:clamp(380px,42vw,520px); display:flex; align-items:center; justify-content:center }
 .platte{ position:absolute; top:-30%; bottom:-22%; left:-10%; right:-46%; border-radius:40px; overflow:hidden;
   background:
-    repeating-linear-gradient(90deg, rgba(40,166,109,0.055) 0 1px, transparent 1px 40px),
-    repeating-linear-gradient(0deg, rgba(40,166,109,0.04) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgba(180,82,26,0.055) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(0deg, rgba(180,82,26,0.04) 0 1px, transparent 1px 40px),
     radial-gradient(ellipse 80% 70% at 44% 38%, #F4F1EB 0%, #F4F1EB 46%, #FBF9F5 78%, #FBF9F5 100%);
   -webkit-mask-image:radial-gradient(ellipse 72% 62% at 34% 50%, #FBF9F5 0%, rgba(17,17,17,0.187) 52%, transparent 86%);
   mask-image:radial-gradient(ellipse 72% 62% at 34% 50%, #FBF9F5 0%, rgba(17,17,17,0.187) 52%, transparent 86%) }
 .platte::after{ content:""; position:absolute; inset:-30%; pointer-events:none;
-  background:radial-gradient(circle at 50% 50%, rgba(40,166,109,0.22) 0%, rgba(40,166,109,0.07) 34%, transparent 62%);
+  background:radial-gradient(circle at 50% 50%, rgba(180,82,26,0.22) 0%, rgba(180,82,26,0.07) 34%, transparent 62%);
   animation:wanderlicht 16s ease-in-out infinite alternate }
 @keyframes wanderlicht{ 0%{ transform:translate(-12%,-6%) scale(1) } 100%{ transform:translate(10%,8%) scale(1.12) } }
 .hv::before{ content:""; position:absolute; z-index:1; width:min(520px,88%); aspect-ratio:1;
   left:50%; top:48%; transform:translate(-50%,-50%); pointer-events:none; filter:blur(16px);
-  background:radial-gradient(circle, rgba(40,166,109,0.24) 0%, rgba(78,207,149,0.08) 42%, transparent 68%);
+  background:radial-gradient(circle, rgba(180,82,26,0.24) 0%, rgba(221,127,64,0.08) 42%, transparent 68%);
   animation:atmen 9s ease-in-out infinite }
 @keyframes atmen{ 0%,100%{ opacity:.7; transform:translate(-50%,-50%) scale(1) }
                   50%{ opacity:1; transform:translate(-50%,-50%) scale(1.07) } }
@@ -635,7 +638,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 
 .hv-karte{ position:relative; z-index:2; width:100%; max-width:430px; border-radius:20px; overflow:hidden;
   background:linear-gradient(180deg,#1E1E1E 0%,#151515 56%,#101010 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(89,215,158,.07),
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(224,138,80,.07),
     0 2px 5px rgba(0,0,0,.5), 0 14px 28px -12px rgba(0,0,0,.8), 0 40px 70px -28px rgba(0,0,0,1) }
 .hv-leiste{ display:flex; align-items:center; gap:12px; padding:13px 16px; border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.015));
@@ -644,7 +647,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .hv-leiste .zaehler{ margin-left:auto; display:inline-flex; align-items:center; gap:7px; font-size:11px;
   letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.45) }
 .hv-leiste .zaehler i{ width:6px; height:6px; border-radius:50%; background:var(--lime);
-  box-shadow:0 0 9px rgba(89,215,158,.9); animation:pochen 2.2s ease-in-out infinite }
+  box-shadow:0 0 9px rgba(224,138,80,.9); animation:pochen 2.2s ease-in-out infinite }
 .hv-liste{ padding:12px; display:grid; gap:10px }
 .eintrag{ display:flex; align-items:center; gap:13px; padding:13px 14px; border-radius:14px;
   border:1px solid var(--line);
@@ -665,8 +668,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .eintrag .ik.grau{ color:#E4E4E4;
   background:radial-gradient(70% 70% at 34% 26%, #555555 0%, #2E2E2E 52%, #161616 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 2px 5px rgba(0,0,0,.55) }
-.eintrag .ik.orange{ color:#0C2118;
-  background:radial-gradient(70% 70% at 34% 26%, #CDF0E1 0%, #6FDDAB 48%, #2E976A 100%);
+.eintrag .ik.orange{ color:#21140C;
+  background:radial-gradient(70% 70% at 34% 26%, #EFDCCE 0%, #E49A68 48%, #AC4F19 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.75), 0 2px 5px rgba(0,0,0,.55) }
 .eintrag .txt{ min-width:0 }
 .eintrag .txt b{ display:block; font-size:13.5px; font-weight:500; color:#fff; letter-spacing:-.015em }
@@ -677,15 +680,15 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18); color:rgba(255,255,255,.6) }
 .eintrag.an .marke-rechts{ color:#161616; background:linear-gradient(180deg,#DBDBDB,#9A9A9A);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 2px 6px rgba(0,0,0,.4) }
-.eintrag .marke-rechts.mitarbeiter{ color:#A0E8C8; background:rgba(111,221,171,.14);
-  box-shadow:inset 0 0 0 1px rgba(111,221,171,.3) }
+.eintrag .marke-rechts.mitarbeiter{ color:#EDBC9B; background:rgba(228,154,104,.14);
+  box-shadow:inset 0 0 0 1px rgba(228,154,104,.3) }
 .hv-fuss{ padding:12px 14px 14px; border-top:1px solid var(--line);
   background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.45)) }
 .hv-fuss .balken{ height:7px; border-radius:100px; overflow:hidden;
   background:rgba(255,255,255,.07); box-shadow:inset 0 1px 2px rgba(0,0,0,.6) }
 .hv-fuss .balken i{ display:block; height:100%; width:0; border-radius:100px;
-  background:linear-gradient(90deg,#31B479,#9DE8C6);
-  box-shadow:0 0 12px rgba(89,215,158,.6) }
+  background:linear-gradient(90deg,#C85C1D,#EDBA98);
+  box-shadow:0 0 12px rgba(224,138,80,.6) }
 .da .hv-fuss .balken i{ animation:fuellen 2.4s var(--e) .6s forwards }
 @keyframes fuellen{ to{ width:72% } }
 .hv-fuss .zeile{ display:flex; justify-content:space-between; gap:12px; margin-top:9px;
@@ -701,10 +704,10 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .schwebe b{ display:block; font-size:12.5px; font-weight:500; color:#141414 }
 .schwebe span{ display:block; font-size:11px; color:rgba(17,17,17,0.405) }
 .schwebe .pille{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:4px 9px;
-  border-radius:100px; color:#E8F3EE; background:linear-gradient(180deg,#176240,#3ECC8C);
+  border-radius:100px; color:#F6ECE5; background:linear-gradient(180deg,#6A300F,#DA7430);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.81) }
 .schwebe .hk{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; flex:0 0 auto;
-  color:#28A66D; background:linear-gradient(180deg,rgba(40,166,109,0.22),rgba(40,166,109,0.06));
+  color:#B4521A; background:linear-gradient(180deg,rgba(180,82,26,0.22),rgba(180,82,26,0.06));
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.198), 0 2px 5px rgba(17,17,17,0.17) }
 .schwebe-1{ left:-11%; top:2% } .schwebe-2{ right:-9%; bottom:9%; animation-delay:-3.2s }
 @media (max-width:1100px){ .schwebe-1{ left:-2% } .schwebe-2{ right:0 } }
@@ -718,8 +721,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 @keyframes saeule-hoch{ to{ transform:scaleY(1); opacity:1 } }
 .da .bar3d.hi{ animation:saeule-hoch .9s cubic-bezier(.16,1,.3,1) .36s forwards,
   leuchten 2.8s ease-in-out 1.6s infinite }
-@keyframes leuchten{ 0%,100%{ filter:drop-shadow(0 0 3px rgba(89,215,158,.5)) }
-  50%{ filter:drop-shadow(0 0 14px rgba(89,215,158,.9)) } }
+@keyframes leuchten{ 0%,100%{ filter:drop-shadow(0 0 3px rgba(224,138,80,.5)) }
+  50%{ filter:drop-shadow(0 0 14px rgba(224,138,80,.9)) } }
 
 /* ===== Kandidaten als Kugeln ===== */
 .kandidaten{ width:100%; display:block }
@@ -729,8 +732,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .da .kug.k4{ animation-delay:.42s } .da .kug.k5{ animation-delay:.56s }
 @keyframes kug-rein{ to{ opacity:1; transform:none } }
 .da .treffer{ animation:kug-rein .7s var(--e) .8s forwards, treffer-puls 2.6s ease-in-out 1.8s infinite }
-@keyframes treffer-puls{ 0%,100%{ filter:drop-shadow(0 0 2px rgba(131,226,183,.35)) }
-  50%{ filter:drop-shadow(0 0 10px rgba(131,226,183,.6)) } }
+@keyframes treffer-puls{ 0%,100%{ filter:drop-shadow(0 0 2px rgba(232,168,125,.35)) }
+  50%{ filter:drop-shadow(0 0 10px rgba(232,168,125,.6)) } }
 .haken-pfad{ stroke-dasharray:26; stroke-dashoffset:26 }
 .da .haken-pfad{ animation:haken-zeichnen .5s var(--e) 1.3s forwards }
 @keyframes haken-zeichnen{ to{ stroke-dashoffset:0 } }
@@ -746,7 +749,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 
 /* ===== Markenzeichen: halbierte Limette ===== */
 .marke-logo{ width:30px; height:30px; flex:0 0 auto;
-  filter:drop-shadow(0 0 14px rgba(40,166,109,0.45)) }
+  filter:drop-shadow(0 0 14px rgba(180,82,26,0.45)) }
 .lim-buehne{ position:relative; z-index:2; width:100%; max-width:480px;
   display:grid; place-items:center; padding:30px 0 }
 .lim-gross{ width:min(100%,420px); height:auto; position:relative; z-index:2;
@@ -755,8 +758,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 @keyframes lim-schweben{ 0%,100%{ transform:translateY(0) rotate(0deg) }
   50%{ transform:translateY(-10px) rotate(-1.4deg) } }
 .lim-ring{ position:absolute; z-index:1; width:min(118%,560px); aspect-ratio:1; border-radius:50%;
-  background:conic-gradient(from 0deg, rgba(40,166,109,0), rgba(40,166,109,0.3), rgba(40,166,109,0) 55%,
-    rgba(75,206,147,0.22), rgba(40,166,109,0));
+  background:conic-gradient(from 0deg, rgba(180,82,26,0), rgba(180,82,26,0.3), rgba(180,82,26,0) 55%,
+    rgba(221,124,60,0.22), rgba(180,82,26,0));
   filter:blur(34px); animation:lim-kreisen 26s linear infinite }
 @keyframes lim-kreisen{ to{ transform:rotate(360deg) } }
 .lim-schild{ position:absolute; z-index:3; display:inline-flex; align-items:center; gap:9px;
@@ -766,11 +769,11 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.162), 0 3px 7px rgba(17,17,17,0.187), 0 20px 36px -18px rgba(17,17,17,0.34);
   animation:schweben 8s ease-in-out infinite }
 .lim-schild i{ width:7px; height:7px; border-radius:50%;
-  background:linear-gradient(180deg,#1C8F5E,#136B45);
-  box-shadow:0 0 10px rgba(40,166,109,0.9) }
+  background:linear-gradient(180deg,#964415,#6F320F);
+  box-shadow:0 0 10px rgba(180,82,26,0.9) }
 .lim-links{ left:-8%; top:14% }
 .lim-rechts{ right:-8%; bottom:16%; animation-delay:-3.4s }
-.lim-rechts i{ background:linear-gradient(180deg,#2E8A61,#97DFC0) }
+.lim-rechts i{ background:linear-gradient(180deg,#A14A17,#EBB18B) }
 @media (max-width:560px){ .lim-links{ left:-2%; top:6% } .lim-rechts{ right:-2%; bottom:6% } }
 @media (prefers-reduced-motion:reduce){ .lim-gross,.lim-ring,.lim-schild{ animation:none } }
 
@@ -814,7 +817,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .kpi-kopf{ display:flex; align-items:center; gap:8px; font-size:11.5px; color:rgba(255,255,255,.45);
   letter-spacing:.02em; white-space:nowrap }
 .kpi-kopf .trend{ font-style:normal; font-size:10.5px; font-weight:600; padding:3px 8px; border-radius:100px;
-  color:#6EE7B0; background:rgba(62,207,142,.14); box-shadow:inset 0 0 0 1px rgba(62,207,142,.3) }
+  color:#EA9E6B; background:rgba(219,118,50,.14); box-shadow:inset 0 0 0 1px rgba(219,118,50,.3) }
 .kpi:nth-child(2) .kpi-kopf .trend{ color:#D4D4D4; background:rgba(255,255,255,.08);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.14) }
 .kpi-zahl{ display:block; margin:8px 0 4px; font-size:clamp(28px,3.2vw,38px); font-weight:600;
@@ -846,11 +849,11 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 @keyframes saeule-wachs{ to{ transform:scaleY(1); opacity:1 } }
 .da .saeule.hoch{ animation:saeule-wachs .85s cubic-bezier(.16,1,.3,1) calc(.08s * var(--i)) forwards,
   saeule-glimmen 3s ease-in-out 1.4s infinite }
-@keyframes saeule-glimmen{ 0%,100%{ filter:drop-shadow(0 0 3px rgba(89,215,158,.5)) }
-  50%{ filter:drop-shadow(0 0 16px rgba(89,215,158,.95)) } }
+@keyframes saeule-glimmen{ 0%,100%{ filter:drop-shadow(0 0 3px rgba(224,138,80,.5)) }
+  50%{ filter:drop-shadow(0 0 16px rgba(224,138,80,.95)) } }
 .chart-spitze{ position:absolute; right:19%; top:16%; font-size:10.5px; letter-spacing:.06em;
-  padding:5px 10px; border-radius:100px; color:#0D2219; white-space:nowrap;
-  background:linear-gradient(180deg,#9DE8C6,#33C181);
+  padding:5px 10px; border-radius:100px; color:#22150D; white-space:nowrap;
+  background:linear-gradient(180deg,#EDBA98,#CF6925);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 3px 8px rgba(0,0,0,.55);
   opacity:0; transform:translateY(6px) }
 .da .chart-spitze{ animation:eintrag-rein .6s var(--e) 1.3s forwards }
@@ -876,7 +879,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .st-pkt{ width:34px; height:5px; border-radius:100px; padding:0; overflow:hidden;
   background:rgba(17,17,17,0.108); box-shadow:inset 0 1px 1px rgba(17,17,17,0.17) }
 .st-pkt span{ display:block; height:100%; width:0; border-radius:100px;
-  background:linear-gradient(90deg,#4BCE93,#176240); box-shadow:0 0 10px rgba(40,166,109,0.7) }
+  background:linear-gradient(90deg,#DD7C3C,#6A300F); box-shadow:0 0 10px rgba(180,82,26,0.7) }
 .st-pkt.an span{ animation:pkt-fuellen 7s linear forwards }
 @keyframes pkt-fuellen{ to{ width:100% } }
 .stimme{ display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
@@ -889,7 +892,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 @media (max-width:820px){ .stimme{ grid-template-columns:1fr; padding:0 0 28px } }
 .stimme-bild{ position:relative; min-height:clamp(260px,30vw,360px); overflow:hidden;
   background:
-    radial-gradient(90% 80% at 50% 0%, rgba(40,166,109,0.16), transparent 62%),
+    radial-gradient(90% 80% at 50% 0%, rgba(180,82,26,0.16), transparent 62%),
     linear-gradient(180deg,#F4F1EB,#FBF9F5);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.09), inset -16px 0 30px -26px rgba(17,17,17,0.306) }
 .stimme-bild::after{ content:""; position:absolute; inset:0; pointer-events:none;
@@ -913,9 +916,9 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .stat{ margin-top:22px; padding-top:20px; border-top:1px solid rgba(17,17,17,.1);
   display:flex; align-items:center; gap:16px }
 .stat b{ font-size:clamp(28px,3.4vw,40px); font-weight:600; letter-spacing:-.045em; line-height:1;
-  background:linear-gradient(170deg,#13412E,#28A66D 55%,#4BCE93);
+  background:linear-gradient(170deg,#412413,#B4521A 55%,#DD7C3C);
   -webkit-background-clip:text; background-clip:text; color:transparent;
-  filter:drop-shadow(0 0 20px rgba(40,166,109,0.35)) }
+  filter:drop-shadow(0 0 20px rgba(180,82,26,0.35)) }
 .stat span{ font-size:12.5px; line-height:1.4; color:#8D8D8D }
 
 
@@ -951,12 +954,12 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   background:linear-gradient(168deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.02) 100%);
   border:1px solid rgba(255,255,255,.14);
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.26), inset 0 -2px 3px rgba(0,0,0,.6),
-    0 2px 4px rgba(0,0,0,.5), 0 10px 18px -8px rgba(0,0,0,.8), 0 0 0 5px rgba(7,10,9,1) }
+    0 2px 4px rgba(0,0,0,.5), 0 10px 18px -8px rgba(0,0,0,.8), 0 0 0 5px rgba(10,8,7,1) }
 .str-kachel svg{ width:26px; height:26px }
-.str-knoten:last-child .str-kachel{ color:#0D2219; border-color:transparent;
-  background:linear-gradient(168deg,#6DDAA9 0%,#51C892 44%,#259464 100%);
-  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9), inset 0 -2px 2px rgba(23,77,54,.4),
-    0 2px 4px rgba(0,0,0,.5), 0 10px 18px -8px rgba(0,0,0,.8), 0 0 0 5px rgba(7,10,9,1) }
+.str-knoten:last-child .str-kachel{ color:#22150D; border-color:transparent;
+  background:linear-gradient(168deg,#E49763 0%,#DD7C3C 44%,#A24A17 100%);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9), inset 0 -2px 2px rgba(77,43,23,.4),
+    0 2px 4px rgba(0,0,0,.5), 0 10px 18px -8px rgba(0,0,0,.8), 0 0 0 5px rgba(10,8,7,1) }
 .str-knoten b{ display:block; font-size:16.5px; font-weight:600; color:#fff; letter-spacing:-.025em;
   margin-bottom:8px }
 .str-knoten p{ margin:0; font-size:14px; line-height:1.55; color:rgba(255,255,255,.5) }
@@ -1024,8 +1027,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .lo-feld h4{ font-size:17.5px; margin:0 0 9px; color:#141414; letter-spacing:-.025em }
 .lo-feld p{ margin:0; font-size:14.2px; line-height:1.56; color:rgba(17,17,17,0.468) }
 .lo-feld .lo-marke{ display:inline-flex; align-items:center; gap:7px; margin-top:14px; padding:5px 11px;
-  border-radius:100px; font-size:11px; letter-spacing:.06em; color:#DDF2E9;
-  background:linear-gradient(180deg,#176240,#3ECC8C);
+  border-radius:100px; font-size:11px; letter-spacing:.06em; color:#F3E6DC;
+  background:linear-gradient(180deg,#6A300F,#DA7430);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.765), 0 2px 5px rgba(17,17,17,0.153) }
 .plattformen{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; padding:22px 26px;
   border-top:1px solid rgba(17,17,17,.1); background:linear-gradient(180deg,rgba(17,17,17,0.102),rgba(17,17,17,0.17)) }
@@ -1109,7 +1112,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
     radial-gradient(130% 90% at 50% 100%, rgba(180,180,180,.11), transparent 62%),
     linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)) }
 .kpi-spalte .kpi:nth-child(2){ background:
-    radial-gradient(130% 90% at 50% 100%, rgba(111,221,171,.1), transparent 62%),
+    radial-gradient(130% 90% at 50% 100%, rgba(228,154,104,.1), transparent 62%),
     linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)) }
 /* Beispielhinweis nach rechts, damit die Kopfzeile Luft bekommt */
 .dash-leiste .dash-hinweis{ margin-left:auto }
@@ -1125,8 +1128,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:0 0 12px -2px rgba(180,180,180,.7) }
 
 /* ===== Plattformzeichen in Lime ===== */
-.pf-marke svg{ width:20px; height:20px; fill:#59D79E;
-  filter:drop-shadow(0 0 8px rgba(89,215,158,.5)) }
+.pf-marke svg{ width:20px; height:20px; fill:#E08A50;
+  filter:drop-shadow(0 0 8px rgba(224,138,80,.5)) }
 
 
 /* ===== Fallbeispiel im Vordergrund ===== */
@@ -1189,8 +1192,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   border:1px solid rgba(17,17,17,.1);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.144), 0 2px 5px rgba(17,17,17,0.153),
     0 14px 26px -14px rgba(17,17,17,0.306) }
-.pf-logo svg{ width:30px; height:30px; fill:#28A66D;
-  filter:drop-shadow(0 0 12px rgba(40,166,109,0.65)) }
+.pf-logo svg{ width:30px; height:30px; fill:#B4521A;
+  filter:drop-shadow(0 0 12px rgba(180,82,26,0.65)) }
 .pf-kopf b{ display:block; font-size:21px; font-weight:600; color:#141414; letter-spacing:-.03em }
 .pf-kopf span{ display:block; font-size:13px; color:#8D8D8D; margin-top:3px }
 .pf-gross > p{ margin:0; font-size:15.2px; line-height:1.6; max-width:46ch }
@@ -1214,13 +1217,13 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .az-punkte{ margin-left:auto; color:rgba(255,255,255,.35); letter-spacing:1px; font-size:12px }
 .az-text{ margin:4px 0 10px; padding:0 14px; font-size:13.5px; line-height:1.45; color:rgba(255,255,255,.75) }
 .az-bild{ position:relative; height:150px; display:grid; place-items:center; overflow:hidden;
-  background:radial-gradient(120% 110% at 20% 0%, #78DFB1 0%, #31B479 42%, #194F38 100%) }
-.az-bild b{ position:relative; z-index:2; font-size:21px; font-weight:600; color:#0E1C16;
+  background:radial-gradient(120% 110% at 20% 0%, #E6A071 0%, #C85C1D 42%, #5B2A0D 100%) }
+.az-bild b{ position:relative; z-index:2; font-size:21px; font-weight:600; color:#1C130E;
   letter-spacing:-.03em; line-height:1.14; text-align:center }
 .az-glanz{ position:absolute; inset:-30% -10% auto -10%; height:90%;
   background:radial-gradient(60% 70% at 40% 20%, rgba(255,255,255,.65), transparent 70%) }
 .az-tag{ position:absolute; z-index:2; right:12px; bottom:12px; font-size:10.5px; letter-spacing:.06em;
-  padding:5px 10px; border-radius:100px; color:#BEECD9; background:rgba(11,19,16,.78);
+  padding:5px 10px; border-radius:100px; color:#EAD2C0; background:rgba(19,14,11,.78);
   border:1px solid rgba(255,255,255,.14) }
 .az-leiste{ display:flex; align-items:center; gap:12px; padding:11px 14px;
   background:rgba(255,255,255,.035); border-top:1px solid var(--line) }
@@ -1241,7 +1244,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08) }
 .globus-fuss .raum-kreise{ display:flex; align-items:center }
 .globus-fuss .flagge{ width:30px; height:30px; margin-left:-9px; opacity:1;
-  box-shadow:0 0 0 2px #121212, 0 0 0 3px rgba(89,215,158,.22), 0 2px 4px rgba(0,0,0,.6) }
+  box-shadow:0 0 0 2px #121212, 0 0 0 3px rgba(224,138,80,.22), 0 2px 4px rgba(0,0,0,.6) }
 .globus-fuss .flagge:first-child{ margin-left:0 }
 .gf-text{ font-size:13px; color:var(--text) }
 .gf-text b{ color:#fff; font-weight:500 }
@@ -1264,7 +1267,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .kanal:hover{ transform:translateY(-4px); border-color:rgba(17,17,17,.18); box-shadow:var(--kante), var(--stapel-hoch) }
 .kanal-kopf{ display:flex; align-items:center; gap:15px; margin-bottom:16px }
 .kanal-logo{ width:68px; height:68px; border-radius:20px; flex:0 0 auto; display:grid; place-items:center;
-  background:linear-gradient(170deg,#292B2A 0%,#131514 50%,#060D0A 100%);
+  background:linear-gradient(170deg,#292B2A 0%,#131514 50%,#0D0906 100%);
   border:1px solid rgba(255,255,255,.12);
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.18), inset 0 -2px 4px rgba(0,0,0,.75),
     0 2px 5px rgba(0,0,0,.55), 0 16px 30px -14px rgba(0,0,0,.95) }
@@ -1306,7 +1309,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   background:linear-gradient(170deg,#D0CFCD 0%,#F4F1EB 36%,#FBF9F5 100%);
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.27), inset 0 0 0 1px rgba(17,17,17,0.063),
     0 4px 10px rgba(17,17,17,0.204), 0 26px 50px -18px rgba(17,17,17,0.323),
-    0 60px 90px -40px rgba(17,17,17,0.34), 0 0 90px -30px rgba(40,166,109,0.4);
+    0 60px 90px -40px rgba(17,17,17,0.34), 0 0 90px -30px rgba(180,82,26,0.4);
   transform:rotate(-1.6deg); transition:transform .6s var(--e) }
 .handy:hover{ transform:rotate(0deg) translateY(-4px) }
 .handy-insel{ position:absolute; z-index:3; top:20px; left:50%; transform:translateX(-50%);
@@ -1344,17 +1347,17 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   background:linear-gradient(180deg,rgba(17,17,17,0.021),rgba(17,17,17,0.004)) }.termin-marke{ width:38px; height:38px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center;
   background:#0A0804; border:1px solid rgba(17,17,17,0.034); overflow:hidden }.termin-marke svg{ width:28px; height:28px }.termin-kopf b{ display:block; font-size:14.5px; font-weight:600; color:#FBF9F5; letter-spacing:-.02em }.termin-kopf span{ display:block; font-size:12px; color:#747270; margin-top:2px }.termin-tage{ display:grid; grid-template-columns:repeat(5,1fr); gap:7px; padding:16px 16px 8px }.termin-tage span{ display:grid; justify-items:center; gap:4px; padding:9px 0 10px; border-radius:12px;
   border:1px solid rgba(17,17,17,0.034); background:linear-gradient(180deg,rgba(17,17,17,0.014),rgba(17,17,17,0.004));
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.024) }.termin-tage i{ font-style:normal; font-size:10.5px; color:rgba(17,17,17,0.11) }.termin-tage b{ font-size:15px; font-weight:500; color:#FBF9F5; letter-spacing:-.02em }.termin-tage .an{ border-color:rgba(89,215,158,0.5);
-  background:linear-gradient(180deg,rgba(89,215,158,0.2),rgba(89,215,158,0.05));
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.067), 0 0 18px -6px rgba(89,215,158,0.6) }.termin-tage .an i{ color:rgba(17,17,17,0.184) }.termin-zeiten{ display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:8px 16px 16px }.termin-zeiten span{ display:flex; align-items:center; justify-content:center; gap:7px;
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.024) }.termin-tage i{ font-style:normal; font-size:10.5px; color:rgba(17,17,17,0.11) }.termin-tage b{ font-size:15px; font-weight:500; color:#FBF9F5; letter-spacing:-.02em }.termin-tage .an{ border-color:rgba(224,138,80,0.5);
+  background:linear-gradient(180deg,rgba(224,138,80,0.2),rgba(224,138,80,0.05));
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.067), 0 0 18px -6px rgba(224,138,80,0.6) }.termin-tage .an i{ color:rgba(17,17,17,0.184) }.termin-zeiten{ display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:8px 16px 16px }.termin-zeiten span{ display:flex; align-items:center; justify-content:center; gap:7px;
   padding:11px 0; border-radius:12px; font-size:13.5px; color:rgba(17,17,17,0.19);
   border:1px solid rgba(17,17,17,0.034); background:linear-gradient(180deg,rgba(17,17,17,0.012),rgba(17,17,17,0.003));
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.024) }.termin-zeiten .gewaehlt{ color:#0E1C16; font-weight:500; border-color:transparent;
-  background:linear-gradient(180deg,#9DE8C6,#33C181);
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.275), 0 3px 10px -2px rgba(62,203,140,0.5) }.termin-zeiten .gewaehlt svg{ width:13px; height:13px }.termin-fuss{ display:flex; align-items:center; gap:9px; padding:13px 18px;
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.024) }.termin-zeiten .gewaehlt{ color:#1C130E; font-weight:500; border-color:transparent;
+  background:linear-gradient(180deg,#EDBA98,#CF6925);
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.275), 0 3px 10px -2px rgba(218,115,47,0.5) }.termin-zeiten .gewaehlt svg{ width:13px; height:13px }.termin-fuss{ display:flex; align-items:center; gap:9px; padding:13px 18px;
   border-top:1px solid rgba(17,17,17,0.034); font-size:12.5px; color:#747270;
-  background:linear-gradient(180deg,rgba(17,17,17,0.029),rgba(17,17,17,0.052)) }.termin-punkt{ width:7px; height:7px; border-radius:50%; background:#47D092;
-  box-shadow:0 0 10px rgba(89,215,158,0.9); animation:pochen 2.4s ease-in-out infinite }
+  background:linear-gradient(180deg,rgba(17,17,17,0.029),rgba(17,17,17,0.052)) }.termin-punkt{ width:7px; height:7px; border-radius:50%; background:#DC7B3B;
+  box-shadow:0 0 10px rgba(224,138,80,0.9); animation:pochen 2.4s ease-in-out infinite }
 
 
 /* ===== Gründe als Zeilen ===== */
@@ -1366,9 +1369,9 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.09), 0 2px 4px rgba(17,17,17,0.119),
     0 16px 28px -20px rgba(17,17,17,0.306) }
 .grund-ik{ width:42px; height:42px; border-radius:13px; flex:0 0 auto; display:grid; place-items:center;
-  color:#DDF2E9; background:linear-gradient(168deg,#154833,#3ECC8C);
-  box-shadow:inset 0 1px 0 rgba(17,17,17,0.81), inset 0 -1.5px 2px rgba(178,232,209,0.35),
-    0 2px 4px rgba(17,17,17,0.17), 0 0 20px -4px rgba(40,166,109,0.5) }
+  color:#F3E6DC; background:linear-gradient(168deg,#482815,#DA7430);
+  box-shadow:inset 0 1px 0 rgba(17,17,17,0.81), inset 0 -1.5px 2px rgba(230,202,180,0.35),
+    0 2px 4px rgba(17,17,17,0.17), 0 0 20px -4px rgba(180,82,26,0.5) }
 .grund-ik svg{ width:21px; height:21px }
 .grund b{ display:block; font-size:15.5px; font-weight:600; color:#141414; letter-spacing:-.022em;
   margin-bottom:6px }
@@ -1405,7 +1408,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   box-shadow:inset 0 1px 0 rgba(255,255,255,.1), inset 0 -22px 36px -26px rgba(0,0,0,.95) }
 /* das Licht im Rahmen gehoert zur Farbe der Grafik darin */
 .stufen .stufe:nth-child(1) .stufe-bild{
-  background:radial-gradient(110% 80% at 50% 0%, rgba(89,215,158,.07), transparent 60%),
+  background:radial-gradient(110% 80% at 50% 0%, rgba(224,138,80,.07), transparent 60%),
     linear-gradient(180deg,#161616,#0A0A0A) }
 .stufen .stufe:nth-child(3) .stufe-bild{
   background:radial-gradient(110% 80% at 50% 0%, rgba(255,255,255,.085), transparent 60%),
@@ -1476,59 +1479,59 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 /* ===== Anzeigenmotiv im Handy ===== */
 .handy .az-bild{ position:relative; height:300px; display:block; overflow:hidden;
   background:
-    radial-gradient(90% 70% at 72% 8%, rgba(89,215,158,.5) 0%, rgba(49,180,121,.18) 38%, transparent 68%),
-    linear-gradient(165deg,#182D24 0%,#171918 46%,#050C09 100%) }
+    radial-gradient(90% 70% at 72% 8%, rgba(224,138,80,.5) 0%, rgba(200,92,29,.18) 38%, transparent 68%),
+    linear-gradient(165deg,#2D2018 0%,#171918 46%,#0C0805 100%) }
 .az-raster{ position:absolute; inset:0; opacity:.5;
-  background-image:linear-gradient(rgba(89,215,158,.09) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(89,215,158,.09) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(224,138,80,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(224,138,80,.09) 1px,transparent 1px);
   background-size:30px 30px;
   mask-image:radial-gradient(ellipse 90% 70% at 70% 10%,#000,transparent 72%);
   -webkit-mask-image:radial-gradient(ellipse 90% 70% at 70% 10%,#000,transparent 72%) }
 .az-schein{ position:absolute; left:-20%; bottom:-40%; width:140%; aspect-ratio:1; border-radius:50%;
-  background:radial-gradient(circle,rgba(89,215,158,.3),transparent 62%); filter:blur(30px) }
+  background:radial-gradient(circle,rgba(224,138,80,.3),transparent 62%); filter:blur(30px) }
 .az-oben{ position:absolute; z-index:3; top:13px; left:13px; right:13px;
   display:flex; align-items:center; justify-content:space-between; gap:10px }
 .az-plakette{ display:inline-flex; align-items:center; gap:7px; padding:6px 11px; border-radius:100px;
-  font-size:10.5px; letter-spacing:.02em; color:#C0ECDA;
-  background:rgba(6,14,11,.6); border:1px solid rgba(89,215,158,.3);
+  font-size:10.5px; letter-spacing:.02em; color:#EBD3C2;
+  background:rgba(14,9,6,.6); border:1px solid rgba(224,138,80,.3);
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px) }
-.az-plakette i{ width:6px; height:6px; border-radius:50%; background:#59D79E;
-  box-shadow:0 0 8px rgba(89,215,158,1) }
-.az-zeit{ font-size:10.5px; font-weight:500; color:#C0ECDA; padding:5px 9px; border-radius:7px;
-  background:rgba(6,14,11,.6); border:1px solid rgba(255,255,255,.12) }
+.az-plakette i{ width:6px; height:6px; border-radius:50%; background:#E08A50;
+  box-shadow:0 0 8px rgba(224,138,80,1) }
+.az-zeit{ font-size:10.5px; font-weight:500; color:#EBD3C2; padding:5px 9px; border-radius:7px;
+  background:rgba(14,9,6,.6); border:1px solid rgba(255,255,255,.12) }
 .az-karte{ position:absolute; z-index:3; right:12px; top:48px; width:158px; padding:12px 12px 8px;
   border-radius:16px; transform:rotate(2.4deg);
-  background:linear-gradient(170deg,rgba(255,255,255,.96),rgba(189,228,212,.9));
+  background:linear-gradient(170deg,rgba(255,255,255,.96),rgba(232,205,185,.9));
   box-shadow:inset 0 1px 0 rgba(255,255,255,1), 0 3px 8px rgba(0,0,0,.4),
     0 22px 38px -16px rgba(0,0,0,.75) }
 .az-karte-kopf{ display:flex; align-items:center; justify-content:space-between; gap:8px;
   font-size:10.5px; color:#444947; font-weight:500 }
-.az-delta{ font-size:9.5px; font-weight:600; color:#0E1C16; padding:3px 7px; border-radius:100px;
-  background:linear-gradient(180deg,#78DFB1,#32BA7D); box-shadow:inset 0 1px 0 rgba(255,255,255,.9) }
+.az-delta{ font-size:9.5px; font-weight:600; color:#1C130E; padding:3px 7px; border-radius:100px;
+  background:linear-gradient(180deg,#E6A071,#C96523); box-shadow:inset 0 1px 0 rgba(255,255,255,.9) }
 .handy .az-karte-zahl{ display:block; margin:5px 0 2px; font-size:28px; font-weight:600; letter-spacing:-.05em;
-  line-height:1; color:#0E1C16; font-variant-numeric:tabular-nums }
+  line-height:1; color:#1C130E; font-variant-numeric:tabular-nums }
 .az-kurve{ width:100%; height:38px; display:block; margin:2px 0 6px }
 .az-karte-fuss{ display:flex; align-items:center; gap:5px; font-size:9.5px; color:#535856 }
 .az-wolke{ width:15px; height:15px; border-radius:50%; display:block;
-  background:radial-gradient(70% 70% at 34% 26%,#D1F1E4,#32BA7D);
+  background:radial-gradient(70% 70% at 34% 26%,#F0DFD2,#C96523);
   box-shadow:0 0 0 1.6px rgba(255,255,255,.95), inset 0 1px 0 rgba(255,255,255,.8) }
 .az-wolke + .az-wolke{ margin-left:-7px }
 .az-karte-fuss em{ font-style:normal; margin-left:6px }
 .handy .az-bild .az-schlag{ position:absolute; z-index:4; left:16px; bottom:34px; max-width:68%;
-  font-size:26px; font-weight:600; line-height:1.08; letter-spacing:-.04em; color:#DAF4E9;
+  font-size:26px; font-weight:600; line-height:1.08; letter-spacing:-.04em; color:#F3E5DB;
   text-align:left; text-shadow:0 2px 12px rgba(0,0,0,.75) }
-.az-schlag span{ background:linear-gradient(170deg,#BEECD9,#59D79E 55%,#31B479);
+.az-schlag span{ background:linear-gradient(170deg,#EAD2C0,#E08A50 55%,#C85C1D);
   -webkit-background-clip:text; background-clip:text; color:transparent }
 .az-spiel{ position:absolute; z-index:4; right:14px; bottom:28px;
-  width:40px; height:40px; border-radius:50%; display:grid; place-items:center; color:#0E1C16;
-  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(120,223,177,.9));
+  width:40px; height:40px; border-radius:50%; display:grid; place-items:center; color:#1C130E;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(230,160,113,.9));
   box-shadow:inset 0 1px 0 rgba(255,255,255,1), 0 4px 12px rgba(0,0,0,.5),
     0 0 0 6px rgba(255,255,255,.12) }
 .az-spiel svg{ width:17px; height:17px; margin-left:2px }
 .az-fortschritt{ position:absolute; z-index:3; left:14px; right:14px; bottom:14px; height:3px;
   border-radius:100px; background:rgba(255,255,255,.22); overflow:hidden }
 .az-fortschritt i{ display:block; height:100%; width:38%; border-radius:100px;
-  background:linear-gradient(90deg,#32BA7D,#B7EAD5); box-shadow:0 0 10px rgba(89,215,158,.8) }
+  background:linear-gradient(90deg,#C96523,#E8CDB9); box-shadow:0 0 10px rgba(224,138,80,.8) }
 
 
 /* ===== Handy als echtes Gerät im Raum ===== */
@@ -1576,8 +1579,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 @keyframes tr-rein{ to{ opacity:1; transform:none } }
 .tr-tropfen{ opacity:0 }
 .da .tr-tropfen{ animation:einblenden .5s ease .8s forwards, tropfen-puls 2.4s ease-in-out 1.4s infinite }
-@keyframes tropfen-puls{ 0%,100%{ filter:drop-shadow(0 0 2px rgba(89,215,158,.45)) }
-  50%{ filter:drop-shadow(0 0 10px rgba(89,215,158,.75)) } }
+@keyframes tropfen-puls{ 0%,100%{ filter:drop-shadow(0 0 2px rgba(224,138,80,.45)) }
+  50%{ filter:drop-shadow(0 0 10px rgba(224,138,80,.75)) } }
 
 
 /* ===== Farbige Chips ===== */
@@ -1585,15 +1588,15 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   background:linear-gradient(180deg,rgba(77,75,73,0.18),rgba(77,75,73,0.05));
   box-shadow:inset 0 1px 0 rgba(17,17,17,0.162), 0 2px 4px rgba(17,17,17,0.119) }
 .chip-blau i{ background:linear-gradient(180deg,#181818,#7D7B79) }
-.chip-orange{ color:#175F3F; border-color:rgba(34,144,94,0.34);
-  background:linear-gradient(180deg,rgba(34,144,94,0.16),rgba(34,144,94,0.04)) }
-.chip-orange i{ background:linear-gradient(180deg,#0F3223,#46BE88) }
+.chip-orange{ color:#672F0F; border-color:rgba(156,71,22,0.34);
+  background:linear-gradient(180deg,rgba(156,71,22,0.16),rgba(156,71,22,0.04)) }
+.chip-orange i{ background:linear-gradient(180deg,#321C0F,#DA702A) }
 
 /* ===== Anzeigenmotiv, zweite Fassung ===== */
 .handy .az-bild{ position:relative; height:310px; display:block; overflow:hidden;
   background:
     radial-gradient(80% 60% at 78% 6%, rgba(180,180,180,.42) 0%, rgba(132,132,132,.16) 40%, transparent 70%),
-    radial-gradient(70% 50% at 12% 96%, rgba(111,221,171,.22) 0%, transparent 62%),
+    radial-gradient(70% 50% at 12% 96%, rgba(228,154,104,.22) 0%, transparent 62%),
     linear-gradient(168deg,#1B1B1B 0%,#111111 48%,#080808 100%) }
 .az-punkte-muster{ position:absolute; inset:0; opacity:.6;
   background-image:radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
@@ -1750,7 +1753,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   align-content:center }
 .gf-licht{ position:absolute; left:50%; top:26%; width:82%; aspect-ratio:1; border-radius:50%;
   transform:translateX(-50%); pointer-events:none; filter:blur(44px);
-  background:radial-gradient(circle, rgba(89,215,158,.17), transparent 62%) }
+  background:radial-gradient(circle, rgba(224,138,80,.17), transparent 62%) }
 .gf-licht.hell{ background:radial-gradient(circle, rgba(255,255,255,.22), transparent 62%) }
 
 /* Angebot */
@@ -1777,28 +1780,28 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 .gf-vorn{ position:relative; z-index:2; margin-top:116px; padding:20px 22px 22px }
 .gf-vorn-kopf{ display:flex; align-items:center; justify-content:space-between; gap:12px }
 .gf-haken{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center;
-  color:#0D2219; background:linear-gradient(180deg,#9DE8C6,#33C181);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 3px 8px -2px rgba(62,203,140,.45) }
+  color:#22150D; background:linear-gradient(180deg,#EDBA98,#CF6925);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 3px 8px -2px rgba(218,115,47,.45) }
 .gf-haken svg{ width:14px; height:14px }
 .gf-vorn-fuss{ display:flex; align-items:center; gap:14px; margin-top:20px;
   padding-top:18px; border-top:1px solid rgba(255,255,255,.08) }
 .gf-notiz{ font-size:11.5px; color:rgba(255,255,255,.34) }
 .gf-plakette{ display:inline-flex; padding:5px 12px; border-radius:100px; font-size:10.5px;
-  letter-spacing:.12em; text-transform:uppercase; color:#0D2219;
-  background:linear-gradient(180deg,#9DE8C6,#33C181);
+  letter-spacing:.12em; text-transform:uppercase; color:#22150D;
+  background:linear-gradient(180deg,#EDBA98,#CF6925);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.85) }
 .gf-titel{ display:block; margin:14px 0 0; font-size:19px; font-weight:600; line-height:1.24;
   letter-spacing:-.028em; color:#fff }
 .gf-punkte{ list-style:none; margin:16px 0 0; padding:0; display:grid; gap:8px }
 .gf-punkte li{ position:relative; padding-left:24px; font-size:13.5px; color:rgba(255,255,255,.62) }
 .gf-punkte li::before{ content:""; position:absolute; left:0; top:.34em; width:14px; height:14px;
-  border-radius:50%; background:rgba(89,215,158,.16); box-shadow:inset 0 0 0 1px rgba(89,215,158,.45) }
+  border-radius:50%; background:rgba(224,138,80,.16); box-shadow:inset 0 0 0 1px rgba(224,138,80,.45) }
 .gf-punkte li::after{ content:""; position:absolute; left:4.6px; top:calc(.34em + 4.4px);
-  width:5px; height:5px; border-radius:50%; background:#59D79E }
+  width:5px; height:5px; border-radius:50%; background:#E08A50 }
 .gf-knopf{ display:inline-flex; padding:10px 16px; border-radius:11px;
-  font-size:13px; font-weight:600; color:#0E1C16;
-  background:linear-gradient(180deg,#9DE8C6,#33C181);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 3px 10px -2px rgba(62,203,140,.4) }/* Copywriting */
+  font-size:13px; font-weight:600; color:#1C130E;
+  background:linear-gradient(180deg,#EDBA98,#CF6925);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 3px 10px -2px rgba(218,115,47,.4) }/* Copywriting */
 .cw-karte{ position:relative; border-radius:15px; padding:14px 16px 16px;
   background:linear-gradient(170deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
   border:1px solid rgba(255,255,255,.1);
@@ -1822,13 +1825,13 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="balkenG" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#59D79E"/><stop offset="1" stop-color="#208056"/></linearGradient>
+    <stop offset="0" stop-color="#E08A50"/><stop offset="1" stop-color="#8C4014"/></linearGradient>
   <linearGradient id="balkenHi" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#B7EAD5"/><stop offset="1" stop-color="#31B479"/></linearGradient>
+    <stop offset="0" stop-color="#E8CDB9"/><stop offset="1" stop-color="#C85C1D"/></linearGradient>
   <linearGradient id="achseG" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#59D79E" stop-opacity="0"/><stop offset=".5" stop-color="#59D79E" stop-opacity=".45"/><stop offset="1" stop-color="#59D79E" stop-opacity="0"/></linearGradient>
+    <stop offset="0" stop-color="#E08A50" stop-opacity="0"/><stop offset=".5" stop-color="#E08A50" stop-opacity=".45"/><stop offset="1" stop-color="#E08A50" stop-opacity="0"/></linearGradient>
   <radialGradient id="kugLime" cx="34%" cy="26%" r="78%">
-    <stop offset="0" stop-color="#CDF0E1"/><stop offset="52%" stop-color="#6FDDAB"/><stop offset="100%" stop-color="#2E976A"/></radialGradient>
+    <stop offset="0" stop-color="#EFDCCE"/><stop offset="52%" stop-color="#E49A68"/><stop offset="100%" stop-color="#AC4F19"/></radialGradient>
   <radialGradient id="kugGrau" cx="34%" cy="26%" r="78%">
     <stop offset="0" stop-color="#626262"/><stop offset="52%" stop-color="#333333"/><stop offset="100%" stop-color="#161616"/></radialGradient>
   <radialGradient id="glanz" cx="50%" cy="50%" r="50%">
@@ -1838,21 +1841,21 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   <filter id="weich" x="-40%" y="-40%" width="180%" height="180%">
     <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity=".6"/></filter>
   <linearGradient id="limSchaleL" x1="0" y1="0" x2=".3" y2="1">
-    <stop offset="0" stop-color="#ADE8CD"/><stop offset=".45" stop-color="#3ECB8C"/><stop offset="1" stop-color="#208056"/></linearGradient>
+    <stop offset="0" stop-color="#EFC3A6"/><stop offset=".45" stop-color="#DA732F"/><stop offset="1" stop-color="#8C4014"/></linearGradient>
   <radialGradient id="limFleischL" cx="34%" cy="28%" r="78%">
-    <stop offset="0" stop-color="#E2F6EE"/><stop offset="55%" stop-color="#9DE8C6"/><stop offset="100%" stop-color="#33C181"/></radialGradient>
+    <stop offset="0" stop-color="#F6EBE3"/><stop offset="55%" stop-color="#EDBA98"/><stop offset="100%" stop-color="#CF6925"/></radialGradient>
   <radialGradient id="limSegL" cx="30%" cy="26%" r="86%">
-    <stop offset="0" stop-color="#D4F2E6"/><stop offset="52%" stop-color="#65DBA6"/><stop offset="100%" stop-color="#30B378"/></radialGradient>
+    <stop offset="0" stop-color="#F1E1D5"/><stop offset="52%" stop-color="#E2935E"/><stop offset="100%" stop-color="#C75B1C"/></radialGradient>
   <radialGradient id="limKernL" cx="34%" cy="28%" r="70%">
-    <stop offset="0" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#93E2BE"/></radialGradient>
+    <stop offset="0" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#EAB18B"/></radialGradient>
   <linearGradient id="limSchaleR" x1="0" y1="0" x2=".3" y2="1">
-    <stop offset="0" stop-color="#75D1A8"/><stop offset=".45" stop-color="#31B479"/><stop offset="1" stop-color="#174F37"/></linearGradient>
+    <stop offset="0" stop-color="#E39663"/><stop offset=".45" stop-color="#C85C1D"/><stop offset="1" stop-color="#59290D"/></linearGradient>
   <radialGradient id="limFleischR" cx="34%" cy="28%" r="78%">
-    <stop offset="0" stop-color="#C8E9DB"/><stop offset="55%" stop-color="#71D0A5"/><stop offset="100%" stop-color="#29A36E"/></radialGradient>
+    <stop offset="0" stop-color="#ECD6C5"/><stop offset="55%" stop-color="#E3935E"/><stop offset="100%" stop-color="#B25219"/></radialGradient>
   <radialGradient id="limSegR" cx="30%" cy="26%" r="86%">
-    <stop offset="0" stop-color="#B9E2D1"/><stop offset="52%" stop-color="#47CE91"/><stop offset="100%" stop-color="#269867"/></radialGradient>
+    <stop offset="0" stop-color="#E6CAB5"/><stop offset="52%" stop-color="#DC7A39"/><stop offset="100%" stop-color="#A64C18"/></radialGradient>
   <radialGradient id="limKernR" cx="34%" cy="28%" r="70%">
-    <stop offset="0" stop-color="#DCF5EB"/><stop offset="100%" stop-color="#59D79E"/></radialGradient>
+    <stop offset="0" stop-color="#F4E7DD"/><stop offset="100%" stop-color="#E08A50"/></radialGradient>
   <filter id="limSchatten" x="-60%" y="-60%" width="220%" height="220%">
     <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000" flood-opacity=".75"/>
     <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#000" flood-opacity=".5"/></filter>
@@ -1860,13 +1863,13 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
     <stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
 
   <linearGradient id="funkeG" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#3ECF8E" stop-opacity=".26"/><stop offset="1" stop-color="#3ECF8E" stop-opacity="0"/></linearGradient>
+    <stop offset="0" stop-color="#DB7632" stop-opacity=".26"/><stop offset="1" stop-color="#DB7632" stop-opacity="0"/></linearGradient>
   <linearGradient id="funkeG2" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#B4B4B4" stop-opacity=".22"/><stop offset="1" stop-color="#B4B4B4" stop-opacity="0"/></linearGradient>
   <linearGradient id="azFuell" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#B4B4B4" stop-opacity=".5"/><stop offset="1" stop-color="#B4B4B4" stop-opacity="0"/></linearGradient>
   <linearGradient id="angKnopfGruen" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#B7EAD5"/><stop offset="1" stop-color="#31B479"/></linearGradient>
+    <stop offset="0" stop-color="#E8CDB9"/><stop offset="1" stop-color="#C85C1D"/></linearGradient>
   <linearGradient id="cwBalkenWeiss" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="rgba(255,255,255,.45)"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
   <linearGradient id="angKnopf" x1="0" y1="0" x2="1" y2="0">
@@ -1874,23 +1877,23 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   <linearGradient id="cwBalken" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="#848484"/><stop offset="1" stop-color="#D4D4D4"/></linearGradient>
   <linearGradient id="stufeHell" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#B7EAD5"/><stop offset="1" stop-color="#33C181"/></linearGradient>
+    <stop offset="0" stop-color="#E8CDB9"/><stop offset="1" stop-color="#CF6925"/></linearGradient>
   <linearGradient id="metaBlau2" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0" stop-color="#7E7E7E"/><stop offset="1" stop-color="#707070"/></linearGradient>
   <linearGradient id="chartLinie" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#249B63"/><stop offset=".55" stop-color="#3ECF8E"/><stop offset="1" stop-color="#6EE7B0"/></linearGradient>
+    <stop offset="0" stop-color="#A74C18"/><stop offset=".55" stop-color="#DB7632"/><stop offset="1" stop-color="#EA9E6B"/></linearGradient>
   <linearGradient id="chartFuell" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#3ECF8E" stop-opacity=".26"/>
-    <stop offset=".55" stop-color="#3ECF8E" stop-opacity=".06"/>
-    <stop offset="1" stop-color="#3ECF8E" stop-opacity="0"/></linearGradient>
+    <stop offset="0" stop-color="#DB7632" stop-opacity=".26"/>
+    <stop offset=".55" stop-color="#DB7632" stop-opacity=".06"/>
+    <stop offset="1" stop-color="#DB7632" stop-opacity="0"/></linearGradient>
   <linearGradient id="volA" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#979797" stop-opacity=".5"/><stop offset="1" stop-color="#979797" stop-opacity=".12"/></linearGradient>
   <linearGradient id="volB" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#C7C7C7"/><stop offset="1" stop-color="#848484"/></linearGradient>
   <linearGradient id="saeuleA" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#B7EAD5"/><stop offset=".45" stop-color="#59D79E"/><stop offset="1" stop-color="#249061"/></linearGradient>
+    <stop offset="0" stop-color="#E8CDB9"/><stop offset=".45" stop-color="#E08A50"/><stop offset="1" stop-color="#9D4817"/></linearGradient>
   <linearGradient id="saeuleB" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#8DD9B7"/><stop offset=".5" stop-color="#31B479"/><stop offset="1" stop-color="#1E5A40"/></linearGradient>
+    <stop offset="0" stop-color="#E8A87E"/><stop offset=".5" stop-color="#C85C1D"/><stop offset="1" stop-color="#69300F"/></linearGradient>
   <linearGradient id="saeuleGlanz" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 
@@ -1922,7 +1925,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 
 <header id="kopfzeile">
   <div class="kopf">
-    <a href="#oben" class="marke"><span class="mk-zeichen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5 10 9l4.4 4.4L20 7.5"/></svg></span><span class="mk-wort">Arbeitstitel</span></a>
+    <a href="#oben" class="marke"><img class="nka-bild" src="nka-logo.png" width="867" height="240" alt="NKA"></a>
     <nav class="nav">
       <a href="#oben" class="an">Start</a>
       <a href="#leistungen">Leistungen</a>
@@ -2048,8 +2051,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
                 <line x1="0" y1="28" x2="120" y2="28" stroke="rgba(255,255,255,.05)"/>
                 <path class="fk-flaeche" d="M2 40C14 37 20 32 32 27s18 3 28-9 16 1 26-9 14-3 32-4V46H2z" fill="url(#funkeG)"/>
                 <path class="fk-linie" d="M2 40C14 37 20 32 32 27s18 3 28-9 16 1 26-9 14-3 32-4" stroke="url(#chartLinie)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <ellipse class="fk-punkt" cx="112" cy="5" rx="2.6" ry="7.6" fill="#3ECF8E" opacity=".3"/>
-                <ellipse class="fk-punkt" cx="112" cy="5" rx=".95" ry="2.8" fill="#C9F5E2"/>
+                <ellipse class="fk-punkt" cx="112" cy="5" rx="2.6" ry="7.6" fill="#DB7632" opacity=".3"/>
+                <ellipse class="fk-punkt" cx="112" cy="5" rx=".95" ry="2.8" fill="#F3DCCB"/>
               </svg>
             </div>
             <div class="kpi">
@@ -2696,7 +2699,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   <div class="wrap">
     <div class="fuss">
       <div>
-        <a href="#oben" class="marke marke-gross"><span class="mk-zeichen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5 10 9l4.4 4.4L20 7.5"/></svg></span><span class="mk-wort">Arbeitstitel</span></a>
+        <a href="#oben" class="marke marke-gross"><img class="nka-bild" src="nka-logo.png" width="867" height="240" alt="NKA"></a>
         <p class="fuss-text">Neukundengewinnung für Betriebe im deutschsprachigen Raum. Sitz in Hannover.</p>
       </div>
       <div>
@@ -2718,9 +2721,9 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
         </ul>
       </div>
     </div>
-    <div class="wasserzeichen" aria-hidden="true">ANFRAGEN</div>
+    <div class="wasserzeichen" aria-hidden="true">NKA</div>
     <div class="fuss-zeile">
-      <span>© 2026</span>
+      <span>© 2026 NKA</span>
       <span>Hannover · DACH</span>
     </div>
   </div>
@@ -2856,8 +2859,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
     g.addColorStop(0,'rgba(82,90,86,.55)');
     g.addColorStop(.3,'rgba(42,46,44,.5)');
     g.addColorStop(.62,'rgba(18,20,20,.6)');
-    g.addColorStop(.92,'rgba(6,8,7,.78)');
-    g.addColorStop(1,'rgba(3,6,5,.9)');
+    g.addColorStop(.92,'rgba(8,7,6,.78)');
+    g.addColorStop(1,'rgba(6,4,3,.9)');
     ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
 
 
@@ -2875,12 +2878,12 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
       var tiefe = 0.35 + 0.65*z;
       var rad = (p.land ? 2.9 : 1.5) * tiefe;
       if(p.dach){
-        ctx.fillStyle = 'rgba(111,221,172,' + (0.68 + 0.32*licht).toFixed(3) + ')';
-        ctx.shadowColor = 'rgba(89,215,158,.85)'; ctx.shadowBlur = 9;
+        ctx.fillStyle = 'rgba(228,154,104,' + (0.68 + 0.32*licht).toFixed(3) + ')';
+        ctx.shadowColor = 'rgba(224,138,80,.85)'; ctx.shadowBlur = 9;
         rad *= 1.35;
       } else if(p.land){
         ctx.shadowBlur = 0;
-        ctx.fillStyle = 'rgba(215,239,229,' + (0.42 + 0.58*licht*tiefe).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(241,225,213,' + (0.42 + 0.58*licht*tiefe).toFixed(3) + ')';
       } else {
         ctx.shadowBlur = 0;
         ctx.fillStyle = 'rgba(130,139,135,' + (0.035 + 0.075*licht*tiefe).toFixed(3) + ')';
@@ -2890,7 +2893,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
     }
 
     /* feine Lichtkante oben rechts */
-    ctx.strokeStyle='rgba(89,215,158,.3)'; ctx.lineWidth=2;
+    ctx.strokeStyle='rgba(224,138,80,.3)'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.arc(cx,cy,R-1,-Math.PI*0.92,-Math.PI*0.08); ctx.stroke();
   }
 
