@@ -565,6 +565,25 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .gr-portraet img{ border-radius:inherit }
 .gr-zitat{ font-size:clamp(20px,2.3vw,28px) !important; line-height:1.34 !important; max-width:none }
 .gr-absatz{ max-width:42ch; margin-top:18px !important }
+/* ===== Strecke: Linie laeuft durch, Kacheln ohne Aussparung ===== */
+.str-kachel{ box-shadow:inset 0 1.5px 0 rgba(255,255,255,.26), inset 0 -2px 3px rgba(0,0,0,.55),
+  0 2px 4px rgba(0,0,0,.45), 0 10px 18px -8px rgba(0,0,0,.7) !important }
+.str-knoten:last-child .str-kachel{ color:#FFFFFF !important;
+  background:linear-gradient(168deg,#F5791B 0%,#E45308 100%) !important;
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45), 0 2px 4px rgba(0,0,0,.45),
+    0 10px 18px -8px rgba(0,0,0,.7) !important }
+.str-schiene{ background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.14) 8%,
+  rgba(255,255,255,.14) 92%, rgba(255,255,255,0)) !important }
+
+/* ===== Fragen bekommen dieselbe Tiefe wie die uebrigen Kaesten ===== */
+.fq{ box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 2px 4px rgba(17,17,17,.1),
+  0 20px 38px -26px rgba(17,17,17,.5) !important;
+  transition:border-color .3s var(--e), box-shadow .3s var(--e), transform .3s var(--e) }
+.fq:hover{ transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 3px 8px rgba(17,17,17,.12),
+    0 28px 48px -28px rgba(17,17,17,.55) !important }
+.fq[open]{ box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 3px 8px rgba(17,17,17,.14),
+  0 30px 54px -30px rgba(17,17,17,.6) !important }
 /* ===== Bento ===== */
 .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:20px; margin-top:52px }
 .bento .karte{ grid-column:span 2 }
@@ -2598,7 +2617,7 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
         <span class="fenster-rechts"><b></b>Läuft</span>
       </div>
       <div class="str-koerper">
-        <div class="str-schiene" aria-hidden="true"><span class="str-puls"></span></div>
+        <div class="str-schiene" aria-hidden="true"></div>
         <div class="str-knoten">
           <span class="str-kachel">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
