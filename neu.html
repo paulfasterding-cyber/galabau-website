@@ -681,6 +681,37 @@ header{ position:fixed; top:16px; left:0; right:0; z-index:50 }
 .ds-marke{ padding:2px 6px 0 !important }
 .ck-delta{ color:#C94E07 !important; background:rgba(245,121,27,.13) !important;
   box-shadow:inset 0 0 0 1px rgba(245,121,27,.28) !important }
+/* ===== Kontaktformular ===== */
+.kf{ position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.13);
+  background:linear-gradient(180deg,#2A2A2C 0%,#1C1C1E 100%);
+  box-shadow:0 2px 6px rgba(0,0,0,.3), 0 30px 60px -34px rgba(0,0,0,.7); padding:22px 22px 24px }
+.kf-kopf{ display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+  padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.1) }
+.kf-kopf b{ display:block; font-size:15px; font-weight:600; color:#FFFFFF; letter-spacing:-.02em }
+.kf-kopf span{ display:block; margin-top:3px; font-size:12.2px; color:rgba(255,255,255,.5) }
+.kf-felder{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px }
+.kf-weit{ grid-column:1 / -1 }
+.kf-feld span{ display:block; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+  color:rgba(255,255,255,.42); margin-bottom:7px }
+.kf-feld input, .kf-feld textarea{ width:100%; box-sizing:border-box; font:inherit; font-size:14px;
+  color:#FFFFFF; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14);
+  border-radius:11px; padding:11px 13px; outline:none; resize:vertical;
+  transition:border-color .25s, background .25s }
+.kf-feld input::placeholder, .kf-feld textarea::placeholder{ color:rgba(255,255,255,.3) }
+.kf-feld input:focus, .kf-feld textarea:focus{ border-color:#F5791B; background:rgba(255,255,255,.08) }
+.kf-feld input:user-invalid{ border-color:rgba(255,120,120,.6) }
+.kf-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
+.kf-senden{ margin-top:18px; width:100%; justify-content:center; padding:12px 12px 12px 20px }
+.kf-hinweis{ margin:13px 0 0; font-size:11.8px; line-height:1.55; color:rgba(255,255,255,.42) }
+.kf-hinweis a{ color:rgba(255,255,255,.72); border-bottom:1px solid rgba(255,255,255,.26) }
+.kf-hinweis a:hover{ color:#FF9440; border-color:#FF9440 }
+.kf-meldung{ display:none; margin-top:14px; padding:12px 14px; border-radius:12px; font-size:13.4px;
+  line-height:1.5 }
+.kf-meldung.an{ display:block }
+.kf-meldung.gut{ color:#FFE3CD; background:rgba(245,121,27,.16); box-shadow:inset 0 0 0 1px rgba(245,121,27,.3) }
+.kf-meldung.schlecht{ color:#FFD9D9; background:rgba(200,70,70,.16); box-shadow:inset 0 0 0 1px rgba(200,70,70,.32) }
+.kf.laeuft .kf-senden{ opacity:.6; pointer-events:none }
+@media (max-width:620px){ .kf-felder{ grid-template-columns:1fr } }
 /* ===== Bento ===== */
 .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:20px; margin-top:52px }
 .bento .karte{ grid-column:span 2 }
@@ -2895,29 +2926,25 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
           </div>
         </div>
 
-        <div class="termin">
-          <div class="termin-kopf">
-            <div><b>Erstgespräch</b><span>20 Minuten · Video oder Telefon</span></div>
+        <form class="kf" id="kontaktForm" method="post" action="/kontakt.php" novalidate>
+          <div class="kf-kopf">
+            <div><b>Anfrage schicken</b><span>Antwort meist am selben Tag</span></div>
           </div>
-          <div class="termin-tage">
-            <span><i>Mo</i><b>17</b></span>
-            <span><i>Di</i><b>18</b></span>
-            <span class="an"><i>Mi</i><b>19</b></span>
-            <span><i>Do</i><b>20</b></span>
-            <span><i>Fr</i><b>21</b></span>
+          <div class="kf-felder">
+            <label class="kf-feld"><span>Name</span><input type="text" name="name" autocomplete="name" required placeholder="Vor- und Nachname"></label>
+            <label class="kf-feld"><span>Betrieb</span><input type="text" name="betrieb" autocomplete="organization" placeholder="Firmenname"></label>
+            <label class="kf-feld"><span>E-Mail</span><input type="email" name="email" autocomplete="email" required placeholder="name@betrieb.de"></label>
+            <label class="kf-feld"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" placeholder="Für den Rückruf"></label>
+            <label class="kf-feld kf-weit"><span>Worum geht es?</span><textarea name="nachricht" rows="3" placeholder="Was du anbietest und wo es gerade hakt"></textarea></label>
           </div>
-          <div class="termin-zeiten">
-            <span>09:00</span>
-            <span>11:30</span>
-            <span class="gewaehlt">14:00<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-            <span>16:30</span>
-          </div>
-          <div class="termin-fuss">
-            <span class="termin-punkt"></span>
-            Antwort meist am selben Tag
-          </div>
-        </div>
-      </div>
+          <div class="kf-hp" aria-hidden="true"><label>Bitte leer lassen<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <input type="hidden" name="start" value="">
+          <button class="btn btn-lime kf-senden" type="submit">Anfrage senden
+            <span class="kr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg></span>
+          </button>
+          <p class="kf-hinweis">Deine Angaben nutzen wir nur, um deine Anfrage zu beantworten. Mehr dazu in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+          <div class="kf-meldung" id="kfMeldung" role="status" aria-live="polite"></div>
+        </form>
     </div>
   </div>
 </section>
@@ -3367,5 +3394,53 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
 })();
 </script>
 
+
+<script>
+/* Kontaktformular: sendet an /kontakt.php, faellt auf eine vorbereitete E-Mail zurueck */
+(function(){
+  var form = document.getElementById("kontaktForm");
+  if(!form) return;
+  var meldung = document.getElementById("kfMeldung");
+  var startFeld = form.querySelector('input[name="start"]');
+  if(startFeld) startFeld.value = String(Date.now());
+
+  function sagen(text, gut){
+    meldung.textContent = text;
+    meldung.className = "kf-meldung an " + (gut ? "gut" : "schlecht");
+  }
+  function ersatzMail(){
+    var d = new FormData(form);
+    var text = "Name: " + (d.get("name")||"") + "\nBetrieb: " + (d.get("betrieb")||"")
+      + "\nE-Mail: " + (d.get("email")||"") + "\nTelefon: " + (d.get("telefon")||"")
+      + "\n\n" + (d.get("nachricht")||"");
+    window.location.href = "mailto:paul.web@outlook.de?subject="
+      + encodeURIComponent("Anfrage über die Website") + "&body=" + encodeURIComponent(text);
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    form.classList.add("laeuft");
+    meldung.className = "kf-meldung";
+    fetch("/kontakt.php", { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } })
+      .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
+      .then(function(a){
+        form.classList.remove("laeuft");
+        if(a && a.ok){
+          form.reset();
+          if(startFeld) startFeld.value = String(Date.now());
+          sagen("Danke, deine Anfrage ist da. Wir melden uns meist am selben Tag.", true);
+        } else {
+          sagen("Das Senden hat nicht geklappt. Wir öffnen dir eine vorbereitete E-Mail.", false);
+          setTimeout(ersatzMail, 900);
+        }
+      })
+      .catch(function(){
+        form.classList.remove("laeuft");
+        sagen("Das Senden hat nicht geklappt. Wir öffnen dir eine vorbereitete E-Mail.", false);
+        setTimeout(ersatzMail, 900);
+      });
+  });
+})();
+</script>
 </body>
 </html>
