@@ -2939,8 +2939,8 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
         <ul>
           <li><a href="mailto:paul.web@outlook.de">E-Mail schreiben</a></li>
           <li><a href="https://calendly.com/paul-web/30min" rel="noopener">Termin buchen</a></li>
-          <li><a href="/">Aktuelle Seite</a></li>
-          <li><a href="/#impressum">Impressum</a></li>
+          <li><a href="/datenschutz.html">Datenschutz</a></li>
+          <li><a href="/impressum.html">Impressum</a></li>
         </ul>
       </div>
     </div>
@@ -3209,5 +3209,159 @@ footer{ border-top:1px solid rgba(17,17,17,.1); padding:54px 0 0; overflow:hidde
   window.addEventListener('scroll', pruefe, {passive:true});
 })();
 </script>
+
+<!-- ===================== EINWILLIGUNG ===================== -->
+<style>
+.ck-knopf{ position:fixed; left:18px; bottom:18px; z-index:70; display:inline-flex; align-items:center; gap:8px;
+  padding:9px 14px; border-radius:100px; font-size:12.5px; font-weight:500; letter-spacing:-.01em;
+  color:#3A3A3A; background:rgba(255,255,255,.92); border:1px solid rgba(17,17,17,.12);
+  box-shadow:0 2px 6px rgba(17,17,17,.08), 0 14px 28px -18px rgba(17,17,17,.4);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); cursor:pointer;
+  transition:transform .25s var(--e), box-shadow .25s var(--e) }
+.ck-knopf:hover{ transform:translateY(-1px); box-shadow:0 3px 8px rgba(17,17,17,.1), 0 20px 36px -20px rgba(17,17,17,.45) }
+.ck-knopf i{ width:8px; height:8px; border-radius:50%; flex:0 0 auto;
+  background:linear-gradient(180deg,#F5791B,#E45308) }
+@media (max-width:620px){ .ck-knopf{ left:12px; bottom:12px; padding:8px 12px; font-size:12px } }
+
+.ck-huelle{ position:fixed; inset:0; z-index:80; display:none; align-items:flex-end; justify-content:flex-start;
+  padding:22px }
+.ck-huelle.auf-an{ display:flex }
+.ck-schatten{ position:absolute; inset:0; background:rgba(17,17,17,.28);
+  -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px) }
+.ck-karte{ position:relative; width:min(460px,100%); border-radius:20px; overflow:hidden;
+  background:linear-gradient(180deg,#333335 0%,#232325 100%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 4px 12px rgba(0,0,0,.3), 0 40px 70px -34px rgba(0,0,0,.7) }
+.ck-innen{ padding:24px 24px 22px }
+.ck-marke{ display:flex; align-items:center; gap:9px; font-size:10.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:rgba(255,255,255,.45) }
+.ck-marke b{ width:8px; height:8px; border-radius:2px; background:linear-gradient(180deg,#F5791B,#E45308) }
+.ck-karte h2{ margin:14px 0 0; font-size:19px; line-height:1.3; letter-spacing:-.025em; color:#FFFFFF }
+.ck-karte p{ margin:10px 0 0; font-size:13.8px; line-height:1.62; color:rgba(255,255,255,.6) }
+.ck-karte a{ color:#FFFFFF; border-bottom:1px solid rgba(255,255,255,.3) }
+.ck-karte a:hover{ color:#FF9440; border-color:#FF9440 }
+.ck-reihe{ display:flex; flex-wrap:wrap; gap:9px; margin-top:20px }
+.ck-btn{ flex:1 1 150px; padding:11px 16px; border-radius:100px; font-size:13.5px; font-weight:500;
+  text-align:center; cursor:pointer; border:1px solid transparent; transition:background .25s, border-color .25s }
+.ck-ja{ color:#FFFFFF; background:linear-gradient(180deg,#F5791B 0%,#E45308 100%); border-color:#E45308 }
+.ck-ja:hover{ background:linear-gradient(180deg,#FF8A2A 0%,#F45E12 100%) }
+.ck-nein{ color:#FFFFFF; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.16) }
+.ck-nein:hover{ background:rgba(255,255,255,.16) }
+.ck-mehr{ margin-top:12px; font-size:12.5px; color:rgba(255,255,255,.5); background:none; border:0;
+  cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:3px }
+.ck-mehr:hover{ color:#FFFFFF }
+.ck-wahl{ display:none; margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.1); gap:12px }
+.ck-wahl.an{ display:grid }
+.ck-zeile{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px }
+.ck-zeile b{ display:block; font-size:13.5px; font-weight:600; color:#FFFFFF; letter-spacing:-.015em }
+.ck-zeile span{ display:block; margin-top:3px; font-size:12.2px; line-height:1.5; color:rgba(255,255,255,.52) }
+.ck-schalter{ position:relative; width:40px; height:23px; border-radius:100px; flex:0 0 auto; cursor:pointer;
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.16); transition:background .25s }
+.ck-schalter::after{ content:""; position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:50%;
+  background:#FFFFFF; transition:transform .25s var(--e) }
+.ck-schalter.an{ background:linear-gradient(180deg,#F5791B,#E45308); border-color:#E45308 }
+.ck-schalter.an::after{ transform:translateX(17px) }
+.ck-schalter.fest{ background:rgba(255,255,255,.22); cursor:not-allowed; opacity:.75 }
+.ck-schalter.fest::after{ transform:translateX(17px) }
+@media (max-width:620px){ .ck-huelle{ padding:12px } .ck-innen{ padding:20px } }
+</style>
+
+<button class="ck-knopf" type="button" id="ckOeffnen" aria-label="Cookie-Einstellungen öffnen"><i></i>Cookie-Einstellungen</button>
+
+<div class="ck-huelle" id="ckHuelle" role="dialog" aria-modal="false" aria-label="Einwilligung">
+  <div class="ck-schatten" data-ck-zu hidden></div>
+  <div class="ck-karte">
+    <div class="ck-innen">
+      <span class="ck-marke"><b></b>Datenschutz</span>
+      <h2>Wir fragen, bevor wir etwas laden.</h2>
+      <p>Diese Seite lädt nichts von fremden Servern und setzt keine Werbe-Cookies. Gespeichert wird nur deine Entscheidung hier. Wenn du zustimmst, dürfen wir künftig Statistik- und Marketingdienste laden, um zu sehen, welche Anzeige dich hergebracht hat. Mehr dazu in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+
+      <div class="ck-wahl" id="ckWahl">
+        <div class="ck-zeile">
+          <div><b>Notwendig</b><span>Auslieferung der Seite und deine Entscheidung hier. Ohne das geht es nicht.</span></div>
+          <div class="ck-schalter fest" aria-hidden="true"></div>
+        </div>
+        <div class="ck-zeile">
+          <div><b>Statistik</b><span>Anonyme Auswertung, welche Abschnitte gelesen werden. Aktuell nicht im Einsatz.</span></div>
+          <div class="ck-schalter" id="ckStat" role="switch" aria-checked="false" tabindex="0"></div>
+        </div>
+        <div class="ck-zeile">
+          <div><b>Marketing</b><span>Messung, über welche Anzeige eine Anfrage entstanden ist. Aktuell nicht im Einsatz.</span></div>
+          <div class="ck-schalter" id="ckMark" role="switch" aria-checked="false" tabindex="0"></div>
+        </div>
+      </div>
+
+      <div class="ck-reihe">
+        <button class="ck-btn ck-nein" type="button" id="ckNein">Nur notwendige</button>
+        <button class="ck-btn ck-ja" type="button" id="ckJa">Alle akzeptieren</button>
+      </div>
+      <button class="ck-mehr" type="button" id="ckMehr">Einstellungen anzeigen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var SCHLUESSEL = "nka-einwilligung-v1";
+  var huelle = document.getElementById("ckHuelle");
+  var wahl = document.getElementById("ckWahl");
+  var stat = document.getElementById("ckStat");
+  var mark = document.getElementById("ckMark");
+  var mehr = document.getElementById("ckMehr");
+
+  function lesen(){
+    try { return JSON.parse(localStorage.getItem(SCHLUESSEL) || "null"); }
+    catch(e){ return null; }
+  }
+  function schreiben(statistik, marketing){
+    var daten = { statistik:!!statistik, marketing:!!marketing, fassung:1, zeit:new Date().toISOString() };
+    try { localStorage.setItem(SCHLUESSEL, JSON.stringify(daten)); } catch(e){}
+    window.nkaEinwilligung = daten;
+    document.dispatchEvent(new CustomEvent("nka-einwilligung", { detail: daten }));
+    return daten;
+  }
+  function zeigen(){
+    var d = lesen();
+    stat.classList.toggle("an", !!(d && d.statistik));
+    stat.setAttribute("aria-checked", !!(d && d.statistik));
+    mark.classList.toggle("an", !!(d && d.marketing));
+    mark.setAttribute("aria-checked", !!(d && d.marketing));
+    huelle.classList.add("auf-an");
+  }
+  function schliessen(){ huelle.classList.remove("auf-an"); wahl.classList.remove("an");
+    mehr.textContent = "Einstellungen anzeigen"; }
+
+  function umschalten(el){
+    var an = el.classList.toggle("an");
+    el.setAttribute("aria-checked", an);
+  }
+  [stat, mark].forEach(function(el){
+    el.addEventListener("click", function(){ umschalten(el); });
+    el.addEventListener("keydown", function(e){
+      if(e.key === " " || e.key === "Enter"){ e.preventDefault(); umschalten(el); }
+    });
+  });
+
+  mehr.addEventListener("click", function(){
+    var an = wahl.classList.toggle("an");
+    mehr.textContent = an ? "Einstellungen ausblenden" : "Einstellungen anzeigen";
+  });
+  document.getElementById("ckJa").addEventListener("click", function(){
+    if(wahl.classList.contains("an")){ schreiben(stat.classList.contains("an"), mark.classList.contains("an")); }
+    else { schreiben(true, true); }
+    schliessen();
+  });
+  document.getElementById("ckNein").addEventListener("click", function(){ schreiben(false,false); schliessen(); });
+  document.getElementById("ckOeffnen").addEventListener("click", zeigen);
+  Array.prototype.forEach.call(document.querySelectorAll("[data-ck-zu]"), function(el){
+    el.addEventListener("click", schliessen);
+  });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") schliessen(); });
+
+  var d = lesen();
+  if(d){ window.nkaEinwilligung = d; } else { setTimeout(zeigen, 900); }
+})();
+</script>
+
 </body>
 </html>
